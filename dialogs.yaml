@@ -11,32 +11,25 @@ jedi_temple:
       script: OpenGalaxyMap
       close_dialog: true
 
-    
-     
-      
-
     #
     # Minigames
     #
 
     - button_key: Blaster Training
-      script:
-        OpenMinigameStageGroup:
-          stage_group_id: 11
+      script: !OpenMinigameStageGroup
+        stage_group_id: 11
       close_dialog: true
 
     - button_key: Lightsaber Duel
-      script:
-        OpenMinigameStageGroup:
-          stage_group_id: 31000
+      script: !OpenMinigameStageGroup
+        stage_group_id: 31000
       close_dialog: true
 
     - button_key: Saber Strike
-      script:
-        OpenMinigameStageGroup:
-          stage_group_id: 13
+      script: !OpenMinigameStageGroup
+        stage_group_id: 13
       close_dialog: true
-    
+
     #
     # Hanger
     #
@@ -208,6 +201,7 @@ jedi_temple:
         choices:
           - button_key: Lightsaber Duel
             button_text_id: 3793
+
     #
     #
     # SHOPS
@@ -230,8 +224,8 @@ jedi_temple:
           z: 1576.502           
           w: 1
         choices:
-          - button_key: AR-M33
-            button_text_id: 16684
+          - button_key: Shop Now! (AR-M33)
+            button_text_id: 16680
               
     - button_key: H0-U5E
       npc_key: H0-U5E
@@ -250,8 +244,8 @@ jedi_temple:
           z: 1540.8483
           w: 1
         choices:
-          - button_key: H0-U5E
-            button_text_id: 16664
+          - button_key: Shop Now! (H0-U5E)
+            button_text_id: 16668
 
     - button_key: 5W0-0P
       npc_key: 5W0-0P
@@ -270,8 +264,8 @@ jedi_temple:
           z: 1555.0261
           w: 1
         choices:
-          - button_key: 5W0-0P
-            button_text_id: 16692
+          - button_key: Shop Now! (5W0-0P)
+            button_text_id: 16668
     
     - button_key: 80-T5
       npc_key: 80-T5
@@ -290,8 +284,8 @@ jedi_temple:
           z: 1538.6312
           w: 1
         choices:
-          - button_key: 80-T5
-            button_text_id: 16688
+          - button_key: Shop Now! (80-T5)
+            button_text_id: 16668
 
     - button_key: 5A8-3R
       npc_key: 5A8-3R
@@ -310,8 +304,8 @@ jedi_temple:
           z: 1552.8569
           w: 1
         choices:
-          - button_key: 5A8-3R
-            button_text_id: 16684
+          - button_key: Shop Now! (5A8-3R)
+            button_text_id: 16668
 
     - button_key: GL1-D3
       npc_key: GL1-D3
@@ -330,13 +324,48 @@ jedi_temple:
           z: 1516.4126
           w: 1
         choices:
-          - button_key: GL1-D3
+          - button_key: Shop Now! (GL1-D3)
             button_text_id: 16668
 
+    
+    - button_key: Shop Now! (AR-M33)
+      npc_key: AR-M33,
+      script: !CustomIntParams
+        script_name: UIGlobal.GotoItemGroupInStore
+        params: [1, 0, 0]
+      close_dialog: true
+    
+    - button_key: Shop Now! (GL1-D3)
+      npc_key: GL1-D3
+      script: !CustomIntParams
+        script_name: UIGlobal.GotoItemGroupInStore
+        params: [114, 0, 0]
+      close_dialog: true
 
+    - button_key: Shop Now! (5A8-3R)
+      npc_key: 5A8-3R
+      script: !CustomIntParams
+        script_name: UIGlobal.GotoItemGroupInStore
+        params: [20, 0, 0]
+      close_dialog: true
 
+    - button_key: Shop Now! (80-T5)
+      npc_key: 80-T5
+      script: !CustomIntParams
+        script_name: UIGlobal.GotoItemGroupInStore
+        params: [10, 0, 0]
+      close_dialog: true
 
+    - button_key: Shop Now! (5W0-0P)
+      npc_key: 5W0-0P
+      script: !CustomIntParams
+        script_name: UIGlobal.GotoItemGroupInStore
+        params: [110, 0, 0]
+      close_dialog: true
 
-
-
-
+    - button_key: Shop Now! (H0-U5E)
+      npc_key: H0-U5E
+      script: !CustomIntParams
+        script_name: UIGlobal.GotoItemGroupInStore
+        params: [94, 0, 0]
+      close_dialog: true
