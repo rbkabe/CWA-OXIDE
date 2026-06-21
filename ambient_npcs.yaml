@@ -2234,6 +2234,174 @@ jedi_temple:
         duration_millis: 4000
       interact_radius: 6
       auto_interact_radius: 5
+    # Amb Shops Jedi 1
+    amb_shops_jedi_1:
+      model_id: 40
+      pos:
+        x: 905.4856
+        y: 172.44919
+        z: 1537.36
+        w: 1.0
+      rot:
+        x: 0.953
+        y: 0
+        z: -0.303
+        w: 0
+      cursor: 52
+    # Amb Shops Jedi 2
+    amb_shops_jedi_2:
+      model_id: 410
+      pos:
+        x: 907.3328
+        y: 172.44817
+        z: 1536.892
+        w: 1.0
+      rot:
+        x: -0.92
+        y: 0
+        z: 0.386
+        w: 0
+      cursor: 52
+    # Amb Shops Jedi 3
+    amb_shops_jedi_3:
+      model_id: 409
+      pos:
+        x: 884.0515
+        y: 171.93375
+        z: 1578.4481
+        w: 1.0
+      rot:
+        x: 0.92993
+        y: 0
+        z: 0.36774
+        w: 0
+      cursor: 52
+    # Amb Shops Clone 1
+    amb_shops_clone_1:
+      model_id: 1580
+      pos:
+        x: 886.5212
+        y: 171.93375
+        z: 1579.1299
+        w: 1.0
+      rot:
+        x: -0.9966
+        y: 0
+        z: -0.052
+        w: 0
+      cursor: 52
+    # Amb Shops Clone 2
+    amb_shops_clone_2:
+      model_id: 709
+      pos:
+        x: 885.3433
+        y: 171.93375
+        z: 1580.7069
+        w: 1.0
+      rot:
+        x: -0.078
+        y: 0
+        z: -0.997
+        w: 0
+      cursor: 52
+    # Amb Shops Jedi 4
+    amb_shops_jedi_4:
+      model_id: 1901
+      pos:
+        x: 891.7515
+        y: 171.93376
+        z: 1514.9319
+        w: 1.0
+      rot:
+        x: 0.95002794
+        y: 0
+        z: 0.031216505
+        w: 0
+      cursor: 52
+    # Amb Shops Clone 3
+    amb_shops_clone_3:
+      model_id: 2698
+      pos:
+        x: 883.11176
+        y: 171.93376
+        z: 1540.9872
+        w: 1.0
+      rot:
+        x: 0.06278983
+        y: 0
+        z: 0.9980268
+        w: 0
+      cursor: 52
+    # Amb Shops Jedi 5
+    amb_shops_jedi_5:
+      model_id: 1973
+      pos:
+        x: 883.60675
+        y: 171.93376
+        z: 1517.4747
+        w: 1.0
+      rot:
+        x: -0.19260103
+        y: 0
+        z: -0.99142605
+        w: 0
+      cursor: 52
+    # Amb Shops Mechanic
+    amb_shops_mechanic:
+      model_id: 630
+      pos:
+        x: 921.42706
+        y: 178.45145
+        z: 1550.993
+        w: 1.0
+      rot:
+        x: 0.37300605
+        y: 0
+        z: 0.92782885
+        w: 0
+      cursor: 52
+    # Amb Shops Clone 4
+    amb_shops_clone_4:
+      model_id: 1880
+      pos:
+        x: 883.6212
+        y: 171.93376
+        z: 1515.4285
+        w: 1.0
+      rot:
+        x: 0.2424852
+        y: 0
+        z: 0.9701551
+        w: 0
+      cursor: 52
+    # Amb Shops Clone 5
+    amb_shops_clone_5:
+      model_id: 2032
+      pos:
+        x: 921.4845
+        y: 178.53049
+        z: 1553.241
+        w: 1.0
+      rot:
+        x: -0.082598716
+        y: 0
+        z: -0.9965829
+        w: 0
+      cursor: 52
+    # Amb Shops Senator
+    amb_shops_senator:
+      model_id: 1617
+      pos:
+        x: 883.0504
+        y: 171.93376
+        z: 1542.5411
+        w: 1.0
+      rot:
+        x: -0.119177
+        y: 0
+        z: -0.992873
+        w: 0
+      cursor: 52
     # Gonk Droid (shop)
     gonk_droid:
       model_id: 233
