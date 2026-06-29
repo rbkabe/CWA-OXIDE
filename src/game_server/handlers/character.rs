@@ -1,0 +1,3207 @@
+use std::{
+    collections::{BTreeMap, BTreeSet, HashMap, HashSet},
+    time::{Duration, Instant},
+};
+
+use chrono::{DateTime, FixedOffset, Utc};
+use enum_iterator::Sequence;
+use rand::{seq::SliceRandom, thread_rng, Rng};
+use rand_distr::{Distribution, WeightedAliasIndex};
+use serde::Deserialize;
+
+use crate::{
+    game_server::{
+        handlers::{
+            combat::ThreatTable,
+            dialog::handle_dialog_buttons,
+            inventory::{attachments_from_equipped_items, wield_type_from_inventory},
+            item::ItemConfig,
+            lock_enforcer::CharacterWriteGuard,
+            unique_guid::AMBIENT_NPC_DISCRIMINANT,
+        },
+        navmesh::{Collision, Navmesh, NavmeshWaypoint, NonLinearPathState},
+        packets::{
+            chat::{ActionBarTextColor, SendStringId},
+            client_update::UpdateCredits,
+            command::{EnterDialog, ExitDialog, PlaySoundIdOnTarget},
+            item::{Attachment, BaseAttachmentGroup, EquipmentSlot, WieldType},
+            minigame::ScoreEntry,
+            player_update::{
+                AddCompositeEffectTag, AddNotifications, AddNpc, AddPc, Customization,
+                CustomizationSlot, HitPointModification, Hostility, HudMessage, Icon, MoveOnRail,
+                NameplateImage, NotificationData, NpcRelevance, PhysicsState, PlayCompositeEffect,
+                QueueAnimation, RemoveCompositeEffectTag, RemoveGracefully, RemoveStandard,
+                RemoveTemporaryModel, SetAnimation, SingleNotification, SingleNpcRelevance,
+                UpdateSpeed, UpdateTemporaryModel,
+            },
+            tunnel::TunneledPacket,
+            ui::{ExecuteScriptWithIntParams, ExecuteScriptWithStringParams},
+            update_position::UpdatePlayerPos,
+            CharacterStateFlags, GamePacket, GuidTarget, Name, Pos, Rgba, Target, STANDING,
+        },
+        Broadcast, GameServer, ProcessPacketError, ProcessPacketErrorType,
+        TickableNpcSynchronization,
+    },
+    info,
+};
+
+use super::{
+    distance3_pos,
+    guid::{Guid, IndexedGuid},
+    housing::fixture_packets,
+    lock_enforcer::CharacterLockRequest,
+    minigame::{MinigameTypeData, PlayerMinigameStats},
+    mount::{spawn_mount_npc, MountConfig},
+    unique_guid::{mount_guid, npc_guid, player_guid},
+    zone::ZoneInstance,
+    WriteLockingBroadcastSupplier,
+};
+
+pub fn coerce_to_broadcast_supplier(
+    f: impl FnOnce(&GameServer) -> Result<Vec<Broadcast>, ProcessPacketError> + 'static,
+) -> WriteLockingBroadcastSupplier {
+    Ok(Box::new(f))
+}
+
+pub const CHAT_BUBBLE_VISIBLE_RADIUS: f32 = 32.0;
+pub const ORIGIN_RESET_TAG_ID: u32 = 1;
+pub const ORIGIN_RESET_COMPOSITE_EFFECT_ID: u32 = 2764;
+
+const fn default_health() -> u16 {
+    u16::MAX
+}
+
+const fn default_stand_animation_id() -> i32 {
+    1
+}
+
+const fn default_fade_millis() -> u32 {
+    1000
+}
+
+const fn default_interact_radius() -> f32 {
+    2.3
+}
+
+const fn default_move_to_interact_offset() -> f32 {
+    2.2
+}
+
+const fn default_removal_delay_millis() -> u32 {
+    5000
+}
+
+const fn default_scale() -> f32 {
+    1.0
+}
+
+const fn default_true() -> bool {
+    true
+}
+
+const fn default_weight() -> u32 {
+    1
+}
+
+pub const fn default_spawn_animation_id() -> i32 {
+    1
+}
+
+const fn default_ability_height() -> f32 {
+    1.5
+}
+
+const fn default_hud_message_millis() -> u32 {
+    2000
+}
+
+#[derive(Clone, Default, Deserialize, Eq, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub enum CursorUpdate {
+    #[default]
+    Keep,
+    Disable,
+    Enable {
+        new_cursor: u8,
+    },
+}
+
+#[derive(Clone, Copy, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub enum RemovalMode {
+    #[default]
+    Immediate,
+    Graceful {
+        #[serde(default = "default_true")]
+        enable_death_animation: bool,
+        #[serde(default = "default_removal_delay_millis")]
+        removal_delay_millis: u32,
+        #[serde(default)]
+        removal_effect_delay_millis: u32,
+        #[serde(default)]
+        removal_composite_effect_id: u32,
+        #[serde(default = "default_fade_millis")]
+        fade_duration_millis: u32,
+    },
+}
+
+#[derive(Clone, Copy, Default, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub enum SpawnedState {
+    #[default]
+    Keep,
+    Always,
+    OnFirstStepTick,
+    Despawn,
+}
+
+#[derive(Debug, Default, Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub enum ScriptType {
+    #[default]
+    None,
+    OpenGalaxyMap,
+    CustomStringParams {
+        script_name: String,
+        #[serde(default)]
+        params: Vec<String>,
+    },
+    CustomIntParams {
+        script_name: String,
+        #[serde(default)]
+        params: Vec<i32>,
+    },
+    OpenMinigameStageGroup {
+        stage_group_id: i32,
+    },
+}
+
+#[derive(Clone, Copy, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub enum TickableDialogMode {
+    #[default]
+    None,
+    Open {
+        camera_placement: Pos,
+        look_at: Pos,
+        dialog_message_id: Option<u32>,
+        speaker_animation_id: Option<i32>,
+        speaker_sound_id: Option<u32>,
+        #[serde(default)]
+        zoom: f32,
+        #[serde(default)]
+        show_players: bool,
+    },
+    Close,
+}
+
+#[derive(Clone, Copy, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub enum HudMessageType {
+    #[default]
+    None,
+    Overhead {
+        name_id: u32,
+        message_id: u32,
+        image_id: u32,
+        sound_id: Option<u32>,
+        #[serde(default = "default_hud_message_millis")]
+        duration_millis: u32,
+    },
+    ActionBar {
+        message_id: u32,
+    },
+}
+
+#[derive(Clone, Copy, Default, Deserialize, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub enum HoverDescriptionMode {
+    #[default]
+    None,
+    UseName,
+    OverrideNameId(u32),
+}
+
+impl HoverDescriptionMode {
+    pub fn resolve_hover_description(&self, npc_name_id: u32) -> u32 {
+        match *self {
+            HoverDescriptionMode::None => 0,
+            HoverDescriptionMode::UseName => npc_name_id,
+            HoverDescriptionMode::OverrideNameId(id) => id,
+        }
+    }
+}
+
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct BaseNpcConfig {
+    pub key: Option<String>,
+    #[serde(default)]
+    pub model_id: u32,
+    #[serde(default)]
+    pub possible_model_ids: Vec<u32>,
+    #[serde(default)]
+    pub texture_alias: String,
+    #[serde(default)]
+    pub name_id: u32,
+    pub sub_title_id: Option<u32>,
+    #[serde(default)]
+    pub terrain_object_id: u32,
+    #[serde(default = "default_scale")]
+    pub scale: f32,
+    #[serde(default)]
+    pub pos: Pos,
+    #[serde(default)]
+    pub rot: Pos,
+    #[serde(default)]
+    pub possible_pos: Vec<Pos>,
+    #[serde(default = "default_stand_animation_id")]
+    pub stand_animation_id: i32,
+    #[serde(default)]
+    pub name_offset_x: f32,
+    #[serde(default)]
+    pub name_offset_y: f32,
+    #[serde(default)]
+    pub name_offset_z: f32,
+    #[serde(default)]
+    pub speed: f32,
+    pub cursor: Option<u8>,
+    #[serde(default = "default_health")]
+    pub health: u16,
+    pub max_health: Option<u16>,
+    #[serde(default)]
+    pub hostility: Hostility,
+    #[serde(default)]
+    pub hover_description: HoverDescriptionMode,
+    #[serde(default = "default_true")]
+    pub enable_interact_popup: bool,
+    #[serde(default = "default_interact_radius")]
+    pub interact_radius: f32,
+    pub auto_interact_radius: Option<f32>,
+    pub interact_popup_radius: Option<f32>,
+    #[serde(default = "default_move_to_interact_offset")]
+    pub move_to_interact_offset: f32,
+    #[serde(default = "default_true")]
+    pub show_name: bool,
+    #[serde(default)]
+    pub show_health: bool,
+    pub bounce_area_id: Option<i32>,
+    #[serde(default)]
+    pub physics: PhysicsState,
+    #[serde(default = "default_true")]
+    pub enable_gravity: bool,
+    #[serde(default)]
+    pub enable_tilt: bool,
+    #[serde(default = "default_true")]
+    pub use_terrain_model: bool,
+    #[serde(default)]
+    pub tickable_procedures: HashMap<String, TickableProcedureConfig>,
+    #[serde(default)]
+    pub first_possible_procedures: Vec<String>,
+    pub synchronize_with: Option<String>,
+    #[serde(default = "default_true")]
+    pub is_spawned: bool,
+    pub composite_effect_id: Option<u32>,
+    #[serde(default = "default_true")]
+    pub clickable: bool,
+    #[serde(default = "default_spawn_animation_id")]
+    pub spawn_animation_id: i32,
+    #[serde(default)]
+    pub max_distance_from_target: f32,
+    #[serde(default)]
+    pub max_distance_from_origin: f32,
+    #[serde(default)]
+    pub auto_target_radius: f32,
+    #[serde(default = "default_ability_height")]
+    pub ability_height: f32,
+    #[serde(default)]
+    pub enemy_types: HashSet<String>,
+    #[serde(default)]
+    pub enemy_prioritization: HashMap<String, i8>,
+    pub procedure_on_interact: Option<Vec<TickableProcedureReference>>,
+    pub one_shot_interaction: Option<OneShotInteractionConfig>,
+    #[serde(default)]
+    pub triggered_npc_keys_on_interact: Vec<String>,
+    pub notification_icon: Option<u32>,
+    pub navmesh: Option<String>,
+}
+
+#[derive(Clone)]
+pub struct BaseNpc {
+    pub texture_alias: String,
+    pub name_id: u32,
+    pub sub_title_id: Option<u32>,
+    pub terrain_object_id: u32,
+    pub name_offset_x: f32,
+    pub name_offset_y: f32,
+    pub name_offset_z: f32,
+    pub enable_interact_popup: bool,
+    pub interact_popup_radius: Option<f32>,
+    pub show_name: bool,
+    pub show_health: bool,
+    pub hostility: Hostility,
+    pub bounce_area_id: Option<i32>,
+    pub enable_gravity: bool,
+    pub enable_tilt: bool,
+    pub use_terrain_model: bool,
+    pub attachments: Vec<Attachment>,
+    pub composite_effect_id: Option<u32>,
+    pub clickable: bool,
+    pub spawn_animation_id: i32,
+    pub hover_description: HoverDescriptionMode,
+    pub procedure_on_interact: Option<Vec<TickableProcedureReference>>,
+    pub one_shot_interaction: Option<OneShotInteractionTemplate>,
+    pub triggered_npc_guids: Vec<u64>,
+    pub notification_icon: Option<u32>,
+}
+
+impl BaseNpc {
+    pub fn add_packets(
+        &self,
+        character: &CharacterStats,
+        override_is_spawned: bool,
+    ) -> Vec<Vec<u8>> {
+        if !character.is_spawned && !override_is_spawned {
+            return Vec::new();
+        }
+
+        let mut packets = vec![
+            GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: AddNpc {
+                    guid: Guid::guid(character),
+                    name_id: self.name_id,
+                    model_id: character.model_id,
+                    unknown3: false,
+                    chat_text_color: Character::DEFAULT_CHAT_TEXT_COLOR,
+                    chat_bubble_color: Character::DEFAULT_CHAT_BUBBLE_COLOR,
+                    chat_scale: 1,
+                    scale: character.scale,
+                    pos: character.pos,
+                    rot: character.rot,
+                    spawn_animation_id: self.spawn_animation_id,
+                    attachments: self.attachments.clone(),
+                    hostility: self.hostility,
+                    unknown10: 1,
+                    texture_alias: self.texture_alias.clone(),
+                    tint_name: "".to_string(),
+                    tint_id: 0,
+                    unknown11: true,
+                    offset_y: 0.0,
+                    composite_effect_id: self.composite_effect_id.unwrap_or_default(),
+                    wield_type: character.wield_type(),
+                    name_override: "".to_string(),
+                    hide_name: !self.show_name,
+                    name_offset_x: self.name_offset_x,
+                    name_offset_y: self.name_offset_y,
+                    name_offset_z: self.name_offset_z,
+                    terrain_object_id: self.terrain_object_id,
+                    enable_attachments: !self.attachments.is_empty(),
+                    speed: character.speed.total(),
+                    unknown21: false,
+                    interactable_size_pct: 100,
+                    walk_animation_id: -1,
+                    sprint_animation_id: -1,
+                    stand_animation_id: character.stand_animation_id,
+                    unknown26: false,
+                    disable_gravity: !self.enable_gravity,
+                    sub_title_id: self.sub_title_id.unwrap_or_default(),
+                    one_shot_animation_id: 0,
+                    temporary_model: 0,
+                    effects: vec![],
+                    disable_interact_popup: !self.enable_interact_popup,
+                    unused_death_animation_id: 0, // can cause crashes when death anim is enabled upon removal, but has no visual effect
+                    unknown34: false,
+                    show_health: self.show_health,
+                    hide_despawn_fade: false,
+                    enable_tilt: self.enable_tilt,
+                    base_attachment_group: BaseAttachmentGroup {
+                        unknown1: 0,
+                        unknown2: "".to_string(),
+                        unknown3: "".to_string(),
+                        unknown4: 0,
+                        unknown5: "".to_string(),
+                    },
+                    tilt: Pos {
+                        x: 0.0,
+                        y: 0.0,
+                        z: 0.0,
+                        w: 0.0,
+                    },
+                    unknown40: 0,
+                    bounce_area_id: self.bounce_area_id.unwrap_or(-1),
+                    image_set_id: 0,
+                    clickable: self.clickable,
+                    rider_guid: 0,
+                    physics: character.physics,
+                    interact_popup_radius: self
+                        .interact_popup_radius
+                        .unwrap_or(character.interact_radius),
+                    target: Target::default(),
+                    variables: vec![],
+                    rail_id: 0,
+                    rail_elapsed_seconds: 0.0,
+                    rail_offset: Pos {
+                        x: 0.0,
+                        y: 0.0,
+                        z: 0.0,
+                        w: 0.0,
+                    },
+                    unknown54: 0,
+                    rail_unknown1: 0.0,
+                    rail_unknown2: 0.0,
+                    auto_interact_radius: character.auto_interact_radius,
+                    head_customization_override: "".to_string(),
+                    hair_customization_override: "".to_string(),
+                    body_customization_override: "".to_string(),
+                    override_terrain_model: !self.use_terrain_model,
+                    hover_glow: 0,
+                    hover_description: self
+                        .hover_description
+                        .resolve_hover_description(self.name_id),
+                    fly_over_effect: 0,
+                    unknown65: 0,
+                    unknown66: 0,
+                    unknown67: 0,
+                    disable_move_to_interact: false,
+                    unknown69: 0.0,
+                    unknown70: 0.0,
+                    unknown71: 0,
+                    icon_id: Icon::None,
+                },
+            }),
+            GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: NpcRelevance {
+                    new_states: vec![SingleNpcRelevance {
+                        guid: Guid::guid(character),
+                        cursor: character.cursor,
+                        unknown1: false,
+                    }],
+                },
+            }),
+        ];
+
+        if let Some(icon_id) = self.notification_icon {
+            packets.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: AddNotifications {
+                    notifications: vec![SingleNotification {
+                        guid: Guid::guid(character),
+                        unknown1: 0,
+                        notification: Some(NotificationData {
+                            unknown1: 0,
+                            icon_id,
+                            unknown3: 0,
+                            name_id: 0,
+                            unknown4: 0,
+                            hide_icon: false,
+                            unknown6: 0,
+                        }),
+                        unknown2: false,
+                    }],
+                },
+            }));
+        }
+
+        if character.health < character.max_health && self.show_health {
+            packets.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: HitPointModification {
+                    attacker_guid: 0,
+                    receiver_guid: Guid::guid(character),
+                    show_hp_delta: false,
+                    max_hp: character.max_health as i32,
+                    new_hp: character.health as i32,
+                    hp_delta: 0,
+                    critical: false,
+                },
+            }));
+        }
+
+        packets
+    }
+
+    pub fn interact(
+        &self,
+        character: &mut Character,
+        nearby_player_guids: &[u32],
+        requester: u32,
+        player_stats: &mut Player,
+        zone_instance: &ZoneInstance,
+        game_server: &GameServer,
+    ) -> (Option<String>, WriteLockingBroadcastSupplier) {
+        if let Some(active_procedure_key) = character.current_tickable_procedure() {
+            if let Some(active_procedure) = character
+                .tickable_procedure_tracker
+                .procedures
+                .get(active_procedure_key)
+            {
+                if !active_procedure.is_interruptible() {
+                    let empty_supplier = coerce_to_broadcast_supplier(|_| Ok(Vec::new()));
+                    return (None, empty_supplier);
+                }
+            }
+        }
+
+        let procedure = self.procedure_on_interact.as_ref().map(|options| {
+            let weights: Vec<u32> = options.iter().map(|p| p.weight).collect();
+            let distribution =
+                WeightedAliasIndex::new(weights).expect("Failed to build alias index");
+            let index = distribution.sample(&mut thread_rng());
+            options[index].procedure.clone()
+        });
+
+        let mut packets = self
+            .one_shot_interaction
+            .as_ref()
+            .and_then(|action| {
+                action
+                    .apply(
+                        &mut character.stats,
+                        nearby_player_guids,
+                        requester,
+                        player_stats,
+                        zone_instance,
+                        game_server,
+                    )
+                    .ok()
+            })
+            .unwrap_or_default();
+
+        for guid in &self.triggered_npc_guids {
+            if let Ok(mut triggered_packets) = trigger_synchronized_interaction(
+                *guid,
+                nearby_player_guids,
+                requester,
+                player_stats,
+                zone_instance,
+                game_server,
+            ) {
+                packets.append(&mut triggered_packets);
+            }
+        }
+
+        let broadcast_supplier = coerce_to_broadcast_supplier(move |_| Ok(packets));
+        (procedure, broadcast_supplier)
+    }
+}
+
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OneShotAction {
+    #[serde(default)]
+    pub award_credits: u32,
+    #[serde(default)]
+    pub script: ScriptType,
+    pub point_of_interest: Option<u16>,
+}
+
+impl OneShotAction {
+    pub fn apply(&self, player_stats: &mut Player) -> Result<Vec<Vec<u8>>, ProcessPacketError> {
+        let mut packets = Vec::new();
+
+        if self.award_credits > 0 {
+            let new_credits = player_stats.credits.saturating_add(self.award_credits);
+            player_stats.credits = new_credits;
+            packets.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: UpdateCredits { new_credits },
+            }));
+        }
+
+        match &self.script {
+            ScriptType::CustomIntParams {
+                script_name,
+                params,
+            } => {
+                packets.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: script_name.clone(),
+                        params: params.clone(),
+                    },
+                }));
+            }
+            ScriptType::CustomStringParams {
+                script_name,
+                params,
+            } => {
+                packets.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithStringParams {
+                        script_name: script_name.clone(),
+                        params: params.clone(),
+                    },
+                }));
+            }
+            ScriptType::OpenMinigameStageGroup { stage_group_id } => {
+                packets.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: "MiniGameFlow.CreateMiniGameGroup".to_string(),
+                        params: vec![*stage_group_id],
+                    },
+                }));
+            }
+            ScriptType::OpenGalaxyMap => {
+                packets.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: "UIGlobal.ShowGalaxyMap".to_string(),
+                        params: vec![],
+                    },
+                }));
+            }
+            ScriptType::None => {}
+        }
+
+        if let Some(poi) = self.point_of_interest {
+            packets.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: ExecuteScriptWithIntParams {
+                    script_name: "HudDockHandler.gotoPOI".to_string(),
+                    params: vec![poi.into()],
+                },
+            }));
+        }
+
+        Ok(packets)
+    }
+}
+
+#[derive(Copy, Clone, Default, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct PlayerOneShotAction {
+    pub animation_id: Option<i32>,
+    #[serde(default)]
+    pub animation_delay_seconds: u32,
+    pub composite_effect_id: Option<u32>,
+    #[serde(default)]
+    pub composite_effect_delay_millis: u32,
+}
+
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct OneShotInteractionConfig {
+    #[serde(default)]
+    pub award_credits: u32,
+    #[serde(default)]
+    pub script: ScriptType,
+    pub point_of_interest: Option<u16>,
+    #[serde(default)]
+    pub player_reaction: PlayerOneShotAction,
+    pub one_shot_animation_id: Option<i32>,
+    #[serde(default)]
+    pub animation_delay_seconds: f32,
+    pub composite_effect_id: Option<u32>,
+    #[serde(default)]
+    pub composite_effect_delay_millis: u32,
+    pub dialog_option_key: Option<String>,
+    #[serde(default)]
+    pub hud_message: HudMessageType,
+    #[serde(default)]
+    pub removal_mode: RemovalMode,
+    #[serde(default)]
+    pub despawn_npc: bool,
+    pub duration_millis: u64,
+}
+
+#[derive(Clone)]
+pub struct OneShotInteractionTemplate {
+    pub one_shot_action: OneShotAction,
+    pub player_one_shot_action: PlayerOneShotAction,
+    pub one_shot_animation_id: Option<i32>,
+    pub animation_delay_seconds: f32,
+    pub composite_effect_id: Option<u32>,
+    pub composite_effect_delay_millis: u32,
+    pub dialog_option_id: Option<u32>,
+    pub hud_message: HudMessageType,
+    pub removal_mode: RemovalMode,
+    pub despawn_npc: bool,
+    pub duration_millis: u64,
+}
+
+impl OneShotInteractionTemplate {
+    pub fn from_config(
+        config: &OneShotInteractionConfig,
+        zone_guid: u8,
+        button_keys_to_id: &HashMap<String, u32>,
+        npc_name: &str,
+    ) -> Self {
+        let dialog_option_id = config.dialog_option_key.as_ref().map(|key| {
+            *button_keys_to_id.get(key).unwrap_or_else(|| {
+                panic!(
+                    "Unknown (Dialog Option Key: {}) referenced in (Zone GUID: {}) for (NPC: {})",
+                    key, zone_guid, npc_name
+                )
+            })
+        });
+
+        OneShotInteractionTemplate {
+            one_shot_action: OneShotAction {
+                award_credits: config.award_credits,
+                script: config.script.clone(),
+                point_of_interest: config.point_of_interest,
+            },
+            dialog_option_id,
+            hud_message: config.hud_message,
+            player_one_shot_action: config.player_reaction,
+            one_shot_animation_id: config.one_shot_animation_id,
+            animation_delay_seconds: config.animation_delay_seconds,
+            composite_effect_id: config.composite_effect_id,
+            composite_effect_delay_millis: config.composite_effect_delay_millis,
+            removal_mode: config.removal_mode,
+            despawn_npc: config.despawn_npc,
+            duration_millis: config.duration_millis,
+        }
+    }
+
+    pub fn apply(
+        &self,
+        character: &mut CharacterStats,
+        nearby_player_guids: &[u32],
+        requester: u32,
+        player_stats: &mut Player,
+        zone_instance: &ZoneInstance,
+        game_server: &GameServer,
+    ) -> Result<Vec<Broadcast>, ProcessPacketError> {
+        let mut packets_for_all = Vec::new();
+        let mut packets_for_sender = Vec::new();
+
+        if self.despawn_npc {
+            character.is_spawned = false;
+            packets_for_all.extend(character.remove_packets(self.removal_mode));
+        }
+
+        if let Some(animation_id) = self.one_shot_animation_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: QueueAnimation {
+                    character_guid: Guid::guid(character),
+                    animation_id,
+                    queue_pos: 0,
+                    delay_seconds: self.animation_delay_seconds,
+                    duration_seconds: self.duration_millis as f32 / 1000.0,
+                },
+            }));
+        }
+
+        if let Some(composite_effect_id) = self.composite_effect_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: PlayCompositeEffect {
+                    guid: Guid::guid(character),
+                    triggered_by_guid: 0,
+                    composite_effect: composite_effect_id,
+                    delay_millis: self.composite_effect_delay_millis,
+                    duration_millis: self.duration_millis as u32,
+                    pos: Pos::default(),
+                },
+            }));
+        }
+
+        if let Some(animation_id) = self.player_one_shot_action.animation_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: QueueAnimation {
+                    character_guid: player_guid(requester),
+                    animation_id,
+                    queue_pos: 0,
+                    delay_seconds: self.player_one_shot_action.animation_delay_seconds as f32,
+                    duration_seconds: self.duration_millis as f32 / 1000.0,
+                },
+            }));
+        }
+
+        if let Some(composite_effect_id) = self.player_one_shot_action.composite_effect_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: PlayCompositeEffect {
+                    guid: player_guid(requester),
+                    triggered_by_guid: 0,
+                    composite_effect: composite_effect_id,
+                    delay_millis: self.player_one_shot_action.composite_effect_delay_millis,
+                    duration_millis: self.duration_millis as u32,
+                    pos: Pos::default(),
+                },
+            }));
+        }
+
+        if let Some(dialog_option_id) = self.dialog_option_id {
+            let dialog_packets = handle_dialog_buttons(
+                requester,
+                dialog_option_id,
+                player_stats,
+                zone_instance,
+                game_server,
+            )?;
+            packets_for_sender.extend(dialog_packets);
+        }
+
+        match &self.hud_message {
+            HudMessageType::Overhead {
+                name_id,
+                message_id,
+                image_id,
+                sound_id,
+                duration_millis,
+            } => {
+                packets_for_sender.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: HudMessage {
+                        unknown1: 0,
+                        unknown2: 0,
+                        name_id: *name_id,
+                        image_id: *image_id,
+                        message_id: *message_id,
+                        sound_id: sound_id.unwrap_or(0),
+                        duration_millis: *duration_millis,
+                        unknown5: 0,
+                    },
+                }));
+            }
+            HudMessageType::ActionBar { message_id } => {
+                packets_for_sender.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: SendStringId {
+                        sender_guid: Guid::guid(character),
+                        message_id: *message_id,
+                        is_anonymous: false,
+                        unknown2: false,
+                        is_action_bar_message: true,
+                        action_bar_text_color: ActionBarTextColor::default(),
+                        target_guid: 0,
+                        owner_guid: 0,
+                        unknown7: 0,
+                    },
+                }));
+            }
+            HudMessageType::None => {}
+        }
+
+        packets_for_sender.extend(self.one_shot_action.apply(player_stats)?);
+
+        Ok(vec![
+            Broadcast::Multi(nearby_player_guids.to_vec(), packets_for_all),
+            Broadcast::Single(requester, packets_for_sender),
+        ])
+    }
+}
+
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct WanderConfig {
+    pub radius: f32,
+    pub origin: Pos,
+    #[serde(default)]
+    pub min_offset: f32,
+}
+
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TickableStep {
+    pub speed: Option<f32>,
+    pub new_pos_x: Option<f32>,
+    pub new_pos_y: Option<f32>,
+    pub new_pos_z: Option<f32>,
+    pub new_rot_x: Option<f32>,
+    pub new_rot_y: Option<f32>,
+    pub new_rot_z: Option<f32>,
+    #[serde(default)]
+    pub new_pos_offset_x: f32,
+    #[serde(default)]
+    pub new_pos_offset_y: f32,
+    #[serde(default)]
+    pub new_pos_offset_z: f32,
+    #[serde(default)]
+    pub new_rot_offset_x: f32,
+    #[serde(default)]
+    pub new_rot_offset_y: f32,
+    #[serde(default)]
+    pub new_rot_offset_z: f32,
+    #[serde(default)]
+    pub character_state: CharacterStateFlags,
+    pub wander: Option<WanderConfig>,
+    pub one_shot_animation_id: Option<i32>,
+    #[serde(default)]
+    pub animation_delay_seconds: f32,
+    pub composite_effect_id: Option<u32>,
+    #[serde(default)]
+    pub composite_effect_delay_millis: u32,
+    pub animation_id: Option<i32>,
+    pub chat_message_id: Option<u32>,
+    pub model_id: Option<u32>,
+    pub sound_id: Option<u32>,
+    pub rail_id: Option<u32>,
+    #[serde(default)]
+    pub dialog_mode: TickableDialogMode,
+    #[serde(default)]
+    pub script: ScriptType,
+    #[serde(default)]
+    pub removal_mode: RemovalMode,
+    #[serde(default)]
+    pub spawned_state: SpawnedState,
+    #[serde(default)]
+    pub cursor: CursorUpdate,
+    pub min_duration_millis: u64,
+}
+
+impl TickableStep {
+    pub fn reselect_possible_pos(&self, character: &CharacterStats) -> Option<NavmeshWaypoint> {
+        if character.possible_pos.is_empty() {
+            return None;
+        }
+
+        character
+            .possible_pos
+            .choose(&mut thread_rng())
+            .map(|pos| NavmeshWaypoint::without_rot(*pos, self.character_state.into()))
+    }
+
+    pub fn new_pos(&self, current_pos: Pos) -> Pos {
+        Pos {
+            x: self.new_pos_x.unwrap_or(current_pos.x) + self.new_pos_offset_x,
+            y: self.new_pos_y.unwrap_or(current_pos.y) + self.new_pos_offset_y,
+            z: self.new_pos_z.unwrap_or(current_pos.z) + self.new_pos_offset_z,
+            w: current_pos.w,
+        }
+    }
+
+    pub fn apply(
+        &self,
+        character: &mut CharacterStats,
+        nearby_player_guids: &[u32],
+        nearby_characters: &BTreeMap<u64, CharacterWriteGuard>,
+        mount_configs: &BTreeMap<u32, MountConfig>,
+        item_configs: &BTreeMap<u32, ItemConfig>,
+        customizations: &BTreeMap<u32, Customization>,
+    ) -> (Vec<Broadcast>, Option<NavmeshWaypoint>) {
+        let mut packets_for_all = Vec::new();
+        let mut pos_update: Option<NavmeshWaypoint> = None;
+
+        match self.spawned_state {
+            SpawnedState::Always => {
+                if !character.is_spawned {
+                    character.is_spawned = true;
+                    pos_update = self.reselect_possible_pos(character);
+                    packets_for_all.extend(character.add_packets(
+                        false,
+                        mount_configs,
+                        item_configs,
+                        customizations,
+                    ));
+                }
+            }
+            SpawnedState::OnFirstStepTick => {
+                if !character.is_spawned {
+                    // Spawn the character without updating its state to prevent it from being visible
+                    // to players joining the room mid-step
+                    pos_update = self.reselect_possible_pos(character);
+                    packets_for_all.extend(character.add_packets(
+                        true, // Override is_spawned
+                        mount_configs,
+                        item_configs,
+                        customizations,
+                    ));
+                }
+            }
+            SpawnedState::Despawn => {
+                // Skip checking if the character is spawned before despawning it and instead check if
+                // its state needs updating as OnFirstStepTick doesn't maintain states
+                character.is_spawned = false;
+                packets_for_all.extend(character.remove_packets(self.removal_mode));
+            }
+            SpawnedState::Keep => {}
+        }
+
+        if let Some(model_id) = self.model_id {
+            if let Some(temporary_model_id) = character.temporary_model_id {
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: RemoveTemporaryModel {
+                        guid: Guid::guid(character),
+                        model_id: temporary_model_id,
+                    },
+                }));
+            }
+
+            character.temporary_model_id = Some(model_id);
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: UpdateTemporaryModel {
+                    model_id,
+                    guid: Guid::guid(character),
+                },
+            }));
+        }
+
+        if let Some(rail_id) = self.rail_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: MoveOnRail {
+                    guid: Guid::guid(character),
+                    rail_id,
+                    elapsed_seconds: 0.0,
+                    rail_offset: Pos {
+                        x: 0.0,
+                        y: 0.0,
+                        z: 0.0,
+                        w: 0.0,
+                    },
+                },
+            }));
+        }
+
+        if let Some(speed) = self.speed {
+            character.speed.base = speed;
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: UpdateSpeed {
+                    guid: Guid::guid(character),
+                    speed,
+                },
+            }));
+        }
+
+        let new_pos = self.new_pos(character.pos);
+        let potential_pos_update = NavmeshWaypoint {
+            pos: new_pos,
+            rot_x: self.new_rot_x,
+            rot_y: self.new_rot_y,
+            rot_z: self.new_rot_z,
+            rot_x_offset: self.new_rot_offset_x,
+            rot_y_offset: self.new_rot_offset_y,
+            rot_z_offset: self.new_rot_offset_z,
+            character_state: self.character_state.into(),
+        };
+        if potential_pos_update.differs_from(
+            character.pos,
+            character.rot,
+            self.character_state.into(),
+        ) {
+            pos_update = Some(potential_pos_update);
+        }
+
+        if let Some(wander) = &self.wander {
+            let mut rng = thread_rng();
+
+            let mut offset_x = rng.gen_range(-wander.radius..wander.radius);
+            let mut offset_z = rng.gen_range(-wander.radius..wander.radius);
+
+            if offset_x.abs() < wander.min_offset {
+                offset_x = offset_x.signum() * wander.min_offset;
+            }
+            if offset_z.abs() < wander.min_offset {
+                offset_z = offset_z.signum() * wander.min_offset;
+            }
+
+            let new_pos = Pos {
+                x: wander.origin.x + offset_x,
+                y: wander.origin.y,
+                z: wander.origin.z + offset_z,
+                w: character.pos.w,
+            };
+
+            pos_update = Some(NavmeshWaypoint::without_rot(
+                new_pos,
+                self.character_state.into(),
+            ));
+        }
+
+        if let Some(animation_id) = self.animation_id {
+            character.stand_animation_id = animation_id;
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: SetAnimation {
+                    character_guid: Guid::guid(character),
+                    animation_id,
+                    animation_group_id: -1,
+                    override_animation: true,
+                },
+            }));
+        }
+
+        if let Some(animation_id) = self.one_shot_animation_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: QueueAnimation {
+                    character_guid: Guid::guid(character),
+                    animation_id,
+                    queue_pos: 0,
+                    delay_seconds: self.animation_delay_seconds,
+                    duration_seconds: self.min_duration_millis as f32 / 1000.0,
+                },
+            }));
+        }
+
+        if let Some(composite_effect_id) = self.composite_effect_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: PlayCompositeEffect {
+                    guid: Guid::guid(character),
+                    triggered_by_guid: 0,
+                    composite_effect: composite_effect_id,
+                    delay_millis: self.composite_effect_delay_millis,
+                    duration_millis: self.min_duration_millis as u32,
+                    pos: Pos {
+                        x: 0.0,
+                        y: 0.0,
+                        z: 0.0,
+                        w: 0.0,
+                    },
+                },
+            }));
+        }
+
+        if let Some(sound_id) = self.sound_id {
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: PlaySoundIdOnTarget {
+                    sound_id,
+                    target: Target::Guid(GuidTarget {
+                        fallback_pos: character.pos,
+                        guid: Guid::guid(character),
+                    }),
+                },
+            }));
+        }
+
+        match self.dialog_mode {
+            TickableDialogMode::Open {
+                camera_placement,
+                look_at,
+                dialog_message_id,
+                speaker_animation_id,
+                speaker_sound_id,
+                zoom,
+                show_players,
+            } => {
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: "UIGlobal.DialogDisableInteraction".to_string(),
+                        params: vec![],
+                    },
+                }));
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: EnterDialog {
+                        dialog_message_id: dialog_message_id.unwrap_or(0),
+                        speaker_animation_id: speaker_animation_id.unwrap_or(0),
+                        speaker_guid: Guid::guid(character),
+                        enable_escape: false,
+                        unknown4: 0.0,
+                        dialog_choices: vec![],
+                        camera_placement,
+                        look_at,
+                        change_player_pos: false,
+                        new_player_pos: Pos::default(),
+                        unknown8: 0.0,
+                        hide_players: !show_players,
+                        unknown10: true,
+                        unknown11: true,
+                        zoom,
+                        speaker_sound_id: speaker_sound_id.unwrap_or(0),
+                    },
+                }));
+            }
+            TickableDialogMode::Close => {
+                // Interaction must be enabled when exiting the dialog to prevent the UI from breaking
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: "UIGlobal.DialogEnableInteraction".to_string(),
+                        params: vec![],
+                    },
+                }));
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExitDialog {},
+                }));
+            }
+            TickableDialogMode::None => {}
+        }
+
+        match &self.script {
+            ScriptType::CustomIntParams {
+                script_name,
+                params,
+            } => {
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: script_name.clone(),
+                        params: params.clone(),
+                    },
+                }));
+            }
+            ScriptType::CustomStringParams {
+                script_name,
+                params,
+            } => {
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithStringParams {
+                        script_name: script_name.clone(),
+                        params: params.clone(),
+                    },
+                }));
+            }
+            ScriptType::OpenMinigameStageGroup { stage_group_id } => {
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: "MiniGameFlow.CreateMiniGameGroup".to_string(),
+                        params: vec![*stage_group_id],
+                    },
+                }));
+            }
+            ScriptType::OpenGalaxyMap => {
+                packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithIntParams {
+                        script_name: "UIGlobal.ShowGalaxyMap".to_string(),
+                        params: vec![],
+                    },
+                }));
+            }
+            ScriptType::None => {}
+        }
+
+        if self.cursor != CursorUpdate::Keep {
+            let cursor = if let CursorUpdate::Enable { new_cursor } = self.cursor {
+                Some(new_cursor)
+            } else {
+                None
+            };
+
+            character.cursor = cursor;
+
+            packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: NpcRelevance {
+                    new_states: vec![SingleNpcRelevance {
+                        guid: Guid::guid(character),
+                        cursor,
+                        unknown1: false,
+                    }],
+                },
+            }));
+        }
+
+        let mut broadcasts = vec![Broadcast::Multi(
+            nearby_player_guids.to_vec(),
+            packets_for_all,
+        )];
+
+        if let Some(chat_message_id) = self.chat_message_id {
+            let chat_packets = vec![GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: SendStringId {
+                    sender_guid: Guid::guid(character),
+                    message_id: chat_message_id,
+                    is_anonymous: false,
+                    unknown2: false,
+                    is_action_bar_message: false,
+                    action_bar_text_color: ActionBarTextColor::default(),
+                    target_guid: 0,
+                    owner_guid: 0,
+                    unknown7: 0,
+                },
+            })];
+
+            let recipients = nearby_player_guids
+                .iter()
+                .filter(|guid| {
+                    let pos = distance3_pos(
+                        nearby_characters[&player_guid(**guid)].stats.pos,
+                        character.pos,
+                    );
+                    pos <= CHAT_BUBBLE_VISIBLE_RADIUS
+                })
+                .cloned()
+                .collect();
+
+            broadcasts.push(Broadcast::Multi(recipients, chat_packets));
+        }
+
+        (broadcasts, pos_update)
+    }
+}
+
+#[derive(Clone, Deserialize, Eq, PartialEq)]
+#[serde(deny_unknown_fields)]
+pub struct TickableProcedureReference {
+    #[serde(default)]
+    pub procedure: String,
+    #[serde(default = "default_weight")]
+    pub weight: u32,
+}
+
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TickableProcedureConfig {
+    #[serde(default = "default_weight")]
+    pub weight: u32,
+    pub steps: Vec<TickableStep>,
+    #[serde(default)]
+    pub next_possible_procedures: Vec<TickableProcedureReference>,
+    #[serde(default = "default_true")]
+    pub is_interruptible: bool,
+}
+
+pub enum TickResult {
+    TickedCurrentProcedure(Vec<Broadcast>, Option<(UpdatePlayerPos, Pos)>),
+    MustChangeProcedure(String),
+}
+
+#[derive(Clone)]
+pub struct TickableProcedure {
+    steps: Vec<TickableStep>,
+    current_step_index: Option<usize>,
+    last_step_change: Instant,
+    pos_update_progress: Option<Box<NonLinearPathState>>,
+    distribution: WeightedAliasIndex<u32>,
+    next_possible_procedures: Vec<String>,
+    is_interruptible: bool,
+}
+
+impl TickableProcedure {
+    pub fn from_config(
+        config: TickableProcedureConfig,
+        all_procedures: &HashMap<String, TickableProcedureConfig>,
+    ) -> Self {
+        let (distribution, next_possible_procedures) = if config.next_possible_procedures.is_empty()
+        {
+            (
+                WeightedAliasIndex::new(
+                    all_procedures
+                        .values()
+                        .map(|procedure| procedure.weight)
+                        .collect(),
+                ),
+                all_procedures.keys().cloned().collect(),
+            )
+        } else {
+            let weights = config
+                .next_possible_procedures
+                .iter()
+                .map(|proc_ref| {
+                    if !all_procedures.contains_key(&proc_ref.procedure) {
+                        panic!("Reference to unknown procedure: {}", proc_ref.procedure);
+                    }
+                    proc_ref.weight
+                })
+                .collect();
+            let references = config
+                .next_possible_procedures
+                .iter()
+                .map(|proc_ref| proc_ref.procedure.clone())
+                .collect();
+            (WeightedAliasIndex::new(weights), references)
+        };
+
+        let procedure = TickableProcedure {
+            steps: config.steps,
+            current_step_index: None,
+            last_step_change: Instant::now(),
+            pos_update_progress: None,
+            distribution: distribution.expect("Couldn't create weighted alias index"),
+            next_possible_procedures,
+            is_interruptible: config.is_interruptible,
+        };
+
+        procedure.panic_if_removal_exceeds_duration();
+
+        procedure
+    }
+
+    pub fn tick(
+        &mut self,
+        character: &mut CharacterStats,
+        now: Instant,
+        nearby_player_guids: &[u32],
+        nearby_characters: &BTreeMap<u64, CharacterWriteGuard>,
+        mount_configs: &BTreeMap<u32, MountConfig>,
+        item_configs: &BTreeMap<u32, ItemConfig>,
+        customizations: &BTreeMap<u32, Customization>,
+        tick_duration: Duration,
+        navmesh: &Navmesh,
+    ) -> TickResult {
+        self.panic_if_empty();
+
+        let (should_change_steps, pos_update_packet) = match self.current_step_index {
+            Some(current_step_index) => {
+                let time_since_last_step_change =
+                    now.saturating_duration_since(self.last_step_change);
+                let current_step = &self.steps[current_step_index];
+
+                let pos_update_packet =
+                    self.pos_update_progress
+                        .as_mut()
+                        .map(|pos_update_progress| {
+                            (
+                                pos_update_progress.tick(
+                                    Guid::guid(character),
+                                    character.speed.total(),
+                                    tick_duration,
+                                    character.rot,
+                                ),
+                                pos_update_progress.pos_at_tick_start(),
+                            )
+                        });
+                let reached_destination = self
+                    .pos_update_progress
+                    .as_ref()
+                    .map(|pos_update_progress| pos_update_progress.reached_destination())
+                    .unwrap_or(true);
+
+                let should_change_steps = time_since_last_step_change
+                    >= Duration::from_millis(current_step.min_duration_millis)
+                    && reached_destination;
+
+                (should_change_steps, pos_update_packet)
+            }
+            None => (true, None),
+        };
+
+        if should_change_steps {
+            let new_step_index = self
+                .current_step_index
+                .map(|current_step_index| current_step_index.saturating_add(1))
+                .unwrap_or_default();
+            if new_step_index >= self.steps.len() {
+                TickResult::MustChangeProcedure(self.next_procedure())
+            } else {
+                let old_pos = self
+                    .pos_update_progress
+                    .as_ref()
+                    .map(|pos_update| pos_update.pos_at_tick_start())
+                    .unwrap_or(character.pos);
+
+                let (broadcasts, pos_update) = self.steps[new_step_index].apply(
+                    character,
+                    nearby_player_guids,
+                    nearby_characters,
+                    mount_configs,
+                    item_configs,
+                    customizations,
+                );
+
+                let mut pos_update_progress = pos_update.map(|pos_update| {
+                    Box::new(NonLinearPathState::new(old_pos, pos_update, navmesh, 0.0))
+                });
+                let first_pos_update = pos_update_progress.as_mut().map(|pos_update_progress| {
+                    (
+                        pos_update_progress.tick(
+                            Guid::guid(character),
+                            character.speed.total(),
+                            tick_duration,
+                            character.rot,
+                        ),
+                        pos_update_progress.pos_at_tick_start(),
+                    )
+                });
+
+                self.current_step_index = Some(new_step_index);
+                self.last_step_change = now;
+                self.pos_update_progress = pos_update_progress;
+                TickResult::TickedCurrentProcedure(broadcasts, first_pos_update)
+            }
+        } else {
+            TickResult::TickedCurrentProcedure(Vec::new(), pos_update_packet)
+        }
+    }
+
+    fn next_procedure(&mut self) -> String {
+        let next_procedure_index = self.distribution.sample(&mut thread_rng());
+        self.next_possible_procedures[next_procedure_index].clone()
+    }
+
+    pub fn reset(&mut self) {
+        self.current_step_index = None;
+        self.pos_update_progress = None;
+    }
+
+    fn panic_if_empty(&self) {
+        if self.steps.is_empty() {
+            panic!("Every tickable NPC procedure must have steps");
+        }
+    }
+
+    pub fn is_interruptible(&self) -> bool {
+        self.is_interruptible
+    }
+
+    fn panic_if_removal_exceeds_duration(&self) {
+        for step in &self.steps {
+            if let RemovalMode::Graceful {
+                removal_delay_millis,
+                removal_effect_delay_millis,
+                fade_duration_millis,
+                ..
+            } = step.removal_mode
+            {
+                let total_removal_time =
+                    removal_delay_millis + removal_effect_delay_millis + fade_duration_millis;
+
+                if total_removal_time > step.min_duration_millis as u32 {
+                    panic!(
+                        "(Removal delay: {}) + (Effect Delay: {}) + (Fade duration: {}) exceeded (Step duration: {})",
+                        removal_delay_millis, removal_effect_delay_millis, fade_duration_millis, step.min_duration_millis
+                    );
+                }
+            }
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct TickableProcedureTracker {
+    procedures: HashMap<String, TickableProcedure>,
+    current_procedure_key: String,
+    last_procedure_change: Instant,
+}
+
+impl TickableProcedureTracker {
+    pub fn new(
+        procedures: HashMap<String, TickableProcedureConfig>,
+        first_possible_procedures: Vec<String>,
+    ) -> Self {
+        let current_procedure_key = if procedures.is_empty() {
+            String::from("")
+        } else {
+            let (weights, procedure_keys): (Vec<u32>, Vec<&String>) =
+                if first_possible_procedures.is_empty() {
+                    let weights = procedures
+                        .values()
+                        .map(|procedure| procedure.weight)
+                        .collect();
+                    (weights, procedures.keys().collect())
+                } else {
+                    let weights = first_possible_procedures
+                        .iter()
+                        .map(|procedure_key| {
+                            if let Some(procedure) = procedures.get(procedure_key) {
+                                procedure.weight
+                            } else {
+                                panic!("Reference to unknown procedure {procedure_key}");
+                            }
+                        })
+                        .collect();
+                    (weights, first_possible_procedures.iter().collect())
+                };
+
+            let distribution =
+                WeightedAliasIndex::new(weights).expect("Couldn't create weighted alias index");
+            let index = distribution.sample(&mut thread_rng());
+
+            procedure_keys[index].clone()
+        };
+
+        TickableProcedureTracker {
+            current_procedure_key,
+            procedures: procedures
+                .iter()
+                .map(|(key, config)| {
+                    (
+                        key.clone(),
+                        TickableProcedure::from_config(config.clone(), &procedures),
+                    )
+                })
+                .collect(),
+            last_procedure_change: Instant::now(),
+        }
+    }
+
+    pub fn current_tickable_procedure(&self) -> Option<&String> {
+        if self.procedures.is_empty() {
+            None
+        } else {
+            Some(&self.current_procedure_key)
+        }
+    }
+
+    pub fn last_procedure_change(&self) -> Instant {
+        self.last_procedure_change
+    }
+
+    pub fn set_procedure_if_exists(&mut self, new_procedure_key: String, now: Instant) {
+        if self.procedures.contains_key(&new_procedure_key) {
+            let current_procedure = self
+                .procedures
+                .get_mut(&self.current_procedure_key)
+                .expect("Missing procedure");
+            current_procedure.reset();
+
+            self.current_procedure_key = new_procedure_key;
+            self.last_procedure_change = now;
+        }
+    }
+
+    pub fn tick(
+        &mut self,
+        character: &mut CharacterStats,
+        now: Instant,
+        nearby_player_guids: &[u32],
+        nearby_characters: &BTreeMap<u64, CharacterWriteGuard>,
+        mount_configs: &BTreeMap<u32, MountConfig>,
+        item_configs: &BTreeMap<u32, ItemConfig>,
+        customizations: &BTreeMap<u32, Customization>,
+        tick_duration: Duration,
+        navmesh: &Navmesh,
+    ) -> (Vec<Broadcast>, Option<(UpdatePlayerPos, Pos)>) {
+        if self.procedures.is_empty() {
+            return (Vec::new(), None);
+        }
+
+        let mut current_procedure = self
+            .procedures
+            .get_mut(&self.current_procedure_key)
+            .expect("Missing procedure");
+        loop {
+            let tick_result = current_procedure.tick(
+                character,
+                now,
+                nearby_player_guids,
+                nearby_characters,
+                mount_configs,
+                item_configs,
+                customizations,
+                tick_duration,
+                navmesh,
+            );
+            match tick_result {
+                TickResult::TickedCurrentProcedure(broadcasts, pos_update) => {
+                    break (broadcasts, pos_update);
+                }
+                TickResult::MustChangeProcedure(procedure_key) => {
+                    current_procedure.reset();
+                    self.current_procedure_key = procedure_key;
+                    current_procedure = self
+                        .procedures
+                        .get_mut(&self.current_procedure_key)
+                        .expect("Missing procedure");
+                    self.last_procedure_change = now;
+                }
+            }
+        }
+    }
+
+    pub fn update_progress(&mut self, previous_speed: f32) {
+        if let Some(procedure) = self.procedures.get_mut(&self.current_procedure_key) {
+            if let Some(pos_update_progress) = &mut procedure.pos_update_progress {
+                pos_update_progress.update_speed(previous_speed);
+            }
+        }
+    }
+
+    pub fn tickable(&self) -> bool {
+        !self.procedures.is_empty()
+    }
+}
+
+fn trigger_synchronized_interaction(
+    target_guid: u64,
+    nearby_player_guids: &[u32],
+    requester: u32,
+    player_stats: &mut Player,
+    zone_instance: &ZoneInstance,
+    game_server: &GameServer,
+) -> Result<Vec<Broadcast>, ProcessPacketError> {
+    let supplier: WriteLockingBroadcastSupplier =
+        game_server
+            .lock_enforcer()
+            .read_characters(|_| CharacterLockRequest {
+                read_guids: vec![],
+                write_guids: vec![target_guid],
+                character_consumer: move |_, _, mut characters, _| {
+                    let Some(target) = characters.get_mut(&target_guid) else {
+                        return coerce_to_broadcast_supplier(|_| Ok(vec![]));
+                    };
+
+                    let result = target.interact(
+                        requester,
+                        player_stats,
+                        nearby_player_guids,
+                        zone_instance,
+                        game_server,
+                    )?;
+
+                    coerce_to_broadcast_supplier(move |game_server| result(game_server))
+                },
+            });
+
+    supplier?(game_server)
+}
+
+pub type EquippedItemMap = BTreeMap<EquipmentSlot, u32>;
+
+#[derive(Clone)]
+pub struct BattleClass {
+    pub items: EquippedItemMap,
+}
+
+#[derive(Clone)]
+pub struct PlayerInventory {
+    battle_classes: BTreeMap<u32, BattleClass>,
+    pub active_battle_class: u32,
+    temporary_items: BTreeMap<EquipmentSlot, Option<u32>>,
+    inventory: BTreeSet<u32>,
+}
+
+impl PlayerInventory {
+    pub fn new(
+        battle_classes: BTreeMap<u32, BattleClass>,
+        active_battle_class: u32,
+        inventory: BTreeSet<u32>,
+    ) -> Self {
+        PlayerInventory {
+            battle_classes,
+            active_battle_class,
+            temporary_items: BTreeMap::new(),
+            inventory,
+        }
+    }
+
+    pub fn equipped_items(&self, battle_class: u32) -> EquippedItemMap {
+        let mut items = self
+            .battle_classes
+            .get(&battle_class)
+            .map(|battle_class| &battle_class.items)
+            .cloned()
+            .unwrap_or_default();
+        self.temporary_items
+            .iter()
+            .for_each(|(slot, item_guid_if_any)| {
+                match item_guid_if_any {
+                    Some(item_guid) => items.insert(*slot, *item_guid),
+                    None => items.remove(slot),
+                };
+            });
+        items
+    }
+
+    pub fn equipped_item(&self, battle_class: u32, slot: EquipmentSlot) -> Option<u32> {
+        self.temporary_items
+            .get(&slot)
+            .copied()
+            .or_else(|| {
+                Some(
+                    self.battle_classes
+                        .get(&battle_class)
+                        .and_then(|battle_class| battle_class.items.get(&slot).copied()),
+                )
+            })
+            .unwrap_or_default()
+    }
+
+    pub fn equip_item(
+        &mut self,
+        battle_class_guid: u32,
+        slot: EquipmentSlot,
+        item_guid: u32,
+    ) -> Result<bool, ProcessPacketError> {
+        if !self.inventory.contains(&item_guid) {
+            return Err(ProcessPacketError::new(
+                ProcessPacketErrorType::ConstraintViolated,
+                format!(
+                    "Player doesn't own item {item_guid} and can't equip it in slot {slot:?} of battle class {battle_class_guid}",
+                ),
+            ));
+        }
+
+        let Some(battle_class) = self.battle_classes.get_mut(&battle_class_guid) else {
+            return Err(ProcessPacketError::new(
+                ProcessPacketErrorType::ConstraintViolated,
+                format!(
+                    "Player doesn't own battle class {battle_class_guid} and can't equip item {item_guid} in slot {slot:?}"
+                ),
+            ));
+        };
+
+        battle_class.items.insert(slot, item_guid);
+        Ok(battle_class_guid == self.active_battle_class
+            && !self.temporary_items.contains_key(&slot))
+    }
+
+    pub fn unequip_item(
+        &mut self,
+        battle_class_guid: u32,
+        slot: EquipmentSlot,
+    ) -> Result<bool, ProcessPacketError> {
+        let Some(battle_class) = self.battle_classes.get_mut(&battle_class_guid) else {
+            return Err(ProcessPacketError::new(
+                ProcessPacketErrorType::ConstraintViolated,
+                format!(
+                    "Player doesn't own battle class {battle_class_guid} and can't unequip slot {slot:?}"
+                ),
+            ));
+        };
+
+        Ok(battle_class_guid == self.active_battle_class
+            && battle_class.items.remove(&slot).is_some()
+            && !self.temporary_items.contains_key(&slot))
+    }
+
+    pub fn equip_item_temporarily(&mut self, slot: EquipmentSlot, item_guid: Option<u32>) {
+        self.temporary_items.insert(slot, item_guid);
+    }
+
+    pub fn clear_temporary_items(&mut self) {
+        self.temporary_items.clear();
+    }
+
+    pub fn owns_item(&self, item_guid: u32) -> bool {
+        self.inventory.contains(&item_guid)
+    }
+}
+
+#[derive(Clone, Default)]
+pub struct MinigameWinStatus(pub Option<DateTime<FixedOffset>>);
+
+impl MinigameWinStatus {
+    pub fn set_won(&mut self, won: bool) {
+        if won {
+            self.0 = Some(Utc::now().fixed_offset());
+        }
+    }
+
+    pub fn set_win_time(&mut self, won_time: DateTime<FixedOffset>) {
+        self.0 = Some(won_time);
+    }
+
+    pub fn won(&self) -> bool {
+        self.0.is_some()
+    }
+}
+
+#[repr(u8)]
+#[derive(Clone, Copy, Deserialize, Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub enum Role {
+    Citizen = 0,
+    Emissary = 1,
+    Counselor = 2,
+    Enforcer = 3,
+    Admin = 4,
+}
+
+impl Role {
+    pub fn has_permission(self, required: Role) -> bool {
+        self >= required
+    }
+}
+
+#[derive(Clone)]
+pub struct Toggles {
+    pub console: bool,
+    pub free_camera: bool,
+    pub click_to_teleport: bool,
+}
+
+#[derive(Clone)]
+pub struct MinigameStatus {
+    pub group: MinigameMatchmakingGroup,
+    pub teleported_to_game: bool,
+    pub game_created: bool,
+    pub win_status: MinigameWinStatus,
+    pub score_entries: Vec<ScoreEntry>,
+    pub total_score: i32,
+    pub awarded_credits: u32,
+    pub type_data: MinigameTypeData,
+}
+
+#[derive(Clone)]
+pub struct PreviousLocation {
+    pub template_guid: u8,
+    pub pos: Pos,
+    pub rot: Pos,
+}
+
+#[derive(Clone)]
+pub struct PlayerAbilityGroup {
+    pub source_item_id: u32,
+    pub ability_keys: Vec<String>,
+    pub priority: u32,
+}
+
+#[derive(Clone)]
+pub struct PlayerActionBar {
+    pub weapon_abilities: Vec<PlayerAbilityGroup>,
+}
+
+#[derive(Clone)]
+pub struct Player {
+    pub first_load: bool,
+    pub ready: bool,
+    pub name: Name,
+    pub squad_guid: Option<u64>,
+    pub member: bool,
+    pub credits: u32,
+    pub inventory: PlayerInventory,
+    pub customizations: BTreeMap<CustomizationSlot, u32>,
+    pub minigame_stats: PlayerMinigameStats,
+    pub minigame_status: Option<MinigameStatus>,
+    pub update_previous_location_on_leave: bool,
+    pub previous_location: PreviousLocation,
+    pub toggles: Toggles,
+    pub role: Role,
+    pub action_bar: PlayerActionBar,
+}
+
+impl Player {
+    pub fn add_packets(
+        &self,
+        character: &CharacterStats,
+        mount_configs: &BTreeMap<u32, MountConfig>,
+        item_configs: &BTreeMap<u32, ItemConfig>,
+        customizations: &BTreeMap<u32, Customization>,
+    ) -> Vec<Vec<u8>> {
+        if !self.ready {
+            return Vec::new();
+        }
+
+        let mut mount_packets = Vec::new();
+        let mut player_mount_guid = 0;
+        if let Some(CharacterMount {
+            mount_id,
+            mount_guid,
+        }) = character.mount
+        {
+            player_mount_guid = mount_guid;
+            if let Some(mount_config) = mount_configs.get(&mount_id) {
+                mount_packets.append(&mut spawn_mount_npc(
+                    player_mount_guid,
+                    Guid::guid(character),
+                    mount_config,
+                    character.pos,
+                    character.rot,
+                    false,
+                ));
+            } else {
+                info!(
+                    "Character {} is mounted on unknown mount ID {}",
+                    Guid::guid(character),
+                    mount_id
+                );
+            }
+        }
+
+        let mut packets = vec![GamePacket::serialize(&TunneledPacket {
+            unknown1: true,
+            inner: AddPc {
+                guid: Guid::guid(character),
+                name: self.name.clone(),
+                body_model: self
+                    .customizations
+                    .get(&CustomizationSlot::BodyModel)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param2)
+                    .unwrap_or_default(),
+                chat_text_color: Character::DEFAULT_CHAT_TEXT_COLOR,
+                chat_bubble_color: Character::DEFAULT_CHAT_BUBBLE_COLOR,
+                chat_scale: 1,
+                pos: character.pos,
+                rot: character.rot,
+                attachments: attachments_from_equipped_items(
+                    &self
+                        .inventory
+                        .equipped_items(self.inventory.active_battle_class),
+                    item_configs,
+                )
+                .into_iter()
+                .map(|attachment| attachment.into())
+                .collect(),
+                head_model: self
+                    .customizations
+                    .get(&CustomizationSlot::HeadModel)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param1.clone())
+                    .unwrap_or_default(),
+                hair_model: self
+                    .customizations
+                    .get(&CustomizationSlot::HairStyle)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param1.clone())
+                    .unwrap_or_default(),
+                hair_color: self
+                    .customizations
+                    .get(&CustomizationSlot::HairColor)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param2)
+                    .unwrap_or_default(),
+                eye_color: self
+                    .customizations
+                    .get(&CustomizationSlot::EyeColor)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param2)
+                    .unwrap_or_default(),
+                unknown7: 0,
+                skin_tone: self
+                    .customizations
+                    .get(&CustomizationSlot::SkinTone)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param1.clone())
+                    .unwrap_or_default(),
+                face_paint: self
+                    .customizations
+                    .get(&CustomizationSlot::FacePattern)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param1.clone())
+                    .unwrap_or_default(),
+                facial_hair: self
+                    .customizations
+                    .get(&CustomizationSlot::FacialHair)
+                    .and_then(|customization_guid| customizations.get(customization_guid))
+                    .map(|customization| customization.customization_param1.clone())
+                    .unwrap_or_default(),
+                speed: character.speed.total(),
+                underage: false,
+                member: self.member,
+                moderator: false,
+                temporary_model: 0,
+                squads: Vec::new(),
+                battle_class: self.inventory.active_battle_class,
+                title: 0,
+                unknown16: 0,
+                unknown17: 0,
+                effects: Vec::new(),
+                mount_guid: player_mount_guid,
+                unknown19: 0,
+                unknown20: 0,
+                wield_type: character.wield_type(),
+                unknown22: 0.0,
+                unknown23: 0,
+                nameplate_image_id: NameplateImage::from_battle_class_guid(
+                    self.inventory.active_battle_class,
+                ),
+            },
+        })];
+
+        packets.append(&mut mount_packets);
+
+        packets
+    }
+}
+
+pub struct PreviousFixture {
+    pub pos: Pos,
+    pub rot: Pos,
+    pub scale: f32,
+    pub item_def_id: u32,
+    pub model_id: u32,
+    pub texture_alias: String,
+}
+
+impl PreviousFixture {
+    pub fn as_current_fixture(&self) -> CurrentFixture {
+        CurrentFixture {
+            item_def_id: self.item_def_id,
+            model_id: self.model_id,
+            texture_alias: self.texture_alias.clone(),
+        }
+    }
+}
+
+#[derive(Clone)]
+pub struct CurrentFixture {
+    pub item_def_id: u32,
+    pub model_id: u32,
+    pub texture_alias: String,
+}
+
+#[derive(Clone)]
+pub enum CharacterType {
+    AmbientNpc(Box<BaseNpc>),
+    Player(Box<Player>),
+    Fixture(u64, CurrentFixture),
+}
+
+#[derive(Copy, Clone, Eq, PartialOrd, PartialEq, Ord, Sequence)]
+pub enum CharacterCategory {
+    PlayerReady,
+    PlayerUnready,
+    NpcTickable(TickableNpcSynchronization),
+    NpcBasic,
+}
+
+#[derive(Clone)]
+pub struct BaseNpcTemplate {
+    pub key: Option<String>,
+    pub discriminant: u8,
+    pub index: u16,
+    pub model_id: u32,
+    pub pos: Pos,
+    pub rot: Pos,
+    pub possible_pos: Vec<Pos>,
+    pub scale: f32,
+    pub speed: f32,
+    pub stand_animation_id: i32,
+    pub mount_id: Option<u32>,
+    pub cursor: Option<u8>,
+    pub health: u16,
+    pub max_health: u16,
+    pub interact_radius: f32,
+    pub auto_interact_radius: f32,
+    pub move_to_interact_offset: f32,
+    pub wield_type: WieldType,
+    pub tickable_procedures: HashMap<String, TickableProcedureConfig>,
+    pub first_possible_procedures: Vec<String>,
+    pub synchronize_with: Option<String>,
+    pub is_spawned: bool,
+    pub physics: PhysicsState,
+    pub max_distance_from_target: f32,
+    pub max_distance_from_origin: f32,
+    pub auto_target_radius: f32,
+    pub ability_height: f32,
+    pub enemy_types: HashSet<String>,
+    pub enemy_prioritization: HashMap<String, i8>,
+    pub texture_alias: String,
+    pub name_id: u32,
+    pub sub_title_id: Option<u32>,
+    pub terrain_object_id: u32,
+    pub name_offset_x: f32,
+    pub name_offset_y: f32,
+    pub name_offset_z: f32,
+    pub enable_interact_popup: bool,
+    pub interact_popup_radius: Option<f32>,
+    pub show_name: bool,
+    pub show_health: bool,
+    pub hostility: Hostility,
+    pub bounce_area_id: i32,
+    pub enable_gravity: bool,
+    pub enable_tilt: bool,
+    pub use_terrain_model: bool,
+    pub attachments: Vec<Attachment>,
+    pub composite_effect_id: Option<u32>,
+    pub clickable: bool,
+    pub spawn_animation_id: i32,
+    pub hover_description: HoverDescriptionMode,
+    pub procedure_on_interact: Option<Vec<TickableProcedureReference>>,
+    pub one_shot_interaction: Option<OneShotInteractionTemplate>,
+    pub triggered_npc_keys_on_interact: Vec<String>,
+    pub notification_icon: Option<u32>,
+    pub navmesh: Option<String>,
+}
+
+impl BaseNpcTemplate {
+    pub fn from_config(
+        config: BaseNpcConfig,
+        index: u16,
+        button_keys_to_id: &HashMap<String, u32>,
+        zone_guid: u8,
+        npc_name: &str,
+    ) -> Self {
+        let mut rng = thread_rng();
+
+        if let Some(base_key) = &config.key {
+            if config.triggered_npc_keys_on_interact.contains(base_key) {
+                panic!(
+                    "(NPC: {}) in (Zone GUID: {}) contains a self-reference in its (Triggered NPC Keys: {:?})",
+                    npc_name, zone_guid, &config.triggered_npc_keys_on_interact,
+                );
+            }
+        }
+
+        let resolved_action = config.one_shot_interaction.as_ref().map(|action_config| {
+            OneShotInteractionTemplate::from_config(
+                action_config,
+                zone_guid,
+                button_keys_to_id,
+                npc_name,
+            )
+        });
+
+        BaseNpcTemplate {
+            key: config.key.clone(),
+            discriminant: AMBIENT_NPC_DISCRIMINANT,
+            index,
+            model_id: config
+                .possible_model_ids
+                .choose(&mut rng)
+                .copied()
+                .unwrap_or(config.model_id),
+            pos: config
+                .possible_pos
+                .choose(&mut rng)
+                .cloned()
+                .unwrap_or(config.pos),
+            rot: config.rot,
+            possible_pos: config.possible_pos.clone(),
+            scale: config.scale,
+            speed: config.speed,
+            tickable_procedures: config.tickable_procedures.clone(),
+            first_possible_procedures: config.first_possible_procedures.clone(),
+            synchronize_with: config.synchronize_with.clone(),
+            stand_animation_id: config.stand_animation_id,
+            cursor: config.cursor,
+            health: config.health,
+            max_health: config.max_health.unwrap_or(config.health),
+            interact_radius: config.interact_radius,
+            auto_interact_radius: config.auto_interact_radius.unwrap_or(0.0),
+            move_to_interact_offset: config.move_to_interact_offset,
+            is_spawned: config.is_spawned,
+            physics: config.physics,
+            mount_id: None,
+            wield_type: WieldType::None,
+            max_distance_from_target: config.max_distance_from_target,
+            max_distance_from_origin: config.max_distance_from_origin,
+            auto_target_radius: config.auto_target_radius,
+            enemy_types: config.enemy_types.clone(),
+            enemy_prioritization: config.enemy_prioritization.clone(),
+            texture_alias: config.texture_alias,
+            name_id: config.name_id,
+            sub_title_id: config.sub_title_id,
+            terrain_object_id: config.terrain_object_id,
+            name_offset_x: config.name_offset_x,
+            name_offset_y: config.name_offset_y,
+            name_offset_z: config.name_offset_z,
+            enable_interact_popup: config.enable_interact_popup,
+            interact_popup_radius: config.interact_popup_radius,
+            show_name: config.show_name,
+            show_health: config.show_health,
+            hostility: config.hostility,
+            bounce_area_id: config.bounce_area_id.unwrap_or(-1),
+            enable_gravity: config.enable_gravity,
+            enable_tilt: config.enable_tilt,
+            use_terrain_model: config.use_terrain_model,
+            attachments: Vec::new(),
+            composite_effect_id: config.composite_effect_id,
+            clickable: config.clickable,
+            spawn_animation_id: config.spawn_animation_id,
+            hover_description: config.hover_description,
+            procedure_on_interact: config.procedure_on_interact.clone(),
+            one_shot_interaction: resolved_action,
+            triggered_npc_keys_on_interact: config.triggered_npc_keys_on_interact.clone(),
+            notification_icon: config.notification_icon,
+            navmesh: config.navmesh,
+            ability_height: config.ability_height,
+        }
+    }
+
+    pub fn guid(&self, instance_guid: u64) -> u64 {
+        npc_guid(self.discriminant, instance_guid, self.index)
+    }
+
+    pub fn to_character(
+        &self,
+        instance_guid: u64,
+        chunk_size: u16,
+        keys_to_guid: &HashMap<&String, u64>,
+    ) -> Character {
+        let guid = self.guid(instance_guid);
+        Character {
+            stats: CharacterStats {
+                guid,
+                model_id: self.model_id,
+                pos: self.pos,
+                rot: self.rot,
+                possible_pos: self.possible_pos.clone(),
+                chunk_size,
+                scale: self.scale,
+                character_type: CharacterType::AmbientNpc(Box::new(self.instantiate(keys_to_guid))),
+                mount: self.mount_id.map(|mount_id| CharacterMount {
+                    mount_id,
+                    mount_guid: mount_guid(guid),
+                }),
+                interact_radius: self.interact_radius,
+                auto_interact_radius: self.auto_interact_radius,
+                move_to_interact_offset: self.move_to_interact_offset,
+                instance_guid,
+                wield_type: (self.wield_type, self.wield_type.holster()),
+                holstered: false,
+                stand_animation_id: self.stand_animation_id,
+                temporary_model_id: None,
+                speed: CharacterStat {
+                    base: self.speed,
+                    mount_multiplier: 1.0,
+                },
+                jump_height_multiplier: CharacterStat {
+                    base: 1.0,
+                    mount_multiplier: 1.0,
+                },
+                cursor: self.cursor,
+                is_spawned: self.is_spawned,
+                physics: self.physics,
+                name: None,
+                squad_guid: None,
+                target_state: TargetState::None,
+                max_distance_from_target: self.max_distance_from_target,
+                max_distance_from_origin: self.max_distance_from_origin,
+                auto_target_radius: self.auto_target_radius,
+                enemy_types: self.enemy_types.clone(),
+                threat_table: self.enemy_prioritization.clone().into(),
+                health: self.health,
+                max_health: self.max_health,
+                composite_effect_tags: BTreeMap::new(),
+                navmesh: self.navmesh.clone(),
+                ability_height: self.ability_height,
+            },
+            tickable_procedure_tracker: TickableProcedureTracker::new(
+                self.tickable_procedures.clone(),
+                self.first_possible_procedures.clone(),
+            ),
+            synchronize_with: self.synchronize_with.as_ref().map(|key| {
+                keys_to_guid
+                    .get(key)
+                    .copied()
+                    .unwrap_or_else(|| panic!("Tried to synchronize with unknown NPC {key}"))
+            }),
+        }
+    }
+
+    fn instantiate(&self, keys_to_guid: &HashMap<&String, u64>) -> BaseNpc {
+        BaseNpc {
+            texture_alias: self.texture_alias.clone(),
+            name_id: self.name_id,
+            sub_title_id: self.sub_title_id,
+            terrain_object_id: self.terrain_object_id,
+            name_offset_x: self.name_offset_x,
+            name_offset_y: self.name_offset_y,
+            name_offset_z: self.name_offset_z,
+            enable_interact_popup: self.enable_interact_popup,
+            interact_popup_radius: self.interact_popup_radius,
+            show_name: self.show_name,
+            show_health: self.show_health,
+            hostility: self.hostility,
+            bounce_area_id: Some(self.bounce_area_id),
+            enable_gravity: self.enable_gravity,
+            enable_tilt: self.enable_tilt,
+            use_terrain_model: self.use_terrain_model,
+            attachments: self.attachments.clone(),
+            composite_effect_id: self.composite_effect_id,
+            clickable: self.clickable,
+            spawn_animation_id: self.spawn_animation_id,
+            hover_description: self.hover_description,
+            procedure_on_interact: self.procedure_on_interact.clone(),
+            one_shot_interaction: self.one_shot_interaction.clone(),
+            triggered_npc_guids: self
+                .triggered_npc_keys_on_interact
+                .iter()
+                .filter_map(|key| keys_to_guid.get(key).copied())
+                .collect(),
+            notification_icon: self.notification_icon,
+        }
+    }
+}
+
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub struct Chunk {
+    pub x: i32,
+    pub z: i32,
+    pub size: u16,
+}
+pub type CharacterLocationIndex = (CharacterCategory, u64, Chunk);
+pub type CharacterNameIndex = String;
+pub type CharacterSquadIndex = u64;
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
+pub struct MinigameMatchmakingGroup {
+    pub stage_group_guid: i32,
+    pub stage_guid: i32,
+    pub creation_time: Instant,
+    pub owner_guid: u32,
+}
+
+pub type CharacterMatchmakingGroupIndex = MinigameMatchmakingGroup;
+pub type CharacterSynchronizationIndex = u64;
+
+#[derive(Clone)]
+pub struct CharacterStat {
+    pub base: f32,
+    pub mount_multiplier: f32,
+}
+
+impl CharacterStat {
+    pub fn total(&self) -> f32 {
+        self.base * self.mount_multiplier
+    }
+}
+
+#[derive(Clone)]
+pub struct CharacterMount {
+    pub mount_id: u32,
+    pub mount_guid: u64,
+}
+
+#[derive(Clone)]
+pub enum TargetState {
+    None,
+    Targeting {
+        guid: u64,
+        origin_pos: Pos,
+        origin_rot: Pos,
+        pos_update_progress: Box<NonLinearPathState>,
+    },
+    ReturningToOrigin {
+        pos_update_progress: Box<NonLinearPathState>,
+    },
+}
+
+#[derive(Clone)]
+pub struct CharacterStats {
+    guid: u64,
+    pub model_id: u32,
+    pub pos: Pos,
+    pub rot: Pos,
+    pub possible_pos: Vec<Pos>,
+    pub chunk_size: u16,
+    pub scale: f32,
+    pub character_type: CharacterType,
+    pub mount: Option<CharacterMount>,
+    pub interact_radius: f32,
+    pub auto_interact_radius: f32,
+    pub move_to_interact_offset: f32,
+    pub instance_guid: u64,
+    pub temporary_model_id: Option<u32>,
+    pub stand_animation_id: i32,
+    speed: CharacterStat,
+    pub jump_height_multiplier: CharacterStat,
+    pub cursor: Option<u8>,
+    pub is_spawned: bool,
+    pub physics: PhysicsState,
+    pub name: Option<String>,
+    pub squad_guid: Option<u64>,
+    wield_type: (WieldType, WieldType),
+    holstered: bool,
+    pub target_state: TargetState,
+    pub max_distance_from_target: f32,
+    pub max_distance_from_origin: f32,
+    pub auto_target_radius: f32,
+    pub ability_height: f32,
+    pub enemy_types: HashSet<String>,
+    pub threat_table: ThreatTable,
+    pub health: u16,
+    pub max_health: u16,
+    pub composite_effect_tags: BTreeMap<u32, u32>,
+    pub navmesh: Option<String>,
+}
+
+impl CharacterStats {
+    pub fn add_packets(
+        &self,
+        override_is_spawned: bool,
+        mount_configs: &BTreeMap<u32, MountConfig>,
+        item_configs: &BTreeMap<u32, ItemConfig>,
+        customizations: &BTreeMap<u32, Customization>,
+    ) -> Vec<Vec<u8>> {
+        let mut packets = match &self.character_type {
+            CharacterType::AmbientNpc(ambient_npc) => {
+                ambient_npc.add_packets(self, override_is_spawned)
+            }
+            CharacterType::Player(player) => {
+                player.add_packets(self, mount_configs, item_configs, customizations)
+            }
+            CharacterType::Fixture(house_guid, fixture) => fixture_packets(
+                *house_guid,
+                Guid::guid(self),
+                fixture,
+                self.pos,
+                self.rot,
+                self.scale,
+            ),
+        };
+
+        for (tag_id, composite_effect_id) in self.composite_effect_tags.iter() {
+            packets.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: AddCompositeEffectTag {
+                    guid: Guid::guid(self),
+                    tag_id: *tag_id,
+                    composite_effect_id: *composite_effect_id,
+                    triggered_by_guid: 0,
+                    unknown2: 0,
+                },
+            }));
+        }
+
+        packets
+    }
+
+    pub fn remove_packets(&self, mode: RemovalMode) -> Vec<Vec<u8>> {
+        let mut packets = Vec::new();
+        if let Some(temporary_model_id) = self.temporary_model_id {
+            packets.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: RemoveTemporaryModel {
+                    guid: Guid::guid(self),
+                    model_id: temporary_model_id,
+                },
+            }));
+        }
+
+        packets.push(match mode {
+            RemovalMode::Immediate => GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: RemoveStandard {
+                    guid: Guid::guid(self),
+                },
+            }),
+            RemovalMode::Graceful {
+                enable_death_animation,
+                removal_delay_millis,
+                removal_effect_delay_millis,
+                removal_composite_effect_id,
+                fade_duration_millis,
+            } => GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: RemoveGracefully {
+                    guid: Guid::guid(self),
+                    use_death_animation: enable_death_animation,
+                    delay_millis: removal_delay_millis,
+                    composite_effect_delay_millis: removal_effect_delay_millis,
+                    composite_effect: removal_composite_effect_id,
+                    fade_duration_millis,
+                },
+            }),
+        });
+
+        if let Some(CharacterMount { mount_guid, .. }) = self.mount {
+            packets.push(match mode {
+                RemovalMode::Immediate => GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: RemoveStandard { guid: mount_guid },
+                }),
+                RemovalMode::Graceful {
+                    enable_death_animation,
+                    removal_delay_millis,
+                    removal_effect_delay_millis,
+                    removal_composite_effect_id,
+                    fade_duration_millis,
+                } => GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: RemoveGracefully {
+                        guid: Guid::guid(self),
+                        use_death_animation: enable_death_animation,
+                        delay_millis: removal_delay_millis,
+                        composite_effect_delay_millis: removal_effect_delay_millis,
+                        composite_effect: removal_composite_effect_id,
+                        fade_duration_millis,
+                    },
+                }),
+            });
+        }
+        packets
+    }
+
+    pub fn wield_type(&self) -> WieldType {
+        self.wield_type.0
+    }
+}
+
+impl Guid<u64> for CharacterStats {
+    fn guid(&self) -> u64 {
+        self.guid
+    }
+}
+
+#[derive(Clone)]
+pub struct Character {
+    pub stats: CharacterStats,
+    tickable_procedure_tracker: TickableProcedureTracker,
+    pub synchronize_with: Option<u64>,
+}
+
+impl
+    IndexedGuid<
+        u64,
+        CharacterLocationIndex,
+        CharacterNameIndex,
+        CharacterSquadIndex,
+        CharacterMatchmakingGroupIndex,
+        CharacterSynchronizationIndex,
+    > for Character
+{
+    fn guid(&self) -> u64 {
+        self.stats.guid
+    }
+
+    fn index1(&self) -> CharacterLocationIndex {
+        let tickable_synchronization = match self.synchronize_with {
+            Some(_) => TickableNpcSynchronization::Synchronized,
+            None => TickableNpcSynchronization::Unsynchronized,
+        };
+        (
+            match &self.stats.character_type {
+                CharacterType::Player(player) => match player.ready {
+                    true => CharacterCategory::PlayerReady,
+                    false => CharacterCategory::PlayerUnready,
+                },
+                _ => match self.tickable() {
+                    true => CharacterCategory::NpcTickable(tickable_synchronization),
+                    false => CharacterCategory::NpcBasic,
+                },
+            },
+            self.stats.instance_guid,
+            Character::chunk(self.stats.pos.x, self.stats.pos.z, self.stats.chunk_size),
+        )
+    }
+
+    fn index2(&self) -> Option<CharacterNameIndex> {
+        self.stats.name.clone()
+    }
+
+    fn index3(&self) -> Option<CharacterSquadIndex> {
+        self.stats.squad_guid
+    }
+
+    fn index4(&self) -> Option<CharacterMatchmakingGroupIndex> {
+        match &self.stats.character_type {
+            CharacterType::Player(player) => {
+                player.minigame_status.as_ref().map(|status| status.group)
+            }
+            _ => None,
+        }
+    }
+
+    fn index5(&self) -> Option<CharacterSynchronizationIndex> {
+        self.synchronize_with
+    }
+}
+
+impl Character {
+    pub const MIN_CHUNK: Chunk = Chunk {
+        x: i32::MIN,
+        z: i32::MIN,
+        size: u16::MIN,
+    };
+    pub const MAX_CHUNK: Chunk = Chunk {
+        x: i32::MAX,
+        z: i32::MAX,
+        size: u16::MAX,
+    };
+    pub const DEFAULT_CHAT_TEXT_COLOR: Rgba = Rgba::new(255, 255, 255, 255);
+    pub const DEFAULT_CHAT_BUBBLE_COLOR: Rgba = Rgba::new(240, 226, 212, 255);
+
+    pub fn new(
+        guid: u64,
+        model_id: u32,
+        pos: Pos,
+        rot: Pos,
+        chunk_size: u16,
+        scale: f32,
+        character_type: CharacterType,
+        mount_id: Option<CharacterMount>,
+        cursor: Option<u8>,
+        interact_radius: f32,
+        auto_interact_radius: f32,
+        move_to_interact_offset: f32,
+        instance_guid: u64,
+        wield_type: WieldType,
+        stand_animation_id: i32,
+        tickable_procedures: HashMap<String, TickableProcedureConfig>,
+        first_possible_procedures: Vec<String>,
+        synchronize_with: Option<u64>,
+    ) -> Character {
+        Character {
+            stats: CharacterStats {
+                guid,
+                model_id,
+                pos,
+                rot,
+                possible_pos: vec![],
+                chunk_size,
+                scale,
+                character_type,
+                mount: mount_id,
+                cursor,
+                is_spawned: true,
+                physics: PhysicsState::default(),
+                name: None,
+                squad_guid: None,
+                interact_radius,
+                auto_interact_radius,
+                move_to_interact_offset,
+                instance_guid,
+                wield_type: (wield_type, wield_type.holster()),
+                holstered: false,
+                stand_animation_id,
+                temporary_model_id: None,
+                speed: CharacterStat {
+                    base: 0.0,
+                    mount_multiplier: 1.0,
+                },
+                jump_height_multiplier: CharacterStat {
+                    base: 1.0,
+                    mount_multiplier: 1.0,
+                },
+                target_state: TargetState::None,
+                max_distance_from_target: 0.0,
+                max_distance_from_origin: 0.0,
+                auto_target_radius: 0.0,
+                enemy_types: HashSet::new(),
+                threat_table: ThreatTable::default(),
+                health: u16::MAX,
+                max_health: u16::MAX,
+                composite_effect_tags: BTreeMap::new(),
+                navmesh: None,
+                ability_height: default_ability_height(),
+            },
+            tickable_procedure_tracker: TickableProcedureTracker::new(
+                tickable_procedures,
+                first_possible_procedures,
+            ),
+            synchronize_with,
+        }
+    }
+
+    pub fn from_player(
+        guid: u32,
+        model_id: u32,
+        pos: Pos,
+        rot: Pos,
+        chunk_size: u16,
+        instance_guid: u64,
+        data: Player,
+        game_server: &GameServer,
+    ) -> Self {
+        let wield_type = wield_type_from_inventory(
+            &data
+                .inventory
+                .equipped_items(data.inventory.active_battle_class),
+            game_server,
+        );
+        Character {
+            stats: CharacterStats {
+                guid: player_guid(guid),
+                model_id,
+                pos,
+                rot,
+                possible_pos: vec![],
+                chunk_size,
+                scale: 1.0,
+                name: Some(format!("{}", data.name)),
+                squad_guid: data.squad_guid,
+                character_type: CharacterType::Player(Box::new(data)),
+                mount: None,
+                cursor: None,
+                is_spawned: true,
+                physics: PhysicsState::default(),
+                interact_radius: 0.0,
+                auto_interact_radius: 0.0,
+                move_to_interact_offset: 2.2,
+                instance_guid,
+                wield_type: (wield_type, wield_type.holster()),
+                holstered: false,
+                stand_animation_id: 0,
+                temporary_model_id: None,
+                speed: CharacterStat {
+                    base: 0.0,
+                    mount_multiplier: 1.0,
+                },
+                jump_height_multiplier: CharacterStat {
+                    base: 1.0,
+                    mount_multiplier: 1.0,
+                },
+                target_state: TargetState::None,
+                max_distance_from_target: f32::INFINITY,
+                max_distance_from_origin: f32::INFINITY,
+                auto_target_radius: 0.0,
+                enemy_types: game_server
+                    .enemy_types()
+                    .enemy_types_applied_to_players
+                    .clone(),
+                threat_table: ThreatTable::default(),
+                health: u16::MAX,
+                max_health: u16::MAX,
+                composite_effect_tags: BTreeMap::new(),
+                navmesh: None,
+                ability_height: default_ability_height(),
+            },
+            tickable_procedure_tracker: TickableProcedureTracker::new(HashMap::new(), Vec::new()),
+            synchronize_with: None,
+        }
+    }
+
+    pub fn chunk(x: f32, z: f32, chunk_size: u16) -> Chunk {
+        Chunk {
+            x: x.div_euclid(chunk_size as f32) as i32,
+            z: z.div_euclid(chunk_size as f32) as i32,
+            size: chunk_size,
+        }
+    }
+
+    pub fn set_tickable_procedure_if_exists(
+        &mut self,
+        new_tickable_procedure: String,
+        now: Instant,
+    ) {
+        self.tickable_procedure_tracker
+            .set_procedure_if_exists(new_tickable_procedure, now);
+    }
+
+    pub fn tick(
+        &mut self,
+        now: Instant,
+        nearby_player_guids: &[u32],
+        nearby_characters: &mut BTreeMap<u64, CharacterWriteGuard>,
+        mount_configs: &BTreeMap<u32, MountConfig>,
+        item_configs: &BTreeMap<u32, ItemConfig>,
+        customizations: &BTreeMap<u32, Customization>,
+        tick_duration: Duration,
+        navmesh: &Navmesh,
+        collision: &Collision,
+    ) -> (Vec<Broadcast>, Option<UpdatePlayerPos>) {
+        self.update_target(nearby_characters, navmesh);
+
+        let (mut broadcasts, pos_update) = self.seek_next_pos(
+            now,
+            nearby_player_guids,
+            nearby_characters,
+            mount_configs,
+            item_configs,
+            customizations,
+            tick_duration,
+            navmesh,
+        );
+
+        broadcasts.append(
+            &mut self.use_ability(
+                pos_update
+                    .map(|(_, current_pos)| current_pos)
+                    .unwrap_or(self.stats.pos),
+                nearby_player_guids,
+                nearby_characters,
+                tick_duration,
+                collision,
+            ),
+        );
+
+        (broadcasts, pos_update.map(|(packet, _)| packet))
+    }
+
+    pub fn current_tickable_procedure(&self) -> Option<&String> {
+        self.tickable_procedure_tracker.current_tickable_procedure()
+    }
+
+    pub fn last_procedure_change(&self) -> Instant {
+        self.tickable_procedure_tracker.last_procedure_change()
+    }
+
+    pub fn brandished_wield_type(&self) -> WieldType {
+        if self.stats.holstered {
+            self.stats.wield_type.1
+        } else {
+            self.stats.wield_type.0
+        }
+    }
+
+    pub fn set_brandished_wield_type(&mut self, wield_type: WieldType) {
+        self.stats.wield_type = (wield_type, wield_type.holster());
+        self.stats.holstered = false;
+    }
+
+    pub fn brandish_or_holster(&mut self) {
+        let (old_wield_type, new_wield_type) = self.stats.wield_type;
+        self.stats.wield_type = (new_wield_type, old_wield_type);
+        self.stats.holstered = !self.stats.holstered;
+    }
+
+    pub fn interact(
+        &mut self,
+        requester: u32,
+        player_stats: &mut Player,
+        nearby_player_guids: &[u32],
+        zone_instance: &ZoneInstance,
+        game_server: &GameServer,
+    ) -> WriteLockingBroadcastSupplier {
+        let mut new_procedure = None;
+
+        let character_type = self.stats.character_type.clone();
+
+        let broadcast_supplier = match character_type {
+            CharacterType::AmbientNpc(ambient_npc) => {
+                let (procedure, one_shot_interact) = ambient_npc.interact(
+                    self,
+                    nearby_player_guids,
+                    requester,
+                    player_stats,
+                    zone_instance,
+                    game_server,
+                );
+                new_procedure = procedure;
+                one_shot_interact
+            }
+            _ => coerce_to_broadcast_supplier(|_| Ok(Vec::new())),
+        };
+
+        if let Some(procedure) = new_procedure {
+            self.set_tickable_procedure_if_exists(procedure, Instant::now());
+        }
+
+        // Clear the client's closest interaction target after processing the interaction
+        coerce_to_broadcast_supplier(move |game_server| {
+            let mut broadcasts = broadcast_supplier?(game_server)?;
+            broadcasts.push(Broadcast::Single(
+                requester,
+                vec![GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: ExecuteScriptWithStringParams {
+                        script_name: "Ui.RadialMenuClosed".to_string(),
+                        params: vec![],
+                    },
+                })],
+            ));
+
+            Ok(broadcasts)
+        })
+    }
+
+    pub fn speed(&self) -> &CharacterStat {
+        &self.stats.speed
+    }
+
+    pub fn update_speed(&mut self, mut f: impl FnMut(&mut CharacterStat)) {
+        let previous_speed = self.stats.speed.total();
+        f(&mut self.stats.speed);
+        self.tickable_procedure_tracker
+            .update_progress(previous_speed);
+    }
+
+    fn tickable(&self) -> bool {
+        self.tickable_procedure_tracker.tickable() || self.stats.auto_target_radius > 0.0
+    }
+
+    fn update_target(
+        &mut self,
+        nearby_characters: &BTreeMap<u64, CharacterWriteGuard>,
+        navmesh: &Navmesh,
+    ) {
+        let (current_target, origin) = match self.stats.target_state {
+            TargetState::Targeting {
+                guid, origin_pos, ..
+            } => (Some(guid), origin_pos),
+            _ => (None, self.stats.pos),
+        };
+        self.stats
+            .threat_table
+            .retain(|guid, _| nearby_characters.contains_key(guid));
+        for nearby_character in nearby_characters.values() {
+            let distance_from_target = distance3_pos(nearby_character.stats.pos, self.stats.pos);
+            let distance_from_origin = distance3_pos(nearby_character.stats.pos, origin);
+            let is_too_far_from_origin = distance_from_origin > self.stats.max_distance_from_origin;
+            let is_current_target = current_target == Some(nearby_character.guid());
+            let is_dead = nearby_character.stats.health == 0;
+
+            if (!is_current_target && is_too_far_from_origin) || is_dead {
+                self.stats.threat_table.remove(nearby_character.guid());
+            } else if distance_from_target <= self.stats.auto_target_radius {
+                self.stats.threat_table.deal_damage(
+                    nearby_character.guid(),
+                    nearby_character.stats.enemy_types.iter(),
+                    0,
+                );
+            }
+        }
+
+        if let Some(new_target) = self
+            .stats
+            .threat_table
+            .target()
+            .and_then(|guid| nearby_characters.get(&guid))
+        {
+            let target_update = match &self.stats.target_state {
+                TargetState::None => Some((self.stats.pos, self.stats.rot)),
+                TargetState::Targeting {
+                    guid,
+                    origin_pos,
+                    origin_rot,
+                    ..
+                } => match *guid != new_target.guid() {
+                    true => Some((*origin_pos, *origin_rot)),
+                    false => None,
+                },
+                TargetState::ReturningToOrigin { .. } => None,
+            };
+
+            if let Some((origin_pos, origin_rot)) = target_update {
+                self.stats.target_state = TargetState::Targeting {
+                    guid: new_target.guid(),
+                    origin_pos,
+                    origin_rot,
+                    pos_update_progress: Box::new(NonLinearPathState::new(
+                        self.stats.pos,
+                        NavmeshWaypoint::without_rot(self.stats.pos, STANDING),
+                        navmesh,
+                        0.0,
+                    )),
+                };
+            }
+        }
+    }
+
+    fn seek_next_pos(
+        &mut self,
+        now: Instant,
+        nearby_player_guids: &[u32],
+        nearby_characters: &mut BTreeMap<u64, CharacterWriteGuard>,
+        mount_configs: &BTreeMap<u32, MountConfig>,
+        item_configs: &BTreeMap<u32, ItemConfig>,
+        customizations: &BTreeMap<u32, Customization>,
+        tick_duration: Duration,
+        navmesh: &Navmesh,
+    ) -> (Vec<Broadcast>, Option<(UpdatePlayerPos, Pos)>) {
+        let speed = self.stats.speed.total();
+
+        match &mut self.stats.target_state {
+            TargetState::None => self.tickable_procedure_tracker.tick(
+                &mut self.stats,
+                now,
+                nearby_player_guids,
+                nearby_characters,
+                mount_configs,
+                item_configs,
+                customizations,
+                tick_duration,
+                navmesh,
+            ),
+            TargetState::Targeting {
+                guid,
+                origin_pos,
+                origin_rot,
+                pos_update_progress,
+            } => {
+                let pos_update;
+
+                if let Some(target_read_handle) = nearby_characters.get(guid) {
+                    let distance_from_origin =
+                        distance3_pos(target_read_handle.stats.pos, *origin_pos);
+                    let too_far_from_origin =
+                        distance_from_origin > self.stats.max_distance_from_origin;
+
+                    if !too_far_from_origin {
+                        let destination = target_read_handle.stats.pos;
+                        if pos_update_progress.destination_differs_from(
+                            destination,
+                            STANDING,
+                            self.stats.max_distance_from_target,
+                        ) {
+                            **pos_update_progress = NonLinearPathState::new(
+                                self.stats.pos,
+                                NavmeshWaypoint::without_rot(destination, STANDING),
+                                navmesh,
+                                self.stats.max_distance_from_target,
+                            );
+                        }
+
+                        pos_update = Some((
+                            pos_update_progress.tick(
+                                self.stats.guid,
+                                speed,
+                                tick_duration,
+                                self.stats.rot,
+                            ),
+                            pos_update_progress.pos_at_tick_start(),
+                        ));
+
+                        return (Vec::new(), pos_update);
+                    }
+                }
+
+                **pos_update_progress = NonLinearPathState::new(
+                    self.stats.pos,
+                    NavmeshWaypoint {
+                        pos: *origin_pos,
+                        rot_x: Some(origin_rot.x),
+                        rot_y: Some(origin_rot.y),
+                        rot_z: Some(origin_rot.z),
+                        rot_x_offset: 0.0,
+                        rot_y_offset: 0.0,
+                        rot_z_offset: 0.0,
+                        character_state: STANDING,
+                    },
+                    navmesh,
+                    0.0,
+                );
+                pos_update = Some((
+                    pos_update_progress.tick(self.stats.guid, speed, tick_duration, self.stats.rot),
+                    pos_update_progress.pos_at_tick_start(),
+                ));
+                self.stats.target_state = TargetState::ReturningToOrigin {
+                    pos_update_progress: pos_update_progress.clone(),
+                };
+                self.stats
+                    .composite_effect_tags
+                    .insert(ORIGIN_RESET_TAG_ID, ORIGIN_RESET_COMPOSITE_EFFECT_ID);
+
+                (
+                    vec![Broadcast::Multi(
+                        nearby_player_guids.to_vec(),
+                        vec![GamePacket::serialize(&TunneledPacket {
+                            unknown1: true,
+                            inner: AddCompositeEffectTag {
+                                guid: self.stats.guid,
+                                tag_id: ORIGIN_RESET_TAG_ID,
+                                composite_effect_id: ORIGIN_RESET_COMPOSITE_EFFECT_ID,
+                                triggered_by_guid: 0,
+                                unknown2: 0,
+                            },
+                        })],
+                    )],
+                    pos_update,
+                )
+            }
+            TargetState::ReturningToOrigin {
+                pos_update_progress,
+            } => {
+                let pos_update = Some((
+                    pos_update_progress.tick(self.stats.guid, speed, tick_duration, self.stats.rot),
+                    pos_update_progress.pos_at_tick_start(),
+                ));
+                if !pos_update_progress.reached_destination() {
+                    return (Vec::new(), pos_update);
+                }
+
+                self.stats.target_state = TargetState::None;
+                self.stats.threat_table.clear();
+                self.stats
+                    .composite_effect_tags
+                    .remove(&ORIGIN_RESET_TAG_ID);
+                (
+                    vec![Broadcast::Multi(
+                        nearby_player_guids.to_vec(),
+                        vec![GamePacket::serialize(&TunneledPacket {
+                            unknown1: true,
+                            inner: RemoveCompositeEffectTag {
+                                guid: self.stats.guid,
+                                tag_id: ORIGIN_RESET_TAG_ID,
+                            },
+                        })],
+                    )],
+                    pos_update,
+                )
+            }
+        }
+    }
+
+    fn use_ability(
+        &mut self,
+        current_pos: Pos,
+        nearby_player_guids: &[u32],
+        nearby_characters: &mut BTreeMap<u64, CharacterWriteGuard>,
+        _: Duration,
+        collision: &Collision,
+    ) -> Vec<Broadcast> {
+        match &self.stats.target_state {
+            TargetState::None => Vec::new(),
+            TargetState::Targeting { guid, .. } => {
+                let Some(target_read_handle) = nearby_characters.get(guid) else {
+                    return Vec::new();
+                };
+
+                if collision.has_line_of_sight(
+                    current_pos,
+                    self.stats.ability_height,
+                    target_read_handle.stats.pos,
+                    target_read_handle.stats.ability_height,
+                ) {
+                    return vec![Broadcast::Multi(nearby_player_guids.to_vec(), vec![])];
+                }
+
+                Vec::new()
+            }
+            TargetState::ReturningToOrigin { .. } => Vec::new(),
+        }
+    }
+}
