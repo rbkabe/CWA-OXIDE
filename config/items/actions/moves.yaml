@@ -1,0 +1,174 @@
+# TESTED AND REVERTED: tried retagging these from category 81 to 20 (the
+# real Moves child of Actions(17) in the client's HudMenuBar tree) on the
+# theory that the flyout's DS_QUICK_CHAT_DATA bucket was empty for lack of
+# any item tagged 20/21/22. Live test result: items vanished from the "My
+# Gear -> Actions Inventory" browse view AND the flyout categories stayed
+# gray/unclickable - so ItemDefinition.category is not what feeds
+# DS_QUICK_CHAT_DATA. Reverted to 81. Root cause is still the native
+# DataSourceManager push never firing (see task #25) - this isn't an
+# items.yaml-level fix.
+---
+# Small Sidestep
+- guid: 43
+  name_id: 288
+  description_id: 289
+  icon_set_id: 986
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 500
+  members: true
+
+# Leaning Sidestep
+- guid: 44
+  name_id: 290
+  description_id: 291
+  icon_set_id: 988
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 500
+  members: true
+
+# Flyata Bump
+- guid: 45
+  name_id: 296
+  description_id: 297
+  icon_set_id: 990
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1000
+  members: true
+
+# Weapon Move 1
+- guid: 2237
+  name_id: 32686
+  description_id: 14
+  icon_set_id: 1578
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3500
+
+# Weapon Move 2
+- guid: 2238
+  name_id: 32687
+  description_id: 14
+  icon_set_id: 1579
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3500
+
+# Weapon Move 3
+- guid: 2239
+  name_id: 32688
+  description_id: 14
+  icon_set_id: 1580
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3500
+
+# Taunting Weapon Move
+- guid: 2797
+  name_id: 44505
+  description_id: 14
+  icon_set_id: 1990
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3500
+
+# Throwing Weapon Move
+- guid: 2798
+  name_id: 44506
+  description_id: 14
+  icon_set_id: 1991
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3500
+
+# Strut-tastic
+- guid: 2828
+  name_id: 44759
+  description_id: 14
+  icon_set_id: 2032
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1500
+
+# The Comeback
+- guid: 2829
+  name_id: 44760
+  description_id: 14
+  icon_set_id: 2033
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1500
+
+# The Shudder
+- guid: 2830
+  name_id: 44761
+  description_id: 14
+  icon_set_id: 2034
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 2000
+
+# Force Juggle
+- guid: 3095
+  name_id: 4283
+  description_id: 14
+  icon_set_id: 2405
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1000
+  members: true
+
+# Force Meditate
+- guid: 3096
+  name_id: 4284
+  description_id: 14
+  icon_set_id: 2406
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1000
+  members: true
+
+# Diva
+- guid: 3169
+  name_id: 4317
+  description_id: 14
+  icon_set_id: 2418
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3000
+
+# Shuffle
+- guid: 3170
+  name_id: 4318
+  description_id: 14
+  icon_set_id: 2419
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3000
+
+# Sprinler
+- guid: 3171
+  name_id: 4319
+  description_id: 14
+  icon_set_id: 2420
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 3000
