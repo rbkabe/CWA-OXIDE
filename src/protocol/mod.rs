@@ -1,0 +1,715 @@
+use std::collections::{BTreeMap, VecDeque};
+use std::net::SocketAddr;
+use std::time::{Duration, Instant};
+
+use rand::random;
+
+use crate::protocol::deserialize::{deserialize_packet, DeserializeError};
+use crate::protocol::hash::{CrcSeed, CrcSize};
+use crate::protocol::reliable_data_ops::{
+    fragment_data, unbundle_reliable_data, DataPacket, FragmentState,
+};
+use crate::protocol::serialize::{serialize_packets, SerializeError};
+use crate::{debug, info, ServerOptions};
+
+mod deserialize;
+mod hash;
+mod reliable_data_ops;
+mod serialize;
+
+pub const MAX_BUFFER_SIZE: BufferSize = 512;
+pub const PROTOCOL: &str = "GAME_503\0";
+pub const PROTOCOL_VERSION: ProtocolVersion = 3;
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum ProtocolOpCode {
+    SessionRequest = 0x01,
+    SessionReply = 0x02,
+    MultiPacket = 0x03,
+    Disconnect = 0x05,
+    Heartbeat = 0x06,
+    NetStatusRequest = 0x07,
+    NetStatusReply = 0x08,
+    Data = 0x09,
+    DataFragment = 0x0D,
+    Ack = 0x11,
+    AckAll = 0x15,
+    UnknownSender = 0x1D,
+    RemapConnection = 0x1E,
+}
+
+impl ProtocolOpCode {
+    pub fn requires_session(&self) -> bool {
+        match self {
+            ProtocolOpCode::SessionRequest => false,
+            ProtocolOpCode::SessionReply => false,
+            ProtocolOpCode::MultiPacket => true,
+            ProtocolOpCode::Disconnect => true,
+            ProtocolOpCode::Heartbeat => true,
+            ProtocolOpCode::NetStatusRequest => false,
+            ProtocolOpCode::NetStatusReply => false,
+            ProtocolOpCode::Data => true,
+            ProtocolOpCode::DataFragment => true,
+            ProtocolOpCode::Ack => true,
+            ProtocolOpCode::AckAll => true,
+            ProtocolOpCode::UnknownSender => false,
+            ProtocolOpCode::RemapConnection => false,
+        }
+    }
+}
+
+pub type SequenceNumber = u16;
+pub type ProtocolVersion = u32;
+pub type SessionId = u32;
+pub type BufferSize = u32;
+pub type Protocol = String;
+
+#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub enum DisconnectReason {
+    Unknown = 0,
+    IcmpError = 1,
+    Timeout = 2,
+    OtherSideTerminated = 3,
+    ManagerDeleted = 4,
+    ConnectFail = 5,
+    Application = 6,
+    UnreachableConnection = 7,
+    UnacknowledgedTimeout = 8,
+    NewConnectionAttempt = 9,
+    ConnectionRefused = 10,
+    ConnectError = 11,
+    ConnectingToSelf = 12,
+    ReliableOverflow = 13,
+    ApplicationReleased = 14,
+    CorruptPacket = 15,
+    ProtocolMismatch = 16,
+}
+
+pub type ClientTick = u16;
+pub type ServerTick = u32;
+pub type Timestamp = u32;
+pub type PacketCount = u64;
+
+pub enum Packet {
+    SessionRequest(ProtocolVersion, SessionId, BufferSize, Protocol),
+    SessionReply(
+        SessionId,
+        CrcSeed,
+        CrcSize,
+        bool,
+        bool,
+        BufferSize,
+        ProtocolVersion,
+    ),
+    Disconnect(SessionId, DisconnectReason),
+    Heartbeat,
+    NetStatusRequest(
+        ClientTick,
+        Timestamp,
+        Timestamp,
+        Timestamp,
+        Timestamp,
+        Timestamp,
+        PacketCount,
+        PacketCount,
+        u16,
+    ),
+    NetStatusReply(
+        ClientTick,
+        ServerTick,
+        PacketCount,
+        PacketCount,
+        PacketCount,
+        PacketCount,
+        u16,
+    ),
+    Data(SequenceNumber, Vec<u8>),
+    DataFragment(SequenceNumber, Vec<u8>),
+    Ack(SequenceNumber),
+    AckAll(SequenceNumber),
+    UnknownSender,
+    RemapConnection(SessionId, CrcSeed),
+}
+
+impl Packet {
+    pub fn sequence_number(&self) -> Option<SequenceNumber> {
+        match self {
+            Packet::Data(n, _) => Some(*n),
+            Packet::DataFragment(n, _) => Some(*n),
+            _ => None,
+        }
+    }
+
+    pub fn op_code(&self) -> ProtocolOpCode {
+        match self {
+            Packet::SessionRequest(..) => ProtocolOpCode::SessionRequest,
+            Packet::SessionReply(..) => ProtocolOpCode::SessionReply,
+            Packet::Disconnect(..) => ProtocolOpCode::Disconnect,
+            Packet::Heartbeat => ProtocolOpCode::Heartbeat,
+            Packet::NetStatusRequest(..) => ProtocolOpCode::NetStatusRequest,
+            Packet::NetStatusReply(..) => ProtocolOpCode::NetStatusReply,
+            Packet::Data(..) => ProtocolOpCode::Data,
+            Packet::DataFragment(..) => ProtocolOpCode::DataFragment,
+            Packet::Ack(..) => ProtocolOpCode::Ack,
+            Packet::AckAll(..) => ProtocolOpCode::AckAll,
+            Packet::UnknownSender => ProtocolOpCode::UnknownSender,
+            Packet::RemapConnection(..) => ProtocolOpCode::RemapConnection,
+        }
+    }
+}
+
+#[derive(Eq, PartialEq)]
+enum SendTime {
+    Instant(Instant),
+    NeverSent,
+}
+
+struct PendingPacket {
+    needs_send: bool,
+    packet: Packet,
+    last_send: Instant,
+    first_send: SendTime,
+}
+
+impl PendingPacket {
+    fn new(packet: Packet) -> Self {
+        PendingPacket {
+            needs_send: true,
+            packet,
+            last_send: Instant::now(),
+            first_send: SendTime::NeverSent,
+        }
+    }
+
+    pub fn is_reliable(&self) -> bool {
+        self.packet.sequence_number().is_some()
+    }
+
+    pub fn update_last_send_time(&mut self) {
+        self.last_send = Instant::now();
+        if self.first_send == SendTime::NeverSent {
+            self.first_send = SendTime::Instant(self.last_send);
+        }
+    }
+
+    pub fn time_since_last_send(&self) -> Duration {
+        let now = Instant::now();
+        now.saturating_duration_since(self.last_send)
+    }
+}
+
+pub struct Session {
+    pub session_id: SessionId,
+    pub crc_length: CrcSize,
+    pub crc_seed: CrcSeed,
+    pub allow_compression: bool,
+    pub use_encryption: bool,
+}
+
+#[derive(Eq, PartialEq)]
+enum EnqueueDirection {
+    Front,
+    Back,
+}
+
+pub struct Channel {
+    pub disconnect_reason: Option<DisconnectReason>,
+    pub addr: SocketAddr,
+    session: Option<Session>,
+    buffer_size: BufferSize,
+    recency_limit: SequenceNumber,
+    time_until_resend: Duration,
+    last_round_trip_times: Vec<Duration>,
+    next_round_trip_index: usize,
+    selected_round_trip_index: usize,
+    max_time_until_resend: Duration,
+    fragment_state: FragmentState,
+    send_queue: VecDeque<PendingPacket>,
+    receive_queue: VecDeque<Packet>,
+    reordered_packets: BTreeMap<SequenceNumber, Packet>,
+    next_client_sequence: SequenceNumber,
+    next_server_sequence: SequenceNumber,
+    last_server_ack: SequenceNumber,
+    last_receive_time: Instant,
+}
+
+impl Channel {
+    pub fn new(
+        addr: SocketAddr,
+        initial_buffer_size: BufferSize,
+        recency_limit: SequenceNumber,
+        time_until_resend: Duration,
+        max_round_trip_entries: usize,
+        desired_resend_pct: u8,
+        max_time_until_resend: Duration,
+    ) -> Self {
+        if desired_resend_pct >= 100 {
+            panic!("desired_resend_pct must be less than 100")
+        }
+
+        Channel {
+            disconnect_reason: None,
+            addr,
+            session: None,
+            buffer_size: initial_buffer_size,
+            recency_limit,
+            time_until_resend,
+            last_round_trip_times: vec![Duration::default(); max_round_trip_entries],
+            next_round_trip_index: 0,
+            selected_round_trip_index: (100 - desired_resend_pct) as usize * max_round_trip_entries
+                / 100,
+            max_time_until_resend,
+            fragment_state: FragmentState::new(),
+            send_queue: VecDeque::new(),
+            receive_queue: VecDeque::new(),
+            reordered_packets: BTreeMap::new(),
+            next_client_sequence: 0,
+            next_server_sequence: 0,
+            last_server_ack: 0,
+            last_receive_time: Instant::now(),
+        }
+    }
+
+    pub fn receive(
+        &mut self,
+        data: &[u8],
+        server_options: &ServerOptions,
+    ) -> Result<u32, DeserializeError> {
+        if !self.connected() {
+            return Ok(0);
+        }
+
+        let packets = deserialize_packet(
+            data,
+            &self.session,
+            server_options.max_decompressed_packet_bytes,
+        )?;
+        self.last_receive_time = Instant::now();
+        Ok(self.enqueue_received_packets(packets, EnqueueDirection::Back, server_options))
+    }
+
+    pub fn needs_processing(&self) -> bool {
+        (!self.receive_queue.is_empty() || !self.send_queue.is_empty()) && self.connected()
+    }
+
+    pub fn process_next(&mut self, count: u8, server_options: &ServerOptions) -> Vec<Vec<u8>> {
+        if !self.connected() {
+            return Vec::new();
+        }
+
+        let mut needs_new_ack = false;
+        let mut packets_to_process = Vec::new();
+
+        for _ in 0..count {
+            let Some(packet) = self.receive_queue.pop_front() else {
+                break;
+            };
+
+            // Special processing for reliable packets
+            if let Some(sequence_number) = packet.sequence_number() {
+                // Add out-of-order packets to a separate queue until the expected
+                // packets arrive.
+                if sequence_number != self.next_client_sequence {
+                    if self.save_for_reorder(sequence_number) {
+                        self.reordered_packets.insert(sequence_number, packet);
+                    }
+
+                    // Ack single packet in case the client didn't receive the ack
+                    self.acknowledge_one(sequence_number, server_options);
+
+                    continue;
+                }
+
+                self.last_server_ack = sequence_number;
+                self.next_client_sequence = self.next_client_sequence.wrapping_add(1);
+                needs_new_ack = true;
+
+                // Add a previously-received data packet if it is next in sequence
+                if let Some(next_packet) = self.reordered_packets.remove(&self.next_client_sequence)
+                {
+                    self.enqueue_received_packets(
+                        vec![next_packet],
+                        EnqueueDirection::Front,
+                        server_options,
+                    );
+                }
+            }
+
+            match self.fragment_state.add(packet) {
+                Ok((possible_packet, remaining_bytes)) => {
+                    if remaining_bytes > server_options.max_defragmented_packet_bytes {
+                        info!("Disconnecting client {} that sent a fragmented packet that is too large ({} bytes > {} bytes)", self.addr, remaining_bytes, server_options.max_defragmented_packet_bytes);
+                        let _ = self.disconnect(DisconnectReason::Application);
+                        return Vec::new();
+                    }
+
+                    if let Some(packet) = possible_packet {
+                        packets_to_process.push(packet);
+                    }
+                }
+                Err(err) => info!("Unable to process packet: {:?}", err),
+            }
+        }
+
+        if needs_new_ack {
+            self.acknowledge_all(self.last_server_ack, server_options);
+        }
+
+        let mut packets = Vec::new();
+        for packet in packets_to_process {
+            // Process the packet inside the protocol
+            self.process_packet(&packet, server_options);
+
+            // Only data packets need to be handled outside the protocol. We already
+            // de-fragmented the data packet, so we don't need to check for fragments here.
+            if let Packet::Data(_, data) = packet {
+                if let Ok(mut unbundled_packets) = unbundle_reliable_data(&data) {
+                    packets.append(&mut unbundled_packets);
+                } else {
+                    info!("Bad bundled packet");
+                }
+            }
+        }
+
+        packets
+    }
+
+    pub fn process_all(&mut self, server_options: &ServerOptions) -> Vec<Vec<u8>> {
+        let mut packets = Vec::new();
+
+        while !self.receive_queue.is_empty() {
+            packets.append(&mut self.process_next(u8::MAX, server_options));
+        }
+
+        packets
+    }
+
+    pub fn prepare_to_send_data(&mut self, data: Vec<u8>, server_options: &ServerOptions) {
+        if !self.connected() {
+            return;
+        }
+
+        let packets =
+            fragment_data(self.buffer_size, &self.session, data).expect("Unable to fragment data");
+
+        for packet in packets {
+            let sequence = self.next_server_sequence();
+            let sequenced_packet = match packet {
+                DataPacket::Fragment(data) => Packet::DataFragment(sequence, data),
+                DataPacket::Single(data) => Packet::Data(sequence, data),
+            };
+
+            self.enqueue_packet_to_send(PendingPacket::new(sequenced_packet), server_options);
+        }
+    }
+
+    pub fn send_next(&mut self, count: u8) -> Result<Vec<Vec<u8>>, SerializeError> {
+        if !self.connected() {
+            return Ok(Vec::new());
+        }
+
+        let mut indices_to_send = Vec::new();
+
+        self.update_time_until_resend();
+
+        // If the packet was acked, it was already sent, so don't send it again
+        self.send_queue.retain(|packet| packet.needs_send);
+
+        let mut index = 0;
+        while indices_to_send.len() < count as usize && index < self.send_queue.len() {
+            let packet = &mut self.send_queue[index];
+
+            // All later packets are newer than this packet, so they should also be skipped
+            if packet.time_since_last_send() < self.time_until_resend {
+                index += 1;
+                continue;
+            }
+
+            // Unreliable packets do not need to be acked, so they are always sent exactly once.
+            if !packet.is_reliable() {
+                packet.needs_send = false;
+            }
+
+            indices_to_send.push(index);
+            packet.update_last_send_time();
+            index += 1;
+        }
+
+        let packets_to_send: Vec<&Packet> = indices_to_send
+            .into_iter()
+            .map(|index| &self.send_queue[index].packet)
+            .collect();
+
+        serialize_packets(&packets_to_send, self.buffer_size, &self.session)
+    }
+
+    pub fn disconnect(
+        &mut self,
+        disconnect_reason: DisconnectReason,
+    ) -> Result<Vec<Vec<u8>>, SerializeError> {
+        self.receive_queue.clear();
+        self.send_queue.clear();
+        self.disconnect_reason = Some(disconnect_reason);
+
+        info!(
+            "Disconnecting client {} with reason {:?}",
+            self.addr, disconnect_reason
+        );
+        if let Some(session) = &self.session {
+            serialize_packets(
+                &[&Packet::Disconnect(session.session_id, disconnect_reason)],
+                self.buffer_size,
+                &self.session,
+            )
+        } else {
+            Ok(Vec::new())
+        }
+    }
+
+    pub fn disconnect_if_same_session(
+        &mut self,
+        session_id: SessionId,
+        disconnect_reason: DisconnectReason,
+    ) -> Result<Vec<Vec<u8>>, SerializeError> {
+        if let Some(session) = &self.session {
+            if session.session_id == session_id {
+                self.disconnect(disconnect_reason)
+            } else {
+                Ok(Vec::new())
+            }
+        } else {
+            Ok(Vec::new())
+        }
+    }
+
+    pub fn connected(&self) -> bool {
+        self.disconnect_reason.is_none()
+    }
+
+    pub fn elapsed_since_last_receive(&self) -> Duration {
+        Instant::now().saturating_duration_since(self.last_receive_time)
+    }
+
+    fn enqueue_received_packets(
+        &mut self,
+        mut packets: Vec<Packet>,
+        direction: EnqueueDirection,
+        server_options: &ServerOptions,
+    ) -> u32 {
+        let new_packets = packets.len();
+        let new_total_packets = self
+            .receive_queue
+            .len()
+            .saturating_add(self.reordered_packets.len())
+            .saturating_add(new_packets);
+        if new_total_packets > server_options.max_received_packets_queued {
+            info!("Disconnecting client {} that exceeded the maximum number of packets in the receive queue ({} > {})", self.addr, new_total_packets, server_options.max_received_packets_queued);
+            let _ = self.disconnect(DisconnectReason::ReliableOverflow);
+            return 0;
+        }
+
+        if direction == EnqueueDirection::Front {
+            packets
+                .drain(..)
+                .for_each(|packet| self.receive_queue.push_front(packet));
+        } else {
+            packets
+                .drain(..)
+                .for_each(|packet| self.receive_queue.push_back(packet));
+        }
+
+        new_packets as u32
+    }
+
+    fn enqueue_packet_to_send(&mut self, packet: PendingPacket, server_options: &ServerOptions) {
+        let new_total_packets = self.send_queue.len().saturating_add(1);
+        if new_total_packets > server_options.max_unacknowledged_packets_queued {
+            info!("Disconnecting client {} that exceeded the maximum number of packets in the send queue ({} > {})", self.addr, new_total_packets, server_options.max_unacknowledged_packets_queued);
+            let _ = self.disconnect(DisconnectReason::ReliableOverflow);
+        }
+
+        self.send_queue.push_back(packet);
+    }
+
+    fn next_server_sequence(&mut self) -> SequenceNumber {
+        let next_sequence = self.next_server_sequence;
+        self.next_server_sequence = self.next_server_sequence.wrapping_add(1);
+        next_sequence
+    }
+
+    fn save_for_reorder(&self, sequence_number: SequenceNumber) -> bool {
+        let max_sequence_number = self.next_client_sequence.wrapping_add(self.recency_limit);
+
+        // If the max is smaller, the sequence numbers wrapped around
+        if max_sequence_number > self.next_client_sequence {
+            sequence_number <= max_sequence_number && sequence_number > self.next_client_sequence
+        } else {
+            sequence_number > self.next_client_sequence || sequence_number < max_sequence_number
+        }
+    }
+
+    fn should_client_ack(
+        recency_limit: SequenceNumber,
+        next_server_sequence: SequenceNumber,
+        max: SequenceNumber,
+        pending: SequenceNumber,
+    ) -> bool {
+        let min_sequence_number = next_server_sequence.wrapping_sub(recency_limit);
+
+        // If the max is smaller, the sequence numbers wrapped around
+        if min_sequence_number < max {
+            min_sequence_number <= pending && pending <= max
+        } else {
+            min_sequence_number <= pending || pending <= max
+        }
+    }
+
+    fn process_packet(&mut self, packet: &Packet, server_options: &ServerOptions) {
+        debug!("Received packet op code {:?}", packet.op_code());
+        match packet {
+            Packet::SessionRequest(protocol_version, session_id, buffer_size, protocol) => self
+                .process_session_request(
+                    protocol,
+                    *protocol_version,
+                    *session_id,
+                    *buffer_size,
+                    server_options,
+                ),
+            Packet::Heartbeat => self.process_heartbeat(server_options),
+            Packet::Ack(acked_sequence) => self.process_ack(*acked_sequence),
+            Packet::AckAll(acked_sequence) => self.process_ack_all(*acked_sequence),
+            Packet::Disconnect(session_id, disconnect_reason) => {
+                let _ = self.process_disconnect(*session_id, *disconnect_reason);
+            }
+            _ => {}
+        }
+    }
+
+    fn process_session_request(
+        &mut self,
+        protocol: &Protocol,
+        protocol_version: ProtocolVersion,
+        session_id: SessionId,
+        buffer_size: BufferSize,
+        server_options: &ServerOptions,
+    ) {
+        if protocol != PROTOCOL || protocol_version != PROTOCOL_VERSION {
+            info!(
+                "Protocol mismatch on client {}: protocol={:x?}, version={}",
+                self.addr,
+                protocol.as_bytes(),
+                protocol_version
+            );
+            let _ = self.disconnect(DisconnectReason::ProtocolMismatch);
+            return;
+        }
+
+        let session: &mut Session = self.session.get_or_insert_with(|| Session {
+            session_id,
+            crc_length: server_options.crc_length,
+            crc_seed: random::<CrcSeed>(),
+            allow_compression: server_options.allow_packet_compression,
+            use_encryption: false,
+        });
+
+        self.buffer_size = buffer_size;
+        let packet = PendingPacket::new(Packet::SessionReply(
+            session_id,
+            session.crc_seed,
+            session.crc_length,
+            session.allow_compression,
+            session.use_encryption,
+            MAX_BUFFER_SIZE,
+            3,
+        ));
+        self.enqueue_packet_to_send(packet, server_options);
+    }
+
+    fn process_heartbeat(&mut self, server_options: &ServerOptions) {
+        self.enqueue_packet_to_send(PendingPacket::new(Packet::Heartbeat), server_options);
+    }
+
+    fn process_ack(&mut self, acked_sequence: SequenceNumber) {
+        if Channel::should_client_ack(
+            self.recency_limit,
+            self.next_server_sequence,
+            self.next_server_sequence.wrapping_sub(1),
+            acked_sequence,
+        ) {
+            for pending_packet in self.send_queue.iter_mut() {
+                if let Some(pending_sequence) = pending_packet.packet.sequence_number() {
+                    if acked_sequence == pending_sequence {
+                        pending_packet.needs_send = false;
+                    }
+                }
+            }
+        }
+    }
+
+    fn process_ack_all(&mut self, acked_sequence: SequenceNumber) {
+        for pending_packet in self.send_queue.iter_mut() {
+            if let Some(pending_sequence) = pending_packet.packet.sequence_number() {
+                if Channel::should_client_ack(
+                    self.recency_limit,
+                    self.next_server_sequence,
+                    acked_sequence,
+                    pending_sequence,
+                ) {
+                    pending_packet.needs_send = false;
+                }
+            }
+        }
+    }
+
+    fn acknowledge_one(&mut self, sequence_number: SequenceNumber, server_options: &ServerOptions) {
+        self.enqueue_packet_to_send(
+            PendingPacket::new(Packet::Ack(sequence_number)),
+            server_options,
+        );
+    }
+
+    fn acknowledge_all(&mut self, sequence_number: SequenceNumber, server_options: &ServerOptions) {
+        self.enqueue_packet_to_send(
+            PendingPacket::new(Packet::AckAll(sequence_number)),
+            server_options,
+        );
+    }
+
+    fn process_disconnect(
+        &mut self,
+        session_id: SessionId,
+        disconnect_reason: DisconnectReason,
+    ) -> Result<Vec<Vec<u8>>, SerializeError> {
+        info!(
+            "Client {} disconnected with reason {:?}",
+            self.addr, disconnect_reason
+        );
+        self.disconnect_if_same_session(session_id, DisconnectReason::OtherSideTerminated)
+    }
+
+    fn update_time_until_resend(&mut self) {
+        let mut ready_to_update = false;
+        for packet in self.send_queue.iter() {
+            if !packet.needs_send && packet.is_reliable() {
+                let SendTime::Instant(first_send) = packet.first_send else {
+                    panic!("Packet was marked as sent but has no timing statistics");
+                };
+
+                self.last_round_trip_times[self.next_round_trip_index] =
+                    Instant::now().saturating_duration_since(first_send);
+                self.next_round_trip_index += 1;
+
+                if self.next_round_trip_index == self.last_round_trip_times.len() {
+                    self.next_round_trip_index = 0;
+                    ready_to_update = true;
+                }
+            }
+        }
+
+        if ready_to_update {
+            self.last_round_trip_times.sort();
+            self.time_until_resend = self.last_round_trip_times[self.selected_round_trip_index]
+                .min(self.max_time_until_resend);
+        }
+    }
+}
