@@ -1,0 +1,140 @@
+---
+# Aedalus
+- guid: 2752
+  name_id: 43358
+  description_id: 14
+  icon_set_id: 1846
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 3500
+  members: true
+
+# Gnarls
+- guid: 2786
+  name_id: 44380
+  description_id: 14
+  icon_set_id: 1976
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Eeetch
+- guid: 2802
+  name_id: 44508
+  description_id: 14
+  icon_set_id: 1997
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 0
+  members: true
+
+# Vector
+- guid: 2899
+  name_id: 45192
+  description_id: 14
+  icon_set_id: 2143
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 3500
+  members: true
+
+# Babbo
+- guid: 3073
+  name_id: 45930
+  description_id: 14
+  icon_set_id: 2357
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Duppa
+- guid: 3074
+  name_id: 45931
+  description_id: 14
+  icon_set_id: 2358
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Fang
+- guid: 3100
+  name_id: 4500
+  description_id: 14
+  icon_set_id: 2587
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 5000
+
+# Erial
+- guid: 3219
+  name_id: 4380
+  description_id: 14
+  icon_set_id: 2463
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 3500
+  members: true
+
+# Phileas
+- guid: 3282
+  name_id: 50605
+  description_id: 14
+  icon_set_id: 2572
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 4500
+
+# Barnibus
+- guid: 3283
+  name_id: 50607
+  description_id: 14
+  icon_set_id: 2573
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 0
+  members: true
+
+# Marrok
+- guid: 3366
+  name_id: 50866
+  description_id: 14
+  icon_set_id: 2667
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 3500
+
+# Ghorroh
+- guid: 3373
+  name_id: 50899
+  description_id: 14
+  icon_set_id: 2700
+  slot: !Equipment None
+  # model_name:
+  item_type: 1
+  category: 0
+  cost: 3500
