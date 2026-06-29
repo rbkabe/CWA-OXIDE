@@ -1,0 +1,272 @@
+---
+jedi_temple:
+  ambient_npcs:
+    veranda_to_archives:
+      pos:
+        x: 898.7137
+        y: 172.44917
+        z: 1527.221
+        w: 1
+      terrain_object_id: 1278971264
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10000
+        duration_millis: 1
+
+    archives_to_veranda:
+      pos:
+        x: 1760.083
+        y: 10
+        z: 1694
+        w: 1
+      terrain_object_id: 1278971880
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10001
+        duration_millis: 1
+
+    veranda_to_workshop:
+      pos:
+        x: 898.6971
+        y: 172.44917
+        z: 1566.624
+        w: 1
+      terrain_object_id: 1278971325
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10002
+        duration_millis: 1
+
+    workshop_to_veranda:
+      pos:
+        x: -359.4902
+        y: 10
+        z: 1780.211
+        w: 1
+      terrain_object_id: 1278971932
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 2.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10003
+        duration_millis: 1
+
+    veranda_to_main_hall_left:
+      pos:
+        x: 922.5864
+        y: 178.51657
+        z: 1530.958
+        w: 1
+      terrain_object_id: 1278971263
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10004
+        duration_millis: 1
+
+    main_hall_to_veranda_left:
+      pos:
+        x: 1256.403
+        y: 10
+        z: 294.7501
+        w: 1
+      terrain_object_id: 1278972312
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10005
+        duration_millis: 1
+
+    veranda_to_main_hall_right:
+      pos:
+        x: 922.5864
+        y: 178.51657
+        z: 1562.8
+        w: 1
+      terrain_object_id: 1278971324
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10006
+        duration_millis: 1
+
+    main_hall_to_veranda_right:
+      pos:
+        x: 1305.649
+        y: 10
+        z: 294.7528
+        w: 1
+      terrain_object_id: 1278972383
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10007
+        duration_millis: 1
+
+    main_hall_to_training_room:
+      pos:
+        x: 1242.232
+        y: 10
+        z: 275.1337
+        w: 1
+      terrain_object_id: 1278972313
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10008
+        duration_millis: 1
+
+    training_room_to_main_hall:
+      pos:
+        x: 160.4435
+        y: 6.8242483
+        z: 418.3869
+        w: 1
+      terrain_object_id: 1265074699
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10009
+        duration_millis: 1
+
+    main_hall_to_hangar:
+      pos:
+        x: 1242.241
+        y: 10
+        z: 253.2976
+        w: 1
+      terrain_object_id: 1278972223
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10010
+        duration_millis: 1
+
+    hangar_to_main_hall:
+      pos:
+        x: 133.3168
+        y: 10
+        z: -181.1351
+        w: 1
+      terrain_object_id: 1278977468
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10011
+        duration_millis: 1
+
+    main_hall_to_lounge:
+      pos:
+        x: 1319.713
+        y: 10
+        z: 275.1354
+        w: 1
+      terrain_object_id: 1278972382
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10012
+        duration_millis: 1
+
+    lounge_to_main_hall:
+      pos:
+        x: -136.2943
+        y: 10
+        z: 1270.001
+        w: 1
+      terrain_object_id: 1278976521
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10013
+        duration_millis: 1
+
+    main_hall_to_war_room:
+      pos:
+        x: 1319.77
+        y: 10
+        z: 253.2967
+        w: 1
+      terrain_object_id: 1278972261
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10014
+        duration_millis: 1
+
+    war_room_to_main_hall:
+      pos:
+        x: 690.7585
+        y: 10
+        z: -2.675201
+        w: 1
+      terrain_object_id: 1278976738
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10015
+        duration_millis: 1
+
+    veranda_to_construction_chamber:
+      pos:
+        x: 922.5898
+        y: 178.51657
+        z: 1546.969
+        w: 1
+      terrain_object_id: 1359076121
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10018
+        duration_millis: 1
+
+    lounge_to_club:
+      pos:
+        x: -106.5555
+        y: 10
+        z: 1247.071
+        w: 1
+      terrain_object_id: 1359076115
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10019
+        duration_millis: 1
