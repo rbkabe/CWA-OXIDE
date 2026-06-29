@@ -1,0 +1,9 @@
+---
+# AT-RT
+- guid: 3281
+  name_id: 4484
+  description_id: 14
+  icon_set_id: 2487
+  slot: !Equipment None
+  cost: 4000
+  item_type: 1
