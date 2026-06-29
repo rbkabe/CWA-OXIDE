@@ -1,0 +1,520 @@
+---
+commands:
+  help:
+    description: "Show a list of available commands."
+    usage: "./help"
+    permission_level: Emissary
+
+  console:
+    description: "Toggles the client console for debugging."
+    usage: "./console"
+    permission_level: Emissary
+
+  script:
+    description: "Run a client script with optional parameters."
+    usage: "./script <script name> [params...]"
+    permission_level: Emissary
+
+  loc:
+    description: "Prints your current position and rotation."
+    usage: "./loc"
+    permission_level: Emissary
+
+  tp:
+    description: "Teleport to absolute or relative coordinates."
+    usage: "./tp <x> <y> <z> (use tilde (~) for relative coords)"
+    permission_level: Emissary
+
+  clicktp:
+    description: "Toggles click to teleport instead of click to move."
+    usage: "./clicktp"
+    permission_level: Emissary
+
+  freecam:
+    description: "Toggles free camera."
+    usage: "./freecam"
+    permission_level: Emissary
+    notes:
+      - "Re-run ./freecam to restore clickable NPCs."
+      - "Disable freecam before changing zones to avoid crashes."
+      - "Enabling freecam on your lot will prevent you from editing it until you rejoin."
+
+  emotes:
+    description: "Lists all available emote commands."
+    usage: "./emotes"
+    permission_level: Emissary
+
+  bow:
+    description: "Bows."
+    usage: "./bow"
+    permission_level: Emissary
+
+  charge:
+    description: "Plays the charge emote."
+    usage: "./charge"
+    permission_level: Emissary
+
+  cry:
+    description: "Plays the cry emote."
+    usage: "./cry"
+    permission_level: Emissary
+
+  drink:
+    description: "Plays the drink emote."
+    usage: "./drink"
+    permission_level: Emissary
+
+  fistpump:
+    description: "Pumps your fist."
+    usage: "./fistpump"
+    permission_level: Emissary
+
+  flankleft:
+    description: "Plays the flank-left signal emote."
+    usage: "./flankleft"
+    permission_level: Emissary
+
+  flankright:
+    description: "Plays the flank-right signal emote."
+    usage: "./flankright"
+    permission_level: Emissary
+
+  forcejuggle:
+    description: "Plays the Force juggle emote."
+    usage: "./forcejuggle"
+    permission_level: Emissary
+
+  forcelift:
+    description: "Plays the Force lift emote."
+    usage: "./forcelift"
+    permission_level: Emissary
+
+  forcemeditate:
+    description: "Plays the Force meditation emote."
+    usage: "./forcemeditate"
+    permission_level: Emissary
+
+  forcepush:
+    description: "Plays the Force push emote."
+    usage: "./forcepush"
+    permission_level: Emissary
+
+  facepalm:
+    description: "Facepalms."
+    usage: "./facepalm"
+    permission_level: Emissary
+
+  headshake:
+    description: "Shakes your head."
+    usage: "./headshake"
+    permission_level: Emissary
+
+  hitthedeck:
+    description: "Hits the deck."
+    usage: "./hitthedeck"
+    permission_level: Emissary
+
+  laugh:
+    description: "Laughs."
+    usage: "./laugh"
+    permission_level: Emissary
+
+  nod:
+    description: "Nods."
+    usage: "./nod"
+    permission_level: Emissary
+
+  nodyes:
+    description: "Nods yes."
+    usage: "./nodyes"
+    permission_level: Emissary
+
+  point:
+    description: "Points."
+    usage: "./point"
+    permission_level: Emissary
+
+  retreat:
+    description: "Plays the retreat signal emote."
+    usage: "./retreat"
+    permission_level: Emissary
+
+  rtl:
+    description: "Plays the return-to-leader signal emote."
+    usage: "./rtl"
+    permission_level: Emissary
+
+  threaten:
+    description: "Threatens."
+    usage: "./threaten"
+    permission_level: Emissary
+
+  tusken:
+    description: "Plays the Tusken Raider emote."
+    usage: "./tusken"
+    permission_level: Emissary
+
+  wave:
+    description: "Waves."
+    usage: "./wave"
+    permission_level: Emissary
+
+  weaponmove1:
+    description: "Plays Weapon Move 1 (Weapon Moves Pack I), using the Flourish animation that matches your currently equipped weapon class. Requires owning the Weapon Move 1 item."
+    usage: "./weaponmove1"
+    permission_level: Emissary
+
+  weaponmove2:
+    description: "Plays Weapon Move 2 (Weapon Moves Pack I), using the Flourish animation that matches your currently equipped weapon class. Requires owning the Weapon Move 2 item."
+    usage: "./weaponmove2"
+    permission_level: Emissary
+
+  weaponmove3:
+    description: "Plays Weapon Move 3 (Weapon Moves Pack I), using the Flourish animation that matches your currently equipped weapon class. Requires owning the Weapon Move 3 item."
+    usage: "./weaponmove3"
+    permission_level: Emissary
+
+  weaponmovetaunt:
+    description: "Plays the Taunting Weapon Move (Weapon Moves Pack II), using the Flourish animation that matches your currently equipped weapon class. Requires owning the Taunting Weapon Move item."
+    usage: "./weaponmovetaunt"
+    permission_level: Emissary
+
+  weaponmovethrow:
+    description: "Plays the Throwing Weapon Move (Weapon Moves Pack II), using the Flourish animation that matches your currently equipped weapon class. Requires owning the Throwing Weapon Move item."
+    usage: "./weaponmovethrow"
+    permission_level: Emissary
+
+  dance1:
+    description: "Plays dance 1."
+    usage: "./dance1"
+    permission_level: Emissary
+
+  dance2:
+    description: "Plays dance 2."
+    usage: "./dance2"
+    permission_level: Emissary
+
+  dance3:
+    description: "Plays dance 3."
+    usage: "./dance3"
+    permission_level: Emissary
+
+  dancebad:
+    description: "Plays the bad dance."
+    usage: "./dancebad"
+    permission_level: Emissary
+
+  dancerunningman:
+    description: "Plays the running man dance."
+    usage: "./dancerunningman"
+    permission_level: Emissary
+
+  dancestrut:
+    description: "Plays the Strut-tastic dance."
+    usage: "./dancestrut"
+    permission_level: Emissary
+
+  dancecomeback:
+    description: "Plays the Comeback dance."
+    usage: "./dancecomeback"
+    permission_level: Emissary
+
+  danceshudder:
+    description: "Plays the Shudder dance."
+    usage: "./danceshudder"
+    permission_level: Emissary
+
+  dancesprinkler:
+    description: "Plays the Sprinkler dance."
+    usage: "./dancesprinkler"
+    permission_level: Emissary
+
+  danceshuffle:
+    description: "Plays the Shuffle dance."
+    usage: "./danceshuffle"
+    permission_level: Emissary
+
+  dancediva:
+    description: "Plays the Diva dance."
+    usage: "./dancediva"
+    permission_level: Emissary
+
+  dancegungan:
+    description: "Plays the Gungan-style dance."
+    usage: "./dancegungan"
+    permission_level: Emissary
+
+  holocody:
+    description: "Plays the Commander Cody handheld holoprojector emote."
+    usage: "./holocody"
+    permission_level: Emissary
+
+  holoyoda:
+    description: "Plays the Yoda handheld holoprojector emote."
+    usage: "./holoyoda"
+    permission_level: Emissary
+
+  holoanakin:
+    description: "Plays the Anakin Skywalker handheld holoprojector emote."
+    usage: "./holoanakin"
+    permission_level: Emissary
+
+  holomacewindu:
+    description: "Plays the Mace Windu handheld holoprojector emote."
+    usage: "./holomacewindu"
+    permission_level: Emissary
+
+  disguisesuperbattledroid:
+    description: "Disguises you as the Super Battle Droid holoprojector model."
+    usage: "./disguisesuperbattledroid"
+    permission_level: Emissary
+
+  disguisebattledroid:
+    description: "Disguises you as the Battle Droid holoprojector model."
+    usage: "./disguisebattledroid"
+    permission_level: Emissary
+
+  disguisecommandodroid:
+    description: "Disguises you as the Commando Droid holoprojector model."
+    usage: "./disguisecommandodroid"
+    permission_level: Emissary
+
+  disguisedroideka:
+    description: "Disguises you as the Droideka holoprojector model."
+    usage: "./disguisedroideka"
+    permission_level: Emissary
+
+  disguisebith:
+    description: "Disguises you as the Bith holoprojector model."
+    usage: "./disguisebith"
+    permission_level: Emissary
+
+  disguisejawa:
+    description: "Disguises you as the Jawa holoprojector model."
+    usage: "./disguisejawa"
+    permission_level: Emissary
+
+  disguisegotal:
+    description: "Disguises you as the Gotal holoprojector model."
+    usage: "./disguisegotal"
+    permission_level: Emissary
+
+  disguiseithorian:
+    description: "Disguises you as the Ithorian holoprojector model."
+    usage: "./disguiseithorian"
+    permission_level: Emissary
+
+  disguisegungan:
+    description: "Disguises you as the Gungan holoprojector model."
+    usage: "./disguisegungan"
+    permission_level: Emissary
+
+  disguisegeonosian:
+    description: "Disguises you as the Geonosian holoprojector model."
+    usage: "./disguisegeonosian"
+    permission_level: Emissary
+
+  disguisebrainworm:
+    description: "Disguises you as the Geonosian Brain Worm model (orphaned holoprojector asset with no store item - Holo_CloneWormHead.adr)."
+    usage: "./disguisebrainworm"
+    permission_level: Emissary
+
+  disguiseseripas:
+    description: "Disguises you as the Seripas holoprojector model."
+    usage: "./disguiseseripas"
+    permission_level: Emissary
+
+  disguiseseripas2:
+    description: "Disguises you as the Seripas (rerelease) holoprojector model."
+    usage: "./disguiseseripas2"
+    permission_level: Emissary
+
+  disguisemortisdaughter:
+    description: "Disguises you as the Mortis Daughter Force Form holoprojector model."
+    usage: "./disguisemortisdaughter"
+    permission_level: Emissary
+
+  disguisemortisson:
+    description: "Disguises you as the Mortis Son Force Form holoprojector model."
+    usage: "./disguisemortisson"
+    permission_level: Emissary
+
+  disguiserancor:
+    description: "Disguises you as the Rancor holoprojector model."
+    usage: "./disguiserancor"
+    permission_level: Emissary
+
+  disguisechewbacca:
+    description: "Disguises you as the Chewbacca holoprojector model."
+    usage: "./disguisechewbacca"
+    permission_level: Emissary
+
+  disguiseunderworldithorian:
+    description: "Disguises you as the Underworld Ithorian holoprojector model."
+    usage: "./disguiseunderworldithorian"
+    permission_level: Emissary
+
+  disguiseyoda:
+    description: "Disguises you as the Yoda holoprojector model."
+    usage: "./disguiseyoda"
+    permission_level: Emissary
+
+  disguisegrievous:
+    description: "Disguises you as the General Grievous holoprojector model."
+    usage: "./disguisegrievous"
+    permission_level: Emissary
+
+  disguisetalz:
+    description: "Disguises you as the Talz holoprojector model."
+    usage: "./disguisetalz"
+    permission_level: Emissary
+
+  disguisejabba:
+    description: "Disguises you as the Jabba holoprojector model."
+    usage: "./disguisejabba"
+    permission_level: Emissary
+
+  disguisecadbane:
+    description: "Disguises you as the Cad Bane holoprojector model."
+    usage: "./disguisecadbane"
+    permission_level: Emissary
+
+  disguisegamorreanguard:
+    description: "Disguises you as the Gamorrean Guard holoprojector model."
+    usage: "./disguisegamorreanguard"
+    permission_level: Emissary
+
+  disguisesavageopress:
+    description: "Disguises you as the Savage Opress holoprojector model."
+    usage: "./disguisesavageopress"
+    permission_level: Emissary
+
+  disguiseziro:
+    description: "Disguises you as the Ziro holoprojector model."
+    usage: "./disguiseziro"
+    permission_level: Emissary
+
+  disguisekowakian:
+    description: "Disguises you as the Kowakian Monkey Lizard holoprojector model."
+    usage: "./disguisekowakian"
+    permission_level: Emissary
+
+  disguiseackbar:
+    description: "Disguises you as the Captain Ackbar holoprojector model."
+    usage: "./disguiseackbar"
+    permission_level: Emissary
+
+  disguisenossorri:
+    description: "Disguises you as the Nossor Ri holoprojector model."
+    usage: "./disguisenossorri"
+    permission_level: Emissary
+
+  disguisekarkarodon:
+    description: "Disguises you as the Karkarodon Warrior holoprojector model."
+    usage: "./disguisekarkarodon"
+    permission_level: Emissary
+
+  disguiseorphne:
+    description: "Disguises you as the Orphne holoprojector model."
+    usage: "./disguiseorphne"
+    permission_level: Emissary
+
+  disguisemanchucho:
+    description: "Disguises you as the King Manchucho (internal: KingYosKolina) holoprojector model."
+    usage: "./disguisemanchucho"
+    permission_level: Emissary
+
+  disguisemagnaguard:
+    description: "Disguises you as the Magnaguard holoprojector model."
+    usage: "./disguisemagnaguard"
+    permission_level: Emissary
+
+  disguisesniperdroid:
+    description: "Disguises you as the Sniper Droid holoprojector model."
+    usage: "./disguisesniperdroid"
+    permission_level: Emissary
+
+  disguisegundark:
+    description: "Disguises you as the Gundark holoprojector model."
+    usage: "./disguisegundark"
+    permission_level: Emissary
+
+  disguisec21highsinger:
+    description: "Disguises you as the C-21 Highsinger holoprojector model."
+    usage: "./disguisec21highsinger"
+    permission_level: Emissary
+
+  disguisedarthmaul:
+    description: "Disguises you as the Darth Maul holoprojector model."
+    usage: "./disguisedarthmaul"
+    permission_level: Emissary
+
+  disguiseplokoon:
+    description: "Disguises you as the Plo Koon holoprojector model."
+    usage: "./disguiseplokoon"
+    permission_level: Emissary
+
+  disguiseoff:
+    description: "Reverts you to your default Clone Male test-character appearance, undoing any disguise."
+    usage: "./disguiseoff"
+    permission_level: Emissary
+
+  trooperacknowledge:
+    description: "Plays the Trooper acknowledge battle class emote. Available to all classes for now."
+    usage: "./trooperacknowledge"
+    permission_level: Emissary
+
+  troopermandown:
+    description: "Plays the Trooper man-down battle class emote. Available to all classes for now."
+    usage: "./troopermandown"
+    permission_level: Emissary
+
+  transmissionreceived:
+    description: "Plays the Trooper transmission-received battle class emote. Available to all classes for now."
+    usage: "./transmissionreceived"
+    permission_level: Emissary
+
+  jediforcepound:
+    description: "Plays the Jedi Force pound battle class emote. Available to all classes for now."
+    usage: "./jediforcepound"
+    permission_level: Emissary
+
+  jedihandstand:
+    description: "Plays the Jedi handstand battle class emote. Available to all classes for now."
+    usage: "./jedihandstand"
+    permission_level: Emissary
+
+  jedimeditate:
+    description: "Plays the Jedi meditate battle class emote. Available to all classes for now."
+    usage: "./jedimeditate"
+    permission_level: Emissary
+
+  sithforcelightning:
+    description: "Plays the Sith Force lightning battle class emote. Available to all classes for now."
+    usage: "./sithforcelightning"
+    permission_level: Emissary
+
+  sithrage:
+    description: "Plays the Sith rage battle class emote. Available to all classes for now."
+    usage: "./sithrage"
+    permission_level: Emissary
+
+  sithseeth:
+    description: "Plays the Sith seethe battle class emote. Available to all classes for now."
+    usage: "./sithseeth"
+    permission_level: Emissary
+
+  mercbarter:
+    description: "Plays the Mercenary barter battle class emote. Available to all classes for now."
+    usage: "./mercbarter"
+    permission_level: Emissary
+
+  mercintimidate:
+    description: "Plays the Mercenary intimidate battle class emote. Available to all classes for now."
+    usage: "./mercintimidate"
+    permission_level: Emissary
+
+  mercpunch:
+    description: "Plays the Mercenary punch battle class emote. Available to all classes for now."
+    usage: "./mercpunch"
+    permission_level: Emissary

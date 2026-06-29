@@ -1,0 +1,10425 @@
+---
+# Clone Trooper
+- guid: 1
+  name_id: 1139
+  description_id: 8710
+  sort_order: 0
+  icon_set_id: 893
+  category: 101
+  page: 0
+  preview_model_id: 35
+  preview_animation_id: 909
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 10
+      unknown: 0
+    - guid: 14
+      unknown: 0
+    - guid: 18
+      unknown: 0
+    - guid: 55
+      unknown: 0
+    - guid: 402
+      unknown: 0
+
+# Original Anakin Skywalker
+- guid: 2
+  name_id: 8602
+  description_id: 8682
+  sort_order: 0
+  icon_set_id: 25
+  category: 102
+  page: 0
+  preview_model_id: 1019
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 416
+      unknown: 0
+    - guid: 417
+      unknown: 0
+    - guid: 418
+      unknown: 0
+    - guid: 435
+      unknown: 0
+
+# Primary Hilts
+- guid: 3
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 63
+      unknown: 0
+    - guid: 227
+      unknown: 0
+    - guid: 422
+      unknown: 0
+    - guid: 435
+      unknown: 0
+    - guid: 437
+      unknown: 0
+    - guid: 526
+      unknown: 0
+    - guid: 527
+      unknown: 0
+    - guid: 528
+      unknown: 0
+    - guid: 532
+      unknown: 0
+    - guid: 534
+      unknown: 0
+    - guid: 535
+      unknown: 0
+    - guid: 536
+      unknown: 0
+    - guid: 537
+      unknown: 0
+    - guid: 538
+      unknown: 0
+    - guid: 539
+      unknown: 0
+    - guid: 761
+      unknown: 0
+    - guid: 762
+      unknown: 0
+    - guid: 763
+      unknown: 0
+    - guid: 764
+      unknown: 0
+    - guid: 786
+      unknown: 0
+    - guid: 787
+      unknown: 0
+    - guid: 788
+      unknown: 0
+    - guid: 789
+      unknown: 0
+    - guid: 790
+      unknown: 0
+    - guid: 1992
+      unknown: 0
+    - guid: 2134
+      unknown: 0
+    - guid: 2141
+      unknown: 0
+    - guid: 2363
+      unknown: 0
+    - guid: 2708
+      unknown: 0
+    - guid: 2801
+      unknown: 0
+    - guid: 110000
+      unknown: 0
+    - guid: 110001
+      unknown: 0
+    - guid: 110002
+      unknown: 0
+    - guid: 110003
+      unknown: 0
+    - guid: 110004
+      unknown: 0
+    - guid: 110005
+      unknown: 0
+    - guid: 110006
+      unknown: 0
+    - guid: 110007
+      unknown: 0
+    - guid: 110008
+      unknown: 0
+    - guid: 110009
+      unknown: 0
+    - guid: 110010
+      unknown: 0
+    - guid: 110011
+      unknown: 0
+    - guid: 110012
+      unknown: 0
+    - guid: 110013
+      unknown: 0
+    - guid: 110014
+      unknown: 0
+    - guid: 110015
+      unknown: 0
+    - guid: 110016
+      unknown: 0
+    - guid: 110017
+      unknown: 0
+    - guid: 110018
+      unknown: 0
+    - guid: 110019
+      unknown: 0
+    - guid: 110020
+      unknown: 0
+    - guid: 110021
+      unknown: 0
+    - guid: 110022
+      unknown: 0
+    - guid: 110023
+      unknown: 0
+    - guid: 110024
+      unknown: 0
+    - guid: 110025
+      unknown: 0
+    - guid: 110026
+      unknown: 0
+    - guid: 110027
+      unknown: 0
+    - guid: 110028
+      unknown: 0
+    - guid: 110029
+      unknown: 0
+    - guid: 230098
+      unknown: 0
+    - guid: 230099
+      unknown: 0
+    - guid: 230100
+      unknown: 0
+
+# Primary Colors
+- guid: 4
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 100000
+      unknown: 0
+    - guid: 100001
+      unknown: 0
+    - guid: 100002
+      unknown: 0
+    - guid: 100003
+      unknown: 0
+    - guid: 100004
+      unknown: 0
+    - guid: 100005
+      unknown: 0
+    - guid: 100006
+      unknown: 0
+    - guid: 100007
+      unknown: 0
+    - guid: 100008
+      unknown: 0
+    - guid: 100009
+      unknown: 0
+    - guid: 100010
+      unknown: 0
+    - guid: 100011
+      unknown: 0
+    - guid: 100012
+      unknown: 0
+
+# Primary Shapes
+- guid: 5
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 90000
+      unknown: 0
+    - guid: 90001
+      unknown: 0
+    - guid: 90002
+      unknown: 0
+    - guid: 90003
+      unknown: 0
+    - guid: 90004
+      unknown: 0
+    - guid: 90005
+      unknown: 0
+    - guid: 90006
+      unknown: 0
+    - guid: 90007
+      unknown: 0
+    - guid: 90008
+      unknown: 0
+    - guid: 90009
+      unknown: 0
+    - guid: 90010
+      unknown: 0
+    - guid: 90011
+      unknown: 0
+    - guid: 90012
+      unknown: 0
+    - guid: 90013
+      unknown: 0
+    - guid: 90014
+      unknown: 0
+    - guid: 90015
+      unknown: 0
+    - guid: 90016
+      unknown: 0
+    - guid: 90017
+      unknown: 0
+    - guid: 90018
+      unknown: 0
+    - guid: 90019
+      unknown: 0
+
+# Secondary Hilts
+- guid: 8
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 300
+      unknown: 0
+    - guid: 2140
+      unknown: 0
+    - guid: 140000
+      unknown: 0
+    - guid: 140001
+      unknown: 0
+    - guid: 140002
+      unknown: 0
+    - guid: 140003
+      unknown: 0
+    - guid: 140004
+      unknown: 0
+    - guid: 140005
+      unknown: 0
+    - guid: 140006
+      unknown: 0
+    - guid: 140007
+      unknown: 0
+    - guid: 140008
+      unknown: 0
+    - guid: 140009
+      unknown: 0
+    - guid: 140010
+      unknown: 0
+    - guid: 140011
+      unknown: 0
+    - guid: 140012
+      unknown: 0
+    - guid: 140013
+      unknown: 0
+    - guid: 140014
+      unknown: 0
+    - guid: 140015
+      unknown: 0
+    - guid: 140016
+      unknown: 0
+    - guid: 140017
+      unknown: 0
+    - guid: 140018
+      unknown: 0
+    - guid: 140019
+      unknown: 0
+    - guid: 140020
+      unknown: 0
+    - guid: 140021
+      unknown: 0
+    - guid: 140022
+      unknown: 0
+    - guid: 140023
+      unknown: 0
+    - guid: 140024
+      unknown: 0
+    - guid: 140025
+      unknown: 0
+    - guid: 140026
+      unknown: 0
+    - guid: 140027
+      unknown: 0
+    - guid: 140028
+      unknown: 0
+    - guid: 140029
+      unknown: 0
+    - guid: 140030
+      unknown: 0
+    - guid: 140031
+      unknown: 0
+    - guid: 140032
+      unknown: 0
+    - guid: 140033
+      unknown: 0
+    - guid: 140034
+      unknown: 0
+    - guid: 140035
+      unknown: 0
+    - guid: 140036
+      unknown: 0
+    - guid: 140037
+      unknown: 0
+    - guid: 140038
+      unknown: 0
+    - guid: 140039
+      unknown: 0
+    - guid: 140040
+      unknown: 0
+    - guid: 140041
+      unknown: 0
+    - guid: 140042
+      unknown: 0
+    - guid: 140043
+      unknown: 0
+    - guid: 140044
+      unknown: 0
+    - guid: 140045
+      unknown: 0
+    - guid: 140046
+      unknown: 0
+    - guid: 140047
+      unknown: 0
+    - guid: 230101
+      unknown: 0
+    - guid: 230102
+      unknown: 0
+
+# Secondary Shapes
+- guid: 9
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 120000
+      unknown: 0
+    - guid: 120001
+      unknown: 0
+    - guid: 120002
+      unknown: 0
+    - guid: 120003
+      unknown: 0
+    - guid: 120004
+      unknown: 0
+    - guid: 120005
+      unknown: 0
+    - guid: 120006
+      unknown: 0
+    - guid: 120007
+      unknown: 0
+    - guid: 120008
+      unknown: 0
+    - guid: 120009
+      unknown: 0
+    - guid: 120010
+      unknown: 0
+    - guid: 120011
+      unknown: 0
+    - guid: 120012
+      unknown: 0
+    - guid: 120013
+      unknown: 0
+    - guid: 120014
+      unknown: 0
+    - guid: 120015
+      unknown: 0
+    - guid: 120016
+      unknown: 0
+    - guid: 120017
+      unknown: 0
+    - guid: 120018
+      unknown: 0
+    - guid: 120019
+      unknown: 0
+
+# F1-V3L
+- guid: 10
+  name_id: 7217
+  description_id: 1273
+  sort_order: 0
+  icon_set_id: 71
+  category: 71
+  page: 0
+  preview_model_id: 259
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 542
+      unknown: 0
+
+# 5P-0T
+- guid: 11
+  name_id: 9151
+  description_id: 1274
+  sort_order: 0
+  icon_set_id: 63
+  category: 71
+  page: 0
+  preview_model_id: 279
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 632
+      unknown: 0
+
+# BR-3R
+- guid: 12
+  name_id: 8859
+  description_id: 1275
+  sort_order: 0
+  icon_set_id: 70
+  category: 71
+  page: 0
+  preview_model_id: 300
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 554
+      unknown: 0
+
+# PR-0B07
+- guid: 13
+  name_id: 7218
+  description_id: 1276
+  sort_order: 0
+  icon_set_id: 73
+  category: 71
+  page: 0
+  preview_model_id: 248
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 543
+      unknown: 0
+
+# T0-D0
+- guid: 14
+  name_id: 9152
+  description_id: 1277
+  sort_order: 0
+  icon_set_id: 79
+  category: 71
+  page: 0
+  preview_model_id: 353
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 633
+      unknown: 0
+
+# 5T-U85
+- guid: 15
+  name_id: 7225
+  description_id: 1278
+  sort_order: 0
+  icon_set_id: 72
+  category: 71
+  page: 0
+  preview_model_id: 233
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 544
+      unknown: 0
+
+# Cad Bane
+- guid: 18
+  name_id: 8600
+  description_id: 8680
+  sort_order: 0
+  icon_set_id: 887
+  category: 104
+  page: 0
+  preview_model_id: 428
+  preview_animation_id: 908
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 400
+      unknown: 0
+    - guid: 412
+      unknown: 0
+    - guid: 413
+      unknown: 0
+    - guid: 414
+      unknown: 0
+    - guid: 415
+      unknown: 0
+    - guid: 512
+      unknown: 0
+
+# Darth Sidious
+- guid: 19
+  name_id: 8601
+  description_id: 8681
+  sort_order: 0
+  icon_set_id: 1169
+  category: 109
+  page: 0
+  preview_model_id: 993
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 537
+      unknown: 0
+    - guid: 862
+      unknown: 0
+    - guid: 910
+      unknown: 0
+
+# Original Obi-Wan Kenobi
+- guid: 20
+  name_id: 8603
+  description_id: 8683
+  sort_order: 0
+  icon_set_id: 31
+  category: 102
+  page: 0
+  preview_model_id: 1021
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 405
+      unknown: 0
+    - guid: 406
+      unknown: 0
+    - guid: 407
+      unknown: 0
+    - guid: 536
+      unknown: 0
+
+# Mace Windu
+- guid: 21
+  name_id: 8604
+  description_id: 8684
+  sort_order: 0
+  icon_set_id: 926
+  category: 102
+  page: 0
+  preview_model_id: 1020
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 463
+      unknown: 0
+    - guid: 464
+      unknown: 0
+    - guid: 465
+      unknown: 0
+    - guid: 535
+      unknown: 0
+
+# Luminara Unduli
+- guid: 22
+  name_id: 8605
+  description_id: 8685
+  sort_order: 0
+  icon_set_id: 925
+  category: 102
+  page: 0
+  preview_model_id: 1200
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 534
+      unknown: 0
+    - guid: 604
+      unknown: 0
+    - guid: 605
+      unknown: 0
+    - guid: 606
+      unknown: 0
+
+# Kit Fisto
+- guid: 23
+  name_id: 8606
+  description_id: 8686
+  sort_order: 0
+  icon_set_id: 920
+  category: 102
+  page: 0
+  preview_model_id: 1328
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 468
+      unknown: 0
+    - guid: 469
+      unknown: 0
+    - guid: 470
+      unknown: 0
+    - guid: 532
+      unknown: 0
+
+# Adi Gallia
+- guid: 24
+  name_id: 8607
+  description_id: 33119
+  sort_order: 0
+  icon_set_id: 881
+  category: 102
+  page: 0
+  preview_model_id: 657
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 187
+      unknown: 0
+    - guid: 188
+      unknown: 0
+    - guid: 189
+      unknown: 0
+    - guid: 526
+      unknown: 0
+    - guid: 780
+      unknown: 0
+
+# Original Ahsoka Tano
+- guid: 25
+  name_id: 8608
+  description_id: 8688
+  sort_order: 0
+  icon_set_id: 882
+  category: 102
+  page: 0
+  preview_model_id: 1018
+  preview_animation_id: 904
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 190
+      unknown: 0
+    - guid: 191
+      unknown: 0
+    - guid: 192
+      unknown: 0
+    - guid: 422
+      unknown: 0
+
+# Long Padawan Robes
+- guid: 26
+  name_id: 8609
+  description_id: 8689
+  sort_order: 0
+  icon_set_id: 933
+  category: 102
+  page: 0
+  preview_model_id: 434
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 411
+      unknown: 0
+    - guid: 453
+      unknown: 0
+    - guid: 454
+      unknown: 0
+    - guid: 538
+      unknown: 0
+
+# Green Padawan Robes
+- guid: 27
+  name_id: 8610
+  description_id: 8690
+  sort_order: 0
+  icon_set_id: 932
+  category: 102
+  page: 0
+  preview_model_id: 432
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 448
+      unknown: 0
+    - guid: 449
+      unknown: 0
+    - guid: 450
+      unknown: 0
+    - guid: 538
+      unknown: 0
+
+# Simple Padawan Robes
+- guid: 28
+  name_id: 8611
+  description_id: 8691
+  sort_order: 0
+  icon_set_id: 931
+  category: 102
+  page: 0
+  preview_model_id: 433
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 9
+      unknown: 0
+    - guid: 410
+      unknown: 0
+    - guid: 411
+      unknown: 0
+    - guid: 538
+      unknown: 0
+
+# ARF Trooper
+- guid: 29
+  name_id: 8612
+  description_id: 8692
+  sort_order: 0
+  icon_set_id: 880
+  category: 101
+  page: 0
+  preview_model_id: 417
+  preview_animation_id: 909
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 10
+      unknown: 0
+    - guid: 14
+      unknown: 0
+    - guid: 55
+      unknown: 0
+    - guid: 402
+      unknown: 0
+    - guid: 482
+      unknown: 0
+
+# Captain Rex
+- guid: 30
+  name_id: 8613
+  description_id: 8693
+  sort_order: 0
+  icon_set_id: 890
+  category: 101
+  page: 0
+  preview_model_id: 1023
+  preview_animation_id: 908
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 17
+      unknown: 0
+    - guid: 25
+      unknown: 0
+    - guid: 29
+      unknown: 0
+    - guid: 141
+      unknown: 0
+    - guid: 404
+      unknown: 0
+    - guid: 514
+      unknown: 0
+
+# Commander Jet
+- guid: 31
+  name_id: 8614
+  description_id: 8694
+  sort_order: 0
+  icon_set_id: 903
+  category: 101
+  page: 0
+  preview_model_id: 1487
+  preview_animation_id: 911
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 473
+      unknown: 0
+    - guid: 474
+      unknown: 0
+    - guid: 475
+      unknown: 0
+    - guid: 476
+      unknown: 0
+    - guid: 520
+      unknown: 0
+
+# Clone Pilot
+- guid: 32
+  name_id: 8615
+  description_id: 8695
+  sort_order: 0
+  icon_set_id: 897
+  category: 101
+  page: 0
+  preview_model_id: 593
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 10
+      unknown: 0
+    - guid: 14
+      unknown: 0
+    - guid: 402
+      unknown: 0
+    - guid: 622
+      unknown: 0
+
+# Phase II Clone Trooper - This is guessed based on pattern of name IDs and descriptions.
+- guid: 33
+  name_id: 8616
+  description_id: 8696
+  sort_order: 0
+  icon_set_id: 2666
+  category: 101
+  page: 0
+  preview_model_id: 1936
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 230060
+      unknown: 0
+    - guid: 230061
+      unknown: 0
+    - guid: 230062
+      unknown: 0
+    - guid: 230063
+      unknown: 0
+
+# Clone Snowtrooper
+- guid: 34
+  name_id: 8617
+  description_id: 8697
+  sort_order: 0
+  icon_set_id: 898
+  category: 101
+  page: 0
+  preview_model_id: 422
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 457
+      unknown: 0
+    - guid: 458
+      unknown: 0
+    - guid: 459
+      unknown: 0
+    - guid: 460
+      unknown: 0
+
+# Captain Argyus
+- guid: 36
+  name_id: 8619
+  description_id: 8699
+  sort_order: 0
+  icon_set_id: 888
+  category: 109
+  page: 0
+  preview_model_id: 429
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 485
+      unknown: 0
+    - guid: 486
+      unknown: 0
+    - guid: 487
+      unknown: 0
+    - guid: 488
+      unknown: 0
+
+# Asajj Ventress
+- guid: 37
+  name_id: 8620
+  description_id: 8700
+  sort_order: 0
+  icon_set_id: 883
+  category: 109
+  page: 0
+  preview_model_id: 427
+  preview_animation_id: 905
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 300
+      unknown: 0
+    - guid: 539
+      unknown: 0
+    - guid: 569
+      unknown: 0
+    - guid: 570
+      unknown: 0
+
+# Original Count Dooku
+- guid: 38
+  name_id: 8621
+  description_id: 8701
+  sort_order: 0
+  icon_set_id: 1954
+  category: 109
+  page: 0
+  preview_model_id: 992
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 855
+      unknown: 0
+    - guid: 873
+      unknown: 0
+
+# Hondo Ohnaka
+- guid: 39
+  name_id: 8622
+  description_id: 8702
+  sort_order: 0
+  icon_set_id: 915
+  category: 108
+  page: 0
+  preview_model_id: 995
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 858
+      unknown: 0
+    - guid: 877
+      unknown: 0
+    - guid: 893
+      unknown: 0
+    - guid: 908
+      unknown: 0
+
+# Blinged-Out Clone Trooper
+- guid: 40
+  name_id: 8623
+  description_id: 8703
+  sort_order: 0
+  icon_set_id: 894
+  category: 107
+  page: 0
+  preview_model_id: 648
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 54
+      unknown: 0
+    - guid: 749
+      unknown: 0
+    - guid: 750
+      unknown: 0
+    - guid: 751
+      unknown: 0
+    - guid: 752
+      unknown: 0
+
+# Pink Tusken Raider
+- guid: 42
+  name_id: 8626
+  description_id: 8706
+  sort_order: 0
+  icon_set_id: 956
+  category: 107
+  page: 0
+  preview_model_id: 437
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 48
+      unknown: 0
+    - guid: 610
+      unknown: 0
+    - guid: 611
+      unknown: 0
+    - guid: 612
+      unknown: 0
+    - guid: 613
+      unknown: 0
+
+# Purple Fur Wampa Suit
+- guid: 43
+  name_id: 8627
+  description_id: 8707
+  sort_order: 0
+  icon_set_id: 940
+  category: 107
+  page: 0
+  preview_model_id: 654
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 768
+      unknown: 0
+    - guid: 772
+      unknown: 0
+    - guid: 778
+      unknown: 0
+    - guid: 783
+      unknown: 0
+
+# Tusken Raider
+- guid: 44
+  name_id: 8628
+  description_id: 8708
+  sort_order: 0
+  icon_set_id: 957
+  category: 108
+  page: 0
+  preview_model_id: 436
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 59
+      unknown: 0
+    - guid: 626
+      unknown: 0
+    - guid: 627
+      unknown: 0
+    - guid: 628
+      unknown: 0
+    - guid: 629
+      unknown: 0
+
+# Commander Cody
+- guid: 45
+  name_id: 8629
+  description_id: 8709
+  sort_order: 0
+  icon_set_id: 901
+  category: 101
+  page: 0
+  preview_model_id: 386
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 26
+      unknown: 0
+    - guid: 30
+      unknown: 0
+    - guid: 34
+      unknown: 0
+    - guid: 403
+      unknown: 0
+
+# Desert Trooper
+- guid: 46
+  name_id: 8631
+  description_id: 8711
+  sort_order: 0
+  icon_set_id: 895
+  category: 101
+  page: 0
+  preview_model_id: 418
+  preview_animation_id: 912
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 497
+      unknown: 0
+    - guid: 498
+      unknown: 0
+    - guid: 499
+      unknown: 0
+    - guid: 500
+      unknown: 0
+    - guid: 521
+      unknown: 0
+
+# Admiral Yularen
+- guid: 48
+  name_id: 8633
+  description_id: 8713
+  sort_order: 0
+  icon_set_id: 958
+  category: 105
+  page: 0
+  preview_model_id: 601
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 11
+      unknown: 0
+    - guid: 16
+      unknown: 0
+    - guid: 568
+      unknown: 0
+
+# Republic General Snow Uniform
+- guid: 49
+  name_id: 8634
+  description_id: 8714
+  sort_order: 0
+  icon_set_id: 1170
+  category: 105
+  page: 0
+  preview_model_id: 635
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 251
+      unknown: 0
+    - guid: 252
+      unknown: 0
+    - guid: 253
+      unknown: 0
+    - guid: 254
+      unknown: 0
+
+# Han Solo
+- guid: 50
+  name_id: 8635
+  description_id: 8715
+  sort_order: 0
+  icon_set_id: 914
+  category: 111
+  page: 0
+  preview_model_id: 594
+  preview_animation_id: 907
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 60
+      unknown: 0
+    - guid: 61
+      unknown: 0
+    - guid: 516
+      unknown: 0
+
+# Boba Fett
+- guid: 51
+  name_id: 8637
+  description_id: 8717
+  sort_order: 0
+  icon_set_id: 885
+  category: 104
+  page: 0
+  preview_model_id: 595
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 57
+      unknown: 0
+    - guid: 575
+      unknown: 0
+    - guid: 576
+      unknown: 0
+    - guid: 577
+      unknown: 0
+    - guid: 578
+      unknown: 0
+
+# Zabrak Sith
+- guid: 52
+  name_id: 8638
+  description_id: 8718
+  sort_order: 0
+  icon_set_id: 906
+  category: 109
+  page: 0
+  preview_model_id: 656
+  preview_animation_id: 903
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 437
+      unknown: 0
+    - guid: 757
+      unknown: 0
+    - guid: 774
+      unknown: 0
+    - guid: 777
+      unknown: 0
+
+# Aurra Sing
+- guid: 57
+  name_id: 8643
+  description_id: 8723
+  sort_order: 0
+  icon_set_id: 884
+  category: 104
+  page: 0
+  preview_model_id: 425
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 513
+      unknown: 0
+    - guid: 571
+      unknown: 0
+    - guid: 572
+      unknown: 0
+    - guid: 573
+      unknown: 0
+    - guid: 574
+      unknown: 0
+
+# Pre Vizsla
+- guid: 58
+  name_id: 8644
+  description_id: 8724
+  sort_order: 0
+  icon_set_id: 938
+  category: 108
+  page: 0
+  preview_model_id: 602
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 388
+      unknown: 0
+    - guid: 389
+      unknown: 0
+    - guid: 390
+      unknown: 0
+    - guid: 391
+      unknown: 0
+    - guid: 527
+      unknown: 0
+
+# Captain Typho
+- guid: 60
+  name_id: 8646
+  description_id: 8726
+  sort_order: 0
+  icon_set_id: 891
+  category: 108
+  page: 0
+  preview_model_id: 991
+  preview_animation_id: 907
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 58
+      unknown: 0
+    - guid: 865
+      unknown: 0
+    - guid: 876
+      unknown: 0
+    - guid: 897
+      unknown: 0
+    - guid: 913
+      unknown: 0
+
+# Forest Trooper
+- guid: 61
+  name_id: 8647
+  description_id: 8727
+  sort_order: 0
+  icon_set_id: 912
+  category: 101
+  page: 0
+  preview_model_id: 653
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 767
+      unknown: 0
+    - guid: 771
+      unknown: 0
+    - guid: 776
+      unknown: 0
+    - guid: 781
+      unknown: 0
+
+# Republic Technician
+- guid: 62
+  name_id: 8648
+  description_id: 8728
+  sort_order: 0
+  icon_set_id: 911
+  category: 105
+  page: 0
+  preview_model_id: 630
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 247
+      unknown: 0
+    - guid: 248
+      unknown: 0
+    - guid: 249
+      unknown: 0
+    - guid: 250
+      unknown: 0
+
+# Medical Fleet Officer
+- guid: 64
+  name_id: 8650
+  description_id: 8730
+  sort_order: 0
+  icon_set_id: 929
+  category: 105
+  page: 0
+  preview_model_id: 600
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 259
+      unknown: 0
+    - guid: 260
+      unknown: 0
+    - guid: 261
+      unknown: 0
+    - guid: 262
+      unknown: 0
+
+# Lok Durd
+- guid: 66
+  name_id: 8652
+  description_id: 8732
+  sort_order: 0
+  icon_set_id: 923
+  category: 109
+  page: 0
+  preview_model_id: 603
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 64
+      unknown: 0
+    - guid: 65
+      unknown: 0
+    - guid: 66
+      unknown: 0
+
+# Bail Organa
+- guid: 67
+  name_id: 8653
+  description_id: 8733
+  sort_order: 0
+  icon_set_id: 1254
+  category: 105
+  page: 0
+  preview_model_id: 1094
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1100
+      unknown: 0
+    - guid: 1101
+      unknown: 0
+
+# Senator Kharrus
+- guid: 73
+  name_id: 8659
+  description_id: 8739
+  sort_order: 0
+  icon_set_id: 1926
+  category: 105
+  page: 0
+  preview_model_id: 1529
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1121
+      unknown: 0
+    - guid: 1122
+      unknown: 0
+
+# Senator Ballroom Wear
+- guid: 75
+  name_id: 8661
+  description_id: 8741
+  sort_order: 0
+  icon_set_id: 928
+  category: 105
+  page: 0
+  preview_model_id: 1617
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 993
+      unknown: 0
+    - guid: 994
+      unknown: 0
+    - guid: 995
+      unknown: 0
+
+# Nuvo Vindi
+- guid: 78
+  name_id: 8664
+  description_id: 8744
+  sort_order: 0
+  icon_set_id: 908
+  category: 109
+  page: 0
+  preview_model_id: 1001
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 856
+      unknown: 0
+    - guid: 874
+      unknown: 0
+    - guid: 891
+      unknown: 0
+    - guid: 905
+      unknown: 0
+
+# Orn Free Taa
+- guid: 81
+  name_id: 8667
+  description_id: 8747
+  sort_order: 0
+  icon_set_id: 930
+  category: 105
+  page: 0
+  preview_model_id: 639
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 263
+      unknown: 0
+    - guid: 264
+      unknown: 0
+
+# Coruscant Underworld Scrapper
+- guid: 83
+  name_id: 8669
+  description_id: 8749
+  sort_order: 0
+  icon_set_id: 1802
+  category: 108
+  page: 0
+  preview_model_id: 604
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 392
+      unknown: 0
+    - guid: 393
+      unknown: 0
+    - guid: 394
+      unknown: 0
+    - guid: 395
+      unknown: 0
+
+# Cassie Cryar
+- guid: 84
+  name_id: 8670
+  description_id: 8750
+  sort_order: 0
+  icon_set_id: 892
+  category: 108
+  page: 0
+  preview_model_id: 633
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 233
+      unknown: 0
+    - guid: 234
+      unknown: 0
+    - guid: 235
+      unknown: 0
+
+# Confederacy Ship Minis I
+- guid: 94
+  name_id: 8450
+  description_id: 8478
+  sort_order: 0
+  icon_set_id: 1047
+  category: 30
+  page: 0
+  preview_model_id: 621
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 46
+      unknown: 0
+    - guid: 152
+      unknown: 0
+    - guid: 157
+      unknown: 0
+    - guid: 158
+      unknown: 0
+    - guid: 159
+      unknown: 0
+
+# Gungan Set
+- guid: 97
+  name_id: 8453
+  description_id: 8481
+  sort_order: 0
+  icon_set_id: 1039
+  category: 30
+  page: 0
+  preview_model_id: 614
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 35
+      unknown: 0
+    - guid: 36
+      unknown: 0
+    - guid: 37
+      unknown: 0
+    - guid: 38
+      unknown: 0
+    - guid: 39
+      unknown: 0
+    - guid: 40
+      unknown: 0
+    - guid: 41
+      unknown: 0
+    - guid: 42
+      unknown: 0
+
+# Coruscant Diplomat Set
+- guid: 98
+  name_id: 8454
+  description_id: 8482
+  sort_order: 0
+  icon_set_id: 1036
+  category: 30
+  page: 0
+  preview_model_id: 609
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 665
+      unknown: 0
+    - guid: 666
+      unknown: 0
+    - guid: 667
+      unknown: 0
+    - guid: 668
+      unknown: 0
+    - guid: 669
+      unknown: 0
+    - guid: 670
+      unknown: 0
+    - guid: 671
+      unknown: 0
+    - guid: 672
+      unknown: 0
+    - guid: 673
+      unknown: 0
+
+# Kashyyyk
+- guid: 99
+  name_id: 8455
+  description_id: 8483
+  sort_order: 0
+  icon_set_id: 1041
+  category: 30
+  page: 0
+  preview_model_id: 616
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 115
+      unknown: 0
+    - guid: 116
+      unknown: 0
+    - guid: 117
+      unknown: 0
+    - guid: 118
+      unknown: 0
+    - guid: 122
+      unknown: 0
+    - guid: 123
+      unknown: 0
+    - guid: 124
+      unknown: 0
+    - guid: 125
+      unknown: 0
+
+# Lower City Coruscant Set
+- guid: 101
+  name_id: 8457
+  description_id: 8485
+  sort_order: 0
+  icon_set_id: 1037
+  category: 30
+  page: 0
+  preview_model_id: 610
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 107
+      unknown: 0
+    - guid: 108
+      unknown: 0
+    - guid: 109
+      unknown: 0
+    - guid: 110
+      unknown: 0
+    - guid: 111
+      unknown: 0
+    - guid: 112
+      unknown: 0
+    - guid: 113
+      unknown: 0
+    - guid: 114
+      unknown: 0
+
+# Mon Calamari Set
+- guid: 102
+  name_id: 8458
+  description_id: 8486
+  sort_order: 0
+  icon_set_id: 1042
+  category: 30
+  page: 0
+  preview_model_id: 617
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 682
+      unknown: 0
+    - guid: 683
+      unknown: 0
+    - guid: 684
+      unknown: 0
+    - guid: 685
+      unknown: 0
+    - guid: 686
+      unknown: 0
+    - guid: 687
+      unknown: 0
+    - guid: 688
+      unknown: 0
+    - guid: 689
+      unknown: 0
+    - guid: 690
+      unknown: 0
+
+# Naboo Royalty Set
+- guid: 103
+  name_id: 8459
+  description_id: 8487
+  sort_order: 0
+  icon_set_id: 1043
+  category: 30
+  page: 0
+  preview_model_id: 618
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 126
+      unknown: 0
+    - guid: 127
+      unknown: 0
+    - guid: 128
+      unknown: 0
+    - guid: 129
+      unknown: 0
+    - guid: 130
+      unknown: 0
+    - guid: 131
+      unknown: 0
+    - guid: 132
+      unknown: 0
+    - guid: 133
+      unknown: 0
+
+# Party Deck Set
+- guid: 104
+  name_id: 8460
+  description_id: 8488
+  sort_order: 0
+  icon_set_id: 1044
+  category: 30
+  page: 0
+  preview_model_id: 619
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 691
+      unknown: 0
+    - guid: 692
+      unknown: 0
+    - guid: 693
+      unknown: 0
+    - guid: 694
+      unknown: 0
+    - guid: 695
+      unknown: 0
+    - guid: 696
+      unknown: 0
+    - guid: 697
+      unknown: 0
+    - guid: 698
+      unknown: 0
+
+# Republic Heroes Minis Set I
+- guid: 105
+  name_id: 8461
+  description_id: 8489
+  sort_order: 0
+  icon_set_id: 1048
+  category: 30
+  page: 0
+  preview_model_id: 612
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 142
+      unknown: 0
+    - guid: 144
+      unknown: 0
+    - guid: 148
+      unknown: 0
+    - guid: 149
+      unknown: 0
+    - guid: 151
+      unknown: 0
+
+# Republic Ship Minis Set I
+- guid: 106
+  name_id: 8462
+  description_id: 8490
+  sort_order: 0
+  icon_set_id: 1046
+  category: 30
+  page: 0
+  preview_model_id: 620
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 153
+      unknown: 0
+    - guid: 154
+      unknown: 0
+    - guid: 155
+      unknown: 0
+    - guid: 156
+      unknown: 0
+    - guid: 160
+      unknown: 0
+
+# Starship Set
+- guid: 107
+  name_id: 8463
+  description_id: 8491
+  sort_order: 0
+  icon_set_id: 1045
+  category: 30
+  page: 0
+  preview_model_id: 622
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 134
+      unknown: 0
+    - guid: 135
+      unknown: 0
+    - guid: 136
+      unknown: 0
+    - guid: 137
+      unknown: 0
+    - guid: 138
+      unknown: 0
+    - guid: 139
+      unknown: 0
+    - guid: 140
+      unknown: 0
+
+# Zephyr-G Speeder Set
+- guid: 110
+  name_id: 8466
+  description_id: 8494
+  sort_order: 0
+  icon_set_id: 698
+  category: 32
+  page: 0
+  preview_model_id: 1000
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 646
+      unknown: 0
+    - guid: 647
+      unknown: 0
+    - guid: 648
+      unknown: 0
+
+# Starhawk Speeder Set
+- guid: 111
+  name_id: 8467
+  description_id: 8495
+  sort_order: 0
+  icon_set_id: 695
+  category: 32
+  page: 0
+  preview_model_id: 999
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 652
+      unknown: 0
+    - guid: 653
+      unknown: 0
+    - guid: 654
+      unknown: 0
+
+# BARC Speeder Set
+- guid: 112
+  name_id: 8468
+  description_id: 8496
+  sort_order: 0
+  icon_set_id: 702
+  category: 32
+  page: 0
+  preview_model_id: 998
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 644
+      unknown: 0
+    - guid: 645
+      unknown: 0
+
+# Jedi Starfighter Set I
+- guid: 114
+  name_id: 8470
+  description_id: 8498
+  sort_order: 0
+  icon_set_id: 685
+  category: 33
+  page: 0
+  preview_model_id: 698
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 50
+      unknown: 0
+    - guid: 53
+      unknown: 0
+    - guid: 748
+      unknown: 0
+
+# Dance Pack I
+- guid: 118
+  name_id: 8474
+  description_id: 8502
+  sort_order: 0
+  icon_set_id: 992
+  category: 20
+  page: 0
+  preview_model_id: 83
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 43
+      unknown: 0
+    - guid: 44
+      unknown: 0
+    - guid: 45
+      unknown: 0
+
+# Holoprojector Pack I
+- guid: 119
+  name_id: 8475
+  description_id: 8503
+  sort_order: 0
+  icon_set_id: 1022
+  category: 21
+  page: 0
+  preview_model_id: 2180
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 443
+      unknown: 0
+    - guid: 744
+      unknown: 0
+    - guid: 745
+      unknown: 0
+    - guid: 746
+      unknown: 0
+
+# Jedi Mind Trick Pack I
+- guid: 120
+  name_id: 8476
+  description_id: 8504
+  sort_order: 0
+  icon_set_id: 1006
+  category: 22
+  page: 0
+  preview_model_id: 83
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 565
+      unknown: 0
+    - guid: 566
+      unknown: 0
+    - guid: 630
+      unknown: 0
+    - guid: 662
+      unknown: 0
+
+# Jedi Mind Trick Pack II
+- guid: 121
+  name_id: 8477
+  description_id: 8505
+  sort_order: 0
+  icon_set_id: 1008
+  category: 22
+  page: 0
+  preview_model_id: 83
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 567
+      unknown: 0
+    - guid: 663
+      unknown: 0
+    - guid: 664
+      unknown: 0
+    - guid: 2084
+      unknown: 0
+
+# Hair Style
+- guid: 122
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 8
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 40118
+      unknown: 0
+    - guid: 40117
+      unknown: 0
+    - guid: 40116
+      unknown: 0
+    - guid: 40115
+      unknown: 0
+    - guid: 40114
+      unknown: 0
+    - guid: 40113
+      unknown: 0
+    - guid: 40112
+      unknown: 0
+    - guid: 40111
+      unknown: 0
+    - guid: 40110
+      unknown: 0
+    - guid: 40109
+      unknown: 0
+    - guid: 40108
+      unknown: 0
+    - guid: 40107
+      unknown: 0
+    - guid: 40106
+      unknown: 0
+    - guid: 40105
+      unknown: 0
+    - guid: 40104
+      unknown: 0
+    - guid: 40103
+      unknown: 0
+    - guid: 40102
+      unknown: 0
+    - guid: 40101
+      unknown: 0
+    - guid: 40100
+      unknown: 0
+    - guid: 40099
+      unknown: 0
+    - guid: 40098
+      unknown: 0
+    - guid: 40097
+      unknown: 0
+    - guid: 40096
+      unknown: 0
+    - guid: 40095
+      unknown: 0
+    - guid: 40094
+      unknown: 0
+    - guid: 40093
+      unknown: 0
+    - guid: 40092
+      unknown: 0
+    - guid: 40091
+      unknown: 0
+    - guid: 40090
+      unknown: 0
+    - guid: 40089
+      unknown: 0
+    - guid: 40088
+      unknown: 0
+    - guid: 40087
+      unknown: 0
+    - guid: 40086
+      unknown: 0
+    - guid: 40085
+      unknown: 0
+    - guid: 40084
+      unknown: 0
+    - guid: 40083
+      unknown: 0
+    - guid: 40082
+      unknown: 0
+    - guid: 40081
+      unknown: 0
+    - guid: 40080
+      unknown: 0
+    - guid: 40079
+      unknown: 0
+    - guid: 40078
+      unknown: 0
+    - guid: 40077
+      unknown: 0
+    - guid: 40076
+      unknown: 0
+    - guid: 40075
+      unknown: 0
+    - guid: 40074
+      unknown: 0
+    - guid: 40073
+      unknown: 0
+    - guid: 40072
+      unknown: 0
+    - guid: 40071
+      unknown: 0
+    - guid: 40070
+      unknown: 0
+    - guid: 40069
+      unknown: 0
+    - guid: 40068
+      unknown: 0
+    - guid: 40067
+      unknown: 0
+    - guid: 40066
+      unknown: 0
+    - guid: 40065
+      unknown: 0
+    - guid: 40064
+      unknown: 0
+    - guid: 40063
+      unknown: 0
+    - guid: 40062
+      unknown: 0
+    - guid: 40061
+      unknown: 0
+    - guid: 40060
+      unknown: 0
+    - guid: 40059
+      unknown: 0
+    - guid: 40058
+      unknown: 0
+    - guid: 40057
+      unknown: 0
+    - guid: 40056
+      unknown: 0
+    - guid: 40055
+      unknown: 0
+    - guid: 40054
+      unknown: 0
+    - guid: 40053
+      unknown: 0
+    - guid: 40052
+      unknown: 0
+    - guid: 40051
+      unknown: 0
+    - guid: 40050
+      unknown: 0
+    - guid: 40049
+      unknown: 0
+    - guid: 40048
+      unknown: 0
+    - guid: 40047
+      unknown: 0
+    - guid: 40046
+      unknown: 0
+    - guid: 40045
+      unknown: 0
+    - guid: 40044
+      unknown: 0
+    - guid: 40043
+      unknown: 0
+    - guid: 40042
+      unknown: 0
+    - guid: 40041
+      unknown: 0
+    - guid: 40040
+      unknown: 0
+    - guid: 40039
+      unknown: 0
+    - guid: 40038
+      unknown: 0
+    - guid: 40037
+      unknown: 0
+    - guid: 40036
+      unknown: 0
+    - guid: 40035
+      unknown: 0
+    - guid: 40034
+      unknown: 0
+    - guid: 40033
+      unknown: 0
+    - guid: 40032
+      unknown: 0
+    - guid: 40031
+      unknown: 0
+    - guid: 40030
+      unknown: 0
+    - guid: 40029
+      unknown: 0
+    - guid: 40028
+      unknown: 0
+    - guid: 40027
+      unknown: 0
+    - guid: 40026
+      unknown: 0
+    - guid: 40025
+      unknown: 0
+    - guid: 40024
+      unknown: 0
+    - guid: 40023
+      unknown: 0
+    - guid: 40022
+      unknown: 0
+    - guid: 40021
+      unknown: 0
+    - guid: 40020
+      unknown: 0
+    - guid: 40019
+      unknown: 0
+    - guid: 40018
+      unknown: 0
+    - guid: 40017
+      unknown: 0
+    - guid: 40016
+      unknown: 0
+    - guid: 40015
+      unknown: 0
+    - guid: 40014
+      unknown: 0
+    - guid: 40013
+      unknown: 0
+    - guid: 40012
+      unknown: 0
+    - guid: 40011
+      unknown: 0
+    - guid: 40010
+      unknown: 0
+    - guid: 40009
+      unknown: 0
+    - guid: 40008
+      unknown: 0
+    - guid: 40007
+      unknown: 0
+    - guid: 40006
+      unknown: 0
+    - guid: 40005
+      unknown: 0
+    - guid: 40004
+      unknown: 0
+    - guid: 40003
+      unknown: 0
+    - guid: 40002
+      unknown: 0
+    - guid: 40001
+      unknown: 0
+    - guid: 40000
+      unknown: 0
+
+# Hair Color
+- guid: 123
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 8
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 30021
+      unknown: 0
+    - guid: 30020
+      unknown: 0
+    - guid: 30019
+      unknown: 0
+    - guid: 30018
+      unknown: 0
+    - guid: 30017
+      unknown: 0
+    - guid: 30016
+      unknown: 0
+    - guid: 30015
+      unknown: 0
+    - guid: 30014
+      unknown: 0
+    - guid: 30013
+      unknown: 0
+    - guid: 30012
+      unknown: 0
+    - guid: 30011
+      unknown: 0
+    - guid: 30010
+      unknown: 0
+    - guid: 30009
+      unknown: 0
+    - guid: 30008
+      unknown: 0
+    - guid: 30007
+      unknown: 0
+    - guid: 30006
+      unknown: 0
+    - guid: 30005
+      unknown: 0
+    - guid: 30004
+      unknown: 0
+    - guid: 30003
+      unknown: 0
+    - guid: 30002
+      unknown: 0
+    - guid: 30001
+      unknown: 0
+    - guid: 30000
+      unknown: 0
+
+# Eye Color
+- guid: 124
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 8
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 10012
+      unknown: 0
+    - guid: 10011
+      unknown: 0
+    - guid: 10010
+      unknown: 0
+    - guid: 10009
+      unknown: 0
+    - guid: 10008
+      unknown: 0
+    - guid: 10007
+      unknown: 0
+    - guid: 10006
+      unknown: 0
+    - guid: 10005
+      unknown: 0
+    - guid: 10004
+      unknown: 0
+    - guid: 10003
+      unknown: 0
+    - guid: 10002
+      unknown: 0
+    - guid: 10001
+      unknown: 0
+    - guid: 10000
+      unknown: 0
+
+# Skin Tone
+- guid: 125
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 8
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 60029
+      unknown: 0
+    - guid: 60028
+      unknown: 0
+    - guid: 60027
+      unknown: 0
+    - guid: 60026
+      unknown: 0
+    - guid: 60025
+      unknown: 0
+    - guid: 60024
+      unknown: 0
+    - guid: 60023
+      unknown: 0
+    - guid: 60022
+      unknown: 0
+    - guid: 60021
+      unknown: 0
+    - guid: 60020
+      unknown: 0
+    - guid: 60019
+      unknown: 0
+    - guid: 60018
+      unknown: 0
+    - guid: 60017
+      unknown: 0
+    - guid: 60016
+      unknown: 0
+    - guid: 60015
+      unknown: 0
+    - guid: 60014
+      unknown: 0
+    - guid: 60013
+      unknown: 0
+    - guid: 60012
+      unknown: 0
+    - guid: 60011
+      unknown: 0
+    - guid: 60010
+      unknown: 0
+    - guid: 60009
+      unknown: 0
+    - guid: 60008
+      unknown: 0
+    - guid: 60007
+      unknown: 0
+    - guid: 60006
+      unknown: 0
+    - guid: 60005
+      unknown: 0
+    - guid: 60004
+      unknown: 0
+    - guid: 60003
+      unknown: 0
+    - guid: 60002
+      unknown: 0
+    - guid: 60001
+      unknown: 0
+    - guid: 60000
+      unknown: 0
+
+# Face Design
+- guid: 126
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 8
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 50062
+      unknown: 0
+    - guid: 50061
+      unknown: 0
+    - guid: 50060
+      unknown: 0
+    - guid: 50059
+      unknown: 0
+    - guid: 50058
+      unknown: 0
+    - guid: 50057
+      unknown: 0
+    - guid: 50056
+      unknown: 0
+    - guid: 50055
+      unknown: 0
+    - guid: 50054
+      unknown: 0
+    - guid: 50053
+      unknown: 0
+    - guid: 50052
+      unknown: 0
+    - guid: 50051
+      unknown: 0
+    - guid: 50050
+      unknown: 0
+    - guid: 50049
+      unknown: 0
+    - guid: 50048
+      unknown: 0
+    - guid: 50047
+      unknown: 0
+    - guid: 50046
+      unknown: 0
+    - guid: 50045
+      unknown: 0
+    - guid: 50044
+      unknown: 0
+    - guid: 50043
+      unknown: 0
+    - guid: 50042
+      unknown: 0
+    - guid: 50041
+      unknown: 0
+    - guid: 50040
+      unknown: 0
+    - guid: 50039
+      unknown: 0
+    - guid: 50038
+      unknown: 0
+    - guid: 50037
+      unknown: 0
+    - guid: 50036
+      unknown: 0
+    - guid: 50035
+      unknown: 0
+    - guid: 50034
+      unknown: 0
+    - guid: 50033
+      unknown: 0
+    - guid: 50032
+      unknown: 0
+    - guid: 50031
+      unknown: 0
+    - guid: 50030
+      unknown: 0
+    - guid: 50029
+      unknown: 0
+    - guid: 50028
+      unknown: 0
+    - guid: 50027
+      unknown: 0
+    - guid: 50026
+      unknown: 0
+    - guid: 50025
+      unknown: 0
+    - guid: 50024
+      unknown: 0
+    - guid: 50023
+      unknown: 0
+    - guid: 50022
+      unknown: 0
+    - guid: 50021
+      unknown: 0
+    - guid: 50020
+      unknown: 0
+    - guid: 50019
+      unknown: 0
+    - guid: 50018
+      unknown: 0
+    - guid: 50017
+      unknown: 0
+    - guid: 50016
+      unknown: 0
+    - guid: 50015
+      unknown: 0
+    - guid: 50014
+      unknown: 0
+    - guid: 50013
+      unknown: 0
+    - guid: 50012
+      unknown: 0
+    - guid: 50011
+      unknown: 0
+    - guid: 50010
+      unknown: 0
+    - guid: 50009
+      unknown: 0
+    - guid: 50008
+      unknown: 0
+    - guid: 50007
+      unknown: 0
+    - guid: 50006
+      unknown: 0
+    - guid: 50005
+      unknown: 0
+    - guid: 50004
+      unknown: 0
+    - guid: 50003
+      unknown: 0
+    - guid: 50002
+      unknown: 0
+    - guid: 50001
+      unknown: 0
+    - guid: 50000
+      unknown: 0
+
+# Species
+- guid: 127
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 9
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 70012
+      unknown: 0
+    - guid: 70011
+      unknown: 0
+    - guid: 70010
+      unknown: 0
+    - guid: 70009
+      unknown: 0
+    - guid: 70008
+      unknown: 0
+    - guid: 70007
+      unknown: 0
+    - guid: 70006
+      unknown: 0
+    - guid: 70005
+      unknown: 0
+    - guid: 70004
+      unknown: 0
+    - guid: 70003
+      unknown: 0
+    - guid: 70002
+      unknown: 0
+    - guid: 70001
+      unknown: 0
+    - guid: 70000
+      unknown: 0
+
+# R3-S6
+- guid: 131
+  name_id: 2480
+  description_id: 2481
+  sort_order: 0
+  icon_set_id: 66
+  category: 71
+  page: 0
+  preview_model_id: 642
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 546
+      unknown: 0
+
+# R2-D2
+- guid: 132
+  name_id: 2482
+  description_id: 2483
+  sort_order: 0
+  icon_set_id: 64
+  category: 71
+  page: 0
+  preview_model_id: 31
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 545
+      unknown: 0
+
+# B3-3P5
+- guid: 133
+  name_id: 7557
+  description_id: 2485
+  sort_order: 0
+  icon_set_id: 67
+  category: 71
+  page: 0
+  preview_model_id: 264
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 547
+      unknown: 0
+
+# M1-L0
+- guid: 134
+  name_id: 7558
+  description_id: 2487
+  sort_order: 0
+  icon_set_id: 68
+  category: 71
+  page: 0
+  preview_model_id: 643
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 548
+      unknown: 0
+
+# B0-LT5
+- guid: 135
+  name_id: 7559
+  description_id: 2489
+  sort_order: 0
+  icon_set_id: 69
+  category: 71
+  page: 0
+  preview_model_id: 265
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 549
+      unknown: 0
+
+# N0-80T
+- guid: 136
+  name_id: 7560
+  description_id: 2491
+  sort_order: 0
+  icon_set_id: 77
+  category: 71
+  page: 0
+  preview_model_id: 644
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 550
+      unknown: 0
+
+# N-30H
+- guid: 137
+  name_id: 7563
+  description_id: 2493
+  sort_order: 0
+  icon_set_id: 78
+  category: 71
+  page: 0
+  preview_model_id: 646
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 551
+      unknown: 0
+
+# J3-3V3
+- guid: 138
+  name_id: 7561
+  description_id: 2495
+  sort_order: 0
+  icon_set_id: 76
+  category: 71
+  page: 0
+  preview_model_id: 647
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 552
+      unknown: 0
+
+# D-0T
+- guid: 139
+  name_id: 7562
+  description_id: 2497
+  sort_order: 0
+  icon_set_id: 75
+  category: 71
+  page: 0
+  preview_model_id: 645
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 553
+      unknown: 0
+
+# Facial Hair
+- guid: 140
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 8
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 20014
+      unknown: 0
+    - guid: 20013
+      unknown: 0
+    - guid: 20012
+      unknown: 0
+    - guid: 20011
+      unknown: 0
+    - guid: 20010
+      unknown: 0
+    - guid: 20009
+      unknown: 0
+    - guid: 20008
+      unknown: 0
+    - guid: 20007
+      unknown: 0
+    - guid: 20006
+      unknown: 0
+    - guid: 20005
+      unknown: 0
+    - guid: 20004
+      unknown: 0
+    - guid: 20003
+      unknown: 0
+    - guid: 20002
+      unknown: 0
+    - guid: 20001
+      unknown: 0
+    - guid: 20000
+      unknown: 0
+
+# Commander Bly
+- guid: 142
+  name_id: 264
+  description_id: 265
+  sort_order: 0
+  icon_set_id: 900
+  category: 101
+  page: 0
+  preview_model_id: 1577
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 583
+      unknown: 0
+    - guid: 584
+      unknown: 0
+    - guid: 585
+      unknown: 0
+    - guid: 586
+      unknown: 0
+
+# Death Watch
+- guid: 143
+  name_id: 266
+  description_id: 267
+  sort_order: 0
+  icon_set_id: 907
+  category: 108
+  page: 0
+  preview_model_id: 430
+  preview_animation_id: 909
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 587
+      unknown: 0
+    - guid: 588
+      unknown: 0
+    - guid: 589
+      unknown: 0
+    - guid: 590
+      unknown: 0
+    - guid: 758
+      unknown: 0
+
+# Rookie Echo
+- guid: 144
+  name_id: 268
+  description_id: 269
+  sort_order: 0
+  icon_set_id: 909
+  category: 101
+  page: 0
+  preview_model_id: 1481
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 439
+      unknown: 0
+    - guid: 591
+      unknown: 0
+    - guid: 592
+      unknown: 0
+    - guid: 593
+      unknown: 0
+    - guid: 594
+      unknown: 0
+
+# Jet Pack Trooper
+- guid: 145
+  name_id: 33640
+  description_id: 271
+  sort_order: 0
+  icon_set_id: 917
+  category: 101
+  page: 0
+  preview_model_id: 421
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 595
+      unknown: 0
+    - guid: 596
+      unknown: 0
+    - guid: 597
+      unknown: 0
+    - guid: 598
+      unknown: 0
+
+# Kyle Katarn
+- guid: 146
+  name_id: 272
+  description_id: 273
+  sort_order: 0
+  icon_set_id: 921
+  category: 111
+  page: 0
+  preview_model_id: 431
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 601
+      unknown: 0
+    - guid: 602
+      unknown: 0
+    - guid: 603
+      unknown: 0
+    - guid: 786
+      unknown: 0
+
+# Plo Koon
+- guid: 148
+  name_id: 276
+  description_id: 277
+  sort_order: 0
+  icon_set_id: 937
+  category: 102
+  page: 0
+  preview_model_id: 1022
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 63
+      unknown: 0
+    - guid: 614
+      unknown: 0
+    - guid: 615
+      unknown: 0
+    - guid: 616
+      unknown: 0
+    - guid: 617
+      unknown: 0
+
+# Secondary Colors
+- guid: 149
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 0
+  category: 0
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 130000
+      unknown: 0
+    - guid: 130001
+      unknown: 0
+    - guid: 130002
+      unknown: 0
+    - guid: 130003
+      unknown: 0
+    - guid: 130004
+      unknown: 0
+    - guid: 130005
+      unknown: 0
+    - guid: 130006
+      unknown: 0
+    - guid: 130007
+      unknown: 0
+    - guid: 130008
+      unknown: 0
+    - guid: 130009
+      unknown: 0
+    - guid: 130010
+      unknown: 0
+    - guid: 130011
+      unknown: 0
+    - guid: 130012
+      unknown: 0
+
+# Super Trooper
+- guid: 155
+  name_id: 1591
+  description_id: 7787
+  sort_order: 0
+  icon_set_id: 948
+  category: 101
+  page: 0
+  preview_model_id: 1485
+  preview_animation_id: 911
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 384
+      unknown: 0
+    - guid: 385
+      unknown: 0
+    - guid: 386
+      unknown: 0
+    - guid: 387
+      unknown: 0
+    - guid: 520
+      unknown: 0
+
+# Ancient Cobal Jedi
+- guid: 156
+  name_id: 898
+  description_id: 899
+  sort_order: 0
+  icon_set_id: 886
+  category: 102
+  page: 0
+  preview_model_id: 634
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 230
+      unknown: 0
+    - guid: 231
+      unknown: 0
+    - guid: 232
+      unknown: 0
+    - guid: 790
+      unknown: 0
+
+# Commander Gree
+- guid: 158
+  name_id: 902
+  description_id: 903
+  sort_order: 0
+  icon_set_id: 902
+  category: 101
+  page: 0
+  preview_model_id: 631
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 240
+      unknown: 0
+    - guid: 241
+      unknown: 0
+    - guid: 242
+      unknown: 0
+    - guid: 243
+      unknown: 0
+    - guid: 439
+      unknown: 0
+
+# Ancient Miko Jedi
+- guid: 159
+  name_id: 904
+  description_id: 905
+  sort_order: 0
+  icon_set_id: 905
+  category: 102
+  page: 0
+  preview_model_id: 640
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 244
+      unknown: 0
+    - guid: 245
+      unknown: 0
+    - guid: 246
+      unknown: 0
+    - guid: 761
+      unknown: 0
+
+# Ancient Savek Sith
+- guid: 162
+  name_id: 908
+  description_id: 909
+  sort_order: 0
+  icon_set_id: 943
+  category: 109
+  page: 0
+  preview_model_id: 638
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 265
+      unknown: 0
+    - guid: 266
+      unknown: 0
+    - guid: 267
+      unknown: 0
+    - guid: 268
+      unknown: 0
+    - guid: 764
+      unknown: 0
+
+# Spiked Trooper
+- guid: 163
+  name_id: 910
+  description_id: 911
+  sort_order: 0
+  icon_set_id: 955
+  category: 107
+  page: 0
+  preview_model_id: 629
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 269
+      unknown: 0
+    - guid: 270
+      unknown: 0
+    - guid: 271
+      unknown: 0
+    - guid: 272
+      unknown: 0
+
+# Jedi Starfighter Set II
+- guid: 164
+  name_id: 494
+  description_id: 1279
+  sort_order: 0
+  icon_set_id: 687
+  category: 33
+  page: 0
+  preview_model_id: 1003
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 49
+      unknown: 0
+    - guid: 51
+      unknown: 0
+    - guid: 52
+      unknown: 0
+
+# Embo
+- guid: 165
+  name_id: 14802
+  description_id: 14803
+  sort_order: 0
+  icon_set_id: 910
+  category: 104
+  page: 0
+  preview_model_id: 994
+  preview_animation_id: 909
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 759
+      unknown: 0
+    - guid: 857
+      unknown: 0
+    - guid: 875
+      unknown: 0
+    - guid: 892
+      unknown: 0
+    - guid: 906
+      unknown: 0
+
+# Shaak Ti
+- guid: 167
+  name_id: 14812
+  description_id: 14813
+  sort_order: 0
+  icon_set_id: 942
+  category: 102
+  page: 0
+  preview_model_id: 1090
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 763
+      unknown: 0
+    - guid: 923
+      unknown: 0
+    - guid: 928
+      unknown: 0
+
+# Mouse Droid Part Pack
+- guid: 168
+  name_id: 1239
+  description_id: 1280
+  sort_order: 0
+  icon_set_id: 71
+  category: 72
+  page: 0
+  preview_model_id: 259
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 424
+      unknown: 0
+    - guid: 444
+      unknown: 0
+
+# Mini AT-AT Part Pack
+- guid: 169
+  name_id: 1240
+  description_id: 1281
+  sort_order: 0
+  icon_set_id: 63
+  category: 72
+  page: 0
+  preview_model_id: 279
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 563
+      unknown: 0
+    - guid: 564
+      unknown: 0
+
+# Rabbit Droid Part Pack
+- guid: 170
+  name_id: 1241
+  description_id: 1282
+  sort_order: 0
+  icon_set_id: 70
+  category: 72
+  page: 0
+  preview_model_id: 300
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 445
+      unknown: 0
+    - guid: 446
+      unknown: 0
+
+# Probe Droid Parts
+- guid: 171
+  name_id: 1242
+  description_id: 1283
+  sort_order: 0
+  icon_set_id: 73
+  category: 72
+  page: 0
+  preview_model_id: 248
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 657
+      unknown: 0
+    - guid: 658
+      unknown: 0
+    - guid: 659
+      unknown: 0
+
+# Techno-Service Droid Part Pack
+- guid: 172
+  name_id: 1243
+  description_id: 1284
+  sort_order: 0
+  icon_set_id: 79
+  category: 72
+  page: 0
+  preview_model_id: 353
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 560
+      unknown: 0
+    - guid: 561
+      unknown: 0
+    - guid: 562
+      unknown: 0
+
+# Power Droid Part Pack
+- guid: 173
+  name_id: 1244
+  description_id: 1285
+  sort_order: 0
+  icon_set_id: 72
+  category: 72
+  page: 0
+  preview_model_id: 233
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 428
+      unknown: 0
+    - guid: 429
+      unknown: 0
+    - guid: 436
+      unknown: 0
+
+# Astromech Part Pack I
+- guid: 174
+  name_id: 1245
+  description_id: 1286
+  sort_order: 0
+  icon_set_id: 65
+  category: 72
+  page: 0
+  preview_model_id: 31
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 309
+      unknown: 0
+    - guid: 310
+      unknown: 0
+    - guid: 427
+      unknown: 0
+
+# Protocol Droid Part Pack I
+- guid: 175
+  name_id: 1246
+  description_id: 1287
+  sort_order: 0
+  icon_set_id: 74
+  category: 72
+  page: 0
+  preview_model_id: 164
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 311
+      unknown: 0
+    - guid: 430
+      unknown: 0
+    - guid: 447
+      unknown: 0
+
+# Party Pad
+- guid: 176
+  name_id: 750
+  description_id: 751
+  sort_order: 0
+  icon_set_id: 1032
+  category: 75
+  page: 0
+  preview_model_id: 1036
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 20
+      unknown: 0
+
+# Hidden Armory
+- guid: 178
+  name_id: 754
+  description_id: 755
+  sort_order: 0
+  icon_set_id: 1026
+  category: 75
+  page: 0
+  preview_model_id: 1033
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 22
+      unknown: 0
+
+# Droid Destruction Room
+- guid: 179
+  name_id: 756
+  description_id: 757
+  sort_order: 0
+  icon_set_id: 1028
+  category: 75
+  page: 0
+  preview_model_id: 1034
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 23
+      unknown: 0
+
+# Personal Hangar
+- guid: 180
+  name_id: 758
+  description_id: 759
+  sort_order: 0
+  icon_set_id: 1030
+  category: 75
+  page: 0
+  preview_model_id: 1035
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 24
+      unknown: 0
+
+# Ancient Shotem Jedi
+- guid: 186
+  name_id: 15466
+  description_id: 15467
+  sort_order: 0
+  icon_set_id: 939
+  category: 102
+  page: 0
+  preview_model_id: 740
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 787
+      unknown: 0
+    - guid: 860
+      unknown: 0
+    - guid: 879
+      unknown: 0
+    - guid: 894
+      unknown: 0
+    - guid: 909
+      unknown: 0
+
+# Ancient Ermi Jedi
+- guid: 187
+  name_id: 15468
+  description_id: 15469
+  sort_order: 0
+  icon_set_id: 947
+  category: 102
+  page: 0
+  preview_model_id: 741
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 789
+      unknown: 0
+    - guid: 864
+      unknown: 0
+    - guid: 882
+      unknown: 0
+    - guid: 896
+      unknown: 0
+    - guid: 912
+      unknown: 0
+
+# Lando Calrissian
+- guid: 188
+  name_id: 2598
+  description_id: 2599
+  sort_order: 0
+  icon_set_id: 922
+  category: 111
+  page: 0
+  preview_model_id: 996
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 922
+      unknown: 0
+    - guid: 927
+      unknown: 0
+
+# Card Commander Booster Pack
+- guid: 190
+  name_id: 2596
+  description_id: 33619
+  sort_order: 0
+  icon_set_id: 1646
+  category: 80
+  page: 0
+  preview_model_id: 2636
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 952
+      unknown: 0
+
+# ARC Trooper Sergeant
+- guid: 192
+  name_id: 1539
+  description_id: 1540
+  sort_order: 0
+  icon_set_id: 949
+  category: 101
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 849
+      unknown: 0
+    - guid: 868
+      unknown: 0
+    - guid: 885
+      unknown: 0
+    - guid: 899
+      unknown: 0
+
+# ARC Trooper Lieutenant
+- guid: 193
+  name_id: 1541
+  description_id: 1542
+  sort_order: 0
+  icon_set_id: 950
+  category: 101
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 850
+      unknown: 0
+    - guid: 869
+      unknown: 0
+    - guid: 886
+      unknown: 0
+    - guid: 900
+      unknown: 0
+
+# ARC Trooper Captain
+- guid: 194
+  name_id: 1543
+  description_id: 1544
+  sort_order: 0
+  icon_set_id: 951
+  category: 101
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 851
+      unknown: 0
+    - guid: 870
+      unknown: 0
+    - guid: 887
+      unknown: 0
+    - guid: 901
+      unknown: 0
+
+# ARC Trooper Commander
+- guid: 195
+  name_id: 1545
+  description_id: 1546
+  sort_order: 0
+  icon_set_id: 952
+  category: 101
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 852
+      unknown: 0
+    - guid: 871
+      unknown: 0
+    - guid: 888
+      unknown: 0
+    - guid: 902
+      unknown: 0
+
+# ARC Trooper General
+- guid: 196
+  name_id: 1547
+  description_id: 1548
+  sort_order: 0
+  icon_set_id: 953
+  category: 101
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 854
+      unknown: 0
+    - guid: 872
+      unknown: 0
+    - guid: 889
+      unknown: 0
+    - guid: 904
+      unknown: 0
+
+# Holocrons
+- guid: 197
+  name_id: 2636
+  description_id: 2637
+  sort_order: 0
+  icon_set_id: 1330
+  category: 80
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 966
+      unknown: 0
+    - guid: 967
+      unknown: 0
+    - guid: 968
+      unknown: 0
+    - guid: 969
+      unknown: 0
+
+# The Mace Window
+- guid: 198
+  name_id: 2645
+  description_id: 2647
+  sort_order: 0
+  icon_set_id: 276
+  category: 30
+  page: 0
+  preview_model_id: 1043
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 978
+      unknown: 0
+
+# RA-7
+- guid: 199
+  name_id: 1592
+  description_id: 1594
+  sort_order: 0
+  icon_set_id: 1231
+  category: 71
+  page: 0
+  preview_model_id: 1082
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 998
+      unknown: 0
+
+# Hevy
+- guid: 200
+  name_id: 1606
+  description_id: 1607
+  sort_order: 0
+  icon_set_id: 1243
+  category: 101
+  page: 0
+  preview_model_id: 1093
+  preview_animation_id: 911
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 522
+      unknown: 0
+    - guid: 921
+      unknown: 0
+    - guid: 926
+      unknown: 0
+    - guid: 932
+      unknown: 0
+    - guid: 935
+      unknown: 0
+
+# Lama Su
+- guid: 201
+  name_id: 1608
+  description_id: 1609
+  sort_order: 0
+  icon_set_id: 1242
+  category: 108
+  page: 0
+  preview_model_id: 1091
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 991
+      unknown: 0
+    - guid: 992
+      unknown: 0
+
+# Clone Cadet Casual Red Gear
+- guid: 202
+  name_id: 1610
+  description_id: 1611
+  sort_order: 0
+  icon_set_id: 1241
+  category: 101
+  page: 0
+  preview_model_id: 1092
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 996
+      unknown: 0
+    - guid: 997
+      unknown: 0
+
+# King Katuunko
+- guid: 203
+  name_id: 1668
+  description_id: 1669
+  sort_order: 0
+  icon_set_id: 1255
+  category: 108
+  page: 0
+  preview_model_id: 1095
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1102
+      unknown: 0
+    - guid: 1103
+      unknown: 0
+    - guid: 1104
+      unknown: 0
+    - guid: 1105
+      unknown: 0
+
+# Toydarian Royal Guard
+- guid: 204
+  name_id: 1670
+  description_id: 1671
+  sort_order: 0
+  icon_set_id: 1256
+  category: 108
+  page: 0
+  preview_model_id: 1096
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1123
+      unknown: 0
+    - guid: 1124
+      unknown: 0
+    - guid: 1125
+      unknown: 0
+    - guid: 1126
+      unknown: 0
+
+# 1M-AU5
+- guid: 205
+  name_id: 17994
+  description_id: 1674
+  sort_order: 0
+  icon_set_id: 1258
+  category: 71
+  page: 0
+  preview_model_id: 1099
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2092
+      unknown: 0
+
+# Ion Papanoida
+- guid: 206
+  name_id: 1719
+  description_id: 1720
+  sort_order: 0
+  icon_set_id: 1260
+  category: 108
+  page: 0
+  preview_model_id: 1103
+  preview_animation_id: 907
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 987
+      unknown: 0
+    - guid: 988
+      unknown: 0
+    - guid: 989
+      unknown: 0
+    - guid: 990
+      unknown: 0
+    - guid: 1144
+      unknown: 0
+
+# Baron Papanoida
+- guid: 207
+  name_id: 1721
+  description_id: 1722
+  sort_order: 0
+  icon_set_id: 1259
+  category: 108
+  page: 0
+  preview_model_id: 1102
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1113
+      unknown: 0
+    - guid: 1114
+      unknown: 0
+    - guid: 1115
+      unknown: 0
+    - guid: 1116
+      unknown: 0
+
+# B3-T4
+- guid: 208
+  name_id: 16259
+  description_id: 1724
+  sort_order: 0
+  icon_set_id: 1035
+  category: 71
+  page: 0
+  preview_model_id: 1104
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 917
+      unknown: 0
+
+# Mandalorian Police Captain
+- guid: 209
+  name_id: 1821
+  description_id: 1822
+  sort_order: 0
+  icon_set_id: 1354
+  category: 108
+  page: 0
+  preview_model_id: 1113
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1147
+      unknown: 0
+    - guid: 1148
+      unknown: 0
+    - guid: 1149
+      unknown: 0
+    - guid: 1150
+      unknown: 0
+
+# Satine's Royal Guard
+- guid: 210
+  name_id: 1825
+  description_id: 1826
+  sort_order: 0
+  icon_set_id: 1355
+  category: 108
+  page: 0
+  preview_model_id: 1114
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1154
+      unknown: 0
+    - guid: 1155
+      unknown: 0
+    - guid: 1156
+      unknown: 0
+    - guid: 1157
+      unknown: 0
+    - guid: 1167
+      unknown: 0
+
+# Tee Va
+- guid: 211
+  name_id: 1823
+  description_id: 1824
+  sort_order: 0
+  icon_set_id: 1356
+  category: 108
+  page: 0
+  preview_model_id: 1115
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1162
+      unknown: 0
+    - guid: 1163
+      unknown: 0
+    - guid: 1179
+      unknown: 0
+
+# Holoprojector Pack II
+- guid: 212
+  name_id: 1827
+  description_id: 1828
+  sort_order: 0
+  icon_set_id: 1357
+  category: 21
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 747
+      unknown: 0
+    - guid: 2106
+      unknown: 0
+    - guid: 2107
+      unknown: 0
+    - guid: 2108
+      unknown: 0
+
+# Green 74-Z Speeder Bike
+- guid: 213
+  name_id: 1884
+  description_id: 1885
+  sort_order: 0
+  icon_set_id: 693
+  category: 32
+  page: 0
+  preview_model_id: 729
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 650
+      unknown: 0
+
+# Geonosis Campaign Trophy
+- guid: 214
+  name_id: 1948
+  description_id: 1949
+  sort_order: 0
+  icon_set_id: 1586
+  category: 30
+  page: 0
+  preview_model_id: 1300
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 1383
+      unknown: 0
+
+# Gold Jedi Starfighter
+- guid: 215
+  name_id: 1979
+  description_id: 1981
+  sort_order: 0
+  icon_set_id: 1594
+  category: 33
+  page: 0
+  preview_model_id: 1321
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 1384
+      unknown: 0
+
+# Blossoming Cherry Tree
+- guid: 219
+  name_id: 43491
+  description_id: 43452
+  sort_order: 0
+  icon_set_id: 1837
+  category: 30
+  page: 0
+  preview_model_id: 1503
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2746
+      unknown: 0
+
+# Card Commander: Heroes and Villains Series 1
+- guid: 220
+  name_id: 2200
+  description_id: 2290
+  sort_order: 0
+  icon_set_id: 1956
+  category: 80
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1417
+      unknown: 0
+
+# Jawa Holoprojector
+- guid: 223
+  name_id: 2292
+  description_id: 2294
+  sort_order: 0
+  icon_set_id: 1961
+  category: 21
+  page: 0
+  preview_model_id: 1559
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1418
+      unknown: 0
+
+# Card Commander Tournament Trophies
+- guid: 224
+  name_id: 2295
+  description_id: 2296
+  sort_order: 0
+  icon_set_id: 1963
+  category: 30
+  page: 0
+  preview_model_id: 1566
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 31
+      unknown: 0
+    - guid: 32
+      unknown: 0
+    - guid: 33
+      unknown: 0
+
+# Ultimate FX Gungan Lightsaber
+- guid: 226
+  name_id: 2650
+  description_id: 2654
+  sort_order: 0
+  icon_set_id: 2136
+  category: 102
+  page: 0
+  preview_model_id: 1712
+  preview_animation_id: 902
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 1992
+      unknown: 0
+
+# Vigilance and Negotiator
+- guid: 227
+  name_id: 2921
+  description_id: 2922
+  sort_order: 0
+  icon_set_id: 2339
+  category: 101
+  page: 0
+  preview_model_id: 1928
+  preview_animation_id: 908
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2909
+      unknown: 0
+    - guid: 2910
+      unknown: 0
+
+# Wampa Suit
+- guid: 503
+  name_id: 940
+  description_id: 1971
+  sort_order: 0
+  icon_set_id: 1196
+  category: 107
+  page: 0
+  preview_model_id: 655
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 769
+      unknown: 0
+    - guid: 773
+      unknown: 0
+    - guid: 779
+      unknown: 0
+    - guid: 784
+      unknown: 0
+
+# Mandalorian Secret Service
+- guid: 504
+  name_id: 1864
+  description_id: 1865
+  sort_order: 0
+  icon_set_id: 1360
+  category: 108
+  page: 0
+  preview_model_id: 1132
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1158
+      unknown: 0
+    - guid: 1159
+      unknown: 0
+    - guid: 1160
+      unknown: 0
+    - guid: 1161
+      unknown: 0
+
+# Mandalorian Cadet
+- guid: 505
+  name_id: 1866
+  description_id: 1867
+  sort_order: 0
+  icon_set_id: 1359
+  category: 108
+  page: 0
+  preview_model_id: 1131
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1183
+      unknown: 0
+    - guid: 1184
+      unknown: 0
+    - guid: 1185
+      unknown: 0
+
+# Duchess Satine
+- guid: 506
+  name_id: 1868
+  description_id: 1869
+  sort_order: 0
+  icon_set_id: 1358
+  category: 108
+  page: 0
+  preview_model_id: 1130
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1180
+      unknown: 0
+    - guid: 1181
+      unknown: 0
+    - guid: 1182
+      unknown: 0
+
+# Mandalorian Set
+- guid: 507
+  name_id: 18561
+  description_id: 18562
+  sort_order: 0
+  icon_set_id: 1361
+  category: 30
+  page: 0
+  preview_model_id: 1133
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1248
+      unknown: 0
+    - guid: 1249
+      unknown: 0
+    - guid: 1250
+      unknown: 0
+    - guid: 1251
+      unknown: 0
+    - guid: 1252
+      unknown: 0
+    - guid: 1253
+      unknown: 0
+    - guid: 1254
+      unknown: 0
+    - guid: 1255
+      unknown: 0
+
+# Assassin Aurra Sing
+- guid: 508
+  name_id: 18658
+  description_id: 18659
+  sort_order: 0
+  icon_set_id: 1424
+  category: 104
+  page: 0
+  preview_model_id: 1134
+  preview_animation_id: 908
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1145
+      unknown: 0
+    - guid: 1146
+      unknown: 0
+    - guid: 1165
+      unknown: 0
+    - guid: 1166
+      unknown: 0
+    - guid: 1273
+      unknown: 0
+
+# Zillo Beast Costume
+- guid: 509
+  name_id: 18766
+  description_id: 18767
+  sort_order: 0
+  icon_set_id: 960
+  category: 107
+  page: 0
+  preview_model_id: 1137
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 866
+      unknown: 0
+    - guid: 883
+      unknown: 0
+    - guid: 898
+      unknown: 0
+    - guid: 914
+      unknown: 0
+
+# Mask Pack I
+- guid: 510
+  name_id: 18768
+  description_id: 18769
+  sort_order: 0
+  icon_set_id: 1425
+  category: 107
+  page: 0
+  preview_model_id: 1135
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1107
+      unknown: 0
+    - guid: 1109
+      unknown: 0
+    - guid: 1190
+      unknown: 0
+
+# Mask Pack II
+- guid: 511
+  name_id: 18770
+  description_id: 18771
+  sort_order: 0
+  icon_set_id: 1426
+  category: 107
+  page: 0
+  preview_model_id: 1136
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1106
+      unknown: 0
+    - guid: 1108
+      unknown: 0
+    - guid: 1188
+      unknown: 0
+    - guid: 1189
+      unknown: 0
+    - guid: 1191
+      unknown: 0
+
+# Protocol Droid Grievous Costume
+- guid: 512
+  name_id: 18772
+  description_id: 18773
+  sort_order: 0
+  icon_set_id: 1398
+  category: 72
+  page: 0
+  preview_model_id: 1138
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2109
+      unknown: 0
+
+# Astromech Ghost Costumes
+- guid: 513
+  name_id: 18774
+  description_id: 18775
+  sort_order: 0
+  icon_set_id: 1396
+  category: 72
+  page: 0
+  preview_model_id: 1140
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2085
+      unknown: 0
+    - guid: 2087
+      unknown: 0
+    - guid: 2088
+      unknown: 0
+    - guid: 2089
+      unknown: 0
+
+# K-3RNL
+- guid: 514
+  name_id: 18776
+  description_id: 18777
+  sort_order: 0
+  icon_set_id: 1384
+  category: 71
+  page: 0
+  preview_model_id: 1141
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2115
+      unknown: 0
+
+# J-4CK
+- guid: 515
+  name_id: 18778
+  description_id: 18779
+  sort_order: 0
+  icon_set_id: 1385
+  category: 71
+  page: 0
+  preview_model_id: 1142
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2114
+      unknown: 0
+
+# Halloween Decorations Pack I
+- guid: 516
+  name_id: 18891
+  description_id: 18892
+  sort_order: 0
+  icon_set_id: 1404
+  category: 30
+  page: 0
+  preview_model_id: 1139
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2117
+      unknown: 0
+    - guid: 2118
+      unknown: 0
+    - guid: 2120
+      unknown: 0
+    - guid: 2121
+      unknown: 0
+    - guid: 2126
+      unknown: 0
+    - guid: 2127
+      unknown: 0
+    - guid: 2129
+      unknown: 0
+
+# Halloween Decorations Pack II
+- guid: 527
+  name_id: 1878
+  description_id: 18892
+  sort_order: 0
+  icon_set_id: 1405
+  category: 30
+  page: 0
+  preview_model_id: 1159
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2116
+      unknown: 0
+    - guid: 2119
+      unknown: 0
+    - guid: 2122
+      unknown: 0
+    - guid: 2123
+      unknown: 0
+    - guid: 2124
+      unknown: 0
+    - guid: 2125
+      unknown: 0
+    - guid: 2128
+      unknown: 0
+
+# Personal Holoprojectors
+- guid: 528
+  name_id: 1879
+  description_id: 1880
+  sort_order: 0
+  icon_set_id: 1399
+  category: 21
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2110
+      unknown: 0
+    - guid: 2111
+      unknown: 0
+    - guid: 2112
+      unknown: 0
+    - guid: 2113
+      unknown: 0
+
+# Astromech Part Pack II
+- guid: 529
+  name_id: 19263
+  description_id: 19265
+  sort_order: 0
+  icon_set_id: 65
+  category: 72
+  page: 0
+  preview_model_id: 31
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 438
+      unknown: 0
+    - guid: 558
+      unknown: 0
+
+# Protocol Droid Part Pack II
+- guid: 530
+  name_id: 19264
+  description_id: 19266
+  sort_order: 0
+  icon_set_id: 74
+  category: 72
+  page: 0
+  preview_model_id: 164
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 425
+      unknown: 0
+    - guid: 559
+      unknown: 0
+
+# Quinlan Vos Gear
+- guid: 531
+  name_id: 19635
+  description_id: 19636
+  sort_order: 0
+  icon_set_id: 1438
+  category: 102
+  page: 0
+  preview_model_id: 1166
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1151
+      unknown: 0
+    - guid: 1152
+      unknown: 0
+    - guid: 1153
+      unknown: 0
+    - guid: 2134
+      unknown: 0
+
+# Ahsoka Tano
+- guid: 532
+  name_id: 19735
+  description_id: 19736
+  sort_order: 0
+  icon_set_id: 1460
+  category: 102
+  page: 0
+  preview_model_id: 1177
+  preview_animation_id: 905
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1274
+      unknown: 0
+    - guid: 1276
+      unknown: 0
+    - guid: 1277
+      unknown: 0
+    - guid: 2140
+      unknown: 0
+    - guid: 2141
+      unknown: 0
+
+# Anakin Skywalker
+- guid: 533
+  name_id: 19737
+  description_id: 19738
+  sort_order: 0
+  icon_set_id: 1461
+  category: 102
+  page: 0
+  preview_model_id: 1178
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1278
+      unknown: 0
+    - guid: 1279
+      unknown: 0
+    - guid: 1280
+      unknown: 0
+
+# Coruscant Engineer
+- guid: 534
+  name_id: 19739
+  description_id: 19740
+  sort_order: 0
+  icon_set_id: 1462
+  category: 108
+  page: 0
+  preview_model_id: 1179
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1281
+      unknown: 0
+    - guid: 1282
+      unknown: 0
+    - guid: 1283
+      unknown: 0
+    - guid: 1284
+      unknown: 0
+
+# Mina Bonteri
+- guid: 535
+  name_id: 19741
+  description_id: 19742
+  sort_order: 0
+  icon_set_id: 1463
+  category: 109
+  page: 0
+  preview_model_id: 1176
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1289
+      unknown: 0
+    - guid: 1290
+      unknown: 0
+
+# Chancellor Palpatine
+- guid: 536
+  name_id: 16649
+  description_id: 19988
+  sort_order: 0
+  icon_set_id: 935
+  category: 105
+  page: 0
+  preview_model_id: 1180
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 859
+      unknown: 0
+    - guid: 878
+      unknown: 0
+
+# Ancient Bravis Sith
+- guid: 537
+  name_id: 20010
+  description_id: 20011
+  sort_order: 0
+  icon_set_id: 946
+  category: 109
+  page: 0
+  preview_model_id: 1016
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 788
+      unknown: 0
+    - guid: 863
+      unknown: 0
+    - guid: 881
+      unknown: 0
+    - guid: 890
+      unknown: 0
+    - guid: 911
+      unknown: 0
+
+# Chata Hyoki
+- guid: 538
+  name_id: 20064
+  description_id: 20067
+  sort_order: 0
+  icon_set_id: 1474
+  category: 104
+  page: 0
+  preview_model_id: 1191
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2148
+      unknown: 0
+    - guid: 2149
+      unknown: 0
+    - guid: 2150
+      unknown: 0
+    - guid: 2151
+      unknown: 0
+
+# Robonino
+- guid: 539
+  name_id: 20065
+  description_id: 20066
+  sort_order: 0
+  icon_set_id: 1475
+  category: 104
+  page: 0
+  preview_model_id: 1192
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2152
+      unknown: 0
+    - guid: 2153
+      unknown: 0
+    - guid: 2154
+      unknown: 0
+
+# Flamethrower Clone Trooper
+- guid: 540
+  name_id: 20331
+  description_id: 20335
+  sort_order: 0
+  icon_set_id: 1490
+  category: 101
+  page: 0
+  preview_model_id: 1204
+  preview_animation_id: 911
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 520
+      unknown: 0
+    - guid: 2180
+      unknown: 0
+    - guid: 2181
+      unknown: 0
+    - guid: 2182
+      unknown: 0
+    - guid: 2183
+      unknown: 0
+
+# Life Day Robes
+- guid: 541
+  name_id: 20332
+  description_id: 20336
+  sort_order: 0
+  icon_set_id: 1510
+  category: 107
+  page: 0
+  preview_model_id: 1203
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2184
+      unknown: 0
+    - guid: 2185
+      unknown: 0
+
+# Nutcracker Clone Trooper
+- guid: 542
+  name_id: 20333
+  description_id: 20337
+  sort_order: 0
+  icon_set_id: 1509
+  category: 107
+  page: 0
+  preview_model_id: 1201
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2190
+      unknown: 0
+    - guid: 2191
+      unknown: 0
+    - guid: 2192
+      unknown: 0
+    - guid: 2193
+      unknown: 0
+
+# Life Day Clone Trooper
+- guid: 543
+  name_id: 20334
+  description_id: 20338
+  sort_order: 0
+  icon_set_id: 1508
+  category: 107
+  page: 0
+  preview_model_id: 1202
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2198
+      unknown: 0
+    - guid: 2199
+      unknown: 0
+    - guid: 2200
+      unknown: 0
+    - guid: 2201
+      unknown: 0
+
+# Y-Wing Pack I
+- guid: 544
+  name_id: 20403
+  description_id: 20404
+  sort_order: 0
+  icon_set_id: 1502
+  category: 33
+  page: 0
+  preview_model_id: 1206
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2206
+      unknown: 0
+    - guid: 2207
+      unknown: 0
+
+# Life Day Decorations Pack I
+- guid: 545
+  name_id: 30438
+  description_id: 30439
+  sort_order: 0
+  icon_set_id: 1533
+  category: 30
+  page: 0
+  preview_model_id: 1228
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2216
+      unknown: 0
+    - guid: 2217
+      unknown: 0
+    - guid: 2218
+      unknown: 0
+    - guid: 2219
+      unknown: 0
+    - guid: 2220
+      unknown: 0
+    - guid: 2221
+      unknown: 0
+    - guid: 2222
+      unknown: 0
+    - guid: 2223
+      unknown: 0
+
+# Life Day Decorations Pack II
+- guid: 546
+  name_id: 30440
+  description_id: 30441
+  sort_order: 0
+  icon_set_id: 1533
+  category: 30
+  page: 0
+  preview_model_id: 1229
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2224
+      unknown: 0
+    - guid: 2225
+      unknown: 0
+    - guid: 2226
+      unknown: 0
+    - guid: 2227
+      unknown: 0
+    - guid: 2228
+      unknown: 0
+    - guid: 2229
+      unknown: 0
+    - guid: 2230
+      unknown: 0
+    - guid: 2231
+      unknown: 0
+    - guid: 2232
+      unknown: 0
+
+# 6R-0WL
+- guid: 547
+  name_id: 20048
+  description_id: 32292
+  sort_order: 0
+  icon_set_id: 1464
+  category: 71
+  page: 0
+  preview_model_id: 1227
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2146
+      unknown: 0
+
+# P3-NUT
+- guid: 548
+  name_id: 20049
+  description_id: 32291
+  sort_order: 0
+  icon_set_id: 1465
+  category: 71
+  page: 0
+  preview_model_id: 1319
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2147
+      unknown: 0
+
+# Astromech Life Day Parts
+- guid: 549
+  name_id: 32296
+  description_id: 32293
+  sort_order: 0
+  icon_set_id: 65
+  category: 72
+  page: 0
+  preview_model_id: 31
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2155
+      unknown: 0
+    - guid: 2205
+      unknown: 0
+
+# Protocol Droid Life Day Parts
+- guid: 550
+  name_id: 32297
+  description_id: 32294
+  sort_order: 0
+  icon_set_id: 74
+  category: 72
+  page: 0
+  preview_model_id: 164
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2156
+      unknown: 0
+
+# Mouse Droid Life Day Parts
+- guid: 551
+  name_id: 32298
+  description_id: 32295
+  sort_order: 0
+  icon_set_id: 71
+  category: 72
+  page: 0
+  preview_model_id: 259
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2157
+      unknown: 0
+    - guid: 2158
+      unknown: 0
+
+# Geonosis Holoprojector Pack
+- guid: 552
+  name_id: 32451
+  description_id: 32452
+  sort_order: 0
+  icon_set_id: 1541
+  category: 21
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2234
+      unknown: 0
+    - guid: 2235
+      unknown: 0
+
+# Attack Cruiser House
+- guid: 553
+  name_id: 32453
+  description_id: 32454
+  sort_order: 0
+  icon_set_id: 1587
+  category: 34
+  page: 0
+  preview_model_id: 1295
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2236
+      unknown: 0
+
+# Weapon Moves Pack I
+- guid: 554
+  name_id: 32689
+  description_id: 32690
+  sort_order: 0
+  icon_set_id: 1581
+  category: 20
+  page: 0
+  preview_model_id: 1322
+  preview_animation_id: 913
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2237
+      unknown: 0
+    - guid: 2238
+      unknown: 0
+    - guid: 2239
+      unknown: 0
+
+# Cruiser Furniture Set I
+- guid: 555
+  name_id: 32694
+  description_id: 32695
+  sort_order: 0
+  icon_set_id: 1589
+  category: 30
+  page: 0
+  preview_model_id: 1296
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1347
+      unknown: 0
+    - guid: 1356
+      unknown: 0
+    - guid: 1357
+      unknown: 0
+    - guid: 1358
+      unknown: 0
+    - guid: 1359
+      unknown: 0
+    - guid: 1361
+      unknown: 0
+    - guid: 1362
+      unknown: 0
+    - guid: 1374
+      unknown: 0
+    - guid: 1381
+      unknown: 0
+
+# Cruiser Furniture Set II
+- guid: 556
+  name_id: 32696
+  description_id: 32697
+  sort_order: 0
+  icon_set_id: 1539
+  category: 30
+  page: 0
+  preview_model_id: 1298
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1351
+      unknown: 0
+    - guid: 1353
+      unknown: 0
+    - guid: 1354
+      unknown: 0
+    - guid: 1355
+      unknown: 0
+    - guid: 1366
+      unknown: 0
+    - guid: 1375
+      unknown: 0
+    - guid: 1379
+      unknown: 0
+
+# Cruiser Furniture Set III
+- guid: 557
+  name_id: 32698
+  description_id: 32699
+  sort_order: 0
+  icon_set_id: 1590
+  category: 30
+  page: 0
+  preview_model_id: 1297
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1344
+      unknown: 0
+    - guid: 1345
+      unknown: 0
+    - guid: 1345
+      unknown: 0
+    - guid: 1368
+      unknown: 0
+    - guid: 1369
+      unknown: 0
+    - guid: 1370
+      unknown: 0
+    - guid: 1378
+      unknown: 0
+    - guid: 1382
+      unknown: 0
+
+# Cruiser Furniture Set IV
+- guid: 558
+  name_id: 32700
+  description_id: 32701
+  sort_order: 0
+  icon_set_id: 1591
+  category: 30
+  page: 0
+  preview_model_id: 1299
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1348
+      unknown: 0
+    - guid: 1349
+      unknown: 0
+    - guid: 1352
+      unknown: 0
+    - guid: 1371
+      unknown: 0
+    - guid: 1372
+      unknown: 0
+    - guid: 1373
+      unknown: 0
+    - guid: 1376
+      unknown: 0
+
+# Count Dooku
+- guid: 560
+  name_id: 32942
+  description_id: 32946
+  sort_order: 0
+  icon_set_id: 1616
+  category: 109
+  page: 0
+  preview_model_id: 1327
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 528
+      unknown: 0
+    - guid: 2241
+      unknown: 0
+    - guid: 2242
+      unknown: 0
+
+# Mother Talzin
+- guid: 561
+  name_id: 32943
+  description_id: 32947
+  sort_order: 0
+  icon_set_id: 1618
+  category: 108
+  page: 0
+  preview_model_id: 1324
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2243
+      unknown: 0
+    - guid: 2244
+      unknown: 0
+    - guid: 2246
+      unknown: 0
+
+# Nightsister
+- guid: 562
+  name_id: 32944
+  description_id: 32948
+  sort_order: 0
+  icon_set_id: 1617
+  category: 108
+  page: 0
+  preview_model_id: 1325
+  preview_animation_id: 914
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2250
+      unknown: 0
+    - guid: 2251
+      unknown: 0
+    - guid: 2252
+      unknown: 0
+    - guid: 2253
+      unknown: 0
+    - guid: 2254
+      unknown: 0
+
+# Obi-Wan Kenobi
+- guid: 563
+  name_id: 32945
+  description_id: 32949
+  sort_order: 0
+  icon_set_id: 1619
+  category: 102
+  page: 0
+  preview_model_id: 1326
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 536
+      unknown: 0
+    - guid: 2247
+      unknown: 0
+    - guid: 2248
+      unknown: 0
+    - guid: 2249
+      unknown: 0
+
+# Apprentice Savage Opress
+- guid: 564
+  name_id: 32987
+  description_id: 32991
+  sort_order: 0
+  icon_set_id: 1630
+  category: 109
+  page: 0
+  preview_model_id: 1338
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2255
+      unknown: 0
+    - guid: 2256
+      unknown: 0
+    - guid: 2257
+      unknown: 0
+    - guid: 2266
+      unknown: 0
+
+# Nightsister Asajj Ventress
+- guid: 565
+  name_id: 32988
+  description_id: 32992
+  sort_order: 0
+  icon_set_id: 1631
+  category: 108
+  page: 0
+  preview_model_id: 1335
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2262
+      unknown: 0
+    - guid: 2263
+      unknown: 0
+    - guid: 2264
+      unknown: 0
+    - guid: 2265
+      unknown: 0
+
+# Nightbrother
+- guid: 566
+  name_id: 32989
+  description_id: 32993
+  sort_order: 0
+  icon_set_id: 1629
+  category: 108
+  page: 0
+  preview_model_id: 1337
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2267
+      unknown: 0
+    - guid: 2268
+      unknown: 0
+    - guid: 2269
+      unknown: 0
+
+# Commander Trauma
+- guid: 567
+  name_id: 32990
+  description_id: 32994
+  sort_order: 0
+  icon_set_id: 1628
+  category: 101
+  page: 0
+  preview_model_id: 1482
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 439
+      unknown: 0
+    - guid: 2258
+      unknown: 0
+    - guid: 2259
+      unknown: 0
+    - guid: 2260
+      unknown: 0
+    - guid: 2261
+      unknown: 0
+
+# Scorch
+- guid: 595
+  name_id: 33114
+  description_id: 33118
+  sort_order: 0
+  icon_set_id: 1637
+  category: 101
+  page: 0
+  preview_model_id: 1483
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 439
+      unknown: 0
+    - guid: 2359
+      unknown: 0
+    - guid: 2360
+      unknown: 0
+    - guid: 2361
+      unknown: 0
+    - guid: 2362
+      unknown: 0
+
+# Boss
+- guid: 596
+  name_id: 33115
+  description_id: 33117
+  sort_order: 0
+  icon_set_id: 1638
+  category: 101
+  page: 0
+  preview_model_id: 1381
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2355
+      unknown: 0
+    - guid: 2356
+      unknown: 0
+    - guid: 2357
+      unknown: 0
+    - guid: 2358
+      unknown: 0
+
+# Savage Opress
+- guid: 597
+  name_id: 33116
+  description_id: 33120
+  sort_order: 0
+  icon_set_id: 1643
+  category: 109
+  page: 0
+  preview_model_id: 1382
+  preview_animation_id: 903
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2255
+      unknown: 0
+    - guid: 2256
+      unknown: 0
+    - guid: 2257
+      unknown: 0
+    - guid: 2363
+      unknown: 0
+
+# Card Commander Booster Pack II
+- guid: 599
+  name_id: 33196
+  description_id: 33197
+  sort_order: 0
+  icon_set_id: 1647
+  category: 80
+  page: 0
+  preview_model_id: 2641
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2373
+      unknown: 0
+
+# Series 2 Holocrons
+- guid: 600
+  name_id: 33198
+  description_id: 33199
+  sort_order: 0
+  icon_set_id: 1663
+  category: 80
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2371
+      unknown: 0
+    - guid: 2372
+      unknown: 0
+
+# Mortis Son
+- guid: 601
+  name_id: 33565
+  description_id: 33566
+  sort_order: 0
+  icon_set_id: 1661
+  category: 108
+  page: 0
+  preview_model_id: 1388
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2374
+      unknown: 0
+    - guid: 2375
+      unknown: 0
+    - guid: 2376
+      unknown: 0
+    - guid: 2377
+      unknown: 0
+
+# Mortis Father
+- guid: 602
+  name_id: 33786
+  description_id: 33787
+  sort_order: 0
+  icon_set_id: 1662
+  category: 108
+  page: 0
+  preview_model_id: 1389
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2378
+      unknown: 0
+    - guid: 2379
+      unknown: 0
+    - guid: 2380
+      unknown: 0
+
+# Blue 74-Z Speeder
+- guid: 603
+  name_id: 5840
+  description_id: 5841
+  sort_order: 0
+  icon_set_id: 694
+  category: 32
+  page: 0
+  preview_model_id: 730
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 651
+      unknown: 0
+
+# Cupid Clone Trooper
+- guid: 607
+  name_id: 33890
+  description_id: 33892
+  sort_order: 0
+  icon_set_id: 1673
+  category: 107
+  page: 0
+  preview_model_id: 1407
+  preview_animation_id: 914
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2388
+      unknown: 0
+    - guid: 2389
+      unknown: 0
+    - guid: 2390
+      unknown: 0
+    - guid: 2391
+      unknown: 0
+    - guid: 2392
+      unknown: 0
+
+# Mortis Force Forms Holoprojector Pack
+- guid: 608
+  name_id: 33889
+  description_id: 33891
+  sort_order: 0
+  icon_set_id: 1737
+  category: 21
+  page: 0
+  preview_model_id: 2263
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2386
+      unknown: 0
+    - guid: 2387
+      unknown: 0
+
+# Mouse Droid Valentine's Day Candy Dispenser
+- guid: 609
+  name_id: 33898
+  description_id: 33900
+  sort_order: 0
+  icon_set_id: 1677
+  category: 72
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2381
+      unknown: 0
+
+# Power Droid Valentine's Day Potion Pack
+- guid: 610
+  name_id: 33899
+  description_id: 33901
+  sort_order: 0
+  icon_set_id: 1676
+  category: 72
+  page: 0
+  preview_model_id: 1395
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2382
+      unknown: 0
+
+# H3-4RT
+- guid: 611
+  name_id: 33908
+  description_id: 33915
+  sort_order: 0
+  icon_set_id: 1675
+  category: 71
+  page: 0
+  preview_model_id: 1408
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2393
+      unknown: 0
+
+# ARC Trooper Echo
+- guid: 625
+  name_id: 43064
+  description_id: 43066
+  sort_order: 0
+  icon_set_id: 1749
+  category: 101
+  page: 0
+  preview_model_id: 1444
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2693
+      unknown: 0
+    - guid: 2694
+      unknown: 0
+    - guid: 2695
+      unknown: 0
+    - guid: 2696
+      unknown: 0
+
+# ARC Trooper Fives
+- guid: 626
+  name_id: 43065
+  description_id: 43067
+  sort_order: 0
+  icon_set_id: 1750
+  category: 101
+  page: 0
+  preview_model_id: 1484
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 439
+      unknown: 0
+    - guid: 2697
+      unknown: 0
+    - guid: 2698
+      unknown: 0
+    - guid: 2699
+      unknown: 0
+    - guid: 2700
+      unknown: 0
+
+# Mustafar Construction Set
+- guid: 627
+  name_id: 43101
+  description_id: 43103
+  sort_order: 0
+  icon_set_id: 1775
+  category: 30
+  page: 0
+  preview_model_id: 1446
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1393
+      unknown: 0
+    - guid: 1394
+      unknown: 0
+    - guid: 1395
+      unknown: 0
+    - guid: 1396
+      unknown: 0
+    - guid: 1397
+      unknown: 0
+    - guid: 1398
+      unknown: 0
+    - guid: 1399
+      unknown: 0
+    - guid: 1400
+      unknown: 0
+    - guid: 1401
+      unknown: 0
+    - guid: 1402
+      unknown: 0
+
+# Standard Construction Set
+- guid: 628
+  name_id: 43102
+  description_id: 43104
+  sort_order: 0
+  icon_set_id: 1774
+  category: 30
+  page: 0
+  preview_model_id: 1447
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1385
+      unknown: 0
+    - guid: 1386
+      unknown: 0
+    - guid: 1387
+      unknown: 0
+    - guid: 1388
+      unknown: 0
+    - guid: 1389
+      unknown: 0
+    - guid: 1390
+      unknown: 0
+    - guid: 1391
+      unknown: 0
+    - guid: 1392
+      unknown: 0
+
+# Mustafar Lot
+- guid: 629
+  name_id: 43126
+  description_id: 43127
+  sort_order: 0
+  icon_set_id: 1751
+  category: 34
+  page: 0
+  preview_model_id: 1449
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2702
+      unknown: 0
+
+# Saesee Tiin
+- guid: 630
+  name_id: 43191
+  description_id: 43193
+  sort_order: 0
+  icon_set_id: 1793
+  category: 102
+  page: 0
+  preview_model_id: 1451
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2703
+      unknown: 0
+    - guid: 2704
+      unknown: 0
+    - guid: 2705
+      unknown: 0
+    - guid: 2708
+      unknown: 0
+
+# Commander Osi Sobeck
+- guid: 631
+  name_id: 43192
+  description_id: 43194
+  sort_order: 0
+  icon_set_id: 1794
+  category: 109
+  page: 0
+  preview_model_id: 1452
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2706
+      unknown: 0
+    - guid: 2707
+      unknown: 0
+
+# Jedi Starfighter Pack III
+- guid: 632
+  name_id: 43215
+  description_id: 43216
+  sort_order: 0
+  icon_set_id: 1796
+  category: 33
+  page: 0
+  preview_model_id: 1463
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2709
+      unknown: 0
+    - guid: 2710
+      unknown: 0
+
+# Ryloth Construction Set
+- guid: 633
+  name_id: 43217
+  description_id: 43218
+  sort_order: 0
+  icon_set_id: 1797
+  category: 30
+  page: 0
+  preview_model_id: 1464
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1404
+      unknown: 0
+    - guid: 1405
+      unknown: 0
+    - guid: 1406
+      unknown: 0
+    - guid: 1407
+      unknown: 0
+    - guid: 1408
+      unknown: 0
+    - guid: 1409
+      unknown: 0
+    - guid: 1410
+      unknown: 0
+    - guid: 1411
+      unknown: 0
+    - guid: 1412
+      unknown: 0
+    - guid: 1413
+      unknown: 0
+
+# Ryloth Lot
+- guid: 634
+  name_id: 43219
+  description_id: 43220
+  sort_order: 0
+  icon_set_id: 1798
+  category: 34
+  page: 0
+  preview_model_id: 1466
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2711
+      unknown: 0
+
+# Astromech Smokescreen Attachment
+- guid: 635
+  name_id: 43433
+  description_id: 43409
+  sort_order: 0
+  icon_set_id: 1800
+  category: 72
+  page: 0
+  preview_model_id: 31
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2714
+      unknown: 0
+
+# Holoprojector Pack III
+- guid: 636
+  name_id: 43529
+  description_id: 43531
+  sort_order: 0
+  icon_set_id: 1852
+  category: 21
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2753
+      unknown: 0
+    - guid: 2754
+      unknown: 0
+
+# Garnac
+- guid: 637
+  name_id: 43516
+  description_id: 43524
+  sort_order: 0
+  icon_set_id: 1839
+  category: 108
+  page: 0
+  preview_model_id: 1496
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2747
+      unknown: 0
+
+# Sochek
+- guid: 638
+  name_id: 43517
+  description_id: 43523
+  sort_order: 0
+  icon_set_id: 1841
+  category: 108
+  page: 0
+  preview_model_id: 1497
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2750
+      unknown: 0
+    - guid: 2751
+      unknown: 0
+
+# Kalifa
+- guid: 639
+  name_id: 43518
+  description_id: 43522
+  sort_order: 0
+  icon_set_id: 1840
+  category: 102
+  page: 0
+  preview_model_id: 1495
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2748
+      unknown: 0
+    - guid: 2749
+      unknown: 0
+
+# Aedalus
+- guid: 640
+  name_id: 43358
+  description_id: 43525
+  sort_order: 0
+  icon_set_id: 1846
+  category: 84
+  page: 0
+  preview_model_id: 1486
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2752
+      unknown: 0
+
+# Convor Gear
+- guid: 641
+  name_id: 43528
+  description_id: 43530
+  sort_order: 0
+  icon_set_id: 1846
+  category: 85
+  page: 0
+  preview_model_id: 1498
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2715
+      unknown: 0
+    - guid: 2716
+      unknown: 0
+
+# Commando Sergeant Racket
+- guid: 642
+  name_id: 43733
+  description_id: 43771
+  sort_order: 0
+  icon_set_id: 1912
+  category: 101
+  page: 0
+  preview_model_id: 1504
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 439
+      unknown: 0
+    - guid: 2394
+      unknown: 0
+    - guid: 2395
+      unknown: 0
+    - guid: 2396
+      unknown: 0
+    - guid: 2397
+      unknown: 0
+
+# Commander Wolffe
+- guid: 643
+  name_id: 43734
+  description_id: 43772
+  sort_order: 0
+  icon_set_id: 1919
+  category: 101
+  page: 0
+  preview_model_id: 1505
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2398
+      unknown: 0
+    - guid: 2399
+      unknown: 0
+    - guid: 2400
+      unknown: 0
+    - guid: 2401
+      unknown: 0
+
+# Draa
+- guid: 644
+  name_id: 43735
+  description_id: 43773
+  sort_order: 0
+  icon_set_id: 1917
+  category: 101
+  page: 0
+  preview_model_id: 1506
+  preview_animation_id: 912
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 521
+      unknown: 0
+    - guid: 2402
+      unknown: 0
+    - guid: 2403
+      unknown: 0
+    - guid: 2404
+      unknown: 0
+    - guid: 2405
+      unknown: 0
+
+# Commando Evader
+- guid: 645
+  name_id: 43736
+  description_id: 43774
+  sort_order: 0
+  icon_set_id: 1923
+  category: 101
+  page: 0
+  preview_model_id: 1507
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2406
+      unknown: 0
+    - guid: 2407
+      unknown: 0
+    - guid: 2408
+      unknown: 0
+    - guid: 2409
+      unknown: 0
+
+# Commando Barrage
+- guid: 646
+  name_id: 43737
+  description_id: 43775
+  sort_order: 0
+  icon_set_id: 1922
+  category: 101
+  page: 0
+  preview_model_id: 1508
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2410
+      unknown: 0
+    - guid: 2411
+      unknown: 0
+    - guid: 2412
+      unknown: 0
+    - guid: 2413
+      unknown: 0
+
+# ARC Captain Burner
+- guid: 650
+  name_id: 43741
+  description_id: 43777
+  sort_order: 0
+  icon_set_id: 1918
+  category: 101
+  page: 0
+  preview_model_id: 1512
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2426
+      unknown: 0
+    - guid: 2427
+      unknown: 0
+    - guid: 2428
+      unknown: 0
+    - guid: 2429
+      unknown: 0
+
+# Commando Captain Scraps
+- guid: 651
+  name_id: 43742
+  description_id: 43778
+  sort_order: 0
+  icon_set_id: 1913
+  category: 101
+  page: 0
+  preview_model_id: 1513
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2430
+      unknown: 0
+    - guid: 2431
+      unknown: 0
+    - guid: 2432
+      unknown: 0
+    - guid: 2433
+      unknown: 0
+
+# Commando Throttle
+- guid: 652
+  name_id: 43743
+  description_id: 43779
+  sort_order: 0
+  icon_set_id: 1914
+  category: 101
+  page: 0
+  preview_model_id: 1514
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2434
+      unknown: 0
+    - guid: 2435
+      unknown: 0
+    - guid: 2436
+      unknown: 0
+    - guid: 2437
+      unknown: 0
+
+# Commando Trigger
+- guid: 653
+  name_id: 43744
+  description_id: 43780
+  sort_order: 0
+  icon_set_id: 1915
+  category: 101
+  page: 0
+  preview_model_id: 1515
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2438
+      unknown: 0
+    - guid: 2439
+      unknown: 0
+    - guid: 2440
+      unknown: 0
+    - guid: 2441
+      unknown: 0
+
+# Wookiee Clone Trooper
+- guid: 654
+  name_id: 43745
+  description_id: 43781
+  sort_order: 0
+  icon_set_id: 1916
+  category: 107
+  page: 0
+  preview_model_id: 1516
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2442
+      unknown: 0
+    - guid: 2443
+      unknown: 0
+    - guid: 2444
+      unknown: 0
+    - guid: 2445
+      unknown: 0
+
+# Commando Zag
+- guid: 655
+  name_id: 43746
+  description_id: 43782
+  sort_order: 0
+  icon_set_id: 1924
+  category: 101
+  page: 0
+  preview_model_id: 1517
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2446
+      unknown: 0
+    - guid: 2447
+      unknown: 0
+    - guid: 2448
+      unknown: 0
+    - guid: 2449
+      unknown: 0
+
+# Spring Fever
+- guid: 657
+  name_id: 43859
+  description_id: 43860
+  sort_order: 0
+  icon_set_id: 1935
+  category: 101
+  page: 0
+  preview_model_id: 1535
+  preview_animation_id: 913
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1415
+      unknown: 0
+
+# Covert Anakin Skywalker
+- guid: 658
+  name_id: 44014
+  description_id: 44015
+  sort_order: 0
+  icon_set_id: 1950
+  category: 102
+  page: 0
+  preview_model_id: 1541
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2769
+      unknown: 0
+    - guid: 2770
+      unknown: 0
+    - guid: 2771
+      unknown: 0
+
+# Flat Panel Pack I
+- guid: 659
+  name_id: 44016
+  description_id: 44017
+  sort_order: 0
+  icon_set_id: 1952
+  category: 30
+  page: 0
+  preview_model_id: 1553
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2758
+      unknown: 0
+    - guid: 2759
+      unknown: 0
+    - guid: 2760
+      unknown: 0
+    - guid: 2761
+      unknown: 0
+    - guid: 2762
+      unknown: 0
+    - guid: 2763
+      unknown: 0
+
+# Flat Panel Pack II
+- guid: 660
+  name_id: 44018
+  description_id: 44019
+  sort_order: 0
+  icon_set_id: 1953
+  category: 30
+  page: 0
+  preview_model_id: 1554
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2764
+      unknown: 0
+    - guid: 2765
+      unknown: 0
+    - guid: 2766
+      unknown: 0
+    - guid: 2767
+      unknown: 0
+    - guid: 2768
+      unknown: 0
+
+# Yoda Holoprojector
+- guid: 661
+  name_id: 44020
+  description_id: 44021
+  sort_order: 0
+  icon_set_id: 1951
+  category: 21
+  page: 0
+  preview_model_id: 1555
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2772
+      unknown: 0
+
+# Ancient Dahgee Jedi
+- guid: 662
+  name_id: 44198
+  description_id: 44199
+  sort_order: 0
+  icon_set_id: 959
+  category: 102
+  page: 0
+  preview_model_id: 1558
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 227
+      unknown: 0
+    - guid: 929
+      unknown: 0
+    - guid: 941
+      unknown: 0
+    - guid: 944
+      unknown: 0
+
+# Fiery Ahsoka Tano
+- guid: 663
+  name_id: 44200
+  description_id: 44201
+  sort_order: 0
+  icon_set_id: 1960
+  category: 102
+  page: 0
+  preview_model_id: 1557
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2774
+      unknown: 0
+    - guid: 2775
+      unknown: 0
+    - guid: 2776
+      unknown: 0
+
+# Clone Cadet Casual Grey Gear
+- guid: 664
+  name_id: 44319
+  description_id: 44320
+  sort_order: 0
+  icon_set_id: 1974
+  category: 101
+  page: 0
+  preview_model_id: 1567
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2782
+      unknown: 0
+    - guid: 2783
+      unknown: 0
+
+# Clone Cadet Casual Tan Gear
+- guid: 665
+  name_id: 44321
+  description_id: 44322
+  sort_order: 0
+  icon_set_id: 1975
+  category: 101
+  page: 0
+  preview_model_id: 1568
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2784
+      unknown: 0
+    - guid: 2785
+      unknown: 0
+
+# Sassy Ahsoka Tano
+- guid: 669
+  name_id: 44401
+  description_id: 44402
+  sort_order: 0
+  icon_set_id: 1981
+  category: 102
+  page: 0
+  preview_model_id: 1572
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2787
+      unknown: 0
+    - guid: 2788
+      unknown: 0
+    - guid: 2789
+      unknown: 0
+
+# Attack Cruiser Gunnery Room
+- guid: 670
+  name_id: 44403
+  description_id: 44404
+  sort_order: 0
+  icon_set_id: 1977
+  category: 76
+  page: 0
+  preview_model_id: 1573
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1419
+      unknown: 0
+
+# Gnarls
+- guid: 671
+  name_id: 44405
+  description_id: 44406
+  sort_order: 0
+  icon_set_id: 1976
+  category: 84
+  page: 0
+  preview_model_id: 1570
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2786
+      unknown: 0
+
+# Kashyyyk Lightsaber
+- guid: 672
+  name_id: 44513
+  description_id: 44514
+  sort_order: 902
+  icon_set_id: 1993
+  category: 102
+  page: 0
+  preview_model_id: 1601
+  preview_animation_id: 902
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2801
+      unknown: 0
+
+# Aquatic Obi-Wan Kenobi
+- guid: 673
+  name_id: 44534
+  description_id: 44535
+  sort_order: 0
+  icon_set_id: 1988
+  category: 102
+  page: 0
+  preview_model_id: 1600
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2794
+      unknown: 0
+    - guid: 2795
+      unknown: 0
+    - guid: 2796
+      unknown: 0
+
+# Adept Ahsoka Tano
+- guid: 674
+  name_id: 44536
+  description_id: 44537
+  sort_order: 0
+  icon_set_id: 1989
+  category: 102
+  page: 0
+  preview_model_id: 1599
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2791
+      unknown: 0
+    - guid: 2792
+      unknown: 0
+    - guid: 2793
+      unknown: 0
+
+# Weapon Moves Pack II
+- guid: 675
+  name_id: 44538
+  description_id: 44539
+  sort_order: 0
+  icon_set_id: 1992
+  category: 20
+  page: 0
+  preview_model_id: 1023
+  preview_animation_id: 915
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2797
+      unknown: 0
+    - guid: 2798
+      unknown: 0
+
+# C-3PO
+- guid: 676
+  name_id: 44531
+  description_id: 44532
+  sort_order: 0
+  icon_set_id: 74
+  category: 71
+  page: 0
+  preview_model_id: 164
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 541
+      unknown: 0
+
+# Eeetch
+- guid: 677
+  name_id: 44540
+  description_id: 44541
+  sort_order: 0
+  icon_set_id: 1997
+  category: 84
+  page: 0
+  preview_model_id: 1612
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2802
+      unknown: 0
+
+# General Grievous Holoprojector
+- guid: 678
+  name_id: 44671
+  description_id: 44683
+  sort_order: 0
+  icon_set_id: 1999
+  category: 21
+  page: 0
+  preview_model_id: 1613
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2807
+      unknown: 0
+
+# Icy Anakin Skywalker
+- guid: 679
+  name_id: 44702
+  description_id: 44703
+  sort_order: 0
+  icon_set_id: 2012
+  category: 102
+  page: 0
+  preview_model_id: 1616
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2816
+      unknown: 0
+    - guid: 2817
+      unknown: 0
+    - guid: 2818
+      unknown: 0
+
+# Talz Holoprojector
+- guid: 680
+  name_id: 44672
+  description_id: 44684
+  sort_order: 0
+  icon_set_id: 2000
+  category: 21
+  page: 0
+  preview_model_id: 1614
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2808
+      unknown: 0
+
+# Sparklers
+- guid: 681
+  name_id: 44704
+  description_id: 44705
+  sort_order: 0
+  icon_set_id: 2013
+  category: 107
+  page: 0
+  preview_model_id: 1615
+  preview_animation_id: 916
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2809
+      unknown: 0
+    - guid: 2810
+      unknown: 0
+    - guid: 2811
+      unknown: 0
+    - guid: 2812
+      unknown: 0
+    - guid: 2813
+      unknown: 0
+    - guid: 2814
+      unknown: 0
+    - guid: 2815
+      unknown: 0
+
+# Mouse Droid Top Hat Attachment
+- guid: 682
+  name_id: 44706
+  description_id: 44707
+  sort_order: 0
+  icon_set_id: 2011
+  category: 72
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2819
+      unknown: 0
+
+# 7L-VN
+- guid: 683
+  name_id: 44708
+  description_id: 44709
+  sort_order: 0
+  icon_set_id: 1998
+  category: 71
+  page: 0
+  preview_model_id: 1622
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2804
+      unknown: 0
+
+# Captain Breaker
+- guid: 684
+  name_id: 44774
+  description_id: 44775
+  sort_order: 0
+  icon_set_id: 2059
+  category: 101
+  page: 0
+  preview_model_id: 1659
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2820
+      unknown: 0
+    - guid: 2821
+      unknown: 0
+    - guid: 2822
+      unknown: 0
+    - guid: 2823
+      unknown: 0
+
+# Jabba Holoprojector
+- guid: 685
+  name_id: 44754
+  description_id: 44763
+  sort_order: 0
+  icon_set_id: 2035
+  category: 21
+  page: 0
+  preview_model_id: 1626
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2831
+      unknown: 0
+
+# Snow Commander Wolffe
+- guid: 686
+  name_id: 44776
+  description_id: 44777
+  sort_order: 0
+  icon_set_id: 2057
+  category: 101
+  page: 0
+  preview_model_id: 1660
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2824
+      unknown: 0
+    - guid: 2825
+      unknown: 0
+    - guid: 2826
+      unknown: 0
+    - guid: 2827
+      unknown: 0
+
+# Dance Pack II
+- guid: 687
+  name_id: 44778
+  description_id: 44779
+  sort_order: 0
+  icon_set_id: 2058
+  category: 20
+  page: 0
+  preview_model_id: 83
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2828
+      unknown: 0
+    - guid: 2829
+      unknown: 0
+    - guid: 2830
+      unknown: 0
+
+# Cad Bane Holoprojector
+- guid: 688
+  name_id: 44762
+  description_id: 44763
+  sort_order: 0
+  icon_set_id: 2036
+  category: 21
+  page: 0
+  preview_model_id: 1627
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2832
+      unknown: 0
+
+# Mission on Iceberg Three Campaign Trophy
+- guid: 689
+  name_id: 44802
+  description_id: 44803
+  sort_order: 0
+  icon_set_id: 2060
+  category: 30
+  page: 0
+  preview_model_id: 1662
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 2833
+      unknown: 0
+
+# Iceberg Three Lot
+- guid: 690
+  name_id: 44902
+  description_id: 44903
+  sort_order: 0
+  icon_set_id: 2133
+  category: 34
+  page: 0
+  preview_model_id: 1711
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2892
+      unknown: 0
+
+# Fiery Obi-Wan Kenobi
+- guid: 691
+  name_id: 44904
+  description_id: 44905
+  sort_order: 0
+  icon_set_id: 2061
+  category: 102
+  page: 0
+  preview_model_id: 1693
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2835
+      unknown: 0
+    - guid: 2836
+      unknown: 0
+    - guid: 2837
+      unknown: 0
+
+# Jedi Temple Lounge Set
+- guid: 692
+  name_id: 44906
+  description_id: 44907
+  sort_order: 0
+  icon_set_id: 2137
+  category: 30
+  page: 0
+  preview_model_id: 1694
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2838
+      unknown: 0
+    - guid: 2839
+      unknown: 0
+    - guid: 2840
+      unknown: 0
+    - guid: 2841
+      unknown: 0
+    - guid: 2842
+      unknown: 0
+    - guid: 2843
+      unknown: 0
+    - guid: 2844
+      unknown: 0
+    - guid: 2845
+      unknown: 0
+    - guid: 2846
+      unknown: 0
+    - guid: 2847
+      unknown: 0
+
+# Ancient Mestare Jedi
+- guid: 693
+  name_id: 44908
+  description_id: 44909
+  sort_order: 0
+  icon_set_id: 919
+  category: 102
+  page: 0
+  preview_model_id: 1695
+  preview_animation_id: 902
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 762
+      unknown: 0
+    - guid: 861
+      unknown: 0
+    - guid: 880
+      unknown: 0
+    - guid: 895
+      unknown: 0
+
+# Jedi Temple Main Hall Set
+- guid: 694
+  name_id: 44910
+  description_id: 44911
+  sort_order: 0
+  icon_set_id: 2138
+  category: 30
+  page: 0
+  preview_model_id: 1696
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2848
+      unknown: 0
+    - guid: 2849
+      unknown: 0
+    - guid: 2850
+      unknown: 0
+
+# Jedi Temple Officers' Club Set I
+- guid: 695
+  name_id: 44912
+  description_id: 44913
+  sort_order: 0
+  icon_set_id: 2139
+  category: 30
+  page: 0
+  preview_model_id: 1697
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2851
+      unknown: 0
+    - guid: 2852
+      unknown: 0
+    - guid: 2853
+      unknown: 0
+    - guid: 2854
+      unknown: 0
+    - guid: 2855
+      unknown: 0
+    - guid: 2856
+      unknown: 0
+    - guid: 2857
+      unknown: 0
+    - guid: 2858
+      unknown: 0
+
+# Jedi Temple Officers' Club Set II
+- guid: 696
+  name_id: 44914
+  description_id: 44915
+  sort_order: 0
+  icon_set_id: 2140
+  category: 30
+  page: 0
+  preview_model_id: 1698
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2859
+      unknown: 0
+    - guid: 2860
+      unknown: 0
+    - guid: 2861
+      unknown: 0
+    - guid: 2862
+      unknown: 0
+    - guid: 2863
+      unknown: 0
+    - guid: 2864
+      unknown: 0
+    - guid: 2865
+      unknown: 0
+
+# Mustafar Anakin Skywalker
+- guid: 697
+  name_id: 44916
+  description_id: 44917
+  sort_order: 0
+  icon_set_id: 2097
+  category: 102
+  page: 0
+  preview_model_id: 1699
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2866
+      unknown: 0
+    - guid: 2867
+      unknown: 0
+    - guid: 2868
+      unknown: 0
+
+# Gamorrean Guard Holoprojector
+- guid: 698
+  name_id: 44918
+  description_id: 44919
+  sort_order: 0
+  icon_set_id: 2131
+  category: 21
+  page: 0
+  preview_model_id: 1709
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2890
+      unknown: 0
+
+# Republic Hero Decoration Pack
+- guid: 699
+  name_id: 44920
+  description_id: 44921
+  sort_order: 0
+  icon_set_id: 2141
+  category: 30
+  page: 0
+  preview_model_id: 1700
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1431
+      unknown: 0
+    - guid: 1432
+      unknown: 0
+    - guid: 1434
+      unknown: 0
+    - guid: 1445
+      unknown: 0
+    - guid: 1446
+      unknown: 0
+
+# Cold Weather Plo Koon
+- guid: 700
+  name_id: 44922
+  description_id: 44923
+  sort_order: 0
+  icon_set_id: 2102
+  category: 26
+  page: 0
+  preview_model_id: 1701
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2869
+      unknown: 0
+    - guid: 2870
+      unknown: 0
+    - guid: 2871
+      unknown: 0
+    - guid: 2872
+      unknown: 0
+
+# Cold Weather Kit Fisto
+- guid: 701
+  name_id: 44924
+  description_id: 44925
+  sort_order: 0
+  icon_set_id: 2107
+  category: 26
+  page: 0
+  preview_model_id: 1702
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2873
+      unknown: 0
+    - guid: 2874
+      unknown: 0
+    - guid: 2875
+      unknown: 0
+    - guid: 2876
+      unknown: 0
+
+# Special Ops Trooper
+- guid: 702
+  name_id: 44926
+  description_id: 44927
+  sort_order: 0
+  icon_set_id: 2112
+  category: 26
+  page: 0
+  preview_model_id: 1703
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2877
+      unknown: 0
+    - guid: 2878
+      unknown: 0
+    - guid: 2879
+      unknown: 0
+    - guid: 2880
+      unknown: 0
+
+# Vicious Savage Opress
+- guid: 703
+  name_id: 44928
+  description_id: 44929
+  sort_order: 0
+  icon_set_id: 2117
+  category: 26
+  page: 0
+  preview_model_id: 1704
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2255
+      unknown: 0
+    - guid: 2257
+      unknown: 0
+    - guid: 2266
+      unknown: 0
+    - guid: 2881
+      unknown: 0
+
+# Kamino ARF Trooper
+- guid: 704
+  name_id: 44930
+  description_id: 44931
+  sort_order: 0
+  icon_set_id: 2119
+  category: 26
+  page: 0
+  preview_model_id: 1705
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 10
+      unknown: 0
+    - guid: 2882
+      unknown: 0
+    - guid: 2883
+      unknown: 0
+    - guid: 2884
+      unknown: 0
+
+# Even Piell
+- guid: 705
+  name_id: 44932
+  description_id: 44933
+  sort_order: 0
+  icon_set_id: 2123
+  category: 26
+  page: 0
+  preview_model_id: 1706
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2885
+      unknown: 0
+    - guid: 2886
+      unknown: 0
+    - guid: 2887
+      unknown: 0
+
+# Aerial Captain Rex
+- guid: 706
+  name_id: 44934
+  description_id: 44935
+  sort_order: 0
+  icon_set_id: 2127
+  category: 26
+  page: 0
+  preview_model_id: 1707
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 17
+      unknown: 0
+    - guid: 25
+      unknown: 0
+    - guid: 29
+      unknown: 0
+    - guid: 2888
+      unknown: 0
+
+# Aerial Saesee Tiin
+- guid: 707
+  name_id: 44936
+  description_id: 44937
+  sort_order: 0
+  icon_set_id: 2129
+  category: 26
+  page: 0
+  preview_model_id: 1708
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2703
+      unknown: 0
+    - guid: 2705
+      unknown: 0
+    - guid: 2889
+      unknown: 0
+
+# Seripas Holoprojector
+- guid: 708
+  name_id: 44938
+  description_id: 44939
+  sort_order: 0
+  icon_set_id: 2132
+  category: 26
+  page: 0
+  preview_model_id: 1710
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2891
+      unknown: 0
+
+# Seripas Holoprojector (also listed under Holoprojectors tab; previously
+# only sold under Hasbro Armory, so it never appeared in the dedicated
+# Holoprojectors shop subtab even though the item itself was already defined
+# in items/actions/holoprojectors.yaml - mirrors the existing Plo Koon
+# Holoprojector precedent, which is likewise duplicated across two packs/
+# categories, guid 885/cat 21 and guid 1007/cat 91)
+- guid: 10001
+  name_id: 44938
+  description_id: 44939
+  sort_order: 0
+  icon_set_id: 2132
+  category: 21
+  page: 0
+  preview_model_id: 1710
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2891
+      unknown: 0
+
+# Kashyyyk Obi-Wan Kenobi
+- guid: 709
+  name_id: 2726
+  description_id: 2736
+  sort_order: 0
+  icon_set_id: 2168
+  category: 102
+  page: 0
+  preview_model_id: 1730
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2451
+      unknown: 0
+    - guid: 2452
+      unknown: 0
+    - guid: 2453
+      unknown: 0
+
+# Clone Trooper Decoration Pack
+- guid: 710
+  name_id: 2727
+  description_id: 2737
+  sort_order: 0
+  icon_set_id: 2169
+  category: 30
+  page: 0
+  preview_model_id: 1731
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1437
+      unknown: 0
+    - guid: 1438
+      unknown: 0
+    - guid: 1439
+      unknown: 0
+    - guid: 1447
+      unknown: 0
+
+# Jedi Temple War Room Set
+- guid: 711
+  name_id: 2728
+  description_id: 2738
+  sort_order: 0
+  icon_set_id: 2173
+  category: 30
+  page: 0
+  preview_model_id: 1732
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1458
+      unknown: 0
+    - guid: 1459
+      unknown: 0
+    - guid: 1460
+      unknown: 0
+    - guid: 1461
+      unknown: 0
+    - guid: 1462
+      unknown: 0
+    - guid: 1463
+      unknown: 0
+    - guid: 1464
+      unknown: 0
+    - guid: 1465
+      unknown: 0
+    - guid: 1466
+      unknown: 0
+
+# Jedi Temple Archives Set
+- guid: 712
+  name_id: 2729
+  description_id: 2739
+  sort_order: 0
+  icon_set_id: 2172
+  category: 30
+  page: 0
+  preview_model_id: 1733
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1452
+      unknown: 0
+    - guid: 1453
+      unknown: 0
+    - guid: 1454
+      unknown: 0
+    - guid: 1455
+      unknown: 0
+    - guid: 1456
+      unknown: 0
+    - guid: 1457
+      unknown: 0
+
+# AT-AT Puppy Attachment
+- guid: 713
+  name_id: 2730
+  description_id: 2740
+  sort_order: 0
+  icon_set_id: 1801
+  category: 72
+  page: 0
+  preview_model_id: 279
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2713
+      unknown: 0
+
+# Mandalorian Mercenary
+- guid: 714
+  name_id: 2731
+  description_id: 2741
+  sort_order: 0
+  icon_set_id: 2170
+  category: 108
+  page: 0
+  preview_model_id: 1734
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2454
+      unknown: 0
+    - guid: 2455
+      unknown: 0
+    - guid: 2456
+      unknown: 0
+    - guid: 2457
+      unknown: 0
+
+# Kamino Lot
+- guid: 715
+  name_id: 2732
+  description_id: 2742
+  sort_order: 0
+  icon_set_id: 2159
+  category: 34
+  page: 0
+  preview_model_id: 1735
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2503
+      unknown: 0
+
+# Savage Opress Holoprojector
+- guid: 716
+  name_id: 2734
+  description_id: 2744
+  sort_order: 0
+  icon_set_id: 2160
+  category: 21
+  page: 0
+  preview_model_id: 1714
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2898
+      unknown: 0
+
+# Kamino Construction Set
+- guid: 717
+  name_id: 2733
+  description_id: 2743
+  sort_order: 0
+  icon_set_id: 2171
+  category: 30
+  page: 0
+  preview_model_id: 1736
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1421
+      unknown: 0
+    - guid: 1422
+      unknown: 0
+    - guid: 1423
+      unknown: 0
+    - guid: 1424
+      unknown: 0
+    - guid: 1425
+      unknown: 0
+    - guid: 1426
+      unknown: 0
+    - guid: 1427
+      unknown: 0
+    - guid: 1428
+      unknown: 0
+    - guid: 1429
+      unknown: 0
+    - guid: 1430
+      unknown: 0
+
+# Vector
+- guid: 718
+  name_id: 2735
+  description_id: 2745
+  sort_order: 0
+  icon_set_id: 2143
+  category: 84
+  page: 0
+  preview_model_id: 1737
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2899
+      unknown: 0
+
+# Ziro Holoprojector
+- guid: 720
+  name_id: 2830
+  description_id: 2831
+  sort_order: 0
+  icon_set_id: 2300
+  category: 21
+  page: 0
+  preview_model_id: 1820
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2906
+      unknown: 0
+
+# Blaster Turrets
+- guid: 721
+  name_id: 2832
+  description_id: 2833
+  sort_order: 0
+  icon_set_id: 2198
+  category: 30
+  page: 0
+  preview_model_id: 1822
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1477
+      unknown: 0
+    - guid: 1478
+      unknown: 0
+    - guid: 1479
+      unknown: 0
+    - guid: 1480
+      unknown: 0
+    - guid: 1481
+      unknown: 0
+
+# Particle Beam Turrets
+- guid: 722
+  name_id: 2834
+  description_id: 2835
+  sort_order: 0
+  icon_set_id: 2243
+  category: 30
+  page: 0
+  preview_model_id: 1823
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1522
+      unknown: 0
+    - guid: 1523
+      unknown: 0
+    - guid: 1524
+      unknown: 0
+    - guid: 1525
+      unknown: 0
+    - guid: 1526
+      unknown: 0
+
+# Jedi Temple Hangar Set
+- guid: 723
+  name_id: 2836
+  description_id: 2837
+  sort_order: 0
+  icon_set_id: 2301
+  category: 30
+  page: 0
+  preview_model_id: 1824
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1547
+      unknown: 0
+    - guid: 1548
+      unknown: 0
+    - guid: 1549
+      unknown: 0
+    - guid: 1550
+      unknown: 0
+    - guid: 1551
+      unknown: 0
+    - guid: 1552
+      unknown: 0
+    - guid: 1553
+      unknown: 0
+    - guid: 1554
+      unknown: 0
+
+# Jedi Temple Training Room Set I
+- guid: 724
+  name_id: 2838
+  description_id: 2839
+  sort_order: 0
+  icon_set_id: 2302
+  category: 30
+  page: 0
+  preview_model_id: 1825
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1555
+      unknown: 0
+    - guid: 1556
+      unknown: 0
+    - guid: 1557
+      unknown: 0
+    - guid: 1558
+      unknown: 0
+    - guid: 1559
+      unknown: 0
+    - guid: 1560
+      unknown: 0
+    - guid: 1561
+      unknown: 0
+
+# Jedi Temple Training Room Set II
+- guid: 725
+  name_id: 2840
+  description_id: 2841
+  sort_order: 0
+  icon_set_id: 2303
+  category: 30
+  page: 0
+  preview_model_id: 1826
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1562
+      unknown: 0
+    - guid: 1563
+      unknown: 0
+    - guid: 1564
+      unknown: 0
+    - guid: 1565
+      unknown: 0
+    - guid: 1566
+      unknown: 0
+    - guid: 1567
+      unknown: 0
+    - guid: 1568
+      unknown: 0
+    - guid: 1569
+      unknown: 0
+    - guid: 1570
+      unknown: 0
+    - guid: 1571
+      unknown: 0
+
+# Tranquil Ahsoka
+- guid: 726
+  name_id: 2842
+  description_id: 2843
+  sort_order: 0
+  icon_set_id: 2304
+  category: 102
+  page: 0
+  preview_model_id: 1827
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2458
+      unknown: 0
+    - guid: 2459
+      unknown: 0
+    - guid: 2460
+      unknown: 0
+
+# Astromech Dance Datacard Pack
+- guid: 727
+  name_id: 2844
+  description_id: 2845
+  sort_order: 0
+  icon_set_id: 2305
+  category: 72
+  page: 0
+  preview_model_id: 31
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2903
+      unknown: 0
+    - guid: 2904
+      unknown: 0
+    - guid: 2905
+      unknown: 0
+
+# Anti-Air Turrets
+- guid: 728
+  name_id: 2846
+  description_id: 2847
+  sort_order: 0
+  icon_set_id: 2188
+  category: 30
+  page: 0
+  preview_model_id: 1828
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1467
+      unknown: 0
+    - guid: 1468
+      unknown: 0
+    - guid: 1469
+      unknown: 0
+    - guid: 1470
+      unknown: 0
+    - guid: 1471
+      unknown: 0
+
+# Thermal Grenade Turrets
+- guid: 729
+  name_id: 2848
+  description_id: 2849
+  sort_order: 0
+  icon_set_id: 2258
+  category: 30
+  page: 0
+  preview_model_id: 1829
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1537
+      unknown: 0
+    - guid: 1538
+      unknown: 0
+    - guid: 1539
+      unknown: 0
+    - guid: 1540
+      unknown: 0
+    - guid: 1541
+      unknown: 0
+
+# Jedi Temple Workshop Set
+- guid: 730
+  name_id: 2850
+  description_id: 2851
+  sort_order: 0
+  icon_set_id: 2306
+  category: 30
+  page: 0
+  preview_model_id: 1830
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1572
+      unknown: 0
+    - guid: 1573
+      unknown: 0
+    - guid: 1574
+      unknown: 0
+    - guid: 1575
+      unknown: 0
+
+# Camo Obi-Wan Kenobi
+- guid: 731
+  name_id: 2852
+  description_id: 2853
+  sort_order: 0
+  icon_set_id: 2307
+  category: 102
+  page: 0
+  preview_model_id: 1831
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2461
+      unknown: 0
+    - guid: 2462
+      unknown: 0
+    - guid: 2463
+      unknown: 0
+
+# Kowakian Monkey Lizard Holoprojector
+- guid: 732
+  name_id: 2854
+  description_id: 2855
+  sort_order: 0
+  icon_set_id: 2308
+  category: 21
+  page: 0
+  preview_model_id: 1821
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2907
+      unknown: 0
+
+# ARC Trooper Turrets
+- guid: 733
+  name_id: 2856
+  description_id: 2857
+  sort_order: 0
+  icon_set_id: 2193
+  category: 30
+  page: 0
+  preview_model_id: 1832
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1472
+      unknown: 0
+    - guid: 1473
+      unknown: 0
+    - guid: 1474
+      unknown: 0
+    - guid: 1475
+      unknown: 0
+    - guid: 1476
+      unknown: 0
+
+# Energy Converter Turrets
+- guid: 734
+  name_id: 2858
+  description_id: 2859
+  sort_order: 0
+  icon_set_id: 2208
+  category: 30
+  page: 0
+  preview_model_id: 1833
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1487
+      unknown: 0
+    - guid: 1488
+      unknown: 0
+    - guid: 1489
+      unknown: 0
+    - guid: 1490
+      unknown: 0
+    - guid: 1491
+      unknown: 0
+
+# Diver Anakin Skywalker
+- guid: 735
+  name_id: 2899
+  description_id: 2900
+  sort_order: 0
+  icon_set_id: 2314
+  category: 102
+  page: 0
+  preview_model_id: 1864
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1310
+      unknown: 0
+    - guid: 1311
+      unknown: 0
+    - guid: 1312
+      unknown: 0
+    - guid: 1313
+      unknown: 0
+
+# Diver Padme Amidala
+- guid: 736
+  name_id: 2901
+  description_id: 2902
+  sort_order: 0
+  icon_set_id: 2315
+  category: 105
+  page: 0
+  preview_model_id: 1874
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1311
+      unknown: 0
+    - guid: 1312
+      unknown: 0
+    - guid: 1313
+      unknown: 0
+    - guid: 1317
+      unknown: 0
+
+# Captain Ackbar
+- guid: 737
+  name_id: 2903
+  description_id: 2904
+  sort_order: 0
+  icon_set_id: 2316
+  category: 108
+  page: 0
+  preview_model_id: 1865
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1307
+      unknown: 0
+    - guid: 1308
+      unknown: 0
+    - guid: 1309
+      unknown: 0
+
+# Mon Calamari Holoprojector Pack
+- guid: 738
+  name_id: 2905
+  description_id: 2906
+  sort_order: 0
+  icon_set_id: 2322
+  category: 21
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2913
+      unknown: 0
+    - guid: 2914
+      unknown: 0
+
+# Missile Turrets
+- guid: 739
+  name_id: 2907
+  description_id: 2908
+  sort_order: 0
+  icon_set_id: 2233
+  category: 30
+  page: 0
+  preview_model_id: 1869
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1512
+      unknown: 0
+    - guid: 1513
+      unknown: 0
+    - guid: 1514
+      unknown: 0
+    - guid: 1515
+      unknown: 0
+    - guid: 1516
+      unknown: 0
+
+# Ion Cannon Turrets
+- guid: 740
+  name_id: 2909
+  description_id: 2910
+  sort_order: 0
+  icon_set_id: 2223
+  category: 30
+  page: 0
+  preview_model_id: 1868
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1502
+      unknown: 0
+    - guid: 1503
+      unknown: 0
+    - guid: 1504
+      unknown: 0
+    - guid: 1505
+      unknown: 0
+    - guid: 1506
+      unknown: 0
+
+# Gungan Warrior
+- guid: 741
+  name_id: 2911
+  description_id: 2912
+  sort_order: 0
+  icon_set_id: 2317
+  category: 108
+  page: 0
+  preview_model_id: 1866
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1314
+      unknown: 0
+    - guid: 1315
+      unknown: 0
+    - guid: 1316
+      unknown: 0
+    - guid: 1322
+      unknown: 0
+
+# Lee-Char
+- guid: 742
+  name_id: 2913
+  description_id: 2914
+  sort_order: 0
+  icon_set_id: 2318
+  category: 108
+  page: 0
+  preview_model_id: 1867
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1318
+      unknown: 0
+    - guid: 1319
+      unknown: 0
+    - guid: 1320
+      unknown: 0
+
+# Clone Diver
+- guid: 743
+  name_id: 2915
+  description_id: 2916
+  sort_order: 0
+  icon_set_id: 2352
+  category: 101
+  page: 0
+  preview_model_id: 1932
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1170
+      unknown: 0
+    - guid: 1171
+      unknown: 0
+    - guid: 1172
+      unknown: 0
+    - guid: 1173
+      unknown: 0
+
+# Karkarodon Warrior Holoprojector
+- guid: 744
+  name_id: 2917
+  description_id: 2918
+  sort_order: 0
+  icon_set_id: 2320
+  category: 21
+  page: 0
+  preview_model_id: 1873
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2915
+      unknown: 0
+
+# Turbolaser Battery Turrets
+- guid: 745
+  name_id: 2919
+  description_id: 2920
+  sort_order: 0
+  icon_set_id: 2263
+  category: 30
+  page: 0
+  preview_model_id: 1870
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1542
+      unknown: 0
+    - guid: 1543
+      unknown: 0
+    - guid: 1544
+      unknown: 0
+    - guid: 1545
+      unknown: 0
+    - guid: 1546
+      unknown: 0
+
+# Ion Repeater Turrets
+- guid: 746
+  name_id: 4228
+  description_id: 4229
+  sort_order: 0
+  icon_set_id: 2228
+  category: 30
+  page: 0
+  preview_model_id: 1941
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1507
+      unknown: 0
+    - guid: 1508
+      unknown: 0
+    - guid: 1509
+      unknown: 0
+    - guid: 1510
+      unknown: 0
+    - guid: 1511
+      unknown: 0
+
+# Boost
+- guid: 747
+  name_id: 4230
+  description_id: 4231
+  sort_order: 0
+  icon_set_id: 2343
+  category: 101
+  page: 0
+  preview_model_id: 1930
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1131
+      unknown: 0
+    - guid: 1132
+      unknown: 0
+    - guid: 1133
+      unknown: 0
+    - guid: 1134
+      unknown: 0
+
+# Attack Cruiser Trophy Box
+- guid: 748
+  name_id: 2934
+  description_id: 2935
+  sort_order: 0
+  icon_set_id: 2354
+  category: 30
+  page: 0
+  preview_model_id: 1933
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 1576
+      unknown: 0
+
+# Republic Defender Trophy Box
+- guid: 749
+  name_id: 2936
+  description_id: 2937
+  sort_order: 0
+  icon_set_id: 2355
+  category: 30
+  page: 0
+  preview_model_id: 1934
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 1577
+      unknown: 0
+
+# Starfighter Trophy Box
+- guid: 750
+  name_id: 2938
+  description_id: 2939
+  sort_order: 0
+  icon_set_id: 2356
+  category: 30
+  page: 0
+  preview_model_id: 1935
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 1578
+      unknown: 0
+
+# Orphne Holoprojector
+- guid: 751
+  name_id: 4232
+  description_id: 4233
+  sort_order: 0
+  icon_set_id: 2375
+  category: 21
+  page: 0
+  preview_model_id: 1931
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2920
+      unknown: 0
+
+# King Manchucho Holoprojector
+- guid: 752
+  name_id: 4234
+  description_id: 4235
+  sort_order: 0
+  icon_set_id: 2374
+  category: 21
+  page: 0
+  preview_model_id: 1938
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3070
+      unknown: 0
+
+# Magnaguard Holoprojector
+- guid: 753
+  name_id: 4236
+  description_id: 4237
+  sort_order: 0
+  icon_set_id: 2376
+  category: 21
+  page: 0
+  preview_model_id: 1939
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3071
+      unknown: 0
+
+# Mortar Cannon Turrets
+- guid: 754
+  name_id: 4238
+  description_id: 4239
+  sort_order: 0
+  icon_set_id: 2238
+  category: 30
+  page: 0
+  preview_model_id: 1943
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1517
+      unknown: 0
+    - guid: 1518
+      unknown: 0
+    - guid: 1519
+      unknown: 0
+    - guid: 1520
+      unknown: 0
+    - guid: 1521
+      unknown: 0
+
+# Babbo
+- guid: 755
+  name_id: 4240
+  description_id: 4241
+  sort_order: 0
+  icon_set_id: 2357
+  category: 84
+  page: 0
+  preview_model_id: 1944
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3073
+      unknown: 0
+
+# Duppa
+- guid: 756
+  name_id: 4242
+  description_id: 4243
+  sort_order: 0
+  icon_set_id: 2358
+  category: 84
+  page: 0
+  preview_model_id: 1945
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3074
+      unknown: 0
+
+# Aliens
+- guid: 757
+  name_id: 4252
+  description_id: 4253
+  sort_order: 0
+  icon_set_id: 2377
+  category: 30
+  page: 0
+  preview_model_id: 1964
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1579
+      unknown: 0
+    - guid: 1580
+      unknown: 0
+    - guid: 1581
+      unknown: 0
+    - guid: 1582
+      unknown: 0
+    - guid: 1583
+      unknown: 0
+    - guid: 1584
+      unknown: 0
+
+# Phase II Commander Wolffe
+- guid: 759
+  name_id: 2386
+  description_id: 2387
+  sort_order: 0
+  icon_set_id: 2363
+  category: 101
+  page: 0
+  preview_model_id: 1967
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2504
+      unknown: 0
+    - guid: 3085
+      unknown: 0
+    - guid: 3086
+      unknown: 0
+    - guid: 3087
+      unknown: 0
+
+# Boss Lyonie
+- guid: 760
+  name_id: 2391
+  description_id: 2392
+  sort_order: 0
+  icon_set_id: 2367
+  category: 108
+  page: 0
+  preview_model_id: 2030
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3077
+      unknown: 0
+    - guid: 3078
+      unknown: 0
+
+# Aktik
+- guid: 761
+  name_id: 2393
+  description_id: 2394
+  sort_order: 0
+  icon_set_id: 1961
+  category: 88
+  page: 0
+  preview_model_id: 2031
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3079
+      unknown: 0
+
+# Pirate Jedi
+- guid: 763
+  name_id: 4256
+  description_id: 4257
+  sort_order: 0
+  icon_set_id: 2386
+  category: 107
+  page: 0
+  preview_model_id: 2052
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1596
+      unknown: 0
+    - guid: 1597
+      unknown: 0
+    - guid: 1598
+      unknown: 0
+    - guid: 1599
+      unknown: 0
+
+# Balnab Hunter
+- guid: 764
+  name_id: 4258
+  description_id: 4259
+  sort_order: 0
+  icon_set_id: 2387
+  category: 108
+  page: 0
+  preview_model_id: 2053
+  preview_animation_id: 910
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1585
+      unknown: 0
+    - guid: 1586
+      unknown: 0
+    - guid: 1587
+      unknown: 0
+    - guid: 1637
+      unknown: 0
+
+# Deactivator Turrets
+- guid: 766
+  name_id: 4262
+  description_id: 4263
+  sort_order: 0
+  icon_set_id: 2203
+  category: 30
+  page: 0
+  preview_model_id: 2055
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1482
+      unknown: 0
+    - guid: 1483
+      unknown: 0
+    - guid: 1484
+      unknown: 0
+    - guid: 1485
+      unknown: 0
+    - guid: 1486
+      unknown: 0
+
+# Power Surger Turrets
+- guid: 767
+  name_id: 4264
+  description_id: 4265
+  sort_order: 0
+  icon_set_id: 2248
+  category: 30
+  page: 0
+  preview_model_id: 2057
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1527
+      unknown: 0
+    - guid: 1528
+      unknown: 0
+    - guid: 1529
+      unknown: 0
+    - guid: 1530
+      unknown: 0
+    - guid: 1531
+      unknown: 0
+
+# DU-3
+- guid: 769
+  name_id: 4268
+  description_id: 4269
+  sort_order: 0
+  icon_set_id: 2392
+  category: 71
+  page: 0
+  preview_model_id: 2035
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3080
+      unknown: 0
+
+# K0-5D
+- guid: 770
+  name_id: 4270
+  description_id: 4271
+  sort_order: 0
+  icon_set_id: 2393
+  category: 71
+  page: 0
+  preview_model_id: 2060
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3081
+      unknown: 0
+
+# Y-Wing Pack II
+- guid: 771
+  name_id: 4272
+  description_id: 4273
+  sort_order: 0
+  icon_set_id: 2400
+  category: 33
+  page: 0
+  preview_model_id: 2062
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3097
+      unknown: 0
+    - guid: 3098
+      unknown: 0
+    - guid: 3099
+      unknown: 0
+
+# Force Powers Pack I
+- guid: 772
+  name_id: 4274
+  description_id: 4275
+  sort_order: 0
+  icon_set_id: 2404
+  category: 20
+  page: 0
+  preview_model_id: 83
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3095
+      unknown: 0
+    - guid: 3096
+      unknown: 0
+
+# Skeletal Clone Trooper
+- guid: 773
+  name_id: 4281
+  description_id: 4282
+  sort_order: 0
+  icon_set_id: 2394
+  category: 107
+  page: 0
+  preview_model_id: 2061
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3088
+      unknown: 0
+    - guid: 3089
+      unknown: 0
+    - guid: 3090
+      unknown: 0
+    - guid: 3091
+      unknown: 0
+    - guid: 3092
+      unknown: 0
+
+# Crates and Codes
+- guid: 777
+  name_id: 4485
+  description_id: 4486
+  sort_order: 0
+  icon_set_id: 2583
+  category: 95
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1776
+      unknown: 0
+
+# Umbaran Soldier
+- guid: 779
+  name_id: 4309
+  description_id: 4310
+  sort_order: 0
+  icon_set_id: 2415
+  category: 108
+  page: 0
+  preview_model_id: 2105
+  preview_animation_id: 909
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3162
+      unknown: 0
+    - guid: 3163
+      unknown: 0
+    - guid: 3164
+      unknown: 0
+    - guid: 3172
+      unknown: 0
+
+# Captain Rex Phase II
+- guid: 780
+  name_id: 4311
+  description_id: 4312
+  sort_order: 0
+  icon_set_id: 2416
+  category: 101
+  page: 0
+  preview_model_id: 2104
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 1606
+      unknown: 0
+    - guid: 1607
+      unknown: 0
+    - guid: 1608
+      unknown: 0
+    - guid: 1609
+      unknown: 0
+
+# Energy Generator Turrets
+- guid: 781
+  name_id: 4313
+  description_id: 4314
+  sort_order: 0
+  icon_set_id: 2213
+  category: 30
+  page: 0
+  preview_model_id: 2106
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1492
+      unknown: 0
+    - guid: 1493
+      unknown: 0
+    - guid: 1494
+      unknown: 0
+    - guid: 1495
+      unknown: 0
+    - guid: 1496
+      unknown: 0
+
+# Dance Pack III
+- guid: 782
+  name_id: 4315
+  description_id: 4316
+  sort_order: 0
+  icon_set_id: 2417
+  category: 20
+  page: 0
+  preview_model_id: 83
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3169
+      unknown: 0
+    - guid: 3170
+      unknown: 0
+    - guid: 3171
+      unknown: 0
+
+# Mandalorian Deathwatch
+- guid: 783
+  name_id: 4322
+  description_id: 4323
+  sort_order: 0
+  icon_set_id: 2422
+  category: 108
+  page: 0
+  preview_model_id: 2108
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3165
+      unknown: 0
+    - guid: 3166
+      unknown: 0
+    - guid: 3167
+      unknown: 0
+    - guid: 3168
+      unknown: 0
+
+# Asteroid Lot
+- guid: 784
+  name_id: 4324
+  description_id: 4325
+  sort_order: 0
+  icon_set_id: 2450
+  category: 34
+  page: 0
+  preview_model_id: 2134
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3173
+      unknown: 0
+
+# Character Themed Construction Set
+- guid: 785
+  name_id: 4338
+  description_id: 4339
+  sort_order: 0
+  icon_set_id: 2427
+  category: 30
+  page: 0
+  preview_model_id: 2121
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3174
+      unknown: 0
+    - guid: 3175
+      unknown: 0
+    - guid: 3176
+      unknown: 0
+    - guid: 3177
+      unknown: 0
+    - guid: 3178
+      unknown: 0
+    - guid: 3179
+      unknown: 0
+    - guid: 3180
+      unknown: 0
+    - guid: 3181
+      unknown: 0
+    - guid: 3182
+      unknown: 0
+    - guid: 3183
+      unknown: 0
+
+# Asteroid Construction Set
+- guid: 786
+  name_id: 4350
+  description_id: 4351
+  sort_order: 0
+  icon_set_id: 2449
+  category: 30
+  page: 0
+  preview_model_id: 2132
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3184
+      unknown: 0
+    - guid: 3185
+      unknown: 0
+    - guid: 3186
+      unknown: 0
+    - guid: 3187
+      unknown: 0
+    - guid: 3188
+      unknown: 0
+    - guid: 3189
+      unknown: 0
+    - guid: 3190
+      unknown: 0
+    - guid: 3191
+      unknown: 0
+    - guid: 3192
+      unknown: 0
+    - guid: 3193
+      unknown: 0
+
+# Arc Trooper Fives Phase II
+- guid: 787
+  name_id: 4356
+  description_id: 4357
+  sort_order: 0
+  icon_set_id: 2451
+  category: 101
+  page: 0
+  preview_model_id: 2145
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3196
+      unknown: 0
+    - guid: 3197
+      unknown: 0
+    - guid: 3198
+      unknown: 0
+    - guid: 3199
+      unknown: 0
+
+# Umbaran Lot
+- guid: 788
+  name_id: 4358
+  description_id: 4359
+  sort_order: 0
+  icon_set_id: 2501
+  category: 34
+  page: 0
+  preview_model_id: 2146
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3218
+      unknown: 0
+
+# Umbaran Construction Set
+- guid: 789
+  name_id: 4360
+  description_id: 4361
+  sort_order: 0
+  icon_set_id: 2453
+  category: 30
+  page: 0
+  preview_model_id: 2199
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3208
+      unknown: 0
+    - guid: 3209
+      unknown: 0
+    - guid: 3210
+      unknown: 0
+    - guid: 3211
+      unknown: 0
+    - guid: 3212
+      unknown: 0
+    - guid: 3213
+      unknown: 0
+    - guid: 3214
+      unknown: 0
+    - guid: 3215
+      unknown: 0
+    - guid: 3216
+      unknown: 0
+    - guid: 3217
+      unknown: 0
+
+# Umbaran Vehicles Pack I
+- guid: 790
+  name_id: 4362
+  description_id: 4363
+  sort_order: 0
+  icon_set_id: 2454
+  category: 30
+  page: 0
+  preview_model_id: 2178
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3220
+      unknown: 0
+    - guid: 3221
+      unknown: 0
+
+# Gravity Well Turrets
+- guid: 791
+  name_id: 4364
+  description_id: 4365
+  sort_order: 0
+  icon_set_id: 2218
+  category: 30
+  page: 0
+  preview_model_id: 2150
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 1497
+      unknown: 0
+    - guid: 1498
+      unknown: 0
+    - guid: 1499
+      unknown: 0
+    - guid: 1500
+      unknown: 0
+    - guid: 1501
+      unknown: 0
+
+# Kix
+- guid: 792
+  name_id: 4366
+  description_id: 4367
+  sort_order: 0
+  icon_set_id: 2456
+  category: 101
+  page: 0
+  preview_model_id: 2148
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3200
+      unknown: 0
+    - guid: 3201
+      unknown: 0
+    - guid: 3202
+      unknown: 0
+    - guid: 3203
+      unknown: 0
+
+# Stairs Pack I
+- guid: 794
+  name_id: 4370
+  description_id: 4371
+  sort_order: 0
+  icon_set_id: 2494
+  category: 30
+  page: 0
+  preview_model_id: 2198
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3238
+      unknown: 0
+    - guid: 3239
+      unknown: 0
+    - guid: 3240
+      unknown: 0
+    - guid: 3241
+      unknown: 0
+    - guid: 3242
+      unknown: 0
+    - guid: 3243
+      unknown: 0
+    - guid: 3244
+      unknown: 0
+    - guid: 3245
+      unknown: 0
+
+# Commander Cody Phase II
+- guid: 795
+  name_id: 4372
+  description_id: 4373
+  sort_order: 0
+  icon_set_id: 2459
+  category: 101
+  page: 0
+  preview_model_id: 2149
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3204
+      unknown: 0
+    - guid: 3205
+      unknown: 0
+    - guid: 3206
+      unknown: 0
+    - guid: 3207
+      unknown: 0
+
+# Reprogrammed Droid Guests
+- guid: 797
+  name_id: 4376
+  description_id: 4377
+  sort_order: 0
+  icon_set_id: 2461
+  category: 30
+  page: 0
+  preview_model_id: 2180
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3227
+      unknown: 0
+    - guid: 3228
+      unknown: 0
+    - guid: 3229
+      unknown: 0
+    - guid: 3230
+      unknown: 0
+
+# Republic Vehicles Pack I
+- guid: 798
+  name_id: 4378
+  description_id: 4379
+  sort_order: 0
+  icon_set_id: 2462
+  category: 30
+  page: 0
+  preview_model_id: 2179
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3223
+      unknown: 0
+    - guid: 3224
+      unknown: 0
+    - guid: 3225
+      unknown: 0
+
+# Erial
+- guid: 799
+  name_id: 4380
+  description_id: 4381
+  sort_order: 0
+  icon_set_id: 2463
+  category: 84
+  page: 0
+  preview_model_id: 2161
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3219
+      unknown: 0
+
+# Zygerrian Ahsoka Tano
+- guid: 806
+  name_id: 4438
+  description_id: 4439
+  sort_order: 0
+  icon_set_id: 2502
+  category: 102
+  page: 0
+  preview_model_id: 2204
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3248
+      unknown: 0
+    - guid: 3249
+      unknown: 0
+
+# Zygerrian Guard
+- guid: 807
+  name_id: 4440
+  description_id: 4441
+  sort_order: 0
+  icon_set_id: 2503
+  category: 108
+  page: 0
+  preview_model_id: 2205
+  preview_animation_id: 909
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3250
+      unknown: 0
+    - guid: 3252
+      unknown: 0
+    - guid: 3253
+      unknown: 0
+    - guid: 3254
+      unknown: 0
+
+# Mon Calamari Guests
+- guid: 808
+  name_id: 4442
+  description_id: 4443
+  sort_order: 0
+  icon_set_id: 2504
+  category: 30
+  page: 0
+  preview_model_id: 2210
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3255
+      unknown: 0
+    - guid: 3256
+      unknown: 0
+    - guid: 3257
+      unknown: 0
+
+# Zygerrian Captain Rex
+- guid: 809
+  name_id: 4444
+  description_id: 4445
+  sort_order: 0
+  icon_set_id: 2505
+  category: 101
+  page: 0
+  preview_model_id: 2211
+  preview_animation_id: 906
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3258
+      unknown: 0
+    - guid: 3259
+      unknown: 0
+    - guid: 3260
+      unknown: 0
+    - guid: 3261
+      unknown: 0
+    - guid: 3262
+      unknown: 0
+
+# Republic Vehicles Pack II
+- guid: 810
+  name_id: 4446
+  description_id: 4447
+  sort_order: 0
+  icon_set_id: 2506
+  category: 30
+  page: 0
+  preview_model_id: 2209
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3263
+      unknown: 0
+    - guid: 3264
+      unknown: 0
+    - guid: 3265
+      unknown: 0
+
+# Flat Panels Pack III
+- guid: 811
+  name_id: 4448
+  description_id: 4449
+  sort_order: 0
+  icon_set_id: 2507
+  category: 30
+  page: 0
+  preview_model_id: 2218
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3268
+      unknown: 0
+    - guid: 3269
+      unknown: 0
+    - guid: 3270
+      unknown: 0
+    - guid: 3271
+      unknown: 0
+    - guid: 3272
+      unknown: 0
+    - guid: 3273
+      unknown: 0
+
+# Shadow Tech Armor
+- guid: 818
+  name_id: 4532
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 2601
+  category: 101
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3276
+      unknown: 0
+    - guid: 3277
+      unknown: 0
+    - guid: 3278
+      unknown: 0
+    - guid: 3279
+      unknown: 0
+    - guid: 3280
+      unknown: 0
+
+# Camouflaged Death Watch Armor
+- guid: 819
+  name_id: 4533
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 2602
+  category: 104
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 2487
+      unknown: 0
+    - guid: 2488
+      unknown: 0
+    - guid: 2489
+      unknown: 0
+    - guid: 2490
+      unknown: 0
+
+# R2-KT
+- guid: 821
+  name_id: 16258
+  description_id: 4477
+  sort_order: 0
+  icon_set_id: 1075
+  category: 71
+  page: 0
+  preview_model_id: 2220
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 916
+      unknown: 0
+
+# AT-RT Mount
+- guid: 835
+  name_id: 4484
+  description_id: 4487
+  sort_order: 0
+  icon_set_id: 2487
+  category: 93
+  page: 0
+  preview_model_id: 1940
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3281
+      unknown: 0
+
+# Festive Obi-Wan Kenobi
+- guid: 836
+  name_id: 4496
+  description_id: 4488
+  sort_order: 0
+  icon_set_id: 2586
+  category: 107
+  page: 0
+  preview_model_id: 2235
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3307
+      unknown: 0
+    - guid: 3308
+      unknown: 0
+    - guid: 3309
+      unknown: 0
+    - guid: 3310
+      unknown: 0
+
+# Kowakian Monkey Lizard Costumes
+- guid: 837
+  name_id: 4505
+  description_id: 4489
+  sort_order: 0
+  icon_set_id: 2527
+  category: 85
+  page: 0
+  preview_model_id: 2226
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3274
+      unknown: 0
+    - guid: 3275
+      unknown: 0
+
+# Rancor Holoprojector
+- guid: 839
+  name_id: 4499
+  description_id: 4490
+  sort_order: 0
+  icon_set_id: 2587
+  category: 21
+  page: 0
+  preview_model_id: 1713
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 2450
+      unknown: 0
+
+# Fang
+- guid: 840
+  name_id: 4500
+  description_id: 4491
+  sort_order: 0
+  icon_set_id: 2587
+  category: 84
+  page: 0
+  preview_model_id: 2228
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3100
+      unknown: 0
+
+# BR-RR
+- guid: 841
+  name_id: 4501
+  description_id: 4492
+  sort_order: 0
+  icon_set_id: 2574
+  category: 71
+  page: 0
+  preview_model_id: 2236
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3284
+      unknown: 0
+
+# Phileas
+- guid: 842
+  name_id: 4502
+  description_id: 4493
+  sort_order: 0
+  icon_set_id: 2572
+  category: 84
+  page: 0
+  preview_model_id: 2224
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3282
+      unknown: 0
+
+# Balloon Attachment
+- guid: 843
+  name_id: 4503
+  description_id: 4494
+  sort_order: 0
+  icon_set_id: 2575
+  category: 85
+  page: 0
+  preview_model_id: 2238
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3285
+      unknown: 0
+
+# Jedi Meditation Trees
+- guid: 844
+  name_id: 50641
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 2576
+  category: 30
+  page: 0
+  preview_model_id: 2229
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 3286
+      unknown: 0
+    - guid: 3287
+      unknown: 0
+
+# Barnibus
+- guid: 845
+  name_id: 50607
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 2573
+  category: 84
+  page: 0
+  preview_model_id: 2225
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3283
+      unknown: 0
+
+# Potted Galactic Plants I
+- guid: 848
+  name_id: 4554
+  description_id: 4560
+  sort_order: 0
+  icon_set_id: 2636
+  category: 30
+  page: 0
+  preview_model_id: 2258
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3319
+      unknown: 0
+    - guid: 3320
+      unknown: 0
+    - guid: 3324
+      unknown: 0
+    - guid: 3326
+      unknown: 0
+
+# Wolfpack Rocket Jetpack
+- guid: 849
+  name_id: 4555
+  description_id: 4561
+  sort_order: 0
+  icon_set_id: 2637
+  category: 101
+  page: 0
+  preview_model_id: 2259
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3329
+      unknown: 0
+
+# Warthog
+- guid: 850
+  name_id: 4556
+  description_id: 4562
+  sort_order: 0
+  icon_set_id: 2638
+  category: 101
+  page: 0
+  preview_model_id: 2260
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3331
+      unknown: 0
+
+# Lux Bonteri
+- guid: 851
+  name_id: 4557
+  description_id: 4563
+  sort_order: 0
+  icon_set_id: 2639
+  category: 109
+  page: 0
+  preview_model_id: 2261
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3332
+      unknown: 0
+    - guid: 3333
+      unknown: 0
+    - guid: 3334
+      unknown: 0
+    - guid: 3335
+      unknown: 0
+
+# Bo Katan
+- guid: 852
+  name_id: 4558
+  description_id: 4564
+  sort_order: 0
+  icon_set_id: 2640
+  category: 108
+  page: 0
+  preview_model_id: 2262
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3336
+      unknown: 0
+    - guid: 3337
+      unknown: 0
+    - guid: 3338
+      unknown: 0
+    - guid: 3339
+      unknown: 0
+
+# Mortis Guests
+- guid: 853
+  name_id: 4559
+  description_id: 4565
+  sort_order: 0
+  icon_set_id: 2641
+  category: 30
+  page: 0
+  preview_model_id: 2263
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3342
+      unknown: 0
+    - guid: 3343
+      unknown: 0
+
+# Cad Bane's Fugitive Outfit
+- guid: 856
+  name_id: 4572
+  description_id: 4578
+  sort_order: 0
+  icon_set_id: 2644
+  category: 104
+  page: 0
+  preview_model_id: 2288
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3328
+      unknown: 0
+    - guid: 3348
+      unknown: 0
+    - guid: 3349
+      unknown: 0
+    - guid: 3350
+      unknown: 0
+    - guid: 3351
+      unknown: 0
+
+# Moralo Eval's Prison Outfit
+- guid: 857
+  name_id: 4573
+  description_id: 4579
+  sort_order: 0
+  icon_set_id: 2645
+  category: 109
+  page: 0
+  preview_model_id: 2289
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3352
+      unknown: 0
+
+# Clone Trooper Guests
+- guid: 858
+  name_id: 4574
+  description_id: 4580
+  sort_order: 0
+  icon_set_id: 2646
+  category: 30
+  page: 0
+  preview_model_id: 2282
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3353
+      unknown: 0
+
+# Rako Hardeen's Fugitive Outfit
+- guid: 859
+  name_id: 4575
+  description_id: 4581
+  sort_order: 0
+  icon_set_id: 2647
+  category: 104
+  page: 0
+  preview_model_id: 2290
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3327
+      unknown: 0
+    - guid: 3354
+      unknown: 0
+    - guid: 3355
+      unknown: 0
+    - guid: 3356
+      unknown: 0
+    - guid: 3357
+      unknown: 0
+
+# Sniper Droid Holoprojector
+- guid: 860
+  name_id: 4576
+  description_id: 4582
+  sort_order: 0
+  icon_set_id: 2648
+  category: 21
+  page: 0
+  preview_model_id: 2165
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3222
+      unknown: 0
+
+# Hutt Guests
+- guid: 861
+  name_id: 4577
+  description_id: 4583
+  sort_order: 0
+  icon_set_id: 2649
+  category: 30
+  page: 0
+  preview_model_id: 2291
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3358
+      unknown: 0
+    - guid: 3359
+      unknown: 0
+
+# Marrok
+- guid: 863
+  name_id: 50866
+  description_id: 4628
+  sort_order: 0
+  icon_set_id: 2667
+  category: 84
+  page: 0
+  preview_model_id: 2293
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3366
+      unknown: 0
+
+# Twazzi
+- guid: 864
+  name_id: 4616
+  description_id: 4629
+  sort_order: 0
+  icon_set_id: 2692
+  category: 104
+  page: 0
+  preview_model_id: 2302
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3374
+      unknown: 0
+    - guid: 3375
+      unknown: 0
+    - guid: 3376
+      unknown: 0
+
+# Jynx
+- guid: 865
+  name_id: 50744
+  description_id: 4630
+  sort_order: 0
+  icon_set_id: 1341
+  category: 88
+  page: 0
+  preview_model_id: 2257
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3341
+      unknown: 0
+
+# Derrown
+- guid: 866
+  name_id: 4627
+  description_id: 4631
+  sort_order: 0
+  icon_set_id: 2693
+  category: 104
+  page: 0
+  preview_model_id: 2301
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3383
+      unknown: 0
+    - guid: 3384
+      unknown: 0
+    - guid: 3385
+      unknown: 0
+    - guid: 3386
+      unknown: 0
+
+# Felucian Lot
+- guid: 867
+  name_id: 4607
+  description_id: 4632
+  sort_order: 0
+  icon_set_id: 2694
+  category: 34
+  page: 0
+  preview_model_id: 2298
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3372
+      unknown: 0
+
+# Ghorroh
+- guid: 868
+  name_id: 50899
+  description_id: 4633
+  sort_order: 0
+  icon_set_id: 2700
+  category: 84
+  page: 0
+  preview_model_id: 2299
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3373
+      unknown: 0
+
+# Umbaran Furniture Pieces
+- guid: 869
+  name_id: 4609
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 2453
+  category: 30
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 3360
+      unknown: 0
+    - guid: 3361
+      unknown: 0
+    - guid: 3362
+      unknown: 0
+    - guid: 3363
+      unknown: 0
+    - guid: 3364
+      unknown: 0
+
+# Felucian Set
+- guid: 870
+  name_id: 4646
+  description_id: 4655
+  sort_order: 0
+  icon_set_id: 2711
+  category: 30
+  page: 0
+  preview_model_id: 2316
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3391
+      unknown: 0
+    - guid: 3392
+      unknown: 0
+    - guid: 3393
+      unknown: 0
+    - guid: 3394
+      unknown: 0
+    - guid: 3395
+      unknown: 0
+    - guid: 3396
+      unknown: 0
+    - guid: 3397
+      unknown: 0
+
+# Ithorian Guests
+- guid: 871
+  name_id: 4647
+  description_id: 4656
+  sort_order: 0
+  icon_set_id: 2712
+  category: 30
+  page: 0
+  preview_model_id: 2317
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3399
+      unknown: 0
+    - guid: 3400
+      unknown: 0
+
+# Experimental Weapons Pack
+- guid: 872
+  name_id: 4648
+  description_id: 4657
+  sort_order: 0
+  icon_set_id: 2713
+  category: 101
+  page: 0
+  preview_model_id: 2318
+  preview_animation_id: 913
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3369
+      unknown: 0
+    - guid: 3370
+      unknown: 0
+    - guid: 3371
+      unknown: 0
+
+# Galactic Potted Plants II
+- guid: 873
+  name_id: 4649
+  description_id: 4658
+  sort_order: 0
+  icon_set_id: 2714
+  category: 30
+  page: 0
+  preview_model_id: 2320
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3321
+      unknown: 0
+    - guid: 3322
+      unknown: 0
+    - guid: 3323
+      unknown: 0
+    - guid: 3325
+      unknown: 0
+
+# Klug
+- guid: 874
+  name_id: 4650
+  description_id: 4659
+  sort_order: 0
+  icon_set_id: 2131
+  category: 88
+  page: 0
+  preview_model_id: 2315
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3398
+      unknown: 0
+
+# Bounty Hunter Asajj Ventress
+- guid: 875
+  name_id: 4651
+  description_id: 4660
+  sort_order: 0
+  icon_set_id: 2715
+  category: 104
+  page: 0
+  preview_model_id: 2319
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3401
+      unknown: 0
+    - guid: 3402
+      unknown: 0
+    - guid: 3403
+      unknown: 0
+    - guid: 150039
+      unknown: 0
+
+# Boba Fett
+- guid: 876
+  name_id: 4652
+  description_id: 4661
+  sort_order: 0
+  icon_set_id: 2716
+  category: 0
+  page: 0
+  preview_model_id: 0
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items: []
+
+# Dengar
+- guid: 877
+  name_id: 4653
+  description_id: 4662
+  sort_order: 0
+  icon_set_id: 2717
+  category: 104
+  page: 0
+  preview_model_id: 2335
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3409
+      unknown: 0
+    - guid: 3410
+      unknown: 0
+    - guid: 3411
+      unknown: 0
+    - guid: 3412
+      unknown: 0
+
+# Gundark Holoprojector
+- guid: 878
+  name_id: 4654
+  description_id: 4663
+  sort_order: 0
+  icon_set_id: 2718
+  category: 21
+  page: 0
+  preview_model_id: 2334
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3405
+      unknown: 0
+
+# Sith Holocron
+- guid: 879
+  name_id: 4673
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 2733
+  category: 30
+  page: 0
+  preview_model_id: 2328
+  preview_animation_id: 0
+  is_new: false
+  for_sale: false
+  members_only: false
+  items:
+    - guid: 3404
+      unknown: 0
+
+# Quarzite Boba Fett
+- guid: 880
+  name_id: 4689
+  description_id: 4695
+  sort_order: 0
+  icon_set_id: 2743
+  category: 104
+  page: 0
+  preview_model_id: 2350
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3413
+      unknown: 0
+    - guid: 3414
+      unknown: 0
+    - guid: 3416
+      unknown: 0
+    - guid: 3417
+      unknown: 0
+    - guid: 3418
+      unknown: 0
+    - guid: 3419
+      unknown: 0
+
+# Jedi Veranda Furniture
+- guid: 881
+  name_id: 4690
+  description_id: 4696
+  sort_order: 0
+  icon_set_id: 2744
+  category: 30
+  page: 0
+  preview_model_id: 2351
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3426
+      unknown: 0
+    - guid: 3427
+      unknown: 0
+    - guid: 3428
+      unknown: 0
+    - guid: 3429
+      unknown: 0
+    - guid: 3430
+      unknown: 0
+    - guid: 3431
+      unknown: 0
+    - guid: 3432
+      unknown: 0
+
+# C-21 Highsinger Holoprojector
+- guid: 882
+  name_id: 4691
+  description_id: 4697
+  sort_order: 0
+  icon_set_id: 2745
+  category: 21
+  page: 0
+  preview_model_id: 2340
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3433
+      unknown: 0
+
+# Darth Maul Holoprojector
+- guid: 883
+  name_id: 4692
+  description_id: 4698
+  sort_order: 0
+  icon_set_id: 2746
+  category: 21
+  page: 0
+  preview_model_id: 2339
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3434
+      unknown: 0
+
+# Krismo Sodi
+- guid: 884
+  name_id: 4693
+  description_id: 4699
+  sort_order: 0
+  icon_set_id: 2747
+  category: 108
+  page: 0
+  preview_model_id: 2349
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3435
+      unknown: 0
+    - guid: 3436
+      unknown: 0
+    - guid: 3437
+      unknown: 0
+    - guid: 3438
+      unknown: 0
+
+# Plo Koon Holoprojector
+- guid: 885
+  name_id: 4694
+  description_id: 4700
+  sort_order: 0
+  icon_set_id: 2748
+  category: 21
+  page: 0
+  preview_model_id: 2341
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3439
+      unknown: 0
+
+# Quarzite Boba Fett
+- guid: 1005
+  name_id: 4689
+  description_id: 4695
+  sort_order: 0
+  icon_set_id: 2743
+  category: 91
+  page: 0
+  preview_model_id: 2350
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3413
+      unknown: 0
+    - guid: 3414
+      unknown: 0
+    - guid: 3416
+      unknown: 0
+    - guid: 3417
+      unknown: 0
+    - guid: 3418
+      unknown: 0
+    - guid: 3419
+      unknown: 0
+
+# Krismo Sodi
+- guid: 1006
+  name_id: 4693
+  description_id: 4699
+  sort_order: 0
+  icon_set_id: 2747
+  category: 91
+  page: 0
+  preview_model_id: 2349
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 3435
+      unknown: 0
+    - guid: 3436
+      unknown: 0
+    - guid: 3437
+      unknown: 0
+    - guid: 3438
+      unknown: 0
+
+# Plo Koon Holoprojector
+- guid: 1007
+  name_id: 4694
+  description_id: 4700
+  sort_order: 0
+  icon_set_id: 2748
+  category: 91
+  page: 0
+  preview_model_id: 2341
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3439
+      unknown: 0
+
+# Boosts
+- guid: 10000
+  for_sale: true
+  items:
+    - guid: 2240
+      unknown: 0
+    - guid: 2384
+      unknown: 0
+    - guid: 2385
+      unknown: 0
+
+# Shadow Tech Armor
+- guid: 818
+  name_id: 4532
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 2601
+  category: 91
+  page: 0
+  preview_model_id: 1445
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3278
+      unknown: 1
+    - guid: 3279
+      unknown: 1
+    - guid: 3277
+      unknown: 1
+    - guid: 3276
+      unknown: 1
+    - guid: 3280
+      unknown: 1
