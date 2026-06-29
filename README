@@ -1,3 +1,6 @@
-paste contents into oxide/config/zones/jeditemple
+paste contents into oxide base oxide folder
 
-next goals are to add ambient animations to all npcs as well as fill in the rest of the temple.
+Patch Contains WexToxicstinger's shop implementations, my shop npc's, and new emote/holoprojector commands in the world chat. 
+to view available commands use the "./emotes" command. 
+
+next goals are to add mind tricks, ui functionality, and ambient animations to all npcs as well as fill in the rest of the temple.
