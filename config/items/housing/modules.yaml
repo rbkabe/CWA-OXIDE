@@ -1,0 +1,54 @@
+---
+# Party Pad
+- guid: 20
+  name_id: 750
+  description_id: 14
+  icon_set_id: 1032
+  slot: !Equipment None
+  item_type: 0
+  category: 75
+  cost: 7500
+  members: true
+
+# Hidden Armory
+- guid: 22
+  name_id: 754
+  description_id: 14
+  icon_set_id: 1026
+  slot: !Equipment None
+  item_type: 0
+  category: 75
+  cost: 6000
+  members: true
+
+# Droid Destruction Room
+- guid: 23
+  name_id: 756
+  description_id: 14
+  icon_set_id: 1028
+  slot: !Equipment None
+  item_type: 0
+  category: 75
+  cost: 7500
+  members: true
+
+# Personal Hanger
+- guid: 24
+  name_id: 758
+  description_id: 14
+  icon_set_id: 1030
+  slot: !Equipment None
+  item_type: 0
+  category: 75
+  cost: 6000
+  members: true
+
+# Attack Cruiser Gunnery Room
+- guid: 1419
+  name_id: 2498
+  description_id: 2499
+  icon_set_id: 1977
+  slot: !Equipment None
+  item_type: 0
+  category: 76
+  cost: 6000

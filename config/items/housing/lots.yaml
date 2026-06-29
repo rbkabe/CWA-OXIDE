@@ -1,0 +1,80 @@
+---
+# Attack Cruiser House
+- guid: 2236
+  name_id: 32453
+  description_id: 14
+  icon_set_id: 1587
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 10000
+
+# Kamino Lot
+- guid: 2503
+  name_id: 2732
+  description_id: 14
+  icon_set_id: 2159
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Mustafar Lot
+- guid: 2702
+  name_id: 1987
+  description_id: 14
+  icon_set_id: 1751
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Ryloth Lot
+- guid: 2711
+  name_id: 33632
+  description_id: 14
+  icon_set_id: 1798
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Iceberg Three Lot
+- guid: 2892
+  name_id: 44827
+  description_id: 14
+  icon_set_id: 2133
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Asteroid Lot
+- guid: 3173
+  name_id: 1991
+  description_id: 14
+  icon_set_id: 2450
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Umbaran Lot
+- guid: 3218
+  name_id: 4358
+  description_id: 14
+  icon_set_id: 2501
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Felucian Lot
+- guid: 3372
+  name_id: 4607
+  description_id: 14
+  icon_set_id: 2694
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
