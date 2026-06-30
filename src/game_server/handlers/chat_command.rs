@@ -5,7 +5,10 @@ use crate::{
         packets::{
             chat::{MessagePayload, MessageTypeData, SendMessage},
             housing::{BuildArea, HouseInfo, HouseInstanceData, InnerInstanceData, RoomInstances},
-            player_update::{QueueAnimation, RemoveTemporaryModel, UpdateTemporaryModel},
+            player_update::{
+                AddCompositeEffectTag, PlayCompositeEffect, QueueAnimation,
+                RemoveCompositeEffectTag, RemoveTemporaryModel, UpdateTemporaryModel,
+            },
             tunnel::TunneledPacket,
             ui::{ExecuteScriptWithIntParams, ExecuteScriptWithStringParams},
             GamePacket, Name, Pos,
@@ -193,6 +196,17 @@ fn find_disguise(name: &str) -> Option<u32> {
         .map(|(_, model_id)| *model_id)
 }
 
+/// Dedicated tag_id for the ./testeffect dev command, kept distinct from
+/// ORIGIN_RESET_TAG_ID (1, character.rs) so testing a composite effect can
+/// never collide with or clobber the real "returning to origin" effect tag.
+/// Uses the same confirmed-in-production AddCompositeEffectTag/
+/// RemoveCompositeEffectTag packets (player_update.rs) and
+/// CharacterStats::composite_effect_tags map as that system - only the
+/// composite_effect_id value is unconfirmed/being tested empirically, not
+/// the packet format itself, so this doesn't violate the no-speculative-
+/// protocol-code policy.
+const TEST_EFFECT_TAG_ID: u32 = 9001;
+
 /// Weapon Moves Pack I/II command table: each entry is one
 /// individually-purchasable "Weapon Move" item (moves.yaml), the
 /// FlourishPack it belongs to (1 or 2), and which of the 3 moves in that
@@ -217,6 +231,54 @@ fn find_weapon_move(name: &str) -> Option<(u32, u8, usize)> {
         .find(|(move_name, ..)| move_name.eq_ignore_ascii_case(name))
         .map(|(_, item_guid, pack, move_index)| (*item_guid, *pack, *move_index))
 }
+
+/// Mind Trick command table: each entry is a "Mind Trick" Marketplace item
+/// (mind_tricks.yaml) and a sequence of (composite_effect_id, delay_millis)
+/// pairs. All packets in a sequence are sent together in one broadcast -
+/// delay_millis/duration_millis on PlayCompositeEffect (player_update.rs) are
+/// purely client-side playback timing, so staggering an entire effect "show"
+/// (e.g. several firework bursts going off one after another) doesn't
+/// require any server-side scheduler; the client times the rest once it has
+/// the packet. Only Fireworks has confirmed ids so far (1073-1079,
+/// empirically discovered via ./testeffect - see mind_tricks.yaml guid 565).
+/// Add the remaining tricks (Proton Torpedoes 566, Republic Cruiser 567,
+/// Orbiting Malevolence 630, Force Explosion 662, Force Glow 663, Fighter
+/// Battle 664) here once their ids are confirmed the same way.
+const MIND_TRICKS: &[(&str, u32, &[(u32, u32)])] = &[(
+    "fireworks",
+    565,
+    &[
+        (1073, 0),
+        (1074, 1200),
+        (1075, 2400),
+        (1076, 3600),
+        (1077, 4800),
+        (1078, 6000),
+        (1079, 7200),
+    ],
+)];
+
+fn find_mind_trick(name: &str) -> Option<(u32, &'static [(u32, u32)])> {
+    MIND_TRICKS
+        .iter()
+        .find(|(trick_name, ..)| trick_name.eq_ignore_ascii_case(name))
+        .map(|(_, item_guid, sequence)| (*item_guid, *sequence))
+}
+
+/// Fighter Battle Mind Trick (guid 664): a multi-ship orbiting dogfight -
+/// Starfighter (2109), Y-Wing (2110), and Vulture (2111), confirmed live as
+/// genuine "orbiting ship" effects (DeepParticle::OrbitController in the
+/// client). Unlike Fireworks, these are persistent composite effects with no
+/// built-in end timer (same family as the crate-model effects at
+/// 1050/1100/1150), so they're applied via the same
+/// AddCompositeEffectTag/composite_effect_tags mechanism ./testeffect uses,
+/// not the one-shot PlayCompositeEffect packet - and all three are added in
+/// one go (no delay field exists on AddCompositeEffectTag, so they can't be
+/// staggered even if we wanted to; they just play together). The command
+/// toggles: running it again while active removes all three tags.
+const FIGHTER_BATTLE_ITEM_GUID: u32 = 664;
+const FIGHTER_BATTLE_TAG_IDS: [u32; 3] = [9101, 9102, 9103];
+const FIGHTER_BATTLE_EFFECT_IDS: [u32; 3] = [2109, 2110, 2111];
 
 /// Looks up the Flourish animation id for the player's currently equipped
 /// weapon and the requested pack/move-index, mirroring the same
@@ -593,15 +655,302 @@ pub fn process_chat_command(
                             )]
                         }
 
+                        // Mind Tricks: each is an owned item (mind_tricks.yaml)
+                        // that plays a sequence of one-shot composite effects
+                        // (see MIND_TRICKS table above). Same ownership-gating
+                        // pattern as Weapon Moves above.
+                        name if find_mind_trick(name).is_some() => {
+                            let (required_item_guid, sequence) =
+                                find_mind_trick(name).expect("checked by guard above");
+
+                            if !player_stats.inventory.owns_item(required_item_guid) {
+                                return err(
+                                    "You haven't unlocked this mind trick yet.",
+                                );
+                            }
+
+                            let Some((_, instance_guid, chunk)) =
+                                characters_table_read_handle.index1(requester_guid)
+                            else {
+                                return err("Could not determine your current location");
+                            };
+
+                            let mut nearby_player_guids = ZoneInstance::all_players_nearby(
+                                chunk,
+                                instance_guid,
+                                characters_table_read_handle,
+                            );
+                            if !nearby_player_guids.contains(&sender) {
+                                nearby_player_guids.push(sender);
+                            }
+
+                            let pos = requester_read_handle.stats.pos;
+
+                            let packets = sequence
+                                .iter()
+                                .map(|(composite_effect_id, delay_millis)| {
+                                    GamePacket::serialize(&TunneledPacket {
+                                        unknown1: true,
+                                        inner: PlayCompositeEffect {
+                                            guid: requester_guid,
+                                            triggered_by_guid: requester_guid,
+                                            composite_effect: *composite_effect_id,
+                                            delay_millis: *delay_millis,
+                                            duration_millis: 1000,
+                                            pos,
+                                        },
+                                    })
+                                })
+                                .collect();
+
+                            vec![Broadcast::Multi(nearby_player_guids, packets)]
+                        }
+
+                        // Fighter Battle Mind Trick: persistent, toggled multi-ship
+                        // orbit effect (see FIGHTER_BATTLE_* consts above). All three
+                        // ships are added/removed together in one go, since
+                        // AddCompositeEffectTag has no delay field to stagger with.
+                        "fighterbattle" => {
+                            if !player_stats.inventory.owns_item(FIGHTER_BATTLE_ITEM_GUID) {
+                                return err(
+                                    "You haven't unlocked the Fighter Battle mind trick yet.",
+                                );
+                            }
+
+                            let Some((_, instance_guid, chunk)) =
+                                characters_table_read_handle.index1(requester_guid)
+                            else {
+                                return err("Could not determine your current location");
+                            };
+
+                            let nearby_players = ZoneInstance::all_players_nearby(
+                                chunk,
+                                instance_guid,
+                                characters_table_read_handle,
+                            );
+
+                            let mut packets = Vec::new();
+                            let is_active = requester_read_handle
+                                .stats
+                                .composite_effect_tags
+                                .contains_key(&FIGHTER_BATTLE_TAG_IDS[0]);
+
+                            if is_active {
+                                for tag_id in FIGHTER_BATTLE_TAG_IDS {
+                                    requester_read_handle
+                                        .stats
+                                        .composite_effect_tags
+                                        .remove(&tag_id);
+                                    packets.push(GamePacket::serialize(&TunneledPacket {
+                                        unknown1: true,
+                                        inner: RemoveCompositeEffectTag {
+                                            guid: requester_guid,
+                                            tag_id,
+                                        },
+                                    }));
+                                }
+                            } else {
+                                for (tag_id, composite_effect_id) in
+                                    FIGHTER_BATTLE_TAG_IDS.into_iter().zip(FIGHTER_BATTLE_EFFECT_IDS)
+                                {
+                                    requester_read_handle
+                                        .stats
+                                        .composite_effect_tags
+                                        .insert(tag_id, composite_effect_id);
+                                    packets.push(GamePacket::serialize(&TunneledPacket {
+                                        unknown1: true,
+                                        inner: AddCompositeEffectTag {
+                                            guid: requester_guid,
+                                            tag_id,
+                                            composite_effect_id,
+                                            triggered_by_guid: 0,
+                                            unknown2: 0,
+                                        },
+                                    }));
+                                }
+                            }
+
+                            vec![Broadcast::Multi(nearby_players, packets)]
+                        }
+
                         "emotes" => {
                             let mut names = EMOTES
                                 .iter()
                                 .map(|(name, _)| *name)
                                 .collect::<Vec<_>>();
                             names.extend(WEAPON_MOVES.iter().map(|(name, ..)| *name));
+                            names.extend(MIND_TRICKS.iter().map(|(name, ..)| *name));
+                            names.push("fighterbattle");
                             names.extend(DISGUISES.iter().map(|(name, _)| *name));
                             names.push("disguiseoff");
+                            names.push("testeffect");
+                            names.push("testeffectoff");
+                            names.push("testeffectnext");
+                            names.push("testeffectprev");
                             server_msg(sender, &format!("Available emotes: {}", names.join(", ")))
+                        }
+
+                        // Dev/test command: applies an arbitrary candidate composite_effect_id
+                        // to the player via the already-confirmed AddCompositeEffectTag packet,
+                        // so mind-trick effect ids (Orbiting Malevolence, Republic Cruiser,
+                        // Fighter Battle, etc.) can be determined empirically in-game rather
+                        // than guessed at in code. Usage: ./testeffect <composite_effect_id>
+                        "testeffect" => {
+                            let Some(id_arg) = arguments.get(1) else {
+                                return err("Usage: ./testeffect <composite_effect_id>");
+                            };
+
+                            let Ok(composite_effect_id) = id_arg.parse::<u32>() else {
+                                return err(&format!("Invalid effect id: {id_arg}"));
+                            };
+
+                            let Some((_, instance_guid, chunk)) =
+                                characters_table_read_handle.index1(requester_guid)
+                            else {
+                                return err("Could not determine your current location");
+                            };
+
+                            let nearby_players = ZoneInstance::all_players_nearby(
+                                chunk,
+                                instance_guid,
+                                characters_table_read_handle,
+                            );
+
+                            let mut packets = Vec::new();
+                            if requester_read_handle
+                                .stats
+                                .composite_effect_tags
+                                .contains_key(&TEST_EFFECT_TAG_ID)
+                            {
+                                packets.push(GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: RemoveCompositeEffectTag {
+                                        guid: requester_guid,
+                                        tag_id: TEST_EFFECT_TAG_ID,
+                                    },
+                                }));
+                            }
+
+                            requester_read_handle
+                                .stats
+                                .composite_effect_tags
+                                .insert(TEST_EFFECT_TAG_ID, composite_effect_id);
+                            packets.push(GamePacket::serialize(&TunneledPacket {
+                                unknown1: true,
+                                inner: AddCompositeEffectTag {
+                                    guid: requester_guid,
+                                    tag_id: TEST_EFFECT_TAG_ID,
+                                    composite_effect_id,
+                                    triggered_by_guid: 0,
+                                    unknown2: 0,
+                                },
+                            }));
+
+                            vec![Broadcast::Multi(nearby_players, packets)]
+                        }
+
+                        // Clears whatever effect ./testeffect last applied.
+                        "testeffectoff" => {
+                            let Some((_, instance_guid, chunk)) =
+                                characters_table_read_handle.index1(requester_guid)
+                            else {
+                                return err("Could not determine your current location");
+                            };
+
+                            let nearby_players = ZoneInstance::all_players_nearby(
+                                chunk,
+                                instance_guid,
+                                characters_table_read_handle,
+                            );
+
+                            if requester_read_handle
+                                .stats
+                                .composite_effect_tags
+                                .remove(&TEST_EFFECT_TAG_ID)
+                                .is_none()
+                            {
+                                return err("No test effect is currently active.");
+                            }
+
+                            vec![Broadcast::Multi(
+                                nearby_players,
+                                vec![GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: RemoveCompositeEffectTag {
+                                        guid: requester_guid,
+                                        tag_id: TEST_EFFECT_TAG_ID,
+                                    },
+                                })],
+                            )]
+                        }
+
+                        // Steps the active test effect id up/down by 1 from whatever
+                        // ./testeffect last applied (read back out of composite_effect_tags),
+                        // so a range can be scanned by repeatedly running one short command
+                        // instead of retyping a new id each time. Reports the new id back to
+                        // the player via chat so they know what they're currently looking at.
+                        "testeffectnext" | "testeffectprev" => {
+                            let current_id = requester_read_handle
+                                .stats
+                                .composite_effect_tags
+                                .get(&TEST_EFFECT_TAG_ID)
+                                .copied()
+                                .unwrap_or(0);
+
+                            let composite_effect_id = if cmd == "testeffectnext" {
+                                current_id.saturating_add(1)
+                            } else {
+                                current_id.saturating_sub(1)
+                            };
+
+                            let Some((_, instance_guid, chunk)) =
+                                characters_table_read_handle.index1(requester_guid)
+                            else {
+                                return err("Could not determine your current location");
+                            };
+
+                            let nearby_players = ZoneInstance::all_players_nearby(
+                                chunk,
+                                instance_guid,
+                                characters_table_read_handle,
+                            );
+
+                            let mut packets = Vec::new();
+                            if requester_read_handle
+                                .stats
+                                .composite_effect_tags
+                                .contains_key(&TEST_EFFECT_TAG_ID)
+                            {
+                                packets.push(GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: RemoveCompositeEffectTag {
+                                        guid: requester_guid,
+                                        tag_id: TEST_EFFECT_TAG_ID,
+                                    },
+                                }));
+                            }
+
+                            requester_read_handle
+                                .stats
+                                .composite_effect_tags
+                                .insert(TEST_EFFECT_TAG_ID, composite_effect_id);
+                            packets.push(GamePacket::serialize(&TunneledPacket {
+                                unknown1: true,
+                                inner: AddCompositeEffectTag {
+                                    guid: requester_guid,
+                                    tag_id: TEST_EFFECT_TAG_ID,
+                                    composite_effect_id,
+                                    triggered_by_guid: 0,
+                                    unknown2: 0,
+                                },
+                            }));
+
+                            let mut broadcasts = vec![Broadcast::Multi(nearby_players, packets)];
+                            broadcasts.extend(server_msg(
+                                sender,
+                                &format!("Test effect id: {composite_effect_id}"),
+                            ));
+                            broadcasts
                         }
 
                         "disguiseoff" => {
