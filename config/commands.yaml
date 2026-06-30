@@ -184,6 +184,16 @@ commands:
     usage: "./weaponmovethrow"
     permission_level: Emissary
 
+  fireworks:
+    description: "Plays the Fireworks Mind Trick: a staggered sequence of firework burst effects. Requires owning the Fireworks Mind Trick item."
+    usage: "./fireworks"
+    permission_level: Emissary
+
+  fighterbattle:
+    description: "Toggles the Fighter Battle Mind Trick: a persistent orbiting Starfighter/Y-Wing/Vulture dogfight, all three playing simultaneously. Run again to turn it off. Requires owning the Fighter Battle Mind Trick item."
+    usage: "./fighterbattle"
+    permission_level: Emissary
+
   dance1:
     description: "Plays dance 1."
     usage: "./dance1"
@@ -457,6 +467,26 @@ commands:
   disguiseoff:
     description: "Reverts you to your default Clone Male test-character appearance, undoing any disguise."
     usage: "./disguiseoff"
+    permission_level: Emissary
+
+  testeffect:
+    description: "Dev tool: applies a candidate composite_effect_id to you via AddCompositeEffectTag, for empirically determining unconfirmed mind-trick effect ids (Orbiting Malevolence, Republic Cruiser, Fighter Battle, etc.)."
+    usage: "./testeffect <composite_effect_id>"
+    permission_level: Emissary
+
+  testeffectoff:
+    description: "Clears whatever composite effect ./testeffect last applied."
+    usage: "./testeffectoff"
+    permission_level: Emissary
+
+  testeffectnext:
+    description: "Dev tool: steps the active ./testeffect id up by 1 and reports the new id in chat, for quickly scanning a range of composite_effect_ids."
+    usage: "./testeffectnext"
+    permission_level: Emissary
+
+  testeffectprev:
+    description: "Dev tool: steps the active ./testeffect id down by 1 and reports the new id in chat."
+    usage: "./testeffectprev"
     permission_level: Emissary
 
   trooperacknowledge:
