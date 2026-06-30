@@ -800,6 +800,7 @@
   item_type: 1
   category: 64
   cost: 3000
+  composite_effect: 3000
   action_bar:
     ability_keys:
       - "cryo_cannon"
@@ -818,6 +819,7 @@
   item_type: 1
   category: 64
   cost: 3000
+  composite_effect: 3001
   action_bar:
     ability_keys:
       - "plasma_thrower"
