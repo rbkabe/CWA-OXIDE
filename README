@@ -1,6 +1,7 @@
 paste contents into oxide base oxide folder
 
-Patch Contains WexToxicstinger's shop implementations, my shop npc's, and new emote/holoprojector commands in the world chat. 
+Patch Contains WexToxicstinger's shop implementations, my shop npc's, and new emote/holoprojector/mind trick commands in the world chat. 
 to view available commands use the "./emotes" command. 
 
-next goals are to add mind tricks, ui functionality, and ambient animations to all npcs as well as fill in the rest of the temple.
+at this point I think I have every single emote added besides one or 2, all holoprojectors and mindtricks are there.
+next goals: ui functionality, and ambient animations to all npcs as well as fill in the rest of the temple.
