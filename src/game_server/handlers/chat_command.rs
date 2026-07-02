@@ -58,55 +58,61 @@ use super::{
 ///   them. Patched Char_CloneHead.adr to add these 11 slot entries, pointing
 ///   at the existing Char_HumanMaleHead_*.gr2 clips (no clone-specific clips
 ///   exist to author from). Untested in-game until now.
-const EMOTES: &[(&str, i32)] = &[
-    ("bow", 3001),
-    ("charge", 3018),
-    ("cry", 3002),
-    ("drink", 3013),
-    ("fistpump", 3003),
-    ("flankleft", 3021),
-    ("flankright", 3020),
-    ("forcejuggle", 3016),
-    ("forcelift", 3014),
-    ("forcemeditate", 3017),
-    ("forcepush", 3015),
-    ("facepalm", 3004),
-    ("headshake", 3005),
-    ("hitthedeck", 3023),
-    ("laugh", 3006),
-    ("nod", 3007),
-    ("nodyes", 3008),
-    ("point", 3009),
-    ("retreat", 3022),
-    ("rtl", 3019),
-    ("threaten", 3010),
-    ("tusken", 3012),
-    ("wave", 3011),
+/// (command, animation_id, emote_effect)
+/// emote_effect: if Some, a PlayCompositeEffect packet is also sent alongside
+/// the animation. The tuple is (composite_effect_id, delay_millis,
+/// forward_offset, y_offset, right_offset) where forward_offset projects along
+/// rot.x/rot.z (facing direction), right_offset projects along the
+/// perpendicular right vector (rot.z, -rot.x), and y_offset shifts up/down.
+const EMOTES: &[(&str, i32, Option<(u32, u32, f32, f32, f32)>)] = &[
+    ("bow", 3001, None),
+    ("charge", 3018, None),
+    ("cry", 3002, None),
+    ("drink", 3013, None),
+    ("fistpump", 3003, None),
+    ("flankleft", 3021, None),
+    ("flankright", 3020, None),
+    ("forcejuggle", 3016, None),
+    ("forcelift", 3014, None),
+    ("forcemeditate", 3017, None),
+    ("forcepush", 3015, Some((2085, 0, 1.5, 1.75, -0.2))),
+    ("facepalm", 3004, None),
+    ("headshake", 3005, None),
+    ("hitthedeck", 3023, None),
+    ("laugh", 3006, None),
+    ("nod", 3007, None),
+    ("nodyes", 3008, None),
+    ("point", 3009, None),
+    ("retreat", 3022, None),
+    ("rtl", 3019, None),
+    ("threaten", 3010, None),
+    ("tusken", 3012, None),
+    ("wave", 3011, None),
     // Dances: confirmed clip mappings exist for the clone head model (see
     // notes above). Confirmed working in-game.
-    ("dance1", 3101),
-    ("dance2", 3102),
-    ("dance3", 3103),
-    ("dancebad", 3104),
-    ("dancerunningman", 3105),
+    ("dance1", 3101, None),
+    ("dance2", 3102, None),
+    ("dance3", 3103, None),
+    ("dancebad", 3104, None),
+    ("dancerunningman", 3105, None),
     // DancePack2/DancePack3/GunganStyle: confirmed working in-game.
     // Move1/2/3 clip order is Sprinkler/Shuffle/BeyonceNew, not
     // Diva/Shuffle/Sprinkler as the shop item names misleadingly suggest
     // ("Diva" = the Beyonce-themed clip) - command names match the actual
     // clip played, confirmed by in-game testing.
-    ("dancestrut", 3106),
-    ("dancecomeback", 3107),
-    ("danceshudder", 3108),
-    ("dancesprinkler", 3109),
-    ("danceshuffle", 3110),
-    ("dancediva", 3111),
-    ("dancegungan", 3113),
+    ("dancestrut", 3106, None),
+    ("dancecomeback", 3107, None),
+    ("danceshudder", 3108, None),
+    ("dancesprinkler", 3109, None),
+    ("danceshuffle", 3110, None),
+    ("dancediva", 3111, None),
+    ("dancegungan", 3113, None),
     // Handheld Holoprojectors: just patched into Char_CloneHead.adr (see
     // notes above). Untested in-game until now.
-    ("holocody", 3501),
-    ("holoyoda", 3502),
-    ("holoanakin", 3503),
-    ("holomacewindu", 3504),
+    ("holocody", 3501, None),
+    ("holoyoda", 3502, None),
+    ("holoanakin", 3503, None),
+    ("holomacewindu", 3504, None),
     // Battle Class Emotes (3602-3613, "Classes" branch in AnimationTypes.xml).
     // These are normally meant to be gated by the player's battle class
     // (Trooper/Jedi/Sith/Merc each get their own 3), but there's no
@@ -114,25 +120,25 @@ const EMOTES: &[(&str, i32)] = &[
     // unconditionally available to whoever types the command - so exposing
     // these to every class for now is just a matter of listing them; nothing
     // to bypass. Revisit if/when battle classes get a real restriction system.
-    ("trooperacknowledge", 3602),
-    ("troopermandown", 3603),
-    ("transmissionreceived", 3604),
-    ("jediforcepound", 3605),
-    ("jedihandstand", 3606),
-    ("jedimeditate", 3607),
-    ("sithforcelightning", 3608),
-    ("sithrage", 3609),
-    ("sithseeth", 3610),
-    ("mercbarter", 3611),
-    ("mercintimidate", 3612),
-    ("mercpunch", 3613),
+    ("trooperacknowledge", 3602, None),
+    ("troopermandown", 3603, None),
+    ("transmissionreceived", 3604, None),
+    ("jediforcepound", 3605, Some((1752, 500, 2.0, 0.0, -0.3))),
+    ("jedihandstand", 3606, None),
+    ("jedimeditate", 3607, None),
+    ("sithforcelightning", 3608, None),
+    ("sithrage", 3609, None),
+    ("sithseeth", 3610, None),
+    ("mercbarter", 3611, None),
+    ("mercintimidate", 3612, None),
+    ("mercpunch", 3613, None),
 ];
 
-fn find_emote(name: &str) -> Option<i32> {
+fn find_emote(name: &str) -> Option<(i32, Option<(u32, u32, f32, f32, f32)>)> {
     EMOTES
         .iter()
-        .find(|(emote_name, _)| emote_name.eq_ignore_ascii_case(name))
-        .map(|(_, id)| *id)
+        .find(|(emote_name, ..)| emote_name.eq_ignore_ascii_case(name))
+        .map(|(_, animation_id, emote_effect)| (*animation_id, *emote_effect))
 }
 
 /// Holoprojector "disguise" command table: each entry is a non-handheld
@@ -232,53 +238,69 @@ fn find_weapon_move(name: &str) -> Option<(u32, u8, usize)> {
         .map(|(_, item_guid, pack, move_index)| (*item_guid, *pack, *move_index))
 }
 
-/// Mind Trick command table: each entry is a "Mind Trick" Marketplace item
-/// (mind_tricks.yaml) and a sequence of (composite_effect_id, delay_millis)
+/// One-shot Mind Trick command table: each entry is a "Mind Trick" Marketplace
+/// item (mind_tricks.yaml) and a sequence of (composite_effect_id, delay_millis)
 /// pairs. All packets in a sequence are sent together in one broadcast -
 /// delay_millis/duration_millis on PlayCompositeEffect (player_update.rs) are
 /// purely client-side playback timing, so staggering an entire effect "show"
-/// (e.g. several firework bursts going off one after another) doesn't
-/// require any server-side scheduler; the client times the rest once it has
-/// the packet. Only Fireworks has confirmed ids so far (1073-1079,
-/// empirically discovered via ./testeffect - see mind_tricks.yaml guid 565).
-/// Add the remaining tricks (Proton Torpedoes 566, Republic Cruiser 567,
-/// Orbiting Malevolence 630, Force Explosion 662, Force Glow 663, Fighter
-/// Battle 664) here once their ids are confirmed the same way.
-const MIND_TRICKS: &[(&str, u32, &[(u32, u32)])] = &[(
-    "fireworks",
-    565,
-    &[
-        (1073, 0),
-        (1074, 1200),
-        (1075, 2400),
-        (1076, 3600),
-        (1077, 4800),
-        (1078, 6000),
-        (1079, 7200),
-    ],
-)];
+/// (e.g. several firework bursts going off one after another) doesn't require
+/// any server-side scheduler; the client times the rest once it has the packet.
+/// (command, item_guid, animation_id, effect_offset, sequence)
+/// animation_id: if Some, a QueueAnimation packet is also sent alongside the
+/// composite effect — used by forcepushtrick to play the force push animation.
+/// effect_offset: (forward_offset, y_offset, right_offset) applied to the
+/// player's pos when spawning the composite effect. forward_offset projects
+/// along rot.x/rot.z; right_offset projects along the perpendicular right
+/// vector (rot.z, -rot.x).
+const MIND_TRICKS: &[(&str, u32, Option<i32>, (f32, f32, f32), &[(u32, u32)])] = &[
+    (
+        "fireworks",
+        565,
+        None,
+        (0.0, 0.0, 0.0),
+        &[
+            (1073, 0),
+            (1074, 1200),
+            (1075, 2400),
+            (1076, 3600),
+            (1077, 4800),
+            (1078, 6000),
+            (1079, 7200),
+        ],
+    ),
+    ("forceexplosion", 662, Some(3605), (2.0, 0.0, -0.3), &[(1752, 500)]),
+    ("forcepushtrick", 2084, Some(3015), (1.5, 1.75, -0.2), &[(2114, 0)]),
+];
 
-fn find_mind_trick(name: &str) -> Option<(u32, &'static [(u32, u32)])> {
+fn find_mind_trick(name: &str) -> Option<(u32, Option<i32>, (f32, f32, f32), &'static [(u32, u32)])> {
     MIND_TRICKS
         .iter()
         .find(|(trick_name, ..)| trick_name.eq_ignore_ascii_case(name))
-        .map(|(_, item_guid, sequence)| (*item_guid, *sequence))
+        .map(|(_, item_guid, animation_id, effect_offset, sequence)| {
+            (*item_guid, *animation_id, *effect_offset, *sequence)
+        })
 }
 
-/// Fighter Battle Mind Trick (guid 664): a multi-ship orbiting dogfight -
-/// Starfighter (2109), Y-Wing (2110), and Vulture (2111), confirmed live as
-/// genuine "orbiting ship" effects (DeepParticle::OrbitController in the
-/// client). Unlike Fireworks, these are persistent composite effects with no
-/// built-in end timer (same family as the crate-model effects at
-/// 1050/1100/1150), so they're applied via the same
-/// AddCompositeEffectTag/composite_effect_tags mechanism ./testeffect uses,
-/// not the one-shot PlayCompositeEffect packet - and all three are added in
-/// one go (no delay field exists on AddCompositeEffectTag, so they can't be
-/// staggered even if we wanted to; they just play together). The command
-/// toggles: running it again while active removes all three tags.
-const FIGHTER_BATTLE_ITEM_GUID: u32 = 664;
-const FIGHTER_BATTLE_TAG_IDS: [u32; 3] = [9101, 9102, 9103];
-const FIGHTER_BATTLE_EFFECT_IDS: [u32; 3] = [2109, 2110, 2111];
+/// Persistent Mind Trick command table: orbit/loop effects that stay active
+/// until dismissed. Each toggles via AddCompositeEffectTag/RemoveCompositeEffectTag
+/// (same mechanism as ./testeffect). Running the command again while active
+/// dismisses the effect. Tag IDs are in the 9100+ range (9001 is reserved for
+/// ./testeffect).
+const PERSISTENT_MIND_TRICKS: &[(&str, u32, u32, u32)] = &[
+    // (command, item_guid, composite_effect_id, tag_id)
+    ("protontorpedoes", 566, 1715, 9101),
+    ("fighterbattle", 664, 1789, 9102),
+    ("republiccruiser", 567, 1716, 9103),
+    ("malevolence", 630, 1730, 9104),
+    ("forceglow", 663, 1793, 9105),
+];
+
+fn find_persistent_mind_trick(name: &str) -> Option<(u32, u32, u32)> {
+    PERSISTENT_MIND_TRICKS
+        .iter()
+        .find(|(trick_name, ..)| trick_name.eq_ignore_ascii_case(name))
+        .map(|(_, item_guid, effect_id, tag_id)| (*item_guid, *effect_id, *tag_id))
+}
 
 /// Looks up the Flourish animation id for the player's currently equipped
 /// weapon and the requested pack/move-index, mirroring the same
@@ -660,7 +682,7 @@ pub fn process_chat_command(
                         // (see MIND_TRICKS table above). Same ownership-gating
                         // pattern as Weapon Moves above.
                         name if find_mind_trick(name).is_some() => {
-                            let (required_item_guid, sequence) =
+                            let (required_item_guid, animation_id, effect_offset, sequence) =
                                 find_mind_trick(name).expect("checked by guard above");
 
                             if !player_stats.inventory.owns_item(required_item_guid) {
@@ -685,8 +707,16 @@ pub fn process_chat_command(
                             }
 
                             let pos = requester_read_handle.stats.pos;
+                            let rot = requester_read_handle.stats.rot;
+                            let (forward_offset, y_offset, right_offset) = effect_offset;
+                            let effect_pos = Pos {
+                                x: pos.x + rot.x * forward_offset + rot.z * right_offset,
+                                y: pos.y + y_offset,
+                                z: pos.z + rot.z * forward_offset - rot.x * right_offset,
+                                w: pos.w,
+                            };
 
-                            let packets = sequence
+                            let mut packets: Vec<Vec<u8>> = sequence
                                 .iter()
                                 .map(|(composite_effect_id, delay_millis)| {
                                     GamePacket::serialize(&TunneledPacket {
@@ -697,24 +727,36 @@ pub fn process_chat_command(
                                             composite_effect: *composite_effect_id,
                                             delay_millis: *delay_millis,
                                             duration_millis: 1000,
-                                            pos,
+                                            pos: effect_pos,
                                         },
                                     })
                                 })
                                 .collect();
 
+                            if let Some(anim_id) = animation_id {
+                                packets.push(GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: QueueAnimation {
+                                        character_guid: requester_guid,
+                                        animation_id: anim_id,
+                                        queue_pos: 0,
+                                        delay_seconds: 0.0,
+                                        duration_seconds: 2.0,
+                                    },
+                                }));
+                            }
+
                             vec![Broadcast::Multi(nearby_player_guids, packets)]
                         }
 
-                        // Fighter Battle Mind Trick: persistent, toggled multi-ship
-                        // orbit effect (see FIGHTER_BATTLE_* consts above). All three
-                        // ships are added/removed together in one go, since
-                        // AddCompositeEffectTag has no delay field to stagger with.
-                        "fighterbattle" => {
-                            if !player_stats.inventory.owns_item(FIGHTER_BATTLE_ITEM_GUID) {
-                                return err(
-                                    "You haven't unlocked the Fighter Battle mind trick yet.",
-                                );
+                        // Persistent Mind Tricks: orbit/loop effects that toggle on/off.
+                        // See PERSISTENT_MIND_TRICKS table above.
+                        name if find_persistent_mind_trick(name).is_some() => {
+                            let (required_item_guid, composite_effect_id, tag_id) =
+                                find_persistent_mind_trick(name).expect("checked by guard above");
+
+                            if !player_stats.inventory.owns_item(required_item_guid) {
+                                return err("You haven't unlocked this mind trick yet.");
                             }
 
                             let Some((_, instance_guid, chunk)) =
@@ -733,41 +775,35 @@ pub fn process_chat_command(
                             let is_active = requester_read_handle
                                 .stats
                                 .composite_effect_tags
-                                .contains_key(&FIGHTER_BATTLE_TAG_IDS[0]);
+                                .contains_key(&tag_id);
 
                             if is_active {
-                                for tag_id in FIGHTER_BATTLE_TAG_IDS {
-                                    requester_read_handle
-                                        .stats
-                                        .composite_effect_tags
-                                        .remove(&tag_id);
-                                    packets.push(GamePacket::serialize(&TunneledPacket {
-                                        unknown1: true,
-                                        inner: RemoveCompositeEffectTag {
-                                            guid: requester_guid,
-                                            tag_id,
-                                        },
-                                    }));
-                                }
+                                requester_read_handle
+                                    .stats
+                                    .composite_effect_tags
+                                    .remove(&tag_id);
+                                packets.push(GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: RemoveCompositeEffectTag {
+                                        guid: requester_guid,
+                                        tag_id,
+                                    },
+                                }));
                             } else {
-                                for (tag_id, composite_effect_id) in
-                                    FIGHTER_BATTLE_TAG_IDS.into_iter().zip(FIGHTER_BATTLE_EFFECT_IDS)
-                                {
-                                    requester_read_handle
-                                        .stats
-                                        .composite_effect_tags
-                                        .insert(tag_id, composite_effect_id);
-                                    packets.push(GamePacket::serialize(&TunneledPacket {
-                                        unknown1: true,
-                                        inner: AddCompositeEffectTag {
-                                            guid: requester_guid,
-                                            tag_id,
-                                            composite_effect_id,
-                                            triggered_by_guid: 0,
-                                            unknown2: 0,
-                                        },
-                                    }));
-                                }
+                                requester_read_handle
+                                    .stats
+                                    .composite_effect_tags
+                                    .insert(tag_id, composite_effect_id);
+                                packets.push(GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: AddCompositeEffectTag {
+                                        guid: requester_guid,
+                                        tag_id,
+                                        composite_effect_id,
+                                        triggered_by_guid: 0,
+                                        unknown2: 0,
+                                    },
+                                }));
                             }
 
                             vec![Broadcast::Multi(nearby_players, packets)]
@@ -776,11 +812,11 @@ pub fn process_chat_command(
                         "emotes" => {
                             let mut names = EMOTES
                                 .iter()
-                                .map(|(name, _)| *name)
+                                .map(|(name, ..)| *name)
                                 .collect::<Vec<_>>();
                             names.extend(WEAPON_MOVES.iter().map(|(name, ..)| *name));
                             names.extend(MIND_TRICKS.iter().map(|(name, ..)| *name));
-                            names.push("fighterbattle");
+                            names.extend(PERSISTENT_MIND_TRICKS.iter().map(|(name, ..)| *name));
                             names.extend(DISGUISES.iter().map(|(name, _)| *name));
                             names.push("disguiseoff");
                             names.push("testeffect");
@@ -1035,7 +1071,8 @@ pub fn process_chat_command(
                         // commands.yaml (./wave, ./bow, ./laugh, etc.) - looked up by name
                         // in the EMOTES table rather than duplicated per command.
                         name if find_emote(name).is_some() => {
-                            let animation_id = find_emote(name).expect("checked by guard above");
+                            let (animation_id, emote_effect) =
+                                find_emote(name).expect("checked by guard above");
 
                             let Some((_, instance_guid, chunk)) =
                                 characters_table_read_handle.index1(requester_guid)
@@ -1052,19 +1089,41 @@ pub fn process_chat_command(
                                 nearby_player_guids.push(sender);
                             }
 
-                            vec![Broadcast::Multi(
-                                nearby_player_guids,
-                                vec![GamePacket::serialize(&TunneledPacket {
+                            let pos = requester_read_handle.stats.pos;
+                            let rot = requester_read_handle.stats.rot;
+
+                            let mut packets = vec![GamePacket::serialize(&TunneledPacket {
+                                unknown1: true,
+                                inner: QueueAnimation {
+                                    character_guid: requester_guid,
+                                    animation_id,
+                                    queue_pos: 0,
+                                    delay_seconds: 0.0,
+                                    duration_seconds: 2.0,
+                                },
+                            })];
+
+                            if let Some((composite_effect_id, delay_millis, forward_offset, y_offset, right_offset)) = emote_effect {
+                                let effect_pos = Pos {
+                                    x: pos.x + rot.x * forward_offset + rot.z * right_offset,
+                                    y: pos.y + y_offset,
+                                    z: pos.z + rot.z * forward_offset - rot.x * right_offset,
+                                    w: pos.w,
+                                };
+                                packets.push(GamePacket::serialize(&TunneledPacket {
                                     unknown1: true,
-                                    inner: QueueAnimation {
-                                        character_guid: requester_guid,
-                                        animation_id,
-                                        queue_pos: 0,
-                                        delay_seconds: 0.0,
-                                        duration_seconds: 2.0,
+                                    inner: PlayCompositeEffect {
+                                        guid: requester_guid,
+                                        triggered_by_guid: requester_guid,
+                                        composite_effect: composite_effect_id,
+                                        delay_millis,
+                                        duration_millis: 1000,
+                                        pos: effect_pos,
                                     },
-                                })],
-                            )]
+                                }));
+                            }
+
+                            vec![Broadcast::Multi(nearby_player_guids, packets)]
                         }
 
                         _ => {
