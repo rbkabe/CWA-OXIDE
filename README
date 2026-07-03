@@ -4,5 +4,5 @@ most recent changes: ambient_npcs.yaml (jedi temple) dialogs.yaml (jedi temple),
 Patch Contains WexToxicstinger's shop implementations, my shop npc's, and new emote/holoprojector/mind trick commands in the world chat. 
 to view available commands use the "./emotes" command. 
 
-at this point I think I have every single emote added besides one or 2, all holoprojectors and mindtricks are there.
+at this point I think I have every single emote fully functioning besides one or 2, all holoprojectors and mindtricks are there.
 next goals: ui functionality, and ambient animations to all npcs as well as fill in the rest of the temple.
