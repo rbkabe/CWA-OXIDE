@@ -1,5 +1,5 @@
 paste contents into oxide base oxide folder
-most recent changes: ambient_npcs.yaml (jedi temple) dialogs.yaml (jedi temple), chat_commands.rs , commands.yaml
+most recent changes: ambient_npcs.yaml (jedi temple) dialogs.yaml (jedi temple), weapons.yaml, chat_commands.rs , commands.yaml
 
 Patch Contains WexToxicstinger's shop implementations, my shop npc's, and new emote/holoprojector/mind trick commands in the world chat. 
 to view available commands use the "./emotes" command. 
