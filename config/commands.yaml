@@ -39,6 +39,15 @@ commands:
       - "Disable freecam before changing zones to avoid crashes."
       - "Enabling freecam on your lot will prevent you from editing it until you rejoin."
 
+  favor:
+    description: "Set 1-4 favorite emote slots used by the Actions window quick-slots."
+    usage: "./favor <emote1> [emote2] [emote3] [emote4]"
+    permission_level: Emissary
+    notes:
+      - "Slot order matches the Actions window slots (left to right)."
+      - "Use any emote name from ./emotes (e.g. ./favor bow wave nod laugh)."
+      - "Click a slot in the Actions window after running this command to play the emote."
+
   emotes:
     description: "Lists all available emote commands."
     usage: "./emotes"
