@@ -20,6 +20,7 @@ use handlers::clicked_location::process_clicked_location;
 use handlers::command::process_command;
 use handlers::guid::{GuidTable, GuidTableIndexer, IndexedGuid};
 use handlers::housing::process_housing_packet;
+use handlers::quick_chat::process_quick_chat_packet;
 use handlers::inventory::{
     customizations_from_guids, load_customization_item_mappings, load_customizations,
     load_default_sabers, process_inventory_packet, update_player_equipped_items, DefaultSaber,
@@ -35,7 +36,8 @@ use handlers::minigame::{
     AllMinigameConfigs,
 };
 use handlers::mount::{load_mounts, process_mount_packet, MountConfig};
-use handlers::reference_data::{load_categories, load_item_classes, load_item_groups};
+use handlers::reference_data::{load_categories, load_item_classes, load_item_groups, load_quick_chats};
+use packets::quick_chat::{QuickChatDefinition, QuickChatDefinitions};
 use handlers::social::process_social_packet;
 use handlers::store::{process_store_packet, CostEntry};
 use handlers::test_data::make_test_nameplate_image;
@@ -57,7 +59,7 @@ use packets::player_update::{Customization, InitCustomizations, QueueAnimation, 
 use packets::reference_data::{CategoryDefinitions, ItemClassDefinitions, ItemGroupDefinitions};
 use packets::store::StoreItemList;
 use packets::tunnel::{TunneledPacket, TunneledWorldPacket};
-use packets::ui_interactions::UiInteraction;
+use packets::ui_interactions::{SetFavoritesPacket, UiInteraction};
 use packets::update_position::{PlayerJump, UpdatePlayerPlatformPos, UpdatePlayerPos};
 use packets::zone::PointOfInterestTeleportRequest;
 use packets::{GamePacket, OpCode};
@@ -199,6 +201,7 @@ pub struct GameServer {
     item_groups: ItemGroupDefinitions,
     minigames: AllMinigameConfigs,
     mounts: BTreeMap<u32, MountConfig>,
+    quick_chats: Vec<QuickChatDefinition>,
     navmeshes: HashMap<String, (Navmesh, Collision)>,
     points_of_interest: BTreeMap<u32, (u8, PointOfInterestConfig)>,
     start_time: Instant,
@@ -229,6 +232,7 @@ impl GameServer {
             },
             minigames: load_all_minigames(config_dir)?,
             mounts: load_mounts(config_dir)?,
+            quick_chats: load_quick_chats(config_dir)?,
             navmeshes: load_navmeshes(config_dir)?,
             points_of_interest,
             start_time: Instant::now(),
@@ -437,6 +441,14 @@ impl GameServer {
                     };
                     sender_only_packets.push(GamePacket::serialize(&item_groups));
 
+                    let quick_chats = TunneledPacket {
+                        unknown1: true,
+                        inner: GamePacket::serialize(&QuickChatDefinitions {
+                            definitions: self.quick_chats.clone(),
+                        }),
+                    };
+                    sender_only_packets.push(GamePacket::serialize(&quick_chats));
+
                     let store_items = TunneledPacket {
                         unknown1: true,
                         inner: GamePacket::serialize(&StoreItemList::from(&self.costs)),
@@ -600,6 +612,28 @@ impl GameServer {
                                             );
                                             equip_broadcasts.pop();
                                             character_broadcasts.append(&mut equip_broadcasts);
+
+                                            // Replay any CollectionStart/AddEntry packets so the
+                                            // Collections window populates after zone changes
+                                            // within the same server session.
+                                            crate::info!(
+                                                "ClientIsReady {sender}: collection_replay has {} packets ({}b total)",
+                                                player.collection_replay.len(),
+                                                player.collection_replay.iter().map(|p| p.len()).sum::<usize>()
+                                            );
+                                            if !player.collection_replay.is_empty() {
+                                                for (i, pkt) in player.collection_replay.iter().enumerate() {
+                                                    crate::info!(
+                                                        "  collection_replay[{i}]: {}b  hex={}",
+                                                        pkt.len(),
+                                                        pkt.iter().map(|b| format!("{b:02x}")).collect::<Vec<_>>().join(" ")
+                                                    );
+                                                }
+                                                character_broadcasts.push(Broadcast::Single(
+                                                    sender,
+                                                    player.collection_replay.clone(),
+                                                ));
+                                            }
                                         }
 
                                         let all_players_nearby = ZoneInstance::all_players_nearby(chunk, instance_guid, characters_table_read_handle);
@@ -831,32 +865,166 @@ impl GameServer {
                 // Ignore these packets to reduce log spam for now
                 OpCode::LobbyGameDefinition => {}
                 OpCode::UiInteractions => {
-                    // Parsing only - no response sent yet. See task #25:
-                    // the server-side reaction needed to populate flyout
-                    // panels (Actions/Holoprojectors/Mind Tricks/Quick
-                    // Chat/Recently Used) is still unconfirmed.
-                    match UiInteraction::deserialize(&mut cursor) {
-                        Ok(interaction) => {
-                            crate::debug!(
-                                "UiInteractions from {sender}: window={:?} button={:?} param={:?} (unknown1={})",
-                                interaction.window_name,
-                                interaction.button_name,
-                                interaction.param,
-                                interaction.unknown1
-                            );
+                    // Peek at the first payload byte to route to the right
+                    // sub-type before consuming from the cursor.
+                    //
+                    //   sub-opcode 4 → UiInteraction  (window/button/param)
+                    //   sub-opcode 2 → SetFavoritesPacket  (star-click, count + entries)
+                    let sub_opcode = data.get(cursor.position() as usize).copied().unwrap_or(0);
+                    // Log every sub-opcode that isn't 2 or 4 so we can discover
+                    // what the client sends for real-icon emote star clicks.
+                    if sub_opcode != 2 && sub_opcode != 4 {
+                        crate::info!(
+                            "UiInteractions from {sender}: UNKNOWN sub_opcode={sub_opcode:#04x} raw={:x?}",
+                            &data[cursor.position() as usize..]
+                        );
+                    }
+
+                    if sub_opcode == 2 {
+                        // Client starred an emote in the Actions menu.
+                        // Single-entry packets fire on each star click;
+                        // bulk packets (all entries identical) fire when the
+                        // menu closes — handle both identically.
+                        match SetFavoritesPacket::deserialize(&mut cursor) {
+                            Ok(packet) => {
+                                // Packets with count > 4 are a bulk state-sync
+                                // (client sends the full list of enabled emotes
+                                // when the menu closes, count=46 observed). Skip
+                                // them — they must not overwrite real favorites.
+                                if packet.entries.len() > 4 {
+                                    crate::info!(
+                                        "UiInteractions(SetFavorites) from {sender}: {} entries — bulk sync, ignoring",
+                                        packet.entries.len(),
+                                    );
+                                } else {
+                                // Collect unique ids from this packet, preserving
+                                // order (first occurrence wins if there are dupes).
+                                let mut new_ids: Vec<i32> = Vec::new();
+                                for entry in &packet.entries {
+                                    if !new_ids.contains(&entry.quick_chat_id) {
+                                        new_ids.push(entry.quick_chat_id);
+                                    }
+                                }
+                                crate::info!(
+                                    "UiInteractions(SetFavorites) from {sender}: {} raw entries → unique ids {:?}",
+                                    packet.entries.len(),
+                                    new_ids,
+                                );
+                                self.lock_enforcer().read_characters(|_| CharacterLockRequest {
+                                    read_guids: Vec::new(),
+                                    write_guids: vec![player_guid(sender)],
+                                    character_consumer: |_, _, mut characters_write, _| {
+                                        let Some(character) =
+                                            characters_write.get_mut(&player_guid(sender))
+                                        else {
+                                            return Ok::<(), ProcessPacketError>(());
+                                        };
+                                        let CharacterType::Player(player) =
+                                            &mut character.stats.character_type
+                                        else {
+                                            return Ok::<(), ProcessPacketError>(());
+                                        };
+                                        for qc_id in &new_ids {
+                                            // Move to front if already present,
+                                            // otherwise insert at front.
+                                            player.fav_emotes.retain(|&x| x != *qc_id);
+                                            player.fav_emotes.push_front(*qc_id);
+                                            // Enforce 4-slot limit; oldest slot
+                                            // (back) is replaced by the newest.
+                                            while player.fav_emotes.len() > 4 {
+                                                player.fav_emotes.pop_back();
+                                            }
+                                        }
+                                        crate::info!(
+                                            "SetFavorites {sender}: fav_emotes = {:?}",
+                                            player.fav_emotes,
+                                        );
+                                        Ok(())
+                                    },
+                                })?;
+                                } // end else (count <= 4)
+                            }
+                            Err(err) => {
+                                crate::info!(
+                                    "UiInteractions(SetFavorites) from {sender}: failed to parse ({err:?}), raw={:x?}",
+                                    &data
+                                );
+                            }
                         }
-                        Err(err) => {
-                            // NOTE: don't slice from cursor.position() here -
-                            // packet_serialize's string deserializer appears
-                            // to advance the cursor to the end of the buffer
-                            // even when it fails from insufficient bytes, so
-                            // that slice is always empty on error. Log the
-                            // full raw inner-packet bytes instead so we can
-                            // actually see what the client sent.
-                            crate::debug!(
-                                "UiInteractions from {sender}: failed to parse ({err:?}), raw={:x?}",
-                                &data
-                            );
+                    } else {
+                        // CharacterWindow/SelectCollection: client opens a
+                        // collection tab — replay stored collection packets.
+                        //
+                        // Actions_Window/ClickFavActionButton: player activates
+                        // one of the 4 favorite slots.  Look up the stored
+                        // quick_chat_id for that slot and broadcast QueueAnimation.
+                        match UiInteraction::deserialize(&mut cursor) {
+                            Ok(interaction) => {
+                                crate::info!(
+                                    "UiInteractions from {sender}: window={:?} button={:?} param={:?} trailing={:x?} (unknown1={})",
+                                    interaction.window_name,
+                                    interaction.button_name,
+                                    interaction.param,
+                                    interaction.trailing,
+                                    interaction.unknown1
+                                );
+
+                                if interaction.window_name == "CharacterWindow"
+                                    && interaction.button_name == "SelectCollection"
+                                {
+                                    let replay = self.lock_enforcer().read_characters(|_| {
+                                        CharacterLockRequest {
+                                            read_guids: vec![player_guid(sender)],
+                                            write_guids: Vec::new(),
+                                            character_consumer: |_, characters_read, _, _| {
+                                                let Some(ch) =
+                                                    characters_read.get(&player_guid(sender))
+                                                else {
+                                                    return Ok::<Vec<Vec<u8>>, ProcessPacketError>(
+                                                        Vec::new(),
+                                                    );
+                                                };
+                                                let CharacterType::Player(player) =
+                                                    &ch.stats.character_type
+                                                else {
+                                                    return Ok::<Vec<Vec<u8>>, ProcessPacketError>(
+                                                        Vec::new(),
+                                                    );
+                                                };
+                                                Ok(player.collection_replay.clone())
+                                            },
+                                        }
+                                    })?;
+                                    if !replay.is_empty() {
+                                        crate::info!(
+                                            "SelectCollection {sender}: replaying {} collection packets",
+                                            replay.len()
+                                        );
+                                        broadcasts.push(Broadcast::Single(sender, replay));
+                                    }
+                                } else if interaction.window_name == "Actions_Window"
+                                    && interaction.button_name == "ClickFavActionButton"
+                                {
+                                    // Animation is handled by QuickChat sub_op=0x03, which the
+                                    // client always sends alongside ClickFavActionButton.
+                                    // Playing an animation here too causes every slot click to
+                                    // also play the favorited emote, overriding the actual item.
+                                    crate::info!(
+                                        "ClickFavActionButton {sender}: slot param={:?} (no-op; sub_op=0x03 handles animation)",
+                                        interaction.param,
+                                    );
+                                }
+                            }
+                            Err(err) => {
+                                // NOTE: don't slice from cursor.position() here —
+                                // packet_serialize's string deserializer advances
+                                // the cursor to the buffer end even on failure, so
+                                // the slice is always empty. Log full raw bytes.
+                                crate::info!(
+                                    "UiInteractions from {sender}: failed to parse ({err:?}), raw={:x?}",
+                                    &data
+                                );
+                            }
                         }
                     }
                 }
@@ -867,6 +1035,9 @@ impl GameServer {
                 OpCode::ClientIsDoneLoading => {}
                 OpCode::PlayerUpdate => {}
                 OpCode::SecondsOffGmt => {}
+                OpCode::QuickChat => {
+                    broadcasts.append(&mut process_quick_chat_packet(&mut cursor, sender, self)?);
+                }
                 OpCode::Purchase => {
                     // Diagnostic only: Purchase (0x42) is otherwise only used
                     // for server->client store data (PurchaseOpCode::
