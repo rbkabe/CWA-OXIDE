@@ -1,8 +1,13 @@
-paste contents into oxide base oxide folder
-most recent changes: ambient_npcs.yaml (jedi temple) dialogs.yaml (jedi temple), weapons.yaml, chat_commands.rs , commands.yaml
+EMOTE UI FUNCTIONALITY ADDED
 
-Patch Contains WexToxicstinger's shop implementations, my shop npc's, and new emote/holoprojector/mind trick commands in the world chat. 
+paste contents into oxide base oxide folder or just build and run
+
+most recent changes: ambient_npcs.yaml (jedi temple) dialogs.yaml (jedi temple), weapons.yaml, chat_commands.rs , commands.yaml , quick_chat.rs , mod.rs , character.rs , chat_commands.rs
+
+Patch Contains WexToxicstinger's shop implementations, my shop npcs, new emote/holoprojector/mind trick commands in the world chat. 
 to view available commands use the "./emotes" command. 
 
-at this point I think I have every single emote fully functioning besides one or 2, all holoprojectors and mindtricks are there.
-next goals: ui functionality, and ambient animations to all npcs as well as fill in the rest of the temple.
+Thank you to Delta-07 for making the oxide build that i referenced to get the actions menu working.
+
+at this point I think I have every single emote fully functioning besides a few, all holoprojectors and mindtricks are there.
+and ambient animations to all npcs as well as fill in the rest of the temple.
