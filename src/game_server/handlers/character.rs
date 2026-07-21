@@ -1,5 +1,5 @@
 use std::{
-    collections::{BTreeMap, BTreeSet, HashMap, HashSet},
+    collections::{BTreeMap, BTreeSet, HashMap, HashSet, VecDeque},
     time::{Duration, Instant},
 };
 
@@ -22,7 +22,7 @@ use crate::{
         navmesh::{Collision, Navmesh, NavmeshWaypoint, NonLinearPathState},
         packets::{
             chat::{ActionBarTextColor, SendStringId},
-            client_update::UpdateCredits,
+            client_update::{CollectionAddEntry, CollectionStart, UpdateCredits},
             command::{EnterDialog, ExitDialog, PlaySoundIdOnTarget},
             item::{Attachment, BaseAttachmentGroup, EquipmentSlot, WieldType},
             minigame::ScoreEntry,
@@ -681,6 +681,35 @@ pub struct PlayerOneShotAction {
     pub composite_effect_delay_millis: u32,
 }
 
+/// Configures a collection piece pickup in one_shot_interaction.
+/// The NPC's own name_id serves as the unique piece identifier for dedup.
+#[derive(Clone, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CollectionItemConfig {
+    /// Small u16 that identifies the collection set on the wire.
+    /// Use the set's name_id cast to u16 (e.g. 50274 for Shadow Tech Rifle).
+    pub collection_id: u16,
+    /// 0-based slot index of this piece within the set (0-7 for 8-piece sets).
+    pub slot: u16,
+    /// Total number of pieces in the set; used in the CollectionStart blob.
+    /// Defaults to 8 (all current Umbara sets are 8-piece).
+    #[serde(default = "default_collection_entry_count")]
+    pub entry_count: u16,
+    /// Category ID sent in the CollectionStart unknown1 field (u16).
+    /// Valid values per CollectionCategories.txt: 2, 3, 4, 5.
+    /// Umbara is the first world in collections, so defaults to 2.
+    #[serde(default = "default_collection_category_id")]
+    pub category_id: u16,
+    /// Image set ID for the collection set icon, from ImageSets.txt in Assets_005.pack.
+    /// Used in CollectionData DS `imageid` column; 0 is invalid and suppresses rendering.
+    /// Shadow Tech item icons: Rifle=5439, Helmet=5435, Armor=5437, Gloves=5436, Boots=5438
+    #[serde(default)]
+    pub image_set_id: u32,
+}
+
+fn default_collection_entry_count() -> u16 { 8 }
+fn default_collection_category_id() -> u16 { 2 }
+
 #[derive(Clone, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct OneShotInteractionConfig {
@@ -705,6 +734,25 @@ pub struct OneShotInteractionConfig {
     #[serde(default)]
     pub despawn_npc: bool,
     pub duration_millis: u64,
+    /// If set, clicking this NPC awards one collection piece.
+    pub collection_item: Option<CollectionItemConfig>,
+}
+
+/// Runtime representation of a collection piece attached to an NPC.
+#[derive(Clone)]
+pub struct CollectionItemTemplate {
+    /// Wire u16 that identifies the set (set name_id cast to u16).
+    pub collection_id: u16,
+    /// 0-based slot index within the set.
+    pub slot: u16,
+    /// The NPC's name_id — uniquely identifies this piece for dedup.
+    pub item_name_id: u32,
+    /// Total pieces in the collection set; written into CollectionStart blob.
+    pub entry_count: u16,
+    /// Category ID sent as CollectionStart.unknown1 (valid: 2-5).
+    pub category_id: u16,
+    /// Image set ID for the collection set icon (ImageSets.txt in Assets_005.pack).
+    pub image_set_id: u32,
 }
 
 #[derive(Clone)]
@@ -720,6 +768,7 @@ pub struct OneShotInteractionTemplate {
     pub removal_mode: RemovalMode,
     pub despawn_npc: bool,
     pub duration_millis: u64,
+    pub collection_item: Option<CollectionItemTemplate>,
 }
 
 impl OneShotInteractionTemplate {
@@ -728,6 +777,7 @@ impl OneShotInteractionTemplate {
         zone_guid: u8,
         button_keys_to_id: &HashMap<String, u32>,
         npc_name: &str,
+        npc_name_id: u32,
     ) -> Self {
         let dialog_option_id = config.dialog_option_key.as_ref().map(|key| {
             *button_keys_to_id.get(key).unwrap_or_else(|| {
@@ -736,6 +786,15 @@ impl OneShotInteractionTemplate {
                     key, zone_guid, npc_name
                 )
             })
+        });
+
+        let collection_item = config.collection_item.as_ref().map(|ci| CollectionItemTemplate {
+            collection_id: ci.collection_id,
+            slot: ci.slot,
+            item_name_id: npc_name_id,
+            entry_count: ci.entry_count,
+            category_id: ci.category_id,
+            image_set_id: ci.image_set_id,
         });
 
         OneShotInteractionTemplate {
@@ -754,6 +813,7 @@ impl OneShotInteractionTemplate {
             removal_mode: config.removal_mode,
             despawn_npc: config.despawn_npc,
             duration_millis: config.duration_millis,
+            collection_item,
         }
     }
 
@@ -881,6 +941,78 @@ impl OneShotInteractionTemplate {
         }
 
         packets_for_sender.extend(self.one_shot_action.apply(player_stats)?);
+
+        // If this NPC represents a collection piece, award it (once per player).
+        if let Some(ref ci) = self.collection_item {
+            if player_stats.collected_items.insert(ci.item_name_id) {
+                // First time collecting this piece — send CollectionStart if this is the
+                // first piece of this set we've seen this session, then CollectionAddEntry.
+                if player_stats.started_collections.insert(ci.collection_id) {
+                    // CollectionStart wire format:
+                    //   outer collection_id (u16) = collection name_id (e.g. 50276)
+                    //     → must match CollectionAddEntry.collection_id
+                    //   unknown1 (u16)            = category_id (2-5 per CollectionCategories.txt)
+                    //                               CollectionCategories.txt is client-side; no
+                    //                               server packet is needed to populate that DS.
+                    //   blob (u32 LE x4) — layout confirmed by EXE static analysis of
+                    //   fn 0x0037d2a0 which reads the blob into the C++ collection object:
+                    //     [0] → [collection+0x9c] = collection_id (DS row key)
+                    //     [1] → [collection+0xa0] = category_id ← CRITICAL: RefreshFn1
+                    //                      (EXE 0x007c2ec0) reads this field and compares
+                    //                      it against the active category filter (Umbara=2).
+                    //                      If this is wrong, ALL collections are filtered
+                    //                      out and the Collections window shows nothing.
+                    //     [2] → [collection+0xa4] = image_set_id (DS.imageid)
+                    //     [3] → [collection+0xa8] = entry_count  (DS.entryCount)
+                    let mut blob = Vec::with_capacity(16);
+                    blob.extend_from_slice(&(ci.collection_id as u32).to_le_bytes()); // [collection+0x9c] = row key
+                    blob.extend_from_slice(&(ci.category_id as u32).to_le_bytes());   // [collection+0xa0] = category (2=Umbara)
+                    blob.extend_from_slice(&ci.image_set_id.to_le_bytes());            // [collection+0xa4] = DS.imageid
+                    blob.extend_from_slice(&(ci.entry_count as u32).to_le_bytes());   // [collection+0xa8] = DS.entryCount
+                    info!(
+                        "Sending CollectionStart: collection_id={} category_id={} image_set_id={} entry_count={} blob={}b",
+                        ci.collection_id, ci.category_id, ci.image_set_id, ci.entry_count, blob.len()
+                    );
+                    let start_pkt = GamePacket::serialize(&TunneledPacket {
+                        unknown1: true,
+                        inner: CollectionStart {
+                            collection_id: ci.collection_id, // outer = name_id (matches AddEntry)
+                            unknown1: ci.category_id,        // inner = category (2-5)
+                            blob,
+                        },
+                    });
+                    player_stats.collection_replay.push(start_pkt.clone());
+                    packets_for_sender.push(start_pkt);
+                }
+
+                info!(
+                    "Sending CollectionAddEntry: player={} collection_id={} slot={} item_name_id={}",
+                    requester, ci.collection_id, ci.slot, ci.item_name_id
+                );
+                let entry_pkt = GamePacket::serialize(&TunneledPacket {
+                    unknown1: true,
+                    inner: CollectionAddEntry {
+                        collection_id: ci.collection_id,
+                        slot: ci.slot,
+                        item_name_id: ci.item_name_id,
+                        log_field1: 0,
+                        log_field2: 0,
+                        unknown4: 0,
+                        unknown5: 0,
+                        unknown6: 0,
+                        unknown7: 0,
+                        is_complete: false,
+                    },
+                });
+                player_stats.collection_replay.push(entry_pkt.clone());
+                packets_for_sender.push(entry_pkt);
+            } else {
+                info!(
+                    "CollectionAddEntry skipped (already collected): player={} item_name_id={}",
+                    requester, ci.item_name_id
+                );
+            }
+        }
 
         Ok(vec![
             Broadcast::Multi(nearby_player_guids.to_vec(), packets_for_all),
@@ -1929,6 +2061,8 @@ pub struct PlayerAbilityGroup {
 #[derive(Clone)]
 pub struct PlayerActionBar {
     pub weapon_abilities: Vec<PlayerAbilityGroup>,
+    /// quick_chat_id assigned to each of the 4 consumable slots, or None if empty.
+    pub consumable_slots: [Option<i32>; 4],
 }
 
 #[derive(Clone)]
@@ -1948,6 +2082,18 @@ pub struct Player {
     pub toggles: Toggles,
     pub role: Role,
     pub action_bar: PlayerActionBar,
+    /// name_ids of collection pieces this player has already collected (prevents re-collection).
+    pub collected_items: HashSet<u32>,
+    /// collection_ids for which CollectionStart has already been sent this session.
+    pub started_collections: HashSet<u16>,
+    /// Pre-serialized CollectionStart + CollectionAddEntry packets to replay on zone load.
+    /// Populated whenever a collection packet is first sent; replayed in ClientIsReady so
+    /// the Collections window populates correctly after zone changes within a session.
+    pub collection_replay: Vec<Vec<u8>>,
+    /// Favorited emote quick_chat_ids, newest first.  Max 4 entries; adding a
+    /// 5th drops the oldest.  Populated by opcode 0xbd sub-type 2 (star click
+    /// in the Actions menu).  Used to play QueueAnimation on ClickFavActionButton.
+    pub fav_emotes: VecDeque<i32>,
 }
 
 impl Player {
@@ -2210,6 +2356,7 @@ impl BaseNpcTemplate {
                 zone_guid,
                 button_keys_to_id,
                 npc_name,
+                config.name_id,
             )
         });
 
