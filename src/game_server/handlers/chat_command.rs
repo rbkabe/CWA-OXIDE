@@ -1,5 +1,6 @@
 use std::{collections::HashMap, fs::File, path::Path};
 
+
 use crate::{
     game_server::{
         packets::{
@@ -252,7 +253,7 @@ fn find_weapon_move(name: &str) -> Option<(u32, u8, usize)> {
 /// player's pos when spawning the composite effect. forward_offset projects
 /// along rot.x/rot.z; right_offset projects along the perpendicular right
 /// vector (rot.z, -rot.x).
-const MIND_TRICKS: &[(&str, u32, Option<i32>, (f32, f32, f32), &[(u32, u32)])] = &[
+pub const MIND_TRICKS: &[(&str, u32, Option<i32>, (f32, f32, f32), &[(u32, u32)])] = &[
     (
         "fireworks",
         565,
@@ -286,7 +287,7 @@ fn find_mind_trick(name: &str) -> Option<(u32, Option<i32>, (f32, f32, f32), &'s
 /// (same mechanism as ./testeffect). Running the command again while active
 /// dismisses the effect. Tag IDs are in the 9100+ range (9001 is reserved for
 /// ./testeffect).
-const PERSISTENT_MIND_TRICKS: &[(&str, u32, u32, u32)] = &[
+pub const PERSISTENT_MIND_TRICKS: &[(&str, u32, u32, u32)] = &[
     // (command, item_guid, composite_effect_id, tag_id)
     ("protontorpedoes", 566, 1715, 9101),
     ("fighterbattle", 664, 1789, 9102),
@@ -301,6 +302,52 @@ fn find_persistent_mind_trick(name: &str) -> Option<(u32, u32, u32)> {
         .find(|(trick_name, ..)| trick_name.eq_ignore_ascii_case(name))
         .map(|(_, item_guid, effect_id, tag_id)| (*item_guid, *effect_id, *tag_id))
 }
+
+/// Holoprojector item guid → model_id mapping for QuickChat slot dispatch.
+/// Mirrors the command strings in DISGUISES but keyed by item guid (from
+/// holoprojectors.yaml) so the QuickChat 0x03 handler can look up the model
+/// without needing the command string. The 4 handheld holoprojectors
+/// (guids 2110-2113) are emotes (animation_id != 0) and are NOT listed here.
+pub const HOLOPROJECTOR_MODELS: &[(u32, u32)] = &[
+    // (item_guid, model_id)
+    (443,  1041), // Super Battle Droid
+    (744,  1038), // Battle Droid
+    (745,  1039), // Commando Droid
+    (746,  1040), // Droideka
+    (747,  1042), // Bith
+    (1418, 1559), // Jawa
+    (2106, 1109), // Gotal
+    (2107, 1110), // Ithorian
+    (2108, 1111), // Gungan
+    (2234, 1283), // Geonosian
+    (2235, 1710), // Seripas
+    (2386, 1409), // Mortis Daughter
+    (2387, 1410), // Mortis Son
+    (2450, 1713), // Rancor
+    (2753, 1493), // Chewbacca
+    (2754, 1494), // Underworld Ithorian
+    (2772, 1555), // Yoda
+    (2807, 1613), // General Grievous
+    (2808, 1614), // Talz
+    (2831, 1626), // Jabba
+    (2832, 1627), // Cad Bane
+    (2890, 1709), // Gamorrean Guard
+    (2891, 1710), // Seripas (variant 2)
+    (2898, 1714), // Savage Opress
+    (2906, 1820), // Ziro
+    (2907, 1821), // Kowakian Monkey-Lizard
+    (2913, 1871), // Captain Ackbar
+    (2914, 1872), // Nossor Ri
+    (2915, 1873), // Karkarodon
+    (2920, 1931), // Orphne
+    (3070, 1578), // King Manchucho
+    (3071, 1939), // Magnaguard
+    (3222, 2165), // Sniper Droid
+    (3405, 2334), // Gundark
+    (3433, 2340), // C-21 Highsinger
+    (3434, 2339), // Darth Maul
+    (3439, 2341), // Plo Koon
+];
 
 /// Looks up the Flourish animation id for the player's currently equipped
 /// weapon and the requested pack/move-index, mirroring the same
@@ -428,6 +475,9 @@ pub fn process_chat_command(
 ) -> Result<Vec<Broadcast>, ProcessPacketError> {
     let requester_guid = player_guid(sender);
     let commands_registry = game_server.commands.commands.clone();
+    // Cloned for use inside the move closure — needed by the "favor" command
+    // to resolve emote names → quick_chat ids by animation_id.
+    let quick_chats = game_server.quick_chats.clone();
 
     let broadcast_supplier: WriteLockingBroadcastSupplier = game_server
         .lock_enforcer()
@@ -1067,6 +1117,45 @@ pub fn process_chat_command(
                             vec![Broadcast::Multi(nearby_players, packets)]
                         }
 
+                        // Set up to 4 favorite-emote slots for ClickFavActionButton.
+                        // Usage: ./favor bow wave nod laugh
+                        // Maps each name via the EMOTES table (animation_id) then finds
+                        // the matching quick_chat leaf entry by animation_id so that
+                        // ClickFavActionButton can resolve the correct QueueAnimation.
+                        "favor" => {
+                            let names: Vec<String> = arguments[1..].to_vec();
+                            if names.is_empty() {
+                                return err("Usage: ./favor <emote1> [emote2] [emote3] [emote4]  (1-4 emote names)");
+                            }
+                            if names.len() > 4 {
+                                return err("Too many emotes: ./favor takes 1-4 names.");
+                            }
+
+                            let mut new_ids: Vec<i32> = Vec::new();
+                            for name in &names {
+                                let Some((anim_id, _)) = find_emote(name) else {
+                                    let msg = format!("Unknown emote '{name}'. Use ./emotes for the list.");
+                                    return err(&msg);
+                                };
+                                let Some(qc) = quick_chats.iter().find(|qc| qc.animation_id == anim_id) else {
+                                    let msg = format!("Emote '{name}' has no favoritable slot entry.");
+                                    return err(&msg);
+                                };
+                                new_ids.push(qc.id);
+                            }
+
+                            player_stats.fav_emotes.clear();
+                            for id in &new_ids {
+                                player_stats.fav_emotes.push_back(*id);
+                            }
+
+                            let display: Vec<&str> = names.iter().map(|s| s.as_str()).collect();
+                            server_msg(sender, &format!(
+                                "Favorite slots set: {}. Click a slot in the Actions window to play.",
+                                display.join(", ")
+                            ))
+                        }
+
                         // Generic fallback for every one-word emote command registered in
                         // commands.yaml (./wave, ./bow, ./laugh, etc.) - looked up by name
                         // in the EMOTES table rather than duplicated per command.
@@ -1161,10 +1250,10 @@ fn make_freecam_packets(sender: u32, requester_guid: u64, enabled: bool) -> Vec<
                         inner: InnerInstanceData {
                             house_guid: 0,
                             owner_guid: requester_guid,
-                            owner_name: "".to_string(),
+                            owner_name: String::new(),
                             unknown3: 0,
                             house_name: 0,
-                            player_given_name: "".to_string(),
+                            player_given_name: String::new(),
                             unknown4: 0,
                             max_fixtures: 0,
                             unknown6: 0,
