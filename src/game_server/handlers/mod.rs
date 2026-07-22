@@ -1,517 +1,706 @@
-use chrono::{DateTime, Datelike, Days, FixedOffset, Weekday};
-
-use super::{packets::Pos, Broadcast, GameServer, ProcessPacketError};
-
 pub mod ability;
-pub mod character;
 pub mod chat;
-pub mod chat_command;
 pub mod clicked_location;
+pub mod client_update;
 pub mod combat;
 pub mod command;
 pub mod daily;
-pub mod dialog;
-pub mod fleet_commander;
-pub mod force_connection;
-pub mod guid;
 pub mod housing;
 pub mod inventory;
 pub mod item;
-pub mod lock_enforcer;
 pub mod login;
 pub mod minigame;
 pub mod mount;
+pub mod player_data;
+pub mod player_update;
+pub mod purchase;
+pub mod quick_chat;
 pub mod reference_data;
 pub mod saber_duel;
 pub mod saber_strike;
 pub mod social;
+pub mod squad;
 pub mod store;
-pub mod test_data;
-pub mod tick;
 pub mod time;
-pub mod unique_guid;
+pub mod tower_defense;
+pub mod tunnel;
+pub mod ui;
+pub mod ui_interactions;
 pub mod update_position;
 pub mod zone;
 
-pub type WriteLockingBroadcastSupplier = Result<
-    Box<dyn FnOnce(&GameServer) -> Result<Vec<Broadcast>, ProcessPacketError>>,
-    ProcessPacketError,
->;
+use std::{
+    fmt::Display,
+    ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign},
+};
 
-pub fn distance3_pos(pos1: Pos, pos2: Pos) -> f32 {
-    distance3(pos1.x, pos1.y, pos1.z, pos2.x, pos2.y, pos2.z)
+use num_enum::{IntoPrimitive, TryFromPrimitive};
+use packet_serialize::{DeserializePacket, SerializePacket};
+use serde::Deserialize;
+
+#[derive(
+    Copy, Clone, Debug, TryFromPrimitive, IntoPrimitive, SerializePacket, DeserializePacket,
+)]
+#[repr(u16)]
+pub enum OpCode {
+    LoginRequest = 0x1,
+    LoginReply = 0x2,
+    TunneledClient = 0x5,
+    TunneledWorld = 0x6,
+    Player = 0xc,
+    ClientIsDoneLoading = 0xa,
+    ClientIsReady = 0xd,
+    ZoneDetailsDone = 0xe,
+    Chat = 0xf,
+    Logout = 0x10,
+    Command = 0x1a,
+    ClientBeginZoning = 0x1f,
+    Combat = 0x20,
+    PlayerUpdate = 0x23,
+    Ability = 0x24,
+    ClientUpdate = 0x26,
+    Minigame = 0x27,
+    Inventory = 0x2a,
+    ZoneDetails = 0x2b,
+    ReferenceData = 0x2c,
+    Ui = 0x2f,
+    GameTimeSync = 0x34,
+    DefinePointsOfInterest = 0x39,
+    ZoneCombatSettings = 0x3e,
+    Purchase = 0x42,
+    QuickChat = 0x43,
+    SetLocale = 0x58,
+    PointOfInterestTeleportRequest = 0x5a,
+    WelcomeScreen = 0x5d,
+    ClickedLocation = 0x62,
+    LobbyGameDefinition = 0x66,
+    ClientMetrics = 0x69,
+    ClientLog = 0x6d,
+    TeleportToSafety = 0x7a,
+    UpdatePlayerPos = 0x7d,
+    UpdatePlayerCamera = 0x7e,
+    Housing = 0x7f,
+    Squad = 0x81,
+    UpdatePlayerPlatformPos = 0xb8,
+    LuaMetrics = 0x8c,
+    DailyMinigame = 0x8e,
+    ClientGameSettings = 0x8f,
+    Portrait = 0x9b,
+    Social = 0xa2,
+    PlayerJump = 0xa3,
+    Mount = 0xa7,
+    Store = 0xa4,
+    DeploymentEnv = 0xa5,
+    SecondsOffGmt = 0xa8,
+    BrandishHolster = 0xb4,
+    UiInteractions = 0xbd,
 }
 
-pub fn distance3(x1: f32, y1: f32, z1: f32, x2: f32, y2: f32, z2: f32) -> f32 {
-    let diff_x = x2 - x1;
-    let diff_y = y2 - y1;
-    let diff_z = z2 - z1;
-    (diff_x * diff_x + diff_y * diff_y + diff_z * diff_z).sqrt()
-}
+pub trait GamePacket: SerializePacket {
+    type Header: SerializePacket;
+    const HEADER: Self::Header;
 
-pub fn direction(old_pos: Pos, new_pos: Pos) -> Pos {
-    let diff_x = new_pos.x - old_pos.x;
-    let diff_y = new_pos.y - old_pos.y;
-    let diff_z = new_pos.z - old_pos.z;
-
-    let distance_required = distance3_pos(old_pos, new_pos).max(f32::MIN_POSITIVE);
-    Pos {
-        x: diff_x / distance_required,
-        y: diff_y / distance_required,
-        z: diff_z / distance_required,
-        w: new_pos.w,
-    }
-}
-
-pub fn is_between(segment_start: Pos, segment_end: Pos, pos: Pos) -> bool {
-    segment_start.x.min(segment_end.x) <= pos.x
-        && pos.x <= segment_start.x.max(segment_end.x)
-        && segment_start.y.min(segment_end.y) <= pos.y
-        && pos.y <= segment_start.y.max(segment_end.y)
-        && segment_start.z.min(segment_end.z) <= pos.z
-        && pos.z <= segment_start.z.max(segment_end.z)
-}
-
-pub fn pos_on_segment_at_distance_from_pos(
-    segment_start: Pos,
-    segment_end: Pos,
-    target: Pos,
-    distance: f32,
-) -> Option<Pos> {
-    //                         target
-    //                           *
-    //                          /|
-    //                         / | perpendicular_distance
-    //                        /  |
-    // segment_start --------*--------*-------- segment_end
-    //                     cand1    cand2
-    //               (closer to start)
-
-    let segment_direction = direction(segment_start, segment_end);
-    let vector_to_target = target - segment_start;
-
-    let projection_len = vector_to_target.x * segment_direction.x
-        + vector_to_target.y * segment_direction.y
-        + vector_to_target.z * segment_direction.z;
-
-    let closest_pos_on_segment = Pos {
-        x: segment_start.x + projection_len * segment_direction.x,
-        y: segment_start.y + projection_len * segment_direction.y,
-        z: segment_start.z + projection_len * segment_direction.z,
-        w: segment_start.w,
-    };
-
-    let perpendicular_distance = distance3_pos(target, closest_pos_on_segment);
-    let offset_squared = distance * distance - perpendicular_distance * perpendicular_distance;
-    if offset_squared < 0.0 {
-        return None;
-    }
-
-    let offset_from_closest_pos = offset_squared.sqrt();
-    let candidate1 = Pos {
-        x: closest_pos_on_segment.x + offset_from_closest_pos * segment_direction.x,
-        y: closest_pos_on_segment.y + offset_from_closest_pos * segment_direction.y,
-        z: closest_pos_on_segment.z + offset_from_closest_pos * segment_direction.z,
-        w: closest_pos_on_segment.w,
-    };
-    let candidate2 = Pos {
-        x: closest_pos_on_segment.x - offset_from_closest_pos * segment_direction.x,
-        y: closest_pos_on_segment.y - offset_from_closest_pos * segment_direction.y,
-        z: closest_pos_on_segment.z - offset_from_closest_pos * segment_direction.z,
-        w: closest_pos_on_segment.w,
-    };
-
-    let candidate1_on_segment = is_between(segment_start, segment_end, candidate1);
-    let candidate2_on_segment = is_between(segment_start, segment_end, candidate2);
-
-    let dist1_to_start = distance3_pos(segment_start, candidate1);
-    let dist2_to_start = distance3_pos(segment_start, candidate2);
-
-    match (
-        candidate1_on_segment,
-        candidate2_on_segment,
-        dist1_to_start < dist2_to_start,
-    ) {
-        (true, true, true) => Some(candidate1),
-        (true, true, false) => Some(candidate2),
-        (true, false, _) => Some(candidate1),
-        (false, true, _) => Some(candidate2),
-        (false, false, _) => None,
+    fn serialize(&self) -> Vec<u8> {
+        let mut buffer = Vec::new();
+        SerializePacket::serialize(&Self::HEADER, &mut buffer);
+        SerializePacket::serialize(self, &mut buffer);
+        buffer
     }
 }
 
-pub fn offset_destination(old_pos: Pos, new_pos: Pos, offset: f32) -> Pos {
-    let unit_vector = direction(old_pos, new_pos);
+#[derive(
+    Copy, Clone, Debug, SerializePacket, DeserializePacket, Deserialize, Default, PartialEq,
+)]
+#[serde(deny_unknown_fields)]
+pub struct Pos {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub w: f32,
+}
 
-    Pos {
-        x: new_pos.x - offset * unit_vector.x,
-        y: new_pos.y - offset * unit_vector.y,
-        z: new_pos.z - offset * unit_vector.z,
-        w: new_pos.w,
+impl Add for Pos {
+    type Output = Self;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        Pos {
+            x: self.x + rhs.x,
+            y: self.y + rhs.y,
+            z: self.z + rhs.z,
+            w: self.w + rhs.w,
+        }
     }
 }
 
-pub fn are_dates_in_same_week(
-    date1: &DateTime<FixedOffset>,
-    date2: &DateTime<FixedOffset>,
-    timezone: &FixedOffset,
-) -> bool {
-    let date1 = date1.with_timezone(timezone);
-    let date2 = date2.with_timezone(timezone);
+impl Sub for Pos {
+    type Output = Pos;
 
-    // Subtract a day since the ISO week starts from Monday, and we want to start
-    // the week on Sunday
-    let week1 = match date1.weekday() {
-        Weekday::Sun => date1
-            .checked_add_days(Days::new(1))
-            .map(|date| date.iso_week()),
-        _ => Some(date1.iso_week()),
-    };
-
-    let week2 = match date2.weekday() {
-        Weekday::Sun => date2
-            .checked_add_days(Days::new(1))
-            .map(|date| date.iso_week()),
-        _ => Some(date2.iso_week()),
-    };
-
-    week1 == week2
+    fn sub(self, rhs: Self) -> Self::Output {
+        Pos {
+            x: self.x - rhs.x,
+            y: self.y - rhs.y,
+            z: self.z - rhs.z,
+            w: self.w - rhs.w,
+        }
+    }
 }
 
-pub fn are_dates_consecutive(
-    date1: &DateTime<FixedOffset>,
-    date2: &DateTime<FixedOffset>,
-    timezone: &FixedOffset,
-) -> bool {
-    let date1 = date1.with_timezone(timezone);
-    let date2 = date2.with_timezone(timezone);
+impl Mul for Pos {
+    type Output = Pos;
 
-    date1.num_days_from_ce().abs_diff(date2.num_days_from_ce()) == 1
+    fn mul(self, rhs: Self) -> Self::Output {
+        Pos {
+            x: self.x * rhs.x,
+            y: self.y * rhs.y,
+            z: self.z * rhs.z,
+            w: self.w * rhs.w,
+        }
+    }
 }
 
-#[cfg(test)]
-mod tests {
-    use chrono::{Offset, TimeZone, Utc};
+impl Div for Pos {
+    type Output = Pos;
 
-    use super::*;
+    fn div(self, rhs: Self) -> Self::Output {
+        Pos {
+            x: self.x / rhs.x,
+            y: self.y / rhs.y,
+            z: self.z / rhs.z,
+            w: self.w / rhs.w,
+        }
+    }
+}
 
-    #[test]
-    fn test_same_day_in_same_week() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 14, 23, 59, 59).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 0, 0, 0).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
+impl Add<f32> for Pos {
+    type Output = Self;
+
+    fn add(self, rhs: f32) -> Self::Output {
+        Pos {
+            x: self.x + rhs,
+            y: self.y + rhs,
+            z: self.z + rhs,
+            w: self.w + rhs,
+        }
+    }
+}
+
+impl Sub<f32> for Pos {
+    type Output = Self;
+
+    fn sub(self, rhs: f32) -> Self::Output {
+        Pos {
+            x: self.x - rhs,
+            y: self.y - rhs,
+            z: self.z - rhs,
+            w: self.w - rhs,
+        }
+    }
+}
+
+impl Mul<f32> for Pos {
+    type Output = Pos;
+
+    fn mul(self, rhs: f32) -> Self::Output {
+        Pos {
+            x: self.x * rhs,
+            y: self.y * rhs,
+            z: self.z * rhs,
+            w: self.w * rhs,
+        }
+    }
+}
+
+impl Div<f32> for Pos {
+    type Output = Pos;
+
+    fn div(self, rhs: f32) -> Self::Output {
+        Pos {
+            x: self.x / rhs,
+            y: self.y / rhs,
+            z: self.z / rhs,
+            w: self.w / rhs,
+        }
+    }
+}
+
+impl AddAssign for Pos {
+    fn add_assign(&mut self, rhs: Self) {
+        *self = *self + rhs;
+    }
+}
+
+impl SubAssign for Pos {
+    fn sub_assign(&mut self, rhs: Self) {
+        *self = *self - rhs;
+    }
+}
+
+impl MulAssign for Pos {
+    fn mul_assign(&mut self, rhs: Self) {
+        *self = *self * rhs;
+    }
+}
+
+impl DivAssign for Pos {
+    fn div_assign(&mut self, rhs: Self) {
+        *self = *self / rhs;
+    }
+}
+
+#[derive(Clone, Copy, Default, PartialEq, Eq, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CharacterStateFlags {
+    #[serde(default)]
+    pub moving: bool,
+    #[serde(default)]
+    pub jumping: bool,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq, SerializePacket, DeserializePacket)]
+pub struct CharacterState {
+    state: u8,
+}
+
+impl Default for CharacterState {
+    fn default() -> Self {
+        STANDING
+    }
+}
+
+impl CharacterState {
+    pub fn moving(&self) -> bool {
+        self.state & (1 << 1) > 0
+    }
+}
+
+const fn flags_to_state(flags: CharacterStateFlags) -> CharacterState {
+    let mut state = 0u8;
+    if flags.moving {
+        state |= 1 << 1;
+    } else {
+        state |= 1;
     }
 
-    #[test]
-    fn test_diff_days_in_same_week() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 11, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 16, 8, 45).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
+    if flags.jumping {
+        state |= 1 << 2;
     }
 
-    #[test]
-    fn test_diff_days_in_same_week_for_timezone() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 9, 23, 0, 0).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 16, 22, 59, 59).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
-    }
+    CharacterState { state }
+}
 
-    #[test]
-    fn test_diff_months_in_same_week() {
-        let date1 = Utc.with_ymd_and_hms(2025, 7, 30, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 2, 16, 8, 45).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
+impl From<CharacterStateFlags> for CharacterState {
+    fn from(flags: CharacterStateFlags) -> Self {
+        flags_to_state(flags)
     }
+}
 
-    #[test]
-    fn test_diff_years_in_same_week() {
-        let date1 = Utc.with_ymd_and_hms(2024, 12, 30, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 1, 2, 16, 8, 45).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+pub const STANDING: CharacterState = flags_to_state(CharacterStateFlags {
+    moving: false,
+    jumping: false,
+});
 
-    #[test]
-    fn test_sunday_and_diff_day_in_same_week() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 10, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 16, 8, 45).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(Clone, SerializePacket, DeserializePacket, Default)]
+pub struct Name {
+    pub first_name_id: u32,
+    pub middle_name_id: u32,
+    pub last_name_id: u32,
+    pub first_name: String,
+    pub last_name: String,
+}
 
-    #[test]
-    fn test_saturday_and_diff_day_in_same_week() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 16, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 16, 8, 45).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
+impl Display for Name {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let full_name = format!("{} {}", self.first_name, self.last_name);
+        f.write_str(full_name.trim())
     }
+}
 
-    #[test]
-    fn test_same_day_in_diff_weeks() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 7, 23, 59, 59).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 0, 0, 0).unwrap();
-        assert!(!are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(SerializePacket, DeserializePacket)]
+pub struct Rgba {
+    b: u8,
+    g: u8,
+    r: u8,
+    a: u8,
+}
 
-    #[test]
-    fn test_diff_days_in_diff_weeks() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 4, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 16, 8, 45).unwrap();
-        assert!(!are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
+impl Rgba {
+    pub const fn new(r: u8, g: u8, b: u8, a: u8) -> Self {
+        Rgba { b, g, r, a }
     }
+}
 
-    #[test]
-    fn test_diff_days_in_diff_week_for_timezone() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 10, 0, 0, 0).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 16, 23, 0, 0).unwrap();
-        assert!(!are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
-        assert!(!are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
+impl From<Rgba> for u32 {
+    fn from(val: Rgba) -> Self {
+        ((val.a as u32) << 24) | ((val.r as u32) << 16) | ((val.g as u32) << 8) | (val.b as u32)
     }
+}
 
-    #[test]
-    fn test_sunday_and_diff_day_in_diff_weeks() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 17, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 16, 8, 45).unwrap();
-        assert!(!are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(Clone, SerializePacket, DeserializePacket)]
+pub struct Effect {
+    pub unknown1: u32,
+    pub unknown2: u32,
+    pub unknown3: u32,
+    pub unknown4: u32,
+    pub unknown5: u32,
+    pub unknown6: u32,
+    pub unknown7: u32,
+    pub unknown8: bool,
+    pub unknown9: u64,
+    pub unknown10: u32,
+    pub unknown11: u32,
+    pub unknown12: u32,
+    pub composite_effect: u32,
+    pub unknown14: u64,
+    pub unknown15: u32,
+    pub unknown16: u32,
+    pub unknown17: bool,
+    pub unknown18: bool,
+    pub unknown19: bool,
+}
 
-    #[test]
-    fn test_saturday_and_diff_day_in_diff_weeks() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 9, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 16, 8, 45).unwrap();
-        assert!(!are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(SerializePacket)]
+pub struct GuidTarget {
+    pub fallback_pos: Pos,
+    pub guid: u64,
+}
 
-    #[test]
-    fn test_diff_days_in_same_week_leap_second() {
-        let date1 = Utc.timestamp_opt(1483228799, 1_000_000_000).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2016, 12, 25, 0, 0, 0).unwrap();
-        assert!(are_dates_in_same_week(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_in_same_week(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(SerializePacket)]
+pub struct BoundingBoxTarget {
+    pub fallback_pos: Pos,
+    pub min_pos: Pos,
+    pub max_pos: Pos,
+}
 
-    #[test]
-    fn test_same_day_are_not_consecutive() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 14, 23, 59, 59).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 0, 0, 0).unwrap();
-        assert!(!are_dates_consecutive(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_consecutive(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(SerializePacket)]
+pub struct CharacterBoneNameTarget {
+    pub fallback_pos: Pos,
+    pub character_guid: u64,
+    pub bone_name: String,
+}
 
-    #[test]
-    fn test_consecutive_days_are_consecutive() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 14, 0, 0, 0).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 15, 23, 59, 59).unwrap();
-        assert!(are_dates_consecutive(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(are_dates_consecutive(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(SerializePacket)]
+pub struct CharacterBoneIdTarget {
+    pub fallback_pos: Pos,
+    pub character_guid: u64,
+    pub bone_id: u32,
+}
 
-    #[test]
-    fn test_consecutive_days_are_consecutive_for_timezone() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 13, 0, 0, 0).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 13, 23, 0, 0).unwrap();
-        assert!(are_dates_consecutive(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
-        assert!(are_dates_consecutive(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
-    }
+#[derive(SerializePacket)]
+pub struct ActorBoneNameTarget {
+    pub fallback_pos: Pos,
+    pub actor_id: u32,
+    pub bone_name: String,
+}
 
-    #[test]
-    fn test_non_consecutive_days_are_not_consecutive() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 14, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 16, 16, 8, 45).unwrap();
-        assert!(!are_dates_consecutive(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_consecutive(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
-    }
+#[derive(SerializePacket)]
+pub struct ActorBoneIdTarget {
+    pub fallback_pos: Pos,
+    pub actor_id: u32,
+    pub bone_id: u32,
+}
 
-    #[test]
-    fn test_non_consecutive_days_are_not_consecutive_for_timezone() {
-        let date1 = Utc.with_ymd_and_hms(2025, 8, 13, 0, 0, 0).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 14, 23, 0, 0).unwrap();
-        assert!(!are_dates_consecutive(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
-        assert!(!are_dates_consecutive(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &FixedOffset::east_opt(3600).unwrap()
-        ));
-    }
+#[allow(dead_code)]
+#[derive(Default)]
+pub enum Target {
+    #[default]
+    None,
+    Guid(GuidTarget),
+    BoundingBox(BoundingBoxTarget),
+    CharacterBone(CharacterBoneNameTarget),
+    CharacterBoneId(CharacterBoneIdTarget),
+    ActorBoneName(ActorBoneNameTarget),
+    ActorBoneId(ActorBoneIdTarget),
+}
 
-    #[test]
-    fn test_non_consecutive_days_diff_months_are_not_consecutive() {
-        let date1 = Utc.with_ymd_and_hms(2025, 7, 15, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 16, 16, 8, 45).unwrap();
-        assert!(!are_dates_consecutive(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_consecutive(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
+impl SerializePacket for Target {
+    fn serialize(&self, buffer: &mut Vec<u8>) {
+        match self {
+            Target::None => {
+                0u32.serialize(buffer);
+            }
+            Target::Guid(guid_target) => {
+                1u32.serialize(buffer);
+                guid_target.serialize(buffer);
+            }
+            Target::BoundingBox(bounding_box_target) => {
+                2u32.serialize(buffer);
+                bounding_box_target.serialize(buffer);
+            }
+            Target::CharacterBone(character_bone_name_target) => {
+                3u32.serialize(buffer);
+                character_bone_name_target.serialize(buffer);
+            }
+            Target::CharacterBoneId(character_bone_id_target) => {
+                4u32.serialize(buffer);
+                character_bone_id_target.serialize(buffer);
+            }
+            Target::ActorBoneName(actor_bone_name_target) => {
+                5u32.serialize(buffer);
+                actor_bone_name_target.serialize(buffer);
+            }
+            Target::ActorBoneId(actor_bone_id_target) => {
+                6u32.serialize(buffer);
+                actor_bone_id_target.serialize(buffer);
+            }
+        }
     }
+}
 
-    #[test]
-    fn test_non_consecutive_days_diff_years_are_not_consecutive() {
-        let date1 = Utc.with_ymd_and_hms(2024, 8, 15, 5, 17, 24).unwrap();
-        let date2 = Utc.with_ymd_and_hms(2025, 8, 16, 16, 8, 45).unwrap();
-        assert!(!are_dates_consecutive(
-            &date1.fixed_offset(),
-            &date2.fixed_offset(),
-            &Utc.fix()
-        ));
-        assert!(!are_dates_consecutive(
-            &date2.fixed_offset(),
-            &date1.fixed_offset(),
-            &Utc.fix()
-        ));
+#[derive(SerializePacket)]
+pub struct BaseRewardEntry {
+    pub unknown1: bool,
+    pub icon_set_id: u32,
+    pub icon_tint: u32,
+    pub unknown4: u32,
+    pub quantity: u32,
+    pub item_guid: u32,
+    pub unknown7: u32,
+    pub unknown8: String,
+    pub unknown9: u32,
+    pub unknown10: bool,
+}
+
+pub struct NewItemRewardEntry {
+    pub base: BaseRewardEntry,
+    pub unknown1: Option<u32>,
+}
+
+impl SerializePacket for NewItemRewardEntry {
+    fn serialize(&self, buffer: &mut Vec<u8>) {
+        self.base.serialize(buffer);
+        if let Some(value) = self.unknown1 {
+            value.serialize(buffer);
+        }
     }
+}
+
+#[derive(SerializePacket)]
+pub struct NewQuestRewardEntry {
+    pub base: BaseRewardEntry,
+    pub quest_guid: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct NewBattleClassRewardEntry {
+    pub base: BaseRewardEntry,
+    pub battle_class_guid: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct NewAbilityRewardEntry {
+    pub base: BaseRewardEntry,
+    pub ability_guid: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct NewCollectionRewardEntry {
+    pub base: BaseRewardEntry,
+    pub collection_guid: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct NewCollectionItemRewardEntry {
+    pub base: BaseRewardEntry,
+    pub unknown1: u32,
+    pub unknown2: u32,
+    pub unknown3: u32,
+    pub unknown4: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct PetTrickXpRewardEntry {
+    pub base: BaseRewardEntry,
+    pub unknown1: u32,
+    pub unknown2: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct NewRecipeRewardEntry {
+    pub base: BaseRewardEntry,
+    pub recipe_guid: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct ZoneFlagRewardEntry {
+    pub base: BaseRewardEntry,
+    pub unknown1: String,
+    pub unknown2: u32,
+    pub unknown3: u32,
+}
+
+#[derive(SerializePacket)]
+pub struct CharacterFlagRewardEntry {
+    pub base: BaseRewardEntry,
+    pub unknown1: String,
+    pub unknown2: u32,
+    pub unknown3: u32,
+    pub unknown4: bool,
+    pub unknown5: u32,
+    pub unknown6: bool,
+}
+
+#[allow(dead_code)]
+pub enum RewardEntry {
+    NewItem(NewItemRewardEntry),
+    Xp(BaseRewardEntry),
+    NewQuest(NewQuestRewardEntry),
+    NewBattleClass(NewBattleClassRewardEntry),
+    NewAbility(NewAbilityRewardEntry),
+    NewCollection(NewCollectionRewardEntry),
+    NewCollectionItem(NewCollectionItemRewardEntry),
+    Token(BaseRewardEntry),
+    PetTrickXp(PetTrickXpRewardEntry),
+    NewRecipe(NewRecipeRewardEntry),
+    ZoneFlag(ZoneFlagRewardEntry),
+    CharacterFlag(CharacterFlagRewardEntry),
+    WheelSpin(BaseRewardEntry),
+    NewTrophy(BaseRewardEntry),
+    ClientExitUrl(BaseRewardEntry),
+}
+
+impl SerializePacket for RewardEntry {
+    fn serialize(&self, buffer: &mut Vec<u8>) {
+        match self {
+            RewardEntry::NewItem(item_reward_entry) => {
+                1u32.serialize(buffer);
+                item_reward_entry.serialize(buffer)
+            }
+            RewardEntry::Xp(xp_reward_entry) => {
+                3u32.serialize(buffer);
+                xp_reward_entry.serialize(buffer)
+            }
+            RewardEntry::NewQuest(new_quest_reward_entry) => {
+                6u32.serialize(buffer);
+                new_quest_reward_entry.serialize(buffer)
+            }
+            RewardEntry::NewBattleClass(new_battle_class_reward_entry) => {
+                7u32.serialize(buffer);
+                new_battle_class_reward_entry.serialize(buffer)
+            }
+            RewardEntry::NewAbility(new_ability_reward_entry) => {
+                8u32.serialize(buffer);
+                new_ability_reward_entry.serialize(buffer)
+            }
+            RewardEntry::NewCollection(new_collection_reward_entry) => {
+                10u32.serialize(buffer);
+                new_collection_reward_entry.serialize(buffer)
+            }
+            RewardEntry::NewCollectionItem(new_collection_item_reward_entry) => {
+                11u32.serialize(buffer);
+                new_collection_item_reward_entry.serialize(buffer)
+            }
+            RewardEntry::Token(token_reward_entry) => {
+                12u32.serialize(buffer);
+                token_reward_entry.serialize(buffer)
+            }
+            RewardEntry::PetTrickXp(pet_trick_xp_entry) => {
+                13u32.serialize(buffer);
+                pet_trick_xp_entry.serialize(buffer)
+            }
+            RewardEntry::NewRecipe(new_recipe_entry) => {
+                14u32.serialize(buffer);
+                new_recipe_entry.serialize(buffer)
+            }
+            RewardEntry::ZoneFlag(zone_flag_entry) => {
+                15u32.serialize(buffer);
+                zone_flag_entry.serialize(buffer)
+            }
+            RewardEntry::CharacterFlag(character_flag_entry) => {
+                17u32.serialize(buffer);
+                character_flag_entry.serialize(buffer)
+            }
+            RewardEntry::WheelSpin(wheel_spin_entry) => {
+                18u32.serialize(buffer);
+                wheel_spin_entry.serialize(buffer)
+            }
+            RewardEntry::NewTrophy(new_trophy_entry) => {
+                19u32.serialize(buffer);
+                new_trophy_entry.serialize(buffer)
+            }
+            RewardEntry::ClientExitUrl(client_exit_url_entry) => {
+                20u32.serialize(buffer);
+                client_exit_url_entry.serialize(buffer)
+            }
+        }
+    }
+}
+
+#[derive(Default, SerializePacket)]
+pub struct RewardBundle {
+    pub unknown1: bool,
+    pub credits: u32,
+    pub battle_class_xp: u32,
+    pub unknown4: u32,
+    pub unknown5: u32,
+    pub unknown6: u32,
+    pub unknown7: u32,
+    pub unknown8: u32,
+    pub unknown9: u32,
+    pub unknown10: u32,
+    pub unknown11: u32,
+    pub unknown12: u32,
+    pub unknown13: u32,
+    pub icon_set_id: u32,
+    pub name_id: u32,
+    pub entries: Vec<RewardEntry>,
+    pub unknown17: u32,
+}
+
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    TryFromPrimitive,
+    IntoPrimitive,
+    SerializePacket,
+    DeserializePacket,
+    PartialEq,
+)]
+#[repr(u32)]
+pub enum ActionBarType {
+    Weapon = 1,
+    Consumable = 2,
+    Minigame = 3,
+}
+
+#[derive(
+    Copy,
+    Clone,
+    Debug,
+    PartialEq,
+    TryFromPrimitive,
+    IntoPrimitive,
+    SerializePacket,
+    Deserialize,
+    DeserializePacket,
+)]
+#[repr(u32)]
+pub enum AbilitySubType {
+    CastableGroundAoeRadius1 = 1,
+    CastableSingleTarget = 2,
+    CastableGroundAoe = 3,
+    CastableTargetedAoe = 4,
+    InstantSingleTarget = 5,
+    CastableSingleTargetNoCursor = 6,
+    InstantTargetedNonCombat = 7,
+}
+
+#[derive(Clone, SerializePacket, DeserializePacket)]
+pub struct ActionBarSlot {
+    pub is_empty: bool,
+    pub icon_id: u32,
+    pub icon_tint_id: u32,
+    pub name_id: u32,
+    pub ability_type: u32,
+    pub ability_sub_type: AbilitySubType,
+    pub area_of_effect_radius: f32,
+    pub max_distance_from_player: f32,
+    pub required_force_points: u32,
+    pub is_enabled: bool,
+    pub use_cooldown_millis: u32,
+    pub init_cooldown_millis: u32,
+    pub unknown13: u32,
+    pub quantity: u32,
+    pub is_consumable: bool,
+    pub millis_since_last_use: u32,
 }
