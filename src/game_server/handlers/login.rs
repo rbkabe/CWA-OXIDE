@@ -27,7 +27,7 @@ use super::{
     guid::IndexedGuid,
     lock_enforcer::ZoneLockEnforcer,
     minigame::PlayerMinigameStats,
-    test_data::{make_test_customizations, make_test_player},
+    test_data::{make_test_collection_replay, make_test_customizations, make_test_player},
     unique_guid::player_guid,
     zone::{clean_up_zone_if_no_players, ZoneInstance},
 };
@@ -212,6 +212,13 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                         click_to_teleport: false,
                     },
                     role: Role::Admin,
+                    collected_items: std::collections::HashSet::new(),
+                    started_collections: std::collections::HashSet::new(),
+                    // Pre-populate with hardcoded test data so the Collections
+                    // window is testable at login without NPC interaction.
+                    // Remove once the real flow is confirmed working.
+                    collection_replay: make_test_collection_replay(),
+                    fav_emotes: std::collections::VecDeque::new(),
                     action_bar: PlayerActionBar {
                         // Root cause of "new weapons land on slot 4 instead of
                         // replacing slot 1": this used to unconditionally call
@@ -234,6 +241,7 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                         // player's actual equipped items, the same way
                         // inventory.rs does on a live equip.
                         weapon_abilities,
+                        consumable_slots: [None; 4],
                     },
                 },
                 game_server,

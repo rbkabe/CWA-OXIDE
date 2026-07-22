@@ -5,6 +5,7 @@ use packet_serialize::LengthlessVec;
 use crate::game_server::{
     handlers::{character::PlayerAbilityGroup, item::ItemConfig},
     packets::{
+        client_update::{CollectionAddEntry, CollectionStart},
         item::{EquipmentSlot, Item, MarketData},
         player_data::{
             AbilityType, ActionBar, BattleClass, BattleClassItem, BattleClassUnknown10,
@@ -366,22 +367,11 @@ pub fn make_test_player(
                 ActionBar {
                     action_bar_type: ActionBarType::Consumable,
                     slots: vec![
-                        // EXPERIMENTAL (task #25, per user idea): consumable
-                        // bar slots (5-8) are confirmed-render-capable real
-                        // estate (ActionBarSlot already shows icon/name
-                        // directly, no RequestDefinition round-trip needed),
-                        // unlike BattleClass.abilities which we already ruled
-                        // out (task #39). Using real icon/name from an
-                        // existing holoprojector item (guid 744, "Battle
-                        // Droid Holoprojector") here purely to test whether
-                        // this slot renders at all - NOT wired to any
-                        // click/cast handler yet, and not yet confirmed this
-                        // is how emotes should actually be delivered.
                         ActionBarSlot {
-                            is_empty: false,
-                            icon_id: 1018,
+                            is_empty: true,
+                            icon_id: 0,
                             icon_tint_id: 0,
-                            name_id: 13964,
+                            name_id: 0,
                             ability_type: 0,
                             ability_sub_type: AbilitySubType::CastableSingleTarget,
                             area_of_effect_radius: 0.0,
@@ -391,14 +381,7 @@ pub fn make_test_player(
                             use_cooldown_millis: 0,
                             init_cooldown_millis: 0,
                             unknown13: 0,
-                            // CONFIRMED via live capture: with quantity: 0 the
-                            // client renders a red "you own none of this"
-                            // badge and clicking the slot sends a Purchase
-                            // packet (OpCode::Purchase, 0x42) instead of any
-                            // cast/ability request. Setting a positive
-                            // quantity here to test whether that flips the
-                            // click over to an actual cast attempt.
-                            quantity: 5,
+                            quantity: 0,
                             is_consumable: true,
                             millis_since_last_use: 0,
                         },
@@ -497,6 +480,68 @@ pub fn make_test_customizations() -> BTreeMap<CustomizationSlot, u32> {
     customizations.insert(CustomizationSlot::FacePattern, 50009);
     customizations.insert(CustomizationSlot::BodyModel, 70000);
     customizations
+}
+
+/// Builds hardcoded collection packets for diagnostic testing.
+/// Sends one complete collection (all 8 pieces) for each of the 4 valid
+/// category IDs (2-5), so if ANY category or format variant works we'll see it.
+/// Remove this function once the real collection flow is confirmed working.
+pub fn make_test_collection_replay() -> Vec<Vec<u8>> {
+    let mut pkts = Vec::new();
+
+    // Try all 4 valid category IDs across distinct collection IDs.
+    // collected=8 forces the set to appear as fully collected — no need for
+    // MY COLLECTIONS to rely on AddEntry updating the count.
+    let test_cases: &[(u16, u16, u32, u32, u8)] = &[
+        // (collection_id, category_id, imageid, entry_count, collected)
+        (1,     2, 5437, 8, 8),
+        (2,     3, 5437, 8, 8),
+        (3,     4, 5437, 8, 8),
+        (4,     5, 5437, 8, 8),
+    ];
+
+    for &(cid, cat, imgid, count, collected) in test_cases {
+        // blob = [id, category_id, imageid, entryCount] (4 × u32 LE)
+        // blob[1] MUST be category_id — RefreshFn1 (EXE 0x007c2ec0) reads
+        // [collection+0xa0] (= blob[1]) and compares it against the active
+        // category filter. Wrong value here = collection invisible in UI.
+        let _ = collected; // "collected" comes from AddEntry packets, not the blob
+        let mut blob = Vec::with_capacity(16);
+        blob.extend_from_slice(&(cid as u32).to_le_bytes());    // [collection+0x9c] = row key
+        blob.extend_from_slice(&(cat as u32).to_le_bytes());    // [collection+0xa0] = category
+        blob.extend_from_slice(&imgid.to_le_bytes());            // [collection+0xa4] = imageid
+        blob.extend_from_slice(&(count as u32).to_le_bytes());  // [collection+0xa8] = entryCount
+
+        pkts.push(GamePacket::serialize(&TunneledPacket {
+            unknown1: true,
+            inner: CollectionStart {
+                collection_id: cid,
+                unknown1: cat,
+                blob,
+            },
+        }));
+
+        // CollectionAddEntry: one entry per slot, last slot sets is_complete=true
+        for slot in 0..count {
+            pkts.push(GamePacket::serialize(&TunneledPacket {
+                unknown1: true,
+                inner: CollectionAddEntry {
+                    collection_id: cid,
+                    slot: slot as u16,
+                    item_name_id: 1000 + slot, // placeholder name IDs
+                    log_field1: 0,
+                    log_field2: 0,
+                    unknown4: 0,
+                    unknown5: 0,
+                    unknown6: 0,
+                    unknown7: 0,
+                    is_complete: slot == count - 1,
+                },
+            }));
+        }
+    }
+
+    pkts
 }
 
 pub fn make_test_nameplate_image(guid: u32) -> Vec<Vec<u8>> {

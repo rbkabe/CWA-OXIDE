@@ -9,9 +9,12 @@ use serde::Deserialize;
 use crate::{
     game_server::{
         handlers::{item::ItemConfig, store::ItemCostMap},
-        packets::reference_data::{
-            CategoryDefinitions, ItemClassDefinition, ItemClassDefinitions, ItemGroupDefinition,
-            ItemGroupItem,
+        packets::{
+            quick_chat::QuickChatDefinition,
+            reference_data::{
+                CategoryDefinitions, ItemClassDefinition, ItemClassDefinitions,
+                ItemGroupDefinition, ItemGroupItem,
+            },
         },
     },
     ConfigError,
@@ -85,6 +88,41 @@ impl From<ItemGroupConfig> for ItemGroupDefinition {
             items: value.items,
         }
     }
+}
+
+#[derive(Deserialize)]
+pub struct QuickChatConfig {
+    #[serde(default)]
+    pub comment: String,
+    pub id: i32,
+    pub parent_id: i32,
+    pub menu_text: i32,
+    pub menu_icon_id: i32,
+    #[serde(default)]
+    pub animation_id: i32,
+    #[serde(default)]
+    pub item_id: i32,
+}
+
+pub fn load_quick_chats(config_dir: &Path) -> Result<Vec<QuickChatDefinition>, ConfigError> {
+    let mut file = File::open(config_dir.join("quick_chats.yaml"))?;
+    let configs: Vec<QuickChatConfig> = serde_yaml::from_reader(&mut file)?;
+    Ok(configs
+        .into_iter()
+        .map(|c| QuickChatDefinition {
+            id: c.id,
+            id2: c.id,
+            menu_text: c.menu_text,
+            chat_text: 0,
+            animation_id: c.animation_id,
+            unknown1: 0,
+            admin_only: 0,
+            menu_icon_id: c.menu_icon_id,
+            item_id: c.item_id,
+            parent_id: c.parent_id,
+            unknown2: 0,
+        })
+        .collect())
 }
 
 pub fn load_item_groups(

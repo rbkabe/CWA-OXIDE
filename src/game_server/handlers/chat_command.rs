@@ -224,7 +224,7 @@ const TEST_EFFECT_TAG_ID: u32 = 9001;
 /// cannon, etc.) - confirmed this is just a matter of checking the
 /// equipped weapon's wield type, the same lookup the live equip flow
 /// already does for client wield-type packets.
-const WEAPON_MOVES: &[(&str, u32, u8, usize)] = &[
+pub const WEAPON_MOVES: &[(&str, u32, u8, usize)] = &[
     ("weaponmove1", 2237, 1, 0),
     ("weaponmove2", 2238, 1, 1),
     ("weaponmove3", 2239, 1, 2),
@@ -355,7 +355,7 @@ pub const HOLOPROJECTOR_MODELS: &[(u32, u32)] = &[
 /// what wield type it should display. Returns None if the player has
 /// nothing equipped that has any Flourish moves authored for it at all
 /// (e.g. no weapon, or Misc/FlameThrower wield types).
-fn weapon_move_animation_id(player_stats: &Player, game_server: &GameServer, pack: u8, move_index: usize) -> Option<i32> {
+pub fn weapon_move_animation_id(player_stats: &Player, game_server: &GameServer, pack: u8, move_index: usize) -> Option<i32> {
     let equipped_items = player_stats
         .inventory
         .equipped_items(player_stats.inventory.active_battle_class);
