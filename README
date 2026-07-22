@@ -2,8 +2,6 @@ EMOTE UI FUNCTIONALITY ADDED
 
 extract, cargo build, and run
 
-most recent changes: ambient_npcs.yaml (jedi temple) dialogs.yaml (jedi temple), weapons.yaml, chat_commands.rs , commands.yaml , quick_chat.rs , mod.rs , character.rs , chat_commands.rs
-
 Patch Contains WexToxicstinger's shop implementations, my shop npcs, new emote/holoprojector/mind trick commands in the world chat. 
 to view available commands use the "./emotes" command. 
 
