@@ -1,6 +1,6 @@
 EMOTE UI FUNCTIONALITY ADDED
 
-paste contents into oxide base oxide folder or just build and run
+extract, cargo build, and run
 
 most recent changes: ambient_npcs.yaml (jedi temple) dialogs.yaml (jedi temple), weapons.yaml, chat_commands.rs , commands.yaml , quick_chat.rs , mod.rs , character.rs , chat_commands.rs
 
@@ -10,4 +10,5 @@ to view available commands use the "./emotes" command.
 Thank you to Delta-07 for making the oxide build that i referenced to get the actions menu working.
 
 at this point I think I have every single emote fully functioning besides a few, all holoprojectors and mindtricks are there.
-and ambient animations to all npcs as well as fill in the rest of the temple.
+
+next goals: add ambient npcs to the rest of the temple, add companion functionality
