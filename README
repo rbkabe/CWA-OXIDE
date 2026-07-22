@@ -5,7 +5,7 @@ extract, cargo build, and run
 Patch Contains WexToxicstinger's shop implementations, my shop npcs, new emote/holoprojector/mind trick commands in the world chat. 
 to view available commands use the "./emotes" command. 
 
-Thank you to Delta-07 for making the oxide build that i referenced to get the actions menu working.
+Thank you to Delta-07 for making the oxide build that I referenced to get the actions menu working.
 
 at this point I think I have every single emote fully functioning besides a few, all holoprojectors and mindtricks are there.
 
