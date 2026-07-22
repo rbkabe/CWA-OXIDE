@@ -772,26 +772,26 @@
   parent_id: 3
   menu_text: 18675
   menu_icon_id: 1401
-  animation_id: 0
+  animation_id: 3504  # holomacewindu
   item_id: 2110  # Mace Windu Handheld Holoprojector
 
 - id: 59
   parent_id: 3
   menu_text: 18677
   menu_icon_id: 1400
-  animation_id: 0
+  animation_id: 3502  # holoyoda
   item_id: 2111  # Yoda Handheld Holoprojector
 
 - id: 60
   parent_id: 3
   menu_text: 18679
   menu_icon_id: 1402
-  animation_id: 0
+  animation_id: 3501  # holocody
   item_id: 2112  # Commander Cody Handheld Holoprojector
 
 - id: 61
   parent_id: 3
   menu_text: 18681
   menu_icon_id: 1403
-  animation_id: 0
+  animation_id: 3503  # holoanakin
   item_id: 2113  # Anakin Skywalker Handheld Holoprojector
