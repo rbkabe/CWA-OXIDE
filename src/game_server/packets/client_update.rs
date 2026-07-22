@@ -14,9 +14,13 @@ pub enum ClientUpdateOpCode {
     AddItems = 0x2,
     EquipItem = 0x5,
     UnequipItem = 0x6,
+    Stats = 0x7,
+    CollectionStart = 0x8,
+    CollectionRemove = 0x9,
+    CollectionAddEntry = 0xa,
+    CollectionRemoveEntry = 0xb,
     Position = 0xc,
     Power = 0xd,
-    Stats = 0x7,
     UpdateCredits = 0x13,
     UpdateActionBarSlot = 0x19,
     PreloadCharactersDone = 0x1a,
@@ -204,4 +208,71 @@ pub struct PreloadCharactersDone {
 impl GamePacket for PreloadCharactersDone {
     type Header = ClientUpdateOpCode;
     const HEADER: ClientUpdateOpCode = ClientUpdateOpCode::PreloadCharactersDone;
+}
+
+/// Sent when a player collects one piece of a collection set.
+///
+/// Wire format (after the 0x26/0x0a opcode pair):
+///   u16  collection_id   — identifies the collection set (cast of set name_id)
+///   u16  slot            — 0-based index of this piece within the set
+///   u32  item_name_id    — string ID of the collected piece (object+0x0c)
+///   u32  log_field1      — Loggable sub-obj field (object+0x14)
+///   u32  log_field2      — Loggable sub-obj field (object+0x18)
+///   u32  unknown4        — object+0x1c
+///   u32  unknown5        — object+0x20
+///   u32  unknown6        — object+0x24
+///   u32  unknown7        — object+0x28
+///   bool is_complete     — true when this piece completes the set (object+0x2c)
+#[derive(SerializePacket)]
+pub struct CollectionAddEntry {
+    pub collection_id: u16,
+    pub slot: u16,
+    pub item_name_id: u32,
+    pub log_field1: u32,
+    pub log_field2: u32,
+    pub unknown4: u32,
+    pub unknown5: u32,
+    pub unknown6: u32,
+    pub unknown7: u32,
+    pub is_complete: bool,
+}
+
+impl GamePacket for CollectionAddEntry {
+    type Header = ClientUpdateOpCode;
+    const HEADER: ClientUpdateOpCode = ClientUpdateOpCode::CollectionAddEntry;
+}
+
+/// Sent on login for each collection set that the player has started.
+///
+/// Wire format (after the 0x26/0x08 opcode pair):
+///   u16  collection_id   — identifies the collection set (used as DS row key AND locale
+///                          string ID; the SWF calls GetStringById(id) for the display name)
+///   u16  unknown1        — category_id (2-5 per CollectionCategories.txt); used by
+///                          Ui.SetCollectionFilterByCategory to group collections by zone
+///   i32  blob_len        — byte length of the following blob (should be 16)
+///   blob (4 × u32 LE)   — C++ collection object fields (EXE fn 0x0037d2a0):
+///                          [0] → [collection+0x9c] = collection_id (DS row key)
+///                          [1] → [collection+0xa0] = category_id (MUST match zone
+///                                 filter; Umbara=2, or collections are invisible)
+///                          [2] → [collection+0xa4] = image_set_id (DS.imageid)
+///                          [3] → [collection+0xa8] = entry_count  (DS.entryCount)
+pub struct CollectionStart {
+    pub collection_id: u16,
+    pub unknown1: u16,
+    /// Raw blob — may be empty (len=0) until blob format is fully understood.
+    pub blob: Vec<u8>,
+}
+
+impl SerializePacket for CollectionStart {
+    fn serialize(&self, buffer: &mut Vec<u8>) {
+        self.collection_id.serialize(buffer);
+        self.unknown1.serialize(buffer);
+        (self.blob.len() as i32).serialize(buffer);
+        buffer.extend_from_slice(&self.blob);
+    }
+}
+
+impl GamePacket for CollectionStart {
+    type Header = ClientUpdateOpCode;
+    const HEADER: ClientUpdateOpCode = ClientUpdateOpCode::CollectionStart;
 }
