@@ -194,6 +194,11 @@ const DISGUISES: &[(&str, u32)] = &[
     ("disguisec21highsinger", 2340),
     ("disguisedarthmaul", 2339),
     ("disguiseplokoon", 2341),
+    ("disguisekagewarrior", 2352),
+    ("disguiseortolan", 2356),
+    ("disguiseumbaransoldier", 1965),
+    ("disguisenarglatch", 2470),
+    ("disguiseolddaka", 2436),
 ];
 
 fn find_disguise(name: &str) -> Option<u32> {
@@ -320,7 +325,7 @@ pub const HOLOPROJECTOR_MODELS: &[(u32, u32)] = &[
     (2107, 1110), // Ithorian
     (2108, 1111), // Gungan
     (2234, 1283), // Geonosian
-    (2235, 1710), // Seripas
+    (2235, 1284), // Brain Worm
     (2386, 1409), // Mortis Daughter
     (2387, 1410), // Mortis Son
     (2450, 1713), // Rancor
@@ -347,6 +352,11 @@ pub const HOLOPROJECTOR_MODELS: &[(u32, u32)] = &[
     (3433, 2340), // C-21 Highsinger
     (3434, 2339), // Darth Maul
     (3439, 2341), // Plo Koon
+    (3441, 2352), // Kage Warrior
+    (3442, 2356), // Ortolan
+    (3443, 1965), // Umbaran Soldier
+    (3444, 2470), // Narglatch
+    (3445, 2436), // Old Daka
 ];
 
 /// Looks up the Flourish animation id for the player's currently equipped
@@ -873,6 +883,9 @@ pub fn process_chat_command(
                             names.push("testeffectoff");
                             names.push("testeffectnext");
                             names.push("testeffectprev");
+                            names.push("testmodel");
+                            names.push("testmodelnext");
+                            names.push("testmodelprev");
                             server_msg(sender, &format!("Available emotes: {}", names.join(", ")))
                         }
 
@@ -1035,6 +1048,82 @@ pub fn process_chat_command(
                             broadcasts.extend(server_msg(
                                 sender,
                                 &format!("Test effect id: {composite_effect_id}"),
+                            ));
+                            broadcasts
+                        }
+
+                        // Dev/test command: applies an arbitrary model_id via
+                        // UpdateTemporaryModel so holoprojector model IDs can be
+                        // found empirically in-game. Usage: ./testmodel <model_id>
+                        "testmodel" => {
+                            let Some(id_arg) = arguments.get(1) else {
+                                return err("Usage: ./testmodel <model_id>");
+                            };
+                            let Ok(model_id) = id_arg.parse::<u32>() else {
+                                return err(&format!("Invalid model id: {id_arg}"));
+                            };
+
+                            let Some((_, instance_guid, chunk)) =
+                                characters_table_read_handle.index1(requester_guid)
+                            else {
+                                return err("Could not determine your current location");
+                            };
+                            let nearby_players = ZoneInstance::all_players_nearby(
+                                chunk, instance_guid, characters_table_read_handle,
+                            );
+
+                            let mut packets = Vec::new();
+                            if let Some(prev) = requester_read_handle.stats.temporary_model_id {
+                                packets.push(GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: RemoveTemporaryModel { guid: requester_guid, model_id: prev },
+                                }));
+                            }
+                            requester_read_handle.stats.temporary_model_id = Some(model_id);
+                            packets.push(GamePacket::serialize(&TunneledPacket {
+                                unknown1: true,
+                                inner: UpdateTemporaryModel { model_id, guid: requester_guid },
+                            }));
+                            let mut broadcasts = vec![Broadcast::Multi(nearby_players, packets)];
+                            broadcasts.extend(server_msg(sender, &format!("Test model id: {model_id}")));
+                            broadcasts
+                        }
+
+                        // Steps the active test model id up/down by 1 for range scanning.
+                        "testmodelnext" | "testmodelprev" => {
+                            let current_id =
+                                requester_read_handle.stats.temporary_model_id.unwrap_or(2340);
+                            let model_id = if cmd == "testmodelnext" {
+                                current_id.saturating_add(1)
+                            } else {
+                                current_id.saturating_sub(1)
+                            };
+
+                            let Some((_, instance_guid, chunk)) =
+                                characters_table_read_handle.index1(requester_guid)
+                            else {
+                                return err("Could not determine your current location");
+                            };
+                            let nearby_players = ZoneInstance::all_players_nearby(
+                                chunk, instance_guid, characters_table_read_handle,
+                            );
+
+                            let mut packets = Vec::new();
+                            if let Some(prev) = requester_read_handle.stats.temporary_model_id {
+                                packets.push(GamePacket::serialize(&TunneledPacket {
+                                    unknown1: true,
+                                    inner: RemoveTemporaryModel { guid: requester_guid, model_id: prev },
+                                }));
+                            }
+                            requester_read_handle.stats.temporary_model_id = Some(model_id);
+                            packets.push(GamePacket::serialize(&TunneledPacket {
+                                unknown1: true,
+                                inner: UpdateTemporaryModel { model_id, guid: requester_guid },
+                            }));
+                            let mut broadcasts = vec![Broadcast::Multi(nearby_players, packets)];
+                            broadcasts.extend(server_msg(
+                                sender,
+                                &format!("Test model id: {model_id}"),
                             ));
                             broadcasts
                         }
