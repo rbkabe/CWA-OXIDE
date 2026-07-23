@@ -546,10 +546,10 @@
 
 - id: 26
   parent_id: 3
-  menu_text: 53064
-  menu_icon_id: 2569
+  menu_text: 30464
+  menu_icon_id: 1542
   animation_id: 0
-  item_id: 0  # Brain Worm Holoprojector — no item in config yet
+  item_id: 2235  # Brain Worm Holoprojector
 
 - id: 27
   parent_id: 3
@@ -738,35 +738,35 @@
   menu_text: 4728
   menu_icon_id: 2774
   animation_id: 0
-  item_id: 0  # Kage Warrior Holoprojector — no item in config yet
+  item_id: 3441  # Kage Warrior Holoprojector
 
 - id: 54
   parent_id: 3
   menu_text: 4732
   menu_icon_id: 2778
   animation_id: 0
-  item_id: 0  # Ortolan Holoprojector — no item in config yet
+  item_id: 3442  # Ortolan Holoprojector
 
 - id: 55
   parent_id: 3
   menu_text: 4753
   menu_icon_id: 2801
   animation_id: 0
-  item_id: 0  # Umbaran Soldier Holoprojector — no item in config yet
+  item_id: 3443  # Umbaran Soldier Holoprojector
 
 - id: 56
   parent_id: 3
   menu_text: 4833
   menu_icon_id: 2869
   animation_id: 0
-  item_id: 0  # Narglatch Holoprojector — no item in config yet
+  item_id: 3444  # Narglatch Holoprojector
 
 - id: 57
   parent_id: 3
   menu_text: 4868
   menu_icon_id: 2919
   animation_id: 0
-  item_id: 0  # Old Daka Holoprojector — no item in config yet
+  item_id: 3445  # Old Daka Holoprojector
 
 - id: 58
   parent_id: 3

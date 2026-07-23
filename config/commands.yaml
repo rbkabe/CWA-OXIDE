@@ -367,6 +367,26 @@ commands:
     description: "Disguises you as the Geonosian Brain Worm model (orphaned holoprojector asset with no store item - Holo_CloneWormHead.adr)."
     usage: "./disguisebrainworm"
     permission_level: Emissary
+  disguisekagewarrior:
+    description: "Disguises you as the Kage Warrior Holoprojector model (Holo_KageWarrior.adr, model_id 2352)."
+    usage: "./disguisekagewarrior"
+    permission_level: Emissary
+  disguiseortolan:
+    description: "Disguises you as the Ortolan Holoprojector model (Holo_Ortolan.adr, model_id 2356)."
+    usage: "./disguiseortolan"
+    permission_level: Emissary
+  disguiseumbaransoldier:
+    description: "Disguises you as the Umbaran Soldier Holoprojector model (Holo_Umbaran.adr, model_id 1965)."
+    usage: "./disguiseumbaransoldier"
+    permission_level: Emissary
+  disguisenarglatch:
+    description: "Disguises you as the Narglatch Holoprojector model (Holo_Narglatch.adr, model_id 2470)."
+    usage: "./disguisenarglatch"
+    permission_level: Emissary
+  disguiseolddaka:
+    description: "Disguises you as the Old Daka Holoprojector model (Holo_OldDaka.adr, model_id 2436)."
+    usage: "./disguiseolddaka"
+    permission_level: Emissary
 
   disguiseseripas:
     description: "Disguises you as the Seripas holoprojector model."
@@ -526,6 +546,21 @@ commands:
   testeffectprev:
     description: "Dev tool: steps the active ./testeffect id down by 1 and reports the new id in chat."
     usage: "./testeffectprev"
+    permission_level: Emissary
+
+  testmodel:
+    description: "Dev tool: applies an arbitrary model_id via UpdateTemporaryModel so holoprojector model IDs can be found empirically in-game."
+    usage: "./testmodel <model_id>"
+    permission_level: Emissary
+
+  testmodelnext:
+    description: "Dev tool: steps the active ./testmodel id up by 1 and reports the new id in chat, for scanning a range of model IDs."
+    usage: "./testmodelnext"
+    permission_level: Emissary
+
+  testmodelprev:
+    description: "Dev tool: steps the active ./testmodel id down by 1 and reports the new id in chat."
+    usage: "./testmodelprev"
     permission_level: Emissary
 
   trooperacknowledge:
