@@ -140,7 +140,7 @@
   cost: 2500
   members: true
 
-# Seripas Holoprojector
+# Brain Worm Holoprojector (model_id 1284 = Holo_CloneWormHead.adr)
 - guid: 2235
   name_id: 30464
   description_id: 14
@@ -424,3 +424,53 @@
   category: 54
   cost: 4000
   members: true
+
+# Kage Warrior Holoprojector (model_id 2352 = Holo_KageWarrior.adr)
+- guid: 3441
+  name_id: 4728
+  description_id: 14
+  icon_set_id: 2774
+  slot: !Equipment None
+  item_type: 1
+  category: 54
+  cost: 3000
+
+# Ortolan Holoprojector (model_id 2356 = Holo_Ortolan.adr)
+- guid: 3442
+  name_id: 4732
+  description_id: 14
+  icon_set_id: 2778
+  slot: !Equipment None
+  item_type: 1
+  category: 54
+  cost: 3000
+
+# Umbaran Soldier Holoprojector (model_id 1965 = Holo_Umbaran.adr)
+- guid: 3443
+  name_id: 4753
+  description_id: 14
+  icon_set_id: 2801
+  slot: !Equipment None
+  item_type: 1
+  category: 54
+  cost: 3000
+
+# Narglatch Holoprojector (model_id 2470 = Holo_Narglatch.adr)
+- guid: 3444
+  name_id: 4833
+  description_id: 14
+  icon_set_id: 2869
+  slot: !Equipment None
+  item_type: 1
+  category: 54
+  cost: 3000
+
+# Old Daka Holoprojector (model_id 2436 = Holo_OldDaka.adr)
+- guid: 3445
+  name_id: 4868
+  description_id: 4873
+  icon_set_id: 2919
+  slot: !Equipment None
+  item_type: 1
+  category: 54
+  cost: 3000
