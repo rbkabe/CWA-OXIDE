@@ -2331,6 +2331,7 @@ jedi_temple:
         y: 0
         z: 0.9980268
         w: 0
+      stand_animation_id: 2599   
       cursor: 52
     # Amb Shops Jedi 5
     amb_shops_jedi_5:
@@ -2401,6 +2402,7 @@ jedi_temple:
         y: 0
         z: -0.992873
         w: 0
+      stand_animation_id: 2600
       cursor: 52
     # Gonk Droid (shop)
     gonk_droid:
@@ -2525,6 +2527,7 @@ jedi_temple:
       stand_animation_id: 911
       notification_icon: 10
       cursor: 52
+      enable_interact_popup: true
     # Snowtrooper Wolffe (shops)
     snowtrooper_wolffe_shops:
       model_id: 1660
