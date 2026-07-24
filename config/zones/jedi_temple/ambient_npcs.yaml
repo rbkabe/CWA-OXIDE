@@ -2524,7 +2524,7 @@ jedi_temple:
         y: 0
         z: 0.12899417
         w: 0
-      stand_animation_id: 3607
+      stand_animation_id: 911
       notification_icon: 10
       cursor: 52
       enable_interact_popup: true
