@@ -35,6 +35,10 @@ use handlers::minigame::{
     create_active_minigame_if_uncreated, load_all_minigames, process_minigame_packet,
     AllMinigameConfigs,
 };
+use handlers::companion::{
+    despawn_active_companion, move_companion_if_active, process_companion_packet,
+    resend_pet_inventory, set_active_pet_id, show_inactive_pet_window,
+};
 use handlers::mount::{load_mounts, process_mount_packet, MountConfig};
 use handlers::reference_data::{load_categories, load_item_classes, load_item_groups, load_quick_chats};
 use packets::quick_chat::{QuickChatDefinition, QuickChatDefinitions};
@@ -347,6 +351,7 @@ impl GameServer {
                     broadcasts.append(&mut self.process_packet(sender, packet.inner)?);
                 }
                 OpCode::ClientIsReady => {
+                    crate::info!("Player {} sent ClientIsReady", sender);
                     let mut sender_only_packets = Vec::new();
 
                     // Set the player as ready
@@ -657,6 +662,11 @@ impl GameServer {
                     };
                     sender_only_packets.push(GamePacket::serialize(&zone_details_done));
 
+                    // Show InactivePetWindow directly on login.
+                    // Using InactivePetWindow.Show instead of PetController.show() so we
+                    // bypass the FTE tutorial that PetController.show() would trigger.
+                    sender_only_packets.extend(show_inactive_pet_window());
+
                     broadcasts.push(Broadcast::Single(sender, sender_only_packets));
                     broadcasts.append(&mut final_broadcasts);
                 }
@@ -722,12 +732,16 @@ impl GameServer {
                         DeserializePacket::deserialize(&mut cursor)?;
                     // Don't allow players to update another player's position
                     pos_update.guid = player_guid(sender);
+                    // Move companion BEFORE move_character so character.stats.pos still
+                    // holds the previous position, letting us compute an accurate delta.
+                    broadcasts.append(&mut move_companion_if_active(sender, pos_update, self));
                     broadcasts.append(&mut ZoneInstance::move_character(pos_update, false, self)?);
                 }
                 OpCode::PlayerJump => {
                     let mut player_jump: PlayerJump = DeserializePacket::deserialize(&mut cursor)?;
                     // Don't allow players to update another player's position
                     player_jump.pos_update.guid = player_guid(sender);
+                    broadcasts.append(&mut move_companion_if_active(sender, player_jump.pos_update, self));
                     broadcasts.append(&mut ZoneInstance::move_character(player_jump, false, self)?);
                 }
                 OpCode::UpdatePlayerPlatformPos => {
@@ -735,6 +749,7 @@ impl GameServer {
                         DeserializePacket::deserialize(&mut cursor)?;
                     // Don't allow players to update another player's position
                     platform_pos_update.pos_update.guid = player_guid(sender);
+                    broadcasts.append(&mut move_companion_if_active(sender, platform_pos_update.pos_update, self));
                     broadcasts.append(&mut ZoneInstance::move_character(
                         platform_pos_update,
                         false,
@@ -804,6 +819,9 @@ impl GameServer {
                 }
                 OpCode::Mount => {
                     broadcasts.append(&mut process_mount_packet(&mut cursor, sender, self)?);
+                }
+                OpCode::Pet => {
+                    broadcasts.append(&mut process_companion_packet(&mut cursor, sender, self)?);
                 }
                 OpCode::Social => {
                     broadcasts.append(&mut process_social_packet(&mut cursor, sender, self)?);
@@ -1012,6 +1030,72 @@ impl GameServer {
                                     crate::info!(
                                         "ClickFavActionButton {sender}: slot param={:?} (no-op; sub_op=0x03 handles animation)",
                                         interaction.param,
+                                    );
+                                } else if interaction.button_name == "ClickSummonPetButton" {
+                                    // The client sends this UiInteraction immediately after
+                                    // OpCode::Pet (companion summon/dismiss).  Re-send
+                                    // SetActivePetId here so the ActivePetWindow appears even
+                                    // if the earlier send (in process_companion_packet) was
+                                    // dropped or arrived before PetController was ready.
+                                    // NOTE: window_name is "PetListWindow" when summoned from the
+                                    // companion selection menu — we match on button_name only.
+                                    let (active_item_guid, npc_guid) = self.lock_enforcer().read_characters(|_| {
+                                        CharacterLockRequest {
+                                            read_guids: vec![player_guid(sender)],
+                                            write_guids: vec![],
+                                            character_consumer: |_, characters_read, _, _| {
+                                                let ch = characters_read.get(&player_guid(sender));
+                                                let item = ch.and_then(|c| c.stats.active_companion_item_guid);
+                                                let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
+                                                Ok::<(Option<u32>, u64), ProcessPacketError>((item, npc))
+                                            },
+                                        }
+                                    })?;
+
+                                    let pet_id = active_item_guid.unwrap_or(0);
+                                    crate::info!(
+                                        "ClickSummonPetButton {sender}: resending ActivePetWindow packets (pet_id={pet_id} npc_guid={npc_guid:#018x})"
+                                    );
+                                    broadcasts.push(Broadcast::Single(
+                                        sender,
+                                        set_active_pet_id(pet_id, npc_guid),
+                                    ));
+                                } else if interaction.button_name == "ClickBuyAttachmentPetButton"
+                                {
+                                    // The gear icon was clicked — resend PetInventory so
+                                    // BaseClient.PetInventory is populated at the moment the
+                                    // flyout subscribes to the DataSource.
+                                    // NOTE: window_name can be "ActivePetWindow" or "HudMenuBar"
+                                    // depending on which panel the gear icon lives in — we match
+                                    // on button_name only.
+                                    let (active_item_guid, npc_guid) = self.lock_enforcer().read_characters(|_| {
+                                        CharacterLockRequest {
+                                            read_guids: vec![player_guid(sender)],
+                                            write_guids: vec![],
+                                            character_consumer: |_, characters_read, _, _| {
+                                                let ch = characters_read.get(&player_guid(sender));
+                                                let item = ch.and_then(|c| c.stats.active_companion_item_guid);
+                                                let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
+                                                Ok::<(Option<u32>, u64), ProcessPacketError>((item, npc))
+                                            },
+                                        }
+                                    })?;
+
+                                    let pet_id = active_item_guid.unwrap_or(0);
+                                    crate::info!(
+                                        "ClickBuyAttachmentPetButton {sender}: resending PetInventory (pet_id={pet_id} npc_guid={npc_guid:#018x})"
+                                    );
+                                    broadcasts.push(Broadcast::Single(
+                                        sender,
+                                        resend_pet_inventory(pet_id, npc_guid),
+                                    ));
+                                } else if interaction.window_name == "ActivePetWindow"
+                                    && interaction.button_name == "ClickDismissPetButton"
+                                {
+                                    // Player clicked the Dismiss button in ActivePetWindow.
+                                    crate::info!("ClickDismissPetButton {sender}: despawning companion");
+                                    broadcasts.append(
+                                        &mut despawn_active_companion(sender, self)
                                     );
                                 }
                             }
