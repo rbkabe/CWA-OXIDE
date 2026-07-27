@@ -419,8 +419,11 @@ impl Channel {
         while indices_to_send.len() < count as usize && index < self.send_queue.len() {
             let packet = &mut self.send_queue[index];
 
-            // All later packets are newer than this packet, so they should also be skipped
-            if packet.time_since_last_send() < self.time_until_resend {
+            // Only apply the resend timer to packets that have already been sent once.
+            // Never-sent packets are always eligible and go out immediately.
+            if packet.first_send != SendTime::NeverSent
+                && packet.time_since_last_send() < self.time_until_resend
+            {
                 index += 1;
                 continue;
             }
@@ -576,6 +579,9 @@ impl Channel {
                     server_options,
                 ),
             Packet::Heartbeat => self.process_heartbeat(server_options),
+            Packet::NetStatusRequest(client_tick, _, _, _, _, _, client_sent, client_recv, _) => {
+                self.process_net_status_request(*client_tick, *client_sent, *client_recv, server_options);
+            }
             Packet::Ack(acked_sequence) => self.process_ack(*acked_sequence),
             Packet::AckAll(acked_sequence) => self.process_ack_all(*acked_sequence),
             Packet::Disconnect(session_id, disconnect_reason) => {
@@ -629,6 +635,36 @@ impl Channel {
         self.enqueue_packet_to_send(PendingPacket::new(Packet::Heartbeat), server_options);
     }
 
+    fn process_net_status_request(
+        &mut self,
+        client_tick: ClientTick,
+        client_sent: PacketCount,
+        client_recv: PacketCount,
+        server_options: &ServerOptions,
+    ) {
+        // ServerTick: milliseconds since Unix epoch truncated to u32
+        let server_tick = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap_or_default()
+            .as_millis() as ServerTick;
+
+        let server_sent = self.next_server_sequence as PacketCount;
+        let server_recv = self.next_client_sequence as PacketCount;
+
+        self.enqueue_packet_to_send(
+            PendingPacket::new(Packet::NetStatusReply(
+                client_tick,
+                server_tick,
+                client_sent,
+                client_recv,
+                server_sent,
+                server_recv,
+                0,
+            )),
+            server_options,
+        );
+    }
+
     fn process_ack(&mut self, acked_sequence: SequenceNumber) {
         if Channel::should_client_ack(
             self.recency_limit,
@@ -638,7 +674,12 @@ impl Channel {
         ) {
             for pending_packet in self.send_queue.iter_mut() {
                 if let Some(pending_sequence) = pending_packet.packet.sequence_number() {
-                    if acked_sequence == pending_sequence {
+                    // Only retire packets that were actually transmitted.
+                    // A stale ACK from a reconnecting client could otherwise
+                    // mark a never-sent packet as done before we send it.
+                    if acked_sequence == pending_sequence
+                        && pending_packet.first_send != SendTime::NeverSent
+                    {
                         pending_packet.needs_send = false;
                     }
                 }
@@ -649,12 +690,17 @@ impl Channel {
     fn process_ack_all(&mut self, acked_sequence: SequenceNumber) {
         for pending_packet in self.send_queue.iter_mut() {
             if let Some(pending_sequence) = pending_packet.packet.sequence_number() {
-                if Channel::should_client_ack(
-                    self.recency_limit,
-                    self.next_server_sequence,
-                    acked_sequence,
-                    pending_sequence,
-                ) {
+                // Only retire packets that were actually transmitted.
+                // A stale AckAll from a reconnecting client could otherwise
+                // mark never-sent packets as done before we transmit them.
+                if pending_packet.first_send != SendTime::NeverSent
+                    && Channel::should_client_ack(
+                        self.recency_limit,
+                        self.next_server_sequence,
+                        acked_sequence,
+                        pending_sequence,
+                    )
+                {
                     pending_packet.needs_send = false;
                 }
             }
@@ -692,7 +738,9 @@ impl Channel {
         for packet in self.send_queue.iter() {
             if !packet.needs_send && packet.is_reliable() {
                 let SendTime::Instant(first_send) = packet.first_send else {
-                    panic!("Packet was marked as sent but has no timing statistics");
+                    // Should not happen after the NeverSent guard in process_ack/process_ack_all,
+                    // but skip rather than crash if a stale ACK somehow slips through.
+                    continue;
                 };
 
                 self.last_round_trip_times[self.next_round_trip_index] =
