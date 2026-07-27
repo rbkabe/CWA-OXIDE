@@ -11,6 +11,7 @@ pub mod item;
 pub mod login;
 pub mod minigame;
 pub mod mount;
+pub mod pet;
 pub mod player_data;
 pub mod player_update;
 pub mod purchase;
@@ -65,6 +66,7 @@ pub enum OpCode {
     ReferenceData = 0x2c,
     Ui = 0x2f,
     GameTimeSync = 0x34,
+    Pet = 0x35,
     DefinePointsOfInterest = 0x39,
     ZoneCombatSettings = 0x3e,
     Purchase = 0x42,

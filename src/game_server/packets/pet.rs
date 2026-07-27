@@ -1,0 +1,149 @@
+use packet_serialize::SerializePacket;
+
+use super::{GamePacket, OpCode};
+
+#[derive(Copy, Clone, Debug)]
+pub enum PetOpCode {
+    Inventory = 0x05,
+}
+
+impl SerializePacket for PetOpCode {
+    fn serialize(&self, buffer: &mut Vec<u8>) {
+        OpCode::Pet.serialize(buffer);
+        (*self as u8).serialize(buffer);
+    }
+}
+
+/// One item in the `BaseClient.PetInventory` DataSource.
+///
+/// Field mapping (from C++ bridge-registration analysis of CloneWars.exe):
+///  instance_guid → "Item Guid"   ([item+0x11c] = pre_item_id, read before 0x78af80)
+///  template_id   → "Item ID"     ([item+0x00], field 1)
+///  item_type     → bridge router  ([item+0x08], field 3) — NOT icon_id.
+///                  Controls which sub-DataSource the item is routed to:
+///                    1  = BaseClient.PetInventory.HeadData    [esi+0x1328]
+///                    3  = BaseClient.PetInventory.ChestData   [esi+0x1330]
+///                    4  = BaseClient.PetInventory.FeetData    [esi+0x1334]
+///                    5  = BaseClient.PetInventory.CollarData  [esi+0x132c]
+///                  202  = BaseClient.PetInventory.ToyData     [esi+0x1338]
+///                    0  = BaseClient.PetInventory (main)      [esi+0x133c]
+///  name          → "Name"        ([item+0x34], string field 9)
+///  tint_value    → [item+0x1C]   (field 13) = "Icon ID" in the DataSource.
+///                                Lua reads GetData("Icon ID") and passes it as
+///                                `iconId` to PetAttachmentListWindow:setAttachmentItem.
+pub struct PetInventoryItem {
+    pub instance_guid: u32,
+    pub template_id: u32,
+    /// Sub-DataSource routing type (matches item_type field in droid_parts.yaml).
+    ///   1  = BaseClient.PetInventory.HeadData    [esi+0x1328]
+    ///   3  = BaseClient.PetInventory.ChestData   [esi+0x1330]
+    ///   4  = BaseClient.PetInventory.FeetData    [esi+0x1334]
+    ///   5  = BaseClient.PetInventory.CollarData  [esi+0x132c]
+    /// 202  = BaseClient.PetInventory.ToyData     [esi+0x1338]
+    ///   0  = BaseClient.PetInventory (main)      [esi+0x133c]
+    pub item_type: u32,
+    pub name: String,
+    pub tint_value: u32,
+}
+
+/// Packet sub_op 0x05 — populates `BaseClient.PetInventory` DataSource so
+/// the gear-icon flyout in `ActivePetWindow` shows the player's owned
+/// attachment items.
+///
+/// Wire format decoded from `CloneWars.exe`:
+///  0x8bfe40: item-list builder (reads item_count, pre_item_id, calls 0x78af80)
+///  0x78af80: per-item packet reader (reads 19 fields into 0x128-byte struct)
+///  0x8c00b0: wrapper that reads 3 trailing u32s after the item loop
+///            stored at [out+0x2C], [out+0x30], [out+0x34].
+///
+/// Hypothesis: the trailing u32s are the companion NPC GUID split into
+/// (low_u32, high_u32) plus the pet item ID, telling the C++ pet system
+/// which companion's DataSource to update.  Without them the update is
+/// discarded and the flyout reads an empty DataSource.
+pub struct PetInventory {
+    pub items: Vec<PetInventoryItem>,
+    /// Low 32 bits of the companion NPC GUID (or 0 to use old behaviour).
+    pub companion_guid_lo: u32,
+    /// High 32 bits of the companion NPC GUID (or 0).
+    pub companion_guid_hi: u32,
+    /// The pet's item_guid (e.g. 917 for B3-T4), or 0.
+    pub pet_item_id: u32,
+}
+
+impl SerializePacket for PetInventory {
+    fn serialize(&self, buffer: &mut Vec<u8>) {
+        // 3-byte header read by 0x8ba160 before the item loop:
+        //   i16 → [output+0x04]  (unused by PopulatePetInventory, value = 0)
+        //   i8  → [output+0x08]  (unused by PopulatePetInventory, value = 0)
+        0u16.serialize(buffer);
+        0u8.serialize(buffer);
+
+        // item_count (u32)
+        (self.items.len() as u32).serialize(buffer);
+
+        for item in &self.items {
+            // pre_item_id → [item+0x11c] = "Item Guid" (read by 0x8bfe40 before 0x78af80)
+            item.instance_guid.serialize(buffer);
+
+            // --- 0x78af80 per-item reader fields (in packet order) ---
+            // 1.  u32  → [item+0x00] = "Item ID"
+            item.template_id.serialize(buffer);
+            // 2.  u8   → [item+0x04] bool — possible "equipped/unavailable" flag;
+            //            try false (0) so items appear as available-to-select.
+            0u8.serialize(buffer);
+            // 3.  u32  → [item+0x08] = item type (bridge router: 1=Head, 3=Chest,
+            //                         4=Feet, 5=Collar, 202=Toy, 0=main PetInventory)
+            item.item_type.serialize(buffer);
+            // 4-7. f32 NaN-checked → [item+0x20..0x2C] (4 floats)
+            (0.0f32).serialize(buffer);
+            (0.0f32).serialize(buffer);
+            (0.0f32).serialize(buffer);
+            (0.0f32).serialize(buffer);
+            // 8.  u8   → [item+0x30] bool — set true for the same reason.
+            1u8.serialize(buffer);
+            // 9.  Name string via 0x774DD0: u32 char_count + char_count×u32 codepoints
+            let chars: Vec<u32> = item.name.chars().map(|c| c as u32).collect();
+            (chars.len() as u32).serialize(buffer);
+            for cp in &chars {
+                cp.serialize(buffer);
+            }
+            // 10. [item+0xBC] array via 0x75EA20: u32 count + count×u32 (empty)
+            0u32.serialize(buffer);
+            // 11. [item+0xE4] array via 0x774600: u32 count + count×u32 (empty)
+            0u32.serialize(buffer);
+            // 12. blob [item+0x0C] via 0x748020: u32 len + len bytes (empty)
+            0u32.serialize(buffer);
+            // 13. u32  → [item+0x1C] = "Tint Value"
+            item.tint_value.serialize(buffer);
+            // 14. blob [item+0x100] via 0x748020: u32 len + len bytes (empty)
+            0u32.serialize(buffer);
+            // 15. u32  → [item+0xFC]
+            0u32.serialize(buffer);
+            // 16. u8   → [item+0x110] bool
+            0u8.serialize(buffer);
+            // 17. u32  → [item+0x114]
+            0u32.serialize(buffer);
+            // 18. 4× u32 → [item+0x88..0x94]
+            for _ in 0..4 {
+                0u32.serialize(buffer);
+            }
+            // 19. 8× u32 → [item+0x98..0xB4]
+            for _ in 0..8 {
+                0u32.serialize(buffer);
+            }
+        }
+
+        // Trailing 3 u32s read by 0x8c00b0 after the item loop
+        // [out+0x2C] = companion_guid_lo (low 32 bits of companion NPC GUID)
+        // [out+0x30] = companion_guid_hi (high 32 bits of companion NPC GUID)
+        // [out+0x34] = pet_item_id (the companion's item_guid, e.g. 917)
+        self.companion_guid_lo.serialize(buffer);
+        self.companion_guid_hi.serialize(buffer);
+        self.pet_item_id.serialize(buffer);
+    }
+}
+
+impl GamePacket for PetInventory {
+    type Header = PetOpCode;
+    const HEADER: Self::Header = PetOpCode::Inventory;
+}
