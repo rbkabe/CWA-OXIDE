@@ -1,12 +1,11 @@
-EMOTE UI FUNCTIONALITY ADDED
+COMPANION FUNCTIONALITY PARTIALLY ADDED
 
 extract, cargo build, and run
 
-Patch Contains WexToxicstinger's shop implementations, my shop npcs, new emote/holoprojector/mind trick commands in the world chat. 
-to view available commands use the "./emotes" command. 
+Patch Contains WexToxicstinger's shop implementations, my shop npcs, new emote/holoprojector/mind tricks WITH UI FUNCTIONALITY
 
 Thank you to Delta-07 for making the oxide build that I referenced to get the actions menu working.
 
 at this point I think I have every single emote fully functioning besides a few, all holoprojectors and mindtricks are there.
 
-next goals: add ambient npcs to the rest of the temple, add companion functionality
+next goals: add ambient npcs to the rest of the temple, fully implement companion functionality
