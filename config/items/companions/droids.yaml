@@ -316,3 +316,75 @@
   category: 0
   cost: 8000
   members: true
+
+# WAC-47
+- guid: 3407
+  name_id: 53975
+  description_id: 14
+  icon_set_id: 2807
+  slot: !Equipment None
+  model_name: Char_PitDroidAsym.adr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# M5-BZ
+- guid: 3408
+  name_id: 54000
+  description_id: 14
+  icon_set_id: 2808
+  slot: !Equipment None
+  model_name: 3D_R2M5.agr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# U9-C4
+- guid: 3425
+  name_id: 54074
+  description_id: 14
+  icon_set_id: 2809
+  slot: !Equipment None
+  model_name: 3D_Astromech_U9C4.agr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# BNI-393
+- guid: 3440
+  name_id: 54175
+  description_id: 14
+  icon_set_id: 2810
+  slot: !Equipment None
+  model_name: Char_LEPServantDroidBNI393.adr
+  item_type: 1
+  category: 0
+  cost: 3500
+  members: true
+
+# Security Battle Droid
+- guid: 3446
+  name_id: 54430
+  description_id: 14
+  icon_set_id: 2811
+  slot: !Equipment None
+  model_name: Char_BattleDroid.adr
+  item_type: 1
+  category: 0
+  cost: 4500
+  members: true
+
+# L1-LR3D
+- guid: 3447
+  name_id: 5486
+  description_id: 14
+  icon_set_id: 2812
+  slot: !Equipment None
+  model_name: Char_HodgepodgeDroid.adr
+  item_type: 1
+  category: 0
+  cost: 3500
+  members: true

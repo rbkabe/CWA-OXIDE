@@ -5,7 +5,7 @@
   description_id: 14
   icon_set_id: 1846
   slot: !Equipment None
-  # model_name:
+  model_name: Char_Convor.adr
   item_type: 1
   category: 0
   cost: 3500
@@ -17,7 +17,7 @@
   description_id: 14
   icon_set_id: 1976
   slot: !Equipment None
-  # model_name:
+  model_name: Char_Anoobus_LOD0.adr
   item_type: 1
   category: 0
   cost: 4000
@@ -29,7 +29,7 @@
   description_id: 14
   icon_set_id: 1997
   slot: !Equipment None
-  # model_name:
+  model_name: Char_Millicreep.adr
   item_type: 1
   category: 0
   cost: 0
@@ -41,7 +41,7 @@
   description_id: 14
   icon_set_id: 2143
   slot: !Equipment None
-  # model_name:
+  model_name: 3D_Vector.agr
   item_type: 1
   category: 0
   cost: 3500
@@ -53,7 +53,7 @@
   description_id: 14
   icon_set_id: 2357
   slot: !Equipment None
-  # model_name:
+  model_name: 3D_Babbo.agr
   item_type: 1
   category: 0
   cost: 4000
@@ -65,7 +65,7 @@
   description_id: 14
   icon_set_id: 2358
   slot: !Equipment None
-  # model_name:
+  model_name: 3D_Duppa.agr
   item_type: 1
   category: 0
   cost: 4000
@@ -77,7 +77,7 @@
   description_id: 14
   icon_set_id: 2587
   slot: !Equipment None
-  # model_name:
+  model_name: Char_Narglatch.adr
   item_type: 1
   category: 0
   cost: 5000
@@ -88,7 +88,7 @@
   description_id: 14
   icon_set_id: 2463
   slot: !Equipment None
-  # model_name:
+  model_name: Char_Anacondan.adr
   item_type: 1
   category: 0
   cost: 3500
@@ -100,7 +100,8 @@
   description_id: 14
   icon_set_id: 2572
   slot: !Equipment None
-  # model_name:
+  # Kowakian Monkey-Lizard; gear items 3274-3275 are adjacent to this guid
+  model_name: Char_Monong.adr
   item_type: 1
   category: 0
   cost: 4500
@@ -111,7 +112,8 @@
   description_id: 14
   icon_set_id: 2573
   slot: !Equipment None
-  # model_name:
+  # Sarlacc Balloon gear (guid 3285, icon 2575) is adjacent to this entry
+  model_name: Char_Sarlacc.adr
   item_type: 1
   category: 0
   cost: 0
@@ -123,7 +125,7 @@
   description_id: 14
   icon_set_id: 2667
   slot: !Equipment None
-  # model_name:
+  model_name: Char_Marrok.adr
   item_type: 1
   category: 0
   cost: 3500
@@ -134,7 +136,91 @@
   description_id: 14
   icon_set_id: 2700
   slot: !Equipment None
-  # model_name:
+  model_name: Char_Gundark.adr
   item_type: 1
   category: 0
   cost: 3500
+
+# Skreech
+- guid: 3420
+  name_id: 51756
+  description_id: 14
+  icon_set_id: 2800
+  slot: !Equipment None
+  model_name: 3D_Skreech.agr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Cinch
+- guid: 3421
+  name_id: 51859
+  description_id: 14
+  icon_set_id: 2801
+  slot: !Equipment None
+  model_name: Char_Tooka.adr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Amelie
+- guid: 3422
+  name_id: 50742
+  description_id: 14
+  icon_set_id: 2802
+  slot: !Equipment None
+  model_name: Char_Millicreep.adr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Gulsh
+- guid: 3423
+  name_id: 52058
+  description_id: 14
+  icon_set_id: 2803
+  slot: !Equipment None
+  model_name: Char_Narglatch.adr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Kharroh
+- guid: 3424
+  name_id: 52559
+  description_id: 14
+  icon_set_id: 2804
+  slot: !Equipment None
+  model_name: Char_Narglatch.adr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Gash
+- guid: 3415
+  name_id: 52868
+  description_id: 14
+  icon_set_id: 2805
+  slot: !Equipment None
+  model_name: Char_Narglatch.adr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
+
+# Cercopes
+- guid: 3406
+  name_id: 54075
+  description_id: 14
+  icon_set_id: 2806
+  slot: !Equipment None
+  model_name: Char_KowakianMonkeyLizard.adr
+  item_type: 1
+  category: 0
+  cost: 4000
+  members: true
