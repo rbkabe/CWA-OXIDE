@@ -10032,7 +10032,7 @@
   items:
     - guid: 3399
       unknown: 0
-    - guid: 3400
+    - guid: 3420
       unknown: 0
 
 # Experimental Weapons Pack
@@ -10110,11 +10110,11 @@
   for_sale: true
   members_only: false
   items:
-    - guid: 3401
+    - guid: 3421
       unknown: 0
-    - guid: 3402
+    - guid: 3422
       unknown: 0
-    - guid: 3403
+    - guid: 3423
       unknown: 0
     - guid: 150039
       unknown: 0
@@ -10148,13 +10148,13 @@
   for_sale: true
   members_only: true
   items:
-    - guid: 3409
+    - guid: 3425
       unknown: 0
-    - guid: 3410
+    - guid: 3440
       unknown: 0
-    - guid: 3411
+    - guid: 3446
       unknown: 0
-    - guid: 3412
+    - guid: 3447
       unknown: 0
 
 # Gundark Holoprojector
@@ -10188,7 +10188,7 @@
   for_sale: true
   members_only: false
   items:
-    - guid: 3404
+    - guid: 3424
       unknown: 0
 
 # Quarzite Boba Fett
@@ -10423,3 +10423,368 @@
       unknown: 1
     - guid: 3280
       unknown: 1
+# All Astromech Droid Parts (aggregated for companion gear icon)
+- guid: 10002
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 65
+  category: 72
+  page: 0
+  preview_model_id: 31
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 309
+      unknown: 0
+    - guid: 310
+      unknown: 0
+    - guid: 427
+      unknown: 0
+    - guid: 438
+      unknown: 0
+    - guid: 558
+      unknown: 0
+    - guid: 2085
+      unknown: 0
+    - guid: 2087
+      unknown: 0
+    - guid: 2088
+      unknown: 0
+    - guid: 2089
+      unknown: 0
+    - guid: 2155
+      unknown: 0
+    - guid: 2205
+      unknown: 0
+    - guid: 2714
+      unknown: 0
+    - guid: 2903
+      unknown: 0
+    - guid: 2904
+      unknown: 0
+    - guid: 2905
+      unknown: 0
+
+# All Protocol Droid Parts (aggregated for companion gear icon)
+- guid: 10003
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 74
+  category: 72
+  page: 0
+  preview_model_id: 164
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 311
+      unknown: 0
+    - guid: 425
+      unknown: 0
+    - guid: 430
+      unknown: 0
+    - guid: 447
+      unknown: 0
+    - guid: 559
+      unknown: 0
+    - guid: 2109
+      unknown: 0
+    - guid: 2156
+      unknown: 0
+
+# All Mouse Droid Parts (aggregated for companion gear icon)
+- guid: 10004
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 71
+  category: 72
+  page: 0
+  preview_model_id: 259
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 424
+      unknown: 0
+    - guid: 444
+      unknown: 0
+    - guid: 2157
+      unknown: 0
+    - guid: 2158
+      unknown: 0
+    - guid: 2381
+      unknown: 0
+    - guid: 2819
+      unknown: 0
+
+# All Power Droid Parts (aggregated for companion gear icon)
+- guid: 10005
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 72
+  category: 72
+  page: 0
+  preview_model_id: 233
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 428
+      unknown: 0
+    - guid: 429
+      unknown: 0
+    - guid: 436
+      unknown: 0
+    - guid: 2382
+      unknown: 0
+
+# All AT-AT Puppy Parts (aggregated for companion gear icon)
+- guid: 10006
+  name_id: 0
+  description_id: 0
+  sort_order: 0
+  icon_set_id: 63
+  category: 72
+  page: 0
+  preview_model_id: 279
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: false
+  items:
+    - guid: 563
+      unknown: 0
+    - guid: 564
+      unknown: 0
+    - guid: 2713
+      unknown: 0
+
+# Skreech
+- guid: 900
+  name_id: 51756
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2800
+  category: 84
+  page: 0
+  preview_model_id: 2438
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3420
+      unknown: 0
+
+# Cinch
+- guid: 901
+  name_id: 51859
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2801
+  category: 84
+  page: 0
+  preview_model_id: 2744
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3421
+      unknown: 0
+
+# Amelie
+- guid: 902
+  name_id: 50742
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2802
+  category: 84
+  page: 0
+  preview_model_id: 2182
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3422
+      unknown: 0
+
+# Gulsh
+- guid: 903
+  name_id: 52058
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2803
+  category: 84
+  page: 0
+  preview_model_id: 2470
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3423
+      unknown: 0
+
+# Kharroh
+- guid: 904
+  name_id: 52559
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2804
+  category: 84
+  page: 0
+  preview_model_id: 2470
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3424
+      unknown: 0
+
+# Gash
+- guid: 905
+  name_id: 52868
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2805
+  category: 84
+  page: 0
+  preview_model_id: 2470
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3415
+      unknown: 0
+
+# Cercopes
+- guid: 906
+  name_id: 54075
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2806
+  category: 84
+  page: 0
+  preview_model_id: 1612
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3406
+      unknown: 0
+
+# WAC-47
+- guid: 907
+  name_id: 53975
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2807
+  category: 71
+  page: 0
+  preview_model_id: 2621
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3407
+      unknown: 0
+
+# M5-BZ
+- guid: 908
+  name_id: 54000
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2808
+  category: 71
+  page: 0
+  preview_model_id: 641
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3408
+      unknown: 0
+
+# U9-C4
+- guid: 909
+  name_id: 54074
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2809
+  category: 71
+  page: 0
+  preview_model_id: 2664
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3425
+      unknown: 0
+
+# BNI-393
+- guid: 910
+  name_id: 54175
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2810
+  category: 71
+  page: 0
+  preview_model_id: 2667
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3440
+      unknown: 0
+
+# Security Battle Droid
+- guid: 911
+  name_id: 54430
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2811
+  category: 71
+  page: 0
+  preview_model_id: 2745
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3446
+      unknown: 0
+
+# L1-LR3D
+- guid: 912
+  name_id: 5486
+  description_id: 14
+  sort_order: 0
+  icon_set_id: 2812
+  category: 71
+  page: 0
+  preview_model_id: 2441
+  preview_animation_id: 0
+  is_new: false
+  for_sale: true
+  members_only: true
+  items:
+    - guid: 3447
+      unknown: 0
