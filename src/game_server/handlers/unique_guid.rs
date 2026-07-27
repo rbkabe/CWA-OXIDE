@@ -26,6 +26,7 @@ pub const AMBIENT_NPC_DISCRIMINANT: u8 = 0x10;
 pub const FIXTURE_DISCRIMINANT: u8 = 0x20;
 pub const MOUNT_DISCRIMINANT: u8 = 0x30;
 pub const SABER_DUEL_DISCRIMINANT: u8 = 0x40;
+pub const PET_DISCRIMINANT: u8 = 0x50;
 
 pub fn npc_guid(discriminant: u8, zone_guid: u64, index: u16) -> u64 {
     ((discriminant as u64) << 56) | ((index as u64) << 40) | zone_guid
@@ -48,6 +49,10 @@ pub fn shorten_player_guid(player_guid: u64) -> Result<u32, ProcessPacketError> 
 
 pub fn mount_guid(rider: u64) -> u64 {
     ((MOUNT_DISCRIMINANT as u64) << 56) | rider
+}
+
+pub fn pet_guid(owner: u64) -> u64 {
+    ((PET_DISCRIMINANT as u64) << 56) | owner
 }
 
 pub fn saber_duel_opponent_guid(player_guid: u32) -> u64 {

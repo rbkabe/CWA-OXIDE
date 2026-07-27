@@ -7,6 +7,7 @@ pub mod character;
 pub mod chat;
 pub mod chat_command;
 pub mod clicked_location;
+pub mod companion;
 pub mod combat;
 pub mod command;
 pub mod daily;

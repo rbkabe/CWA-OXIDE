@@ -66,6 +66,7 @@ fn derive_initial_weapon_abilities(
 }
 
 pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, ProcessPacketError> {
+    crate::info!("Player {} logging in", sender);
     game_server.lock_enforcer().write_characters(
         |characters_table_write_handle, minigame_data_lock_enforcer| {
             let zones_lock_enforcer: ZoneLockEnforcer<'_> = minigame_data_lock_enforcer.into();
@@ -219,6 +220,9 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                     // Remove once the real flow is confirmed working.
                     collection_replay: make_test_collection_replay(),
                     fav_emotes: std::collections::VecDeque::new(),
+                    companions: player.inner.data.pets.iter()
+                        .filter_map(|pet| pet.item_guid.first().map(|ig| ig.guid))
+                        .collect(),
                     action_bar: PlayerActionBar {
                         // Root cause of "new weapons land on slot 4 instead of
                         // replacing slot 1": this used to unconditionally call

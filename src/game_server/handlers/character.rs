@@ -2094,6 +2094,9 @@ pub struct Player {
     /// 5th drops the oldest.  Populated by opcode 0xbd sub-type 2 (star click
     /// in the Actions menu).  Used to play QueueAnimation on ClickFavActionButton.
     pub fav_emotes: VecDeque<i32>,
+    /// item_guids of companions this player owns (from the login player_data pets list).
+    /// Used by the companion handler to know which companion to spawn.
+    pub companions: Vec<u32>,
 }
 
 impl Player {
@@ -2484,6 +2487,9 @@ impl BaseNpcTemplate {
                 composite_effect_tags: BTreeMap::new(),
                 navmesh: self.navmesh.clone(),
                 ability_height: self.ability_height,
+                companion_guid: None,
+                active_companion_item_guid: None,
+                companion_world_pos: None,
             },
             tickable_procedure_tracker: TickableProcedureTracker::new(
                 self.tickable_procedures.clone(),
@@ -2623,6 +2629,15 @@ pub struct CharacterStats {
     pub max_health: u16,
     pub composite_effect_tags: BTreeMap<u32, u32>,
     pub navmesh: Option<String>,
+    /// GUID of the currently-spawned companion NPC for this character, if any.
+    pub companion_guid: Option<u64>,
+    /// item_guid of the companion that is currently active (summon-spawned).
+    /// Sent to the client via `ActivePetWindow.SetActivePetId` to show ActivePetWindow.
+    pub active_companion_item_guid: Option<u32>,
+    /// Last known world-space position of the companion NPC (x, y, z).
+    /// Used in movement updates to move the companion by delta rather than recalculating
+    /// "behind the player", so the companion turns in place instead of orbiting.
+    pub companion_world_pos: Option<(f32, f32, f32)>,
 }
 
 impl CharacterStats {
@@ -2884,6 +2899,9 @@ impl Character {
                 composite_effect_tags: BTreeMap::new(),
                 navmesh: None,
                 ability_height: default_ability_height(),
+                companion_guid: None,
+                active_companion_item_guid: None,
+                companion_world_pos: None,
             },
             tickable_procedure_tracker: TickableProcedureTracker::new(
                 tickable_procedures,
@@ -2955,6 +2973,9 @@ impl Character {
                 composite_effect_tags: BTreeMap::new(),
                 navmesh: None,
                 ability_height: default_ability_height(),
+                companion_guid: None,
+                active_companion_item_guid: None,
+                companion_world_pos: None,
             },
             tickable_procedure_tracker: TickableProcedureTracker::new(HashMap::new(), Vec::new()),
             synchronize_with: None,
