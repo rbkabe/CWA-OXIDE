@@ -62,6 +62,12 @@ pub struct ItemGroupConfig {
     pub members_only: bool,
     #[serde(default)]
     pub for_sale: bool,
+    /// Price for every item in this group when set > 0.  Overrides the
+    /// per-item `cost` field from the individual item YAML files, making it
+    /// easy to price a whole outfit/set from one place in item_groups.yaml.
+    /// When 0 (the default), the per-item cost is used unchanged.
+    #[serde(default)]
+    pub cost: u32,
     #[serde(default)]
     pub items: Vec<ItemGroupItem>,
 }
@@ -149,6 +155,20 @@ pub fn load_item_groups(
         .filter(|group| group.for_sale)
         .flat_map(|group| group.items.iter().map(|item| item.guid))
         .collect();
+
+    // Apply group-level cost override: when a for_sale group has cost > 0,
+    // that price wins over the individual item's cost field.
+    for group in groups.iter() {
+        if group.for_sale && group.cost > 0 {
+            for item in group.items.iter() {
+                if let Some(entry) = costs.get_mut(&item.guid) {
+                    entry.base = group.cost;
+                    entry.members = group.cost;
+                }
+            }
+        }
+    }
+
     costs.retain(|item_guid, _| items_for_sale.contains(item_guid));
 
     Ok(groups.into_iter().map(|group| group.into()).collect())

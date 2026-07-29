@@ -1,5 +1,6 @@
 use std::collections::BTreeMap;
 
+use num_enum::TryFromPrimitive;
 use packet_serialize::NullTerminatedString;
 
 use crate::{
@@ -27,6 +28,7 @@ use super::{
     guid::IndexedGuid,
     lock_enforcer::ZoneLockEnforcer,
     minigame::PlayerMinigameStats,
+    profile::load_profile,
     test_data::{make_test_collection_replay, make_test_customizations, make_test_player},
     unique_guid::player_guid,
     zone::{clean_up_zone_if_no_players, ZoneInstance},
@@ -132,9 +134,62 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
             };
             packets.push(GamePacket::serialize(&item_defs_reply));
 
+            // Load per-player profile and build the player packet, applying any
+            // saved overrides on top of the test-data defaults.
+            let profile = load_profile(game_server.profiles_dir(), sender);
+
+            let mut player_data = make_test_player(sender, game_server.mounts(), game_server.items());
+
+            // Override equipped items from saved profile.
+            for (bc_guid, slot_map) in &profile.equipped {
+                if let Some(bc) = player_data.data.battle_classes.get_mut(bc_guid) {
+                    for (slot_u32, item_guid) in slot_map {
+                        if let Ok(slot) =
+                            crate::game_server::packets::item::EquipmentSlot::try_from_primitive(*slot_u32)
+                        {
+                            bc.items.insert(
+                                slot,
+                                crate::game_server::packets::player_data::EquippedItem {
+                                    slot,
+                                    guid: *item_guid,
+                                    category: 0,
+                                },
+                            );
+                        }
+                    }
+                }
+            }
+
+            // Override name from saved profile.
+            if let Some(ref first) = profile.first_name {
+                player_data.data.name.first_name = first.clone();
+            }
+            if let Some(ref last) = profile.last_name {
+                player_data.data.name.last_name = last.clone();
+            }
+
+            // Override credits from saved profile. New/anonymous players
+            // (no profile file) keep the test-data default. Profiled players
+            // use their persisted balance, defaulting to 100,000 on first login.
+            const DEFAULT_STARTING_CREDITS: u32 = 100_000;
+            if profile.first_name.is_some() {
+                player_data.data.credits =
+                    profile.credits.unwrap_or(DEFAULT_STARTING_CREDITS);
+            }
+
+            // Restrict client-visible inventory for profiled players: only send
+            // items they actually own, not the full test-data set.  New players
+            // (first_name is None) keep the full inventory so hosts can test
+            // everything.
+            if profile.first_name.is_some() {
+                player_data.data.inventory.retain(|guid, _| {
+                    profile.purchased_items.contains(guid)
+                });
+            }
+
             let player = TunneledPacket {
                 unknown1: true,
-                inner: make_test_player(sender, game_server.mounts(), game_server.items()),
+                inner: player_data,
             };
             packets.push(GamePacket::serialize(&player));
 
@@ -148,6 +203,20 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                 ));
             };
 
+            // If a real on-disk profile exists (first_name is Some), the player's
+            // inventory is exactly what they own: only purchased items.  New players
+            // (no profile file yet) fall back to the full test-data set so the
+            // host can still access everything.
+            let mut base_inventory: std::collections::BTreeSet<u32> =
+                if profile.first_name.is_some() {
+                    profile.purchased_items.iter().copied().collect()
+                } else {
+                    player.inner.data.inventory.into_keys().collect()
+                };
+            // Always ensure purchased items are present even for the full-inventory path.
+            for item_guid in &profile.purchased_items {
+                base_inventory.insert(*item_guid);
+            }
             let inventory = PlayerInventory::new(
                 player
                     .inner
@@ -166,7 +235,7 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                     })
                     .collect(),
                 player.inner.data.active_battle_class,
-                player.inner.data.inventory.into_keys().collect(),
+                base_inventory,
             );
 
             let weapon_abilities = derive_initial_weapon_abilities(
@@ -198,7 +267,18 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                     member: player.inner.data.membership_unknown1,
                     credits: player.inner.data.credits,
                     inventory,
-                    customizations: make_test_customizations(),
+                    customizations: if profile.customizations.is_empty() {
+                        make_test_customizations()
+                    } else {
+                        profile.customizations.iter()
+                            .filter_map(|(slot_i32, guid)| {
+                                crate::game_server::packets::player_update::CustomizationSlot
+                                    ::try_from_primitive(*slot_i32)
+                                    .ok()
+                                    .map(|slot| (slot, *guid))
+                            })
+                            .collect()
+                    },
                     minigame_stats: PlayerMinigameStats::default(),
                     minigame_status: None,
                     update_previous_location_on_leave: true,
@@ -213,16 +293,17 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                         click_to_teleport: false,
                     },
                     role: Role::Admin,
-                    collected_items: std::collections::HashSet::new(),
+                    collected_items: profile.collected_items,
                     started_collections: std::collections::HashSet::new(),
                     // Pre-populate with hardcoded test data so the Collections
                     // window is testable at login without NPC interaction.
                     // Remove once the real flow is confirmed working.
                     collection_replay: make_test_collection_replay(),
-                    fav_emotes: std::collections::VecDeque::new(),
+                    fav_emotes: profile.fav_emotes.into_iter().collect(),
                     companions: player.inner.data.pets.iter()
                         .filter_map(|pet| pet.item_guid.first().map(|ig| ig.guid))
                         .collect(),
+                    purchased_items: profile.purchased_items,
                     action_bar: PlayerActionBar {
                         // Root cause of "new weapons land on slot 4 instead of
                         // replacing slot 1": this used to unconditionally call

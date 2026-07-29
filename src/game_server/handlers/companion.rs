@@ -88,43 +88,43 @@ pub static COMPANION_ATTACHMENT_GROUPS: &[(u32, u32)] = &[
 /// `instance_guid` is set equal to `template_id` since we track ownership by template ID.
 pub static COMPANION_ATTACHMENT_ITEMS: &[(u32, &[(u32, u32, u32)])] = &[
     // Protocol droids → group 175: 311 (Serving Tray/266), 430 (Oil Slick/1184), 447 (Dance/1183)
-    (541,  &[(311, 1,266), (430, 1,1184), (447, 1,1183)]),  // C-3PO
-    (550,  &[(311, 1,266), (430, 1,1184), (447, 1,1183)]),  // N0-80T
-    (551,  &[(311, 1,266), (430, 1,1184), (447, 1,1183)]),  // N-30H
-    (552,  &[(311, 1,266), (430, 1,1184), (447, 1,1183)]),  // J3-3V3
-    (553,  &[(311, 1,266), (430, 1,1184), (447, 1,1183)]),  // D-0T
-    (998,  &[(311, 1,266), (430, 1,1184), (447, 1,1183)]),  // RA-7
+    (541,  &[(311, 0,266), (430, 0,1184), (447, 0,1183)]),  // C-3PO
+    (550,  &[(311, 0,266), (430, 0,1184), (447, 0,1183)]),  // N0-80T
+    (551,  &[(311, 0,266), (430, 0,1184), (447, 0,1183)]),  // N-30H
+    (552,  &[(311, 0,266), (430, 0,1184), (447, 0,1183)]),  // J3-3V3
+    (553,  &[(311, 0,266), (430, 0,1184), (447, 0,1183)]),  // D-0T
+    (998,  &[(311, 0,266), (430, 0,1184), (447, 0,1183)]),  // RA-7
     // Techno-Service droid → group 172: 560 (Repulsor/1432), 561 (Wheel/269), 562 (Explosive/268)
-    (633,  &[(560, 1,1432), (561, 1,269), (562, 1,268)]),   // T0-D0
+    (633,  &[(560, 0,1432), (561, 0,269), (562, 0,268)]),   // T0-D0
     // Astromech droids → group 174: 309 (Thruster/255), 310 (Party/1181), 427 (Pogo/258)
-    (545,  &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // R2-D2
-    (546,  &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // R3-S6
-    (547,  &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // B3-3P5
-    (548,  &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // M1-L0
-    (549,  &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // B0-LT5
-    (916,  &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // R2-KT
-    (917,  &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // B3-T4
-    (2146, &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // 6R-0WL
-    (2147, &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // P3-NUT
-    (2393, &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // H3-4RT
-    (2804, &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // 7L-VN
-    (3408, &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // M5-BZ
-    (3425, &[(309, 1,255), (310, 1,1181), (427, 1,258)]),   // U9-C4
+    (545,  &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // R2-D2
+    (546,  &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // R3-S6
+    (547,  &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // B3-3P5
+    (548,  &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // M1-L0
+    (549,  &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // B0-LT5
+    (916,  &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // R2-KT
+    (917,  &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // B3-T4
+    (2146, &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // 6R-0WL
+    (2147, &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // P3-NUT
+    (2393, &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // H3-4RT
+    (2804, &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // 7L-VN
+    (3408, &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // M5-BZ
+    (3425, &[(309, 0,255), (310, 0,1181), (427, 0,258)]),   // U9-C4
     // Mouse droids → group 168: 424 (Rocket/262), 444 (Bobblehead/192)
-    (542,  &[(424, 1,262), (444, 1,192)]),                   // F1-V3L
-    (2092, &[(424, 1,262), (444, 1,192)]),                   // 1M-AU5
+    (542,  &[(424, 0,262), (444, 0,192)]),                   // F1-V3L
+    (2092, &[(424, 0,262), (444, 0,192)]),                   // 1M-AU5
     // Probe droid → group 171: 657 (UFO/1429), 658 (Jurassic/1427), 659 (Missile/1428)
-    (543,  &[(657, 1,1429), (658, 1,1427), (659, 1,1428)]), // PR-0B07
+    (543,  &[(657, 0,1429), (658, 0,1427), (659, 0,1428)]), // PR-0B07
     // Power droid → group 173: 428 (Generator/265), 429 (Boombox/264), 436 (Boxing/263)
-    (544,  &[(428, 1,265), (429, 1,264), (436, 1,263)]),    // 5T-U85
+    (544,  &[(428, 0,265), (429, 0,264), (436, 0,263)]),    // 5T-U85
     // Mini AT-AT → group 169: 563 (Spinners/254), 564 (Bipedal/1182)
-    (632,  &[(563, 1,254), (564, 1,1182)]),                  // 5P-0T
+    (632,  &[(563, 0,254), (564, 0,1182)]),                  // 5P-0T
     // Aedalus (Convor) → group 641: 2715 (Jetpack/1847), 2716 (Pilot/1848)
-    (2752, &[(2715, 1,1847), (2716, 1,1848)]),               // Aedalus
+    (2752, &[(2715, 0,1847), (2716, 0,1848)]),               // Aedalus
     // Phileas (Kowakian) → group 837: 3274 (Sith Robe/2526), 3275 (Jedi Robe/2527)
-    (3282, &[(3274, 1,2526), (3275, 1,2527)]),               // Phileas
+    (3282, &[(3274, 0,2526), (3275, 0,2527)]),               // Phileas
     // Barnibus (Rancor) → group 843: 3285 (Sarlacc Balloon/2575)
-    (3283, &[(3285, 1,2575)]),                                 // Barnibus
+    (3283, &[(3285, 0,2575)]),                                 // Barnibus
 ];
 
 /// Maps companion item_guid → NPC model_id.
@@ -348,45 +348,12 @@ pub fn set_active_pet_id(pet_id: u32, companion_npc_guid: u64) -> Vec<Vec<u8>> {
                 packets.push(pet_inventory_packet);
             }
 
-            // Step 6: Pre-populate the flyout using the root-delegate names that
-            // AttachmentSelectionView's constructor registers on _root (confirmed via
-            // AS2 bytecode decode of tag[312] in PetAttachmentListWindow.swf):
-            //
-            //   _root.clearAttachmentItems()                    → _clearAttachmentItems()
-            //   _root.setAttachmentItem(guid,itemId,name,iconId)→ _handleAddAttachmentItem()
-            //   _root.addAttachmentFinished()                   → _handleAddAttachmentFinished()
-            //
-            // addAttachmentFinished inserts ui_None at front + BuyAttachment at end,
-            // then calls invalidateAttachmentView() which drives addItem() on the grid.
-            // The gear button opens the flyout client-side (no server round-trip), so
-            // we must push items now (at summon time) rather than on-demand.
-            // ExecuteScriptWithIntParams only carries i32 params; name is sent as 0.
-            for window in &["ActivePetWindow", "PetAttachmentListWindow"] {
-                packets.push(GamePacket::serialize(&TunneledPacket {
-                    unknown1: true,
-                    inner: ExecuteScriptWithIntParams {
-                        script_name: format!("{window}.clearAttachmentItems"),
-                        params: vec![],
-                    },
-                }));
-                for &(item_guid, _item_type, icon_set_id) in attachment_items {
-                    packets.push(GamePacket::serialize(&TunneledPacket {
-                        unknown1: true,
-                        inner: ExecuteScriptWithIntParams {
-                            // setAttachmentItem(guid, itemId, name, iconId)
-                            script_name: format!("{window}.setAttachmentItem"),
-                            params: vec![item_guid as i32, item_guid as i32, 0, icon_set_id as i32],
-                        },
-                    }));
-                }
-                packets.push(GamePacket::serialize(&TunneledPacket {
-                    unknown1: true,
-                    inner: ExecuteScriptWithIntParams {
-                        script_name: format!("{window}.addAttachmentFinished"),
-                        params: vec![],
-                    },
-                }));
-            }
+            // NOTE: The flyout (HudMenuBar_PetAttachments) is populated entirely by
+            // Lua (GenericItemSelectionData.lua :: populateDataPetAttachments) reading
+            // the BaseClient.PetInventory DataSource when the window opens (WINDOW_OPENED
+            // event → GenericItemSelection.show → updateLocalData).  No extra AS2 delegate
+            // calls are needed; the PetInventory packet above (item_type=0 → main DataSource)
+            // is the sole population mechanism.
         } else {
             crate::info!(
                 "SetPetAttachmentItemGroupId pet_id={pet_id}: no group mapping, gear icon stays grayed out"
@@ -416,19 +383,15 @@ pub fn set_active_pet_id(pet_id: u32, companion_npc_guid: u64) -> Vec<Vec<u8>> {
     }
 }
 
-/// Sends `PetInventory` + `SetPetAttachmentItemGroupId` + the three direct Lua
-/// calls that populate the attachment flyout for `pet_id`.
+/// Sends `PetInventory` + `SetPetAttachmentItemGroupId` for `pet_id`.
 ///
-/// The flyout (ActivePetWindow/PetAttachmentListWindow, AttachmentSelectionView) exposes
-/// three Lua-callable root-delegates (confirmed via AS2 bytecode decode):
-///   clearAttachmentItems()                     — resets m_attachmentItems to []
-///   setAttachmentItem(guid,itemId,name,iconId) — pushes one item to m_attachmentItems
-///   addAttachmentFinished()                    — adds ui_None+BuyAttachment, then renders
-/// PetInventory is kept for its other uses (currently-equipped tracking).
+/// The flyout (HudMenuBar_PetAttachments) is populated entirely by Lua:
+/// GenericItemSelectionData.lua::populateDataPetAttachments reads the
+/// BaseClient.PetInventory DataSource (populated here via PetInventory packet,
+/// item_type=0) when the window opens.  No AS2 delegate calls are needed.
 ///
-/// Called from ClickBuyAttachmentPetButton and from the ClickSummonPetButton
-/// resend path via set_active_pet_id.
-/// Does NOT re-run the window show/hide sequence so the panel doesn't flash.
+/// Called from the onHideTweenComplete/onAttachmentsButtonClick handlers and
+/// from ClickSummonPetButton. Does NOT re-run the window show/hide sequence.
 pub fn resend_pet_inventory(pet_id: u32, companion_npc_guid: u64) -> Vec<Vec<u8>> {
     let attachment_items: &[(u32, u32, u32)] = COMPANION_ATTACHMENT_ITEMS
         .iter()
@@ -484,42 +447,8 @@ pub fn resend_pet_inventory(pet_id: u32, companion_npc_guid: u64) -> Vec<Vec<u8>
             }));
         }
 
-        // Directly populate the flyout using the root-delegate names that
-        // AttachmentSelectionView's constructor actually registers on _root
-        // (confirmed via AS2 bytecode decode of tag[312] in PetAttachmentListWindow.swf):
-        //
-        //   _root.clearAttachmentItems()                    → _clearAttachmentItems()
-        //   _root.setAttachmentItem(guid,itemId,name,iconId)→ _handleAddAttachmentItem()
-        //   _root.addAttachmentFinished()                   → _handleAddAttachmentFinished()
-        //
-        // ExecuteScriptWithIntParams can only send i32 values; name is passed as 0.
-        // The SWF is loaded in both windows; send to both.
-        for window in &["ActivePetWindow", "PetAttachmentListWindow"] {
-            packets.push(GamePacket::serialize(&TunneledPacket {
-                unknown1: true,
-                inner: ExecuteScriptWithIntParams {
-                    script_name: format!("{window}.clearAttachmentItems"),
-                    params: vec![],
-                },
-            }));
-            for &(item_guid, _item_type, icon_set_id) in attachment_items {
-                packets.push(GamePacket::serialize(&TunneledPacket {
-                    unknown1: true,
-                    inner: ExecuteScriptWithIntParams {
-                        // setAttachmentItem(guid, itemId, name, iconId)
-                        script_name: format!("{window}.setAttachmentItem"),
-                        params: vec![item_guid as i32, item_guid as i32, 0, icon_set_id as i32],
-                    },
-                }));
-            }
-            packets.push(GamePacket::serialize(&TunneledPacket {
-                unknown1: true,
-                inner: ExecuteScriptWithIntParams {
-                    script_name: format!("{window}.addAttachmentFinished"),
-                    params: vec![],
-                },
-            }));
-        }
+        // The flyout is populated by Lua reading BaseClient.PetInventory (item_type=0)
+        // when HudMenuBar_PetAttachments opens — no extra AS2 delegate calls needed.
     }
 
     packets

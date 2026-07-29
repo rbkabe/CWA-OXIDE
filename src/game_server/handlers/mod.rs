@@ -22,6 +22,7 @@ pub mod lock_enforcer;
 pub mod login;
 pub mod minigame;
 pub mod mount;
+pub mod profile;
 pub mod quick_chat;
 pub mod reference_data;
 pub mod saber_duel;

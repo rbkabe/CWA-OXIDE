@@ -37,6 +37,7 @@ use super::{
     },
     guid::{GuidTableIndexer, IndexedGuid},
     lock_enforcer::CharacterLockRequest,
+    profile::{save_profile, PlayerProfile},
     unique_guid::player_guid,
     zone::ZoneInstance,
 };
@@ -358,13 +359,26 @@ fn process_unequip_slot(
                 packets_for_sender.extend(build_weapon_slot_assignments(sender, player, game_server)?);
             }
 
+            // Snapshot profile while player borrow is clear (before the
+            // character_write_handle calls in the is_weapon block below).
+            let profile_snapshot = PlayerProfile::from_player(
+                &player.name,
+                &player.inventory,
+                &player.customizations,
+                &player.collected_items,
+                &player.fav_emotes,
+                &player.purchased_items,
+                player.credits,
+            );
+
             if unequip_slot.slot.is_weapon() {
                 let wield_type = wield_type_from_slot(
                     &player.inventory.equipped_items(unequip_slot.battle_class),
                     EquipmentSlot::PrimaryWeapon,
                     game_server,
                 );
-
+                // player no longer used after this point; borrow ends here so
+                // character_write_handle can be borrowed below without conflict.
                 character_write_handle.set_brandished_wield_type(wield_type);
 
                 packets_for_all.push(GamePacket::serialize(&TunneledPacket {
@@ -408,6 +422,8 @@ fn process_unequip_slot(
                 instance_guid,
                 characters_table_read_handle,
             );
+
+            save_profile(game_server.profiles_dir(), sender, &profile_snapshot);
 
             Ok(vec![
                 Broadcast::Multi(nearby_players, packets_for_all),
@@ -652,6 +668,20 @@ fn process_equip_customization(
 
                 player.credits -= cost;
                 let new_credits = player.credits;
+
+                save_profile(
+                    game_server.profiles_dir(),
+                    sender,
+                    &PlayerProfile::from_player(
+                        &player.name,
+                        &player.inventory,
+                        &player.customizations,
+                        &player.collected_items,
+                        &player.fav_emotes,
+                        &player.purchased_items,
+                        player.credits,
+                    ),
+                );
 
                 let (_, instance_guid, chunk) = character_write_handle.index1();
                 let nearby_players = ZoneInstance::all_players_nearby(
@@ -1252,6 +1282,20 @@ fn equip_item_in_slot<'a>(
     }
 
     sender_only_packets.extend(build_weapon_slot_assignments(sender, player, game_server)?);
+
+    save_profile(
+        game_server.profiles_dir(),
+        sender,
+        &PlayerProfile::from_player(
+            &player.name,
+            &player.inventory,
+            &player.customizations,
+            &player.collected_items,
+            &player.fav_emotes,
+            &player.purchased_items,
+            player.credits,
+        ),
+    );
 
     let (_, instance_guid, chunk) = character_write_handle.index1();
     let mut nearby_players = ZoneInstance::other_players_nearby(

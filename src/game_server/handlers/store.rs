@@ -8,9 +8,17 @@ use packet_serialize::DeserializePacket;
 
 use crate::{
     game_server::{
-        handlers::item::ItemConfig,
+        handlers::{
+            character::CharacterType,
+            item::ItemConfig,
+            lock_enforcer::CharacterLockRequest,
+            profile::{save_profile, PlayerProfile},
+            unique_guid::player_guid,
+        },
         packets::{
-            store::{StoreItem, StoreItemList, StoreOpCode},
+            client_update::{AddItems, AddItemsData, UpdateCredits},
+            item::{Item, MarketData},
+            store::{BuyItemRequest, SellToClientResponse, StoreItem, StoreItemList, StoreOpCode},
             tunnel::TunneledPacket,
             GamePacket,
         },
@@ -20,15 +28,6 @@ use crate::{
 };
 
 /// Handles `OpCode::Store` packets sent by the client.
-///
-/// Currently only `RequestItemList` (sub-opcode 8) is confirmed to exist on
-/// the wire (captured live when opening the Gear/Store tab, with an empty
-/// body). EMPIRICAL/UNVERIFIED: we respond with the same `StoreItemList`
-/// that's already pushed unconditionally at login, on the guess that this
-/// is a "refresh the store" request. If the client doesn't visibly update,
-/// the next things to try are `ItemDefinitionsReply` (sub-opcode 3) or one
-/// of the other sub-opcodes the client can receive (6, 7, 9, 10, 11, 13, 17,
-/// 18 -- see `StoreOpCode` doc comment).
 pub fn process_store_packet(
     cursor: &mut Cursor<&[u8]>,
     sender: u32,
@@ -43,6 +42,13 @@ pub fn process_store_packet(
                 inner: StoreItemList::from(game_server.costs()),
             })],
         )]),
+
+        Ok(StoreOpCode::BuyItem) => {
+            let req: BuyItemRequest = DeserializePacket::deserialize(cursor)?;
+            // req.unknown is the merchant_id (u64), not a tid to echo back
+            process_buy_item(sender, req.unknown, req.item_guid, req.quantity, game_server)
+        }
+
         Ok(op_code) => {
             let remaining = &cursor.get_ref()[cursor.position() as usize..];
             Err(ProcessPacketError::new(
@@ -60,6 +66,137 @@ pub fn process_store_packet(
             ))
         }
     }
+}
+
+fn process_buy_item(
+    sender: u32,
+    _merchant_id: u64,
+    item_guid: u32,
+    quantity: u32,
+    game_server: &GameServer,
+) -> Result<Vec<Broadcast>, ProcessPacketError> {
+    let Some(item_config) = game_server.items().get(&item_guid) else {
+        return Err(ProcessPacketError::new(
+            ProcessPacketErrorType::ConstraintViolated,
+            format!("Player {sender} tried to buy unknown item {item_guid}"),
+        ));
+    };
+
+    let item_def = item_config.to_definition(game_server.abilities());
+
+    game_server
+        .lock_enforcer()
+        .read_characters(|_| CharacterLockRequest {
+            read_guids: vec![],
+            write_guids: vec![player_guid(sender)],
+            character_consumer: |_, _, mut characters_write, _| {
+                let Some(character_write_handle) =
+                    characters_write.get_mut(&player_guid(sender))
+                else {
+                    return Err(ProcessPacketError::new(
+                        ProcessPacketErrorType::ConstraintViolated,
+                        format!("Unknown player {sender} tried to buy item {item_guid}"),
+                    ));
+                };
+
+                let CharacterType::Player(ref mut player) =
+                    character_write_handle.stats.character_type
+                else {
+                    return Err(ProcessPacketError::new(
+                        ProcessPacketErrorType::ConstraintViolated,
+                        format!("Non-player {sender} tried to buy item {item_guid}"),
+                    ));
+                };
+
+                let cost = if let Some(cost_entry) = game_server.costs().get(&item_guid) {
+                    if player.member { cost_entry.members } else { cost_entry.base }
+                } else {
+                    0
+                };
+
+                if cost > player.credits {
+                    return Err(ProcessPacketError::new(
+                        ProcessPacketErrorType::ConstraintViolated,
+                        format!(
+                            "Player {sender} tried to buy item {item_guid} for {cost} credits \
+                             but only has {}",
+                            player.credits
+                        ),
+                    ));
+                }
+
+                player.credits -= cost;
+                let new_credits = player.credits;
+
+                player.inventory.add_item(item_guid);
+                player.purchased_items.insert(item_guid);
+
+                save_profile(
+                    game_server.profiles_dir(),
+                    sender,
+                    &PlayerProfile::from_player(
+                        &player.name,
+                        &player.inventory,
+                        &player.customizations,
+                        &player.collected_items,
+                        &player.fav_emotes,
+                        &player.purchased_items,
+                        player.credits,
+                    ),
+                );
+
+                let item = Item {
+                    definition_id: item_guid,
+                    tint: item_config.tint,
+                    guid: item_guid,
+                    quantity: quantity.max(1),
+                    num_consumed: 0,
+                    last_use_time: 0,
+                    market_data: MarketData::None,
+                    unknown2: false,
+                };
+
+                Ok(vec![Broadcast::Single(
+                    sender,
+                    vec![
+                        GamePacket::serialize(&TunneledPacket {
+                            unknown1: true,
+                            inner: AddItems {
+                                data: AddItemsData {
+                                    item,
+                                    definition: item_def,
+                                },
+                            },
+                        }),
+                        GamePacket::serialize(&TunneledPacket {
+                            unknown1: true,
+                            inner: UpdateCredits { new_credits },
+                        }),
+                        // Sub-opcode 6: CoinStoreSellToClientResponsePacket.
+                        // Calls Lua MerchantPurchased / MerchantPurchasedOne,
+                        // which close CWAStoreWindowSelectedItem.
+                        // tid is u32 (confirmed: %d format in binary, not %I64u).
+                        // BuyItemRequest.unknown is the merchant ID (u64), not a
+                        // client-generated tid to echo back; we use 0.
+                        GamePacket::serialize(&TunneledPacket {
+                            unknown1: true,
+                            inner: SellToClientResponse {
+                                result: 0,
+                                tid: 0,
+                                transaction_type: 0,
+                                item_guids: vec![item_guid],
+                                quantity: quantity.max(1),
+                            },
+                        }),
+                        // Refresh store item list.
+                        GamePacket::serialize(&TunneledPacket {
+                            unknown1: true,
+                            inner: StoreItemList::from(game_server.costs()),
+                        }),
+                    ],
+                )])
+            },
+        })
 }
 
 pub struct CostEntry {

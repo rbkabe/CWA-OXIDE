@@ -1897,6 +1897,11 @@ impl PlayerInventory {
         }
     }
 
+    /// Expose all battle classes for profile snapshotting.
+    pub fn battle_classes(&self) -> &BTreeMap<u32, BattleClass> {
+        &self.battle_classes
+    }
+
     pub fn equipped_items(&self, battle_class: u32) -> EquippedItemMap {
         let mut items = self
             .battle_classes
@@ -1987,6 +1992,11 @@ impl PlayerInventory {
 
     pub fn owns_item(&self, item_guid: u32) -> bool {
         self.inventory.contains(&item_guid)
+    }
+
+    /// Add an item to the player's owned inventory set so it can be equipped.
+    pub fn add_item(&mut self, item_guid: u32) {
+        self.inventory.insert(item_guid);
     }
 }
 
@@ -2097,6 +2107,8 @@ pub struct Player {
     /// item_guids of companions this player owns (from the login player_data pets list).
     /// Used by the companion handler to know which companion to spawn.
     pub companions: Vec<u32>,
+    /// item_guids purchased from the in-game store this session (persisted to profile).
+    pub purchased_items: HashSet<u32>,
 }
 
 impl Player {
