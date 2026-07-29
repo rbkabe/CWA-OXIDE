@@ -1,6 +1,7 @@
 ---
 # Blinged-Out Trooper Armor
 - guid: 749
+  cost: 5000
   name_id: 14164
   description_id: 14
   icon_set_id: 446
@@ -12,6 +13,7 @@
 
 # Blinged-Out Trooper Helmet
 - guid: 752
+  cost: 5000
   name_id: 14170
   description_id: 14
   icon_set_id: 449
@@ -23,6 +25,7 @@
 
 # Blinged-Out Trooper Gloves
 - guid: 751
+  cost: 5000
   name_id: 14168
   description_id: 14
   icon_set_id: 448
@@ -34,6 +37,7 @@
 
 # Blinged-Out Trooper Boots
 - guid: 750
+  cost: 5000
   name_id: 14166
   description_id: 14
   icon_set_id: 447
@@ -45,6 +49,7 @@
 
 # Skeletal Clone Trooper Armor
 - guid: 3090
+  cost: 5000
   name_id: 4278
   description_id: 14
   icon_set_id: 2397
@@ -57,6 +62,7 @@
 
 # Skeletal Clone Trooper Helmet
 - guid: 3088
+  cost: 5000
   name_id: 4276
   description_id: 14
   icon_set_id: 2395
@@ -69,6 +75,7 @@
 
 # Skeletal Clone Trooper Gloves
 - guid: 3089
+  cost: 5000
   name_id: 4277
   description_id: 14
   icon_set_id: 2396
@@ -81,6 +88,7 @@
 
 # Skeletal Clone Trooper Boots
 - guid: 3091
+  cost: 5000
   name_id: 4279
   description_id: 14
   icon_set_id: 2398
@@ -93,6 +101,7 @@
 
 # Spiked Trooper Armor
 - guid: 271
+  cost: 5000
   name_id: 894
   description_id: 14
   icon_set_id: 498
@@ -104,6 +113,7 @@
 
 # Spiked Trooper Helmet
 - guid: 269
+  cost: 5000
   name_id: 890
   description_id: 14
   icon_set_id: 501
@@ -115,6 +125,7 @@
 
 # Spiked Trooper Gloves
 - guid: 270
+  cost: 5000
   name_id: 892
   description_id: 14
   icon_set_id: 500
@@ -126,6 +137,7 @@
 
 # Spiked Trooper Boots
 - guid: 272
+  cost: 5000
   name_id: 896
   description_id: 14
   icon_set_id: 499
@@ -137,6 +149,7 @@
 
 # Pirate Jedi Coat
 - guid: 1598
+  cost: 5000
   name_id: 2973
   description_id: 14
   icon_set_id: 2384
@@ -149,6 +162,7 @@
 
 # Pirate Jedi Hat
 - guid: 1596
+  cost: 5000
   name_id: 2969
   description_id: 14
   icon_set_id: 2382
@@ -161,6 +175,7 @@
 
 # Pirate Jedi Gloves
 - guid: 1597
+  cost: 5000
   name_id: 2971
   description_id: 14
   icon_set_id: 2383
@@ -173,6 +188,7 @@
 
 # Pirate Jedi Pegleg
 - guid: 1599
+  cost: 5000
   name_id: 2975
   description_id: 14
   icon_set_id: 2385
@@ -185,6 +201,7 @@
 
 # Purple Wampa Suit
 - guid: 768
+  cost: 5000
   name_id: 938
   description_id: 14
   icon_set_id: 483
@@ -197,6 +214,7 @@
 
 # Purple Wampa Mask
 - guid: 783
+  cost: 5000
   name_id: 968
   description_id: 14
   icon_set_id: 486
@@ -209,6 +227,7 @@
 
 # Purple Wampa Claws
 - guid: 778
+  cost: 5000
   name_id: 958
   description_id: 14
   icon_set_id: 485
@@ -221,6 +240,7 @@
 
 # Purple Wampa Feet
 - guid: 772
+  cost: 5000
   name_id: 946
   description_id: 14
   icon_set_id: 484
@@ -233,6 +253,7 @@
 
 # Zillo Beast Suit
 - guid: 866
+  cost: 5000
   name_id: 1331
   description_id: 14
   icon_set_id: 1144
@@ -244,6 +265,7 @@
 
 # Zillo Beast Head
 - guid: 914
+  cost: 5000
   name_id: 1426
   description_id: 14
   icon_set_id: 1147
@@ -255,6 +277,7 @@
 
 # Zillo Beast Gloves
 - guid: 898
+  cost: 5000
   name_id: 1394
   description_id: 14
   icon_set_id: 1146
@@ -266,6 +289,7 @@
 
 # Zillo Beast Shoes
 - guid: 883
+  cost: 5000
   name_id: 1364
   description_id: 14
   icon_set_id: 1145
@@ -277,6 +301,7 @@
 
 # Pink Tusken Raider Robes
 - guid: 612
+  cost: 5000
   name_id: 224
   description_id: 14
   icon_set_id: 114
@@ -289,6 +314,7 @@
 
 # Pink Tusken Raider Helmet
 - guid: 610
+  cost: 5000
   name_id: 220
   description_id: 14
   icon_set_id: 208
@@ -301,6 +327,7 @@
 
 # Pink Tusken Raider Gloves
 - guid: 611
+  cost: 5000
   name_id: 222
   description_id: 14
   icon_set_id: 182
@@ -313,6 +340,7 @@
 
 # Pink Tusken Raider Boots
 - guid: 613
+  cost: 5000
   name_id: 226
   description_id: 14
   icon_set_id: 152
@@ -325,6 +353,7 @@
 
 # Count Dooku Pumpkinhead
 - guid: 170028
+  cost: 5000
   name_id: 53065
   description_id: 14
   icon_set_id: 3144
@@ -337,6 +366,7 @@
 
 # General Grievous Pumpkinhead
 - guid: 170029
+  cost: 5000
   name_id: 53066
   description_id: 14
   icon_set_id: 3145
@@ -348,6 +378,7 @@
 
 # Asajj Ventress Pumpkinhead
 - guid: 170030
+  cost: 5000
   name_id: 53067
   description_id: 14
   icon_set_id: 3146
@@ -359,6 +390,7 @@
 
 # Grievous Mask
 - guid: 1106
+  cost: 5000
   name_id: 1624
   description_id: 14
   icon_set_id: 1386
@@ -371,6 +403,7 @@
 
 # Gungan Mask
 - guid: 1107
+  cost: 5000
   name_id: 1626
   description_id: 14
   icon_set_id: 1387
@@ -382,6 +415,7 @@
 
 # Jabba Mask
 - guid: 1191
+  cost: 5000
   name_id: 1842
   description_id: 14
   icon_set_id: 1388
@@ -394,6 +428,7 @@
 
 # Ortolan Mask
 - guid: 1109
+  cost: 5000
   name_id: 1630
   description_id: 14
   icon_set_id: 1389
@@ -405,6 +440,7 @@
 
 # Padme Amidala Mask
 - guid: 1188
+  cost: 5000
   name_id: 1856
   description_id: 14
   icon_set_id: 1390
@@ -417,6 +453,7 @@
 
 # Chancellor Palpatine Mask
 - guid: 1189
+  cost: 5000
   name_id: 1858
   description_id: 14
   icon_set_id: 1391
@@ -429,6 +466,7 @@
 
 # Protocol Droid Mask
 - guid: 1190
+  cost: 5000
   name_id: 1860
   description_id: 14
   icon_set_id: 1392
@@ -440,6 +478,7 @@
 
 # Yoda Mask
 - guid: 1108
+  cost: 5000
   name_id: 1666
   description_id: 14
   icon_set_id: 1393
@@ -452,6 +491,7 @@
 
 # Life Day Robe
 - guid: 2184
+  cost: 5000
   name_id: 20305
   description_id: 14
   icon_set_id: 1480
@@ -463,6 +503,7 @@
 
 # Life Day Boots
 - guid: 2185
+  cost: 5000
   name_id: 20307
   description_id: 14
   icon_set_id: 1481
@@ -474,6 +515,7 @@
 
 # Life Day Clone Trooper Armor
 - guid: 2200
+  cost: 5000
   name_id: 20321
   description_id: 14
   icon_set_id: 1488
@@ -485,6 +527,7 @@
 
 # Life Day Clone Trooper Helm
 - guid: 2198
+  cost: 5000
   name_id: 20317
   description_id: 14
   icon_set_id: 1486
@@ -496,6 +539,7 @@
 
 # Life Day Clone Trooper Gloves
 - guid: 2199
+  cost: 5000
   name_id: 20319
   description_id: 14
   icon_set_id: 1487
@@ -507,6 +551,7 @@
 
 # Life Day Clone Trooper Boots
 - guid: 2201
+  cost: 5000
   name_id: 20323
   description_id: 14
   icon_set_id: 1489
@@ -518,6 +563,7 @@
 
 # Nutcracker Clone Trooper Armor
 - guid: 2192
+  cost: 5000
   name_id: 20313
   description_id: 14
   icon_set_id: 1484
@@ -529,6 +575,7 @@
 
 # Nutcracker Clone Trooper Helm
 - guid: 2190
+  cost: 5000
   name_id: 20309
   description_id: 14
   icon_set_id: 1482
@@ -540,6 +587,7 @@
 
 # Nutcracker Clone Trooper Gloves
 - guid: 2191
+  cost: 5000
   name_id: 20311
   description_id: 14
   icon_set_id: 1483
@@ -551,6 +599,7 @@
 
 # Nutcracker Clone Trooper Boots
 - guid: 2193
+  cost: 5000
   name_id: 20315
   description_id: 14
   icon_set_id: 1485
@@ -562,6 +611,7 @@
 
 # Obi-Wan's Festive Robe
 - guid: 3309
+  cost: 5000
   name_id: 4510
   description_id: 14
   icon_set_id: 2580
@@ -574,6 +624,7 @@
 
 # Obi-Wan's Festive Hat
 - guid: 3307
+  cost: 5000
   name_id: 4508
   description_id: 14
   icon_set_id: 2578
@@ -586,6 +637,7 @@
 
 # Obi-Wan's Festive Gloves
 - guid: 3308
+  cost: 5000
   name_id: 4509
   description_id: 14
   icon_set_id: 2579
@@ -598,6 +650,7 @@
 
 # Obi-Wan's Festive Boots
 - guid: 3310
+  cost: 5000
   name_id: 4511
   description_id: 14
   icon_set_id: 2581
@@ -610,6 +663,7 @@
 
 # Wampa Suit
 - guid: 769
+  cost: 5000
   name_id: 940
   description_id: 14
   icon_set_id: 502
@@ -622,6 +676,7 @@
 
 # Wampa Mask
 - guid: 784
+  cost: 5000
   name_id: 970
   description_id: 14
   icon_set_id: 505
@@ -634,6 +689,7 @@
 
 # Wampa Claws
 - guid: 779
+  cost: 5000
   name_id: 960
   description_id: 14
   icon_set_id: 504
@@ -646,6 +702,7 @@
 
 # Wampa Feet
 - guid: 773
+  cost: 5000
   name_id: 948
   description_id: 14
   icon_set_id: 503
@@ -658,6 +715,7 @@
 
 # St. Patrick's Clone Armor
 - guid: 170057
+  cost: 5000
   name_id: 54411
   description_id: 14
   icon_set_id: 3681
@@ -669,6 +727,7 @@
 
 # St. Patrick's Clone Helmet
 - guid: 170058
+  cost: 5000
   name_id: 54409
   description_id: 14
   icon_set_id: 3679
@@ -680,6 +739,7 @@
 
 # St. Patrick's Clone Gloves
 - guid: 170059
+  cost: 5000
   name_id: 54410
   description_id: 14
   icon_set_id: 3680
@@ -691,6 +751,7 @@
 
 # St. Patrick's Clone Boots
 - guid: 170060
+  cost: 5000
   name_id: 54412
   description_id: 14
   icon_set_id: 3682
@@ -702,6 +763,7 @@
 
 # Cupid Clone's Armor
 - guid: 2390
+  cost: 5000
   name_id: 33885
   description_id: 14
   icon_set_id: 1669
@@ -713,6 +775,7 @@
 
 # Cupid Clone's Helmet
 - guid: 2388
+  cost: 5000
   name_id: 33884
   description_id: 14
   icon_set_id: 1672
@@ -724,6 +787,7 @@
 
 # Cupid Clone's Gloves
 - guid: 2389
+  cost: 5000
   name_id: 33886
   description_id: 14
   icon_set_id: 1671
@@ -735,6 +799,7 @@
 
 # Cupid Clone's Boots
 - guid: 2391
+  cost: 5000
   name_id: 33887
   description_id: 14
   icon_set_id: 1670
@@ -746,6 +811,7 @@
 
 # Petro's Gypsy Suit
 - guid: 170065
+  cost: 5000
   name_id: 53605
   description_id: 14
   icon_set_id: 3204
@@ -757,6 +823,7 @@
 
 # Petro's Gypsy Helmet
 - guid: 170066
+  cost: 5000
   name_id: 53603
   description_id: 14
   icon_set_id: 3202
@@ -768,6 +835,7 @@
 
 # Petro's Gypsy Gloves
 - guid: 170067
+  cost: 5000
   name_id: 53604
   description_id: 14
   icon_set_id: 3203
@@ -779,6 +847,7 @@
 
 # Petro's Gypsy Boots
 - guid: 170068
+  cost: 5000
   name_id: 53606
   description_id: 14
   icon_set_id: 3205

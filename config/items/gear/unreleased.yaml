@@ -1,6 +1,7 @@
 ---
 # Luke Skywalker's Robes
 - guid: 230000
+  cost: 5000
   name_id: 924
   description_id: 14
   icon_set_id: 480
@@ -12,6 +13,7 @@
 
 # Luke Skywalker's Boots
 - guid: 230001
+  cost: 5000
   name_id: 365
   description_id: 14
   icon_set_id: 122
@@ -23,6 +25,7 @@
 
 # Kyle Katarn's Uniform
 - guid: 230002
+  cost: 5000
   name_id: 204
   description_id: 14
   icon_set_id: 673
@@ -34,6 +37,7 @@
 
 # Kyle Katarn's Gloves
 - guid: 230003
+  cost: 5000
   name_id: 202
   description_id: 14
   icon_set_id: 676
@@ -45,6 +49,7 @@
 
 # Kyle Katarn's Boots
 - guid: 230004
+  cost: 5000
   name_id: 206
   description_id: 14
   icon_set_id: 680
@@ -56,6 +61,7 @@
 
 # Lando Calrissian's Suit
 - guid: 230005
+  cost: 5000
   name_id: 1462
   description_id: 14
   icon_set_id: 673
@@ -67,6 +73,7 @@
 
 # Lando Calrissian's Shoes
 - guid: 230006
+  cost: 5000
   name_id: 1472
   description_id: 14
   icon_set_id: 680
@@ -78,6 +85,7 @@
 
 # Tamtel Skreej's Armor
 - guid: 230007
+  cost: 5000
   name_id: 930
   description_id: 14
   icon_set_id: 495
@@ -89,6 +97,7 @@
 
 # Tamtel Skreej's Helm
 - guid: 230008
+  cost: 5000
   name_id: 928
   description_id: 14
   icon_set_id: 497
@@ -100,6 +109,7 @@
 
 # Tamtel Skreej's Boots
 - guid: 230009
+  cost: 5000
   name_id: 932
   description_id: 14
   icon_set_id: 496
@@ -111,6 +121,7 @@
 
 # Mara Jade's Battle Suit
 - guid: 230010
+  cost: 5000
   name_id: 216
   description_id: 14
   icon_set_id: 104
@@ -122,6 +133,7 @@
 
 # Mara Jade's Gloves
 - guid: 230011
+  cost: 5000
   name_id: 214
   description_id: 14
   icon_set_id: 174
@@ -133,6 +145,7 @@
 
 # Mara Jade's Boots
 - guid: 230012
+  cost: 5000
   name_id: 218
   description_id: 14
   icon_set_id: 147
@@ -144,6 +157,7 @@
 
 # Imperial Royal Guard Armor
 - guid: 230013
+  cost: 5000
   name_id: 1650
   description_id: 14
   icon_set_id: 673
@@ -155,6 +169,7 @@
 
 # Imperial Royal Guard Helmet
 - guid: 230014
+  cost: 5000
   name_id: 1646
   description_id: 14
   icon_set_id: 677
@@ -166,6 +181,7 @@
 
 # Imperial Royal Guard Gloves
 - guid: 230015
+  cost: 5000
   name_id: 1648
   description_id: 14
   icon_set_id: 676
@@ -177,6 +193,7 @@
 
 # Imperial Royal Guard Boots
 - guid: 230016
+  cost: 5000
   name_id: 1652
   description_id: 14
   icon_set_id: 680
@@ -188,6 +205,7 @@
 
 # Dash Rendar's Suit
 - guid: 230017
+  cost: 5000
   name_id: 1565
   description_id: 14
   icon_set_id: 673
@@ -199,6 +217,7 @@
 
 # Dash Rendar's Gloves
 - guid: 230018
+  cost: 5000
   name_id: 1563
   description_id: 14
   icon_set_id: 676
@@ -210,6 +229,7 @@
 
 # Dash Rendar's Boots
 - guid: 230019
+  cost: 5000
   name_id: 1567
   description_id: 14
   icon_set_id: 680
@@ -221,6 +241,7 @@
 
 # Han Solo's Outfit
 - guid: 230020
+  cost: 5000
   name_id: 302
   description_id: 14
   icon_set_id: 673
@@ -232,6 +253,7 @@
 
 # Han Solo's Boots
 - guid: 230021
+  cost: 5000
   name_id: 304
   description_id: 14
   icon_set_id: 680
@@ -243,6 +265,7 @@
 
 # Rebel Pilot Jumpsuit
 - guid: 230022
+  cost: 5000
   name_id: 240
   description_id: 14
   icon_set_id: 108
@@ -254,6 +277,7 @@
 
 # Rebel Pilot Helmet
 - guid: 230023
+  cost: 5000
   name_id: 236
   description_id: 14
   icon_set_id: 205
@@ -265,6 +289,7 @@
 
 # Rebel Pilot Gloves
 - guid: 230024
+  cost: 5000
   name_id: 238
   description_id: 14
   icon_set_id: 177
@@ -276,6 +301,7 @@
 
 # Rebel Pilot Boots
 - guid: 230025
+  cost: 5000
   name_id: 242
   description_id: 14
   icon_set_id: 150
@@ -287,6 +313,7 @@
 
 # Rebel Pilot Jumpsuit
 - guid: 230026
+  cost: 5000
   name_id: 240
   description_id: 14
   icon_set_id: 673
@@ -298,6 +325,7 @@
 
 # Rebel Pilot Helmet
 - guid: 230027
+  cost: 5000
   name_id: 236
   description_id: 14
   icon_set_id: 677
@@ -309,6 +337,7 @@
 
 # Rebel Pilot Jumpsuit
 - guid: 230028
+  cost: 5000
   name_id: 240
   description_id: 14
   icon_set_id: 673
@@ -320,6 +349,7 @@
 
 # Rebel Pilot Helmet
 - guid: 230029
+  cost: 5000
   name_id: 236
   description_id: 14
   icon_set_id: 677
@@ -331,6 +361,7 @@
 
 # Unknown boots
 - guid: 230030
+  cost: 5000
   description_id: 14
   icon_set_id: 680
   slot: !Equipment Feet
@@ -341,6 +372,7 @@
 
 # C-3PO Backpack
 - guid: 230031
+  cost: 5000
   name_id: 3074
   description_id: 14
   icon_set_id: 673
@@ -352,6 +384,7 @@
 
 # wearable_body_mandalorian_mustafar
 - guid: 230032
+  cost: 5000
   name_id: 2701
   description_id: 14
   icon_set_id: 673
@@ -363,6 +396,7 @@
 
 # wearable_head_mandalorian_mustafar
 - guid: 230033
+  cost: 5000
   name_id: 2699
   description_id: 14
   icon_set_id: 677
@@ -374,6 +408,7 @@
 
 # wearable_hands_mandalorian_mustafar
 - guid: 230034
+  cost: 5000
   name_id: 2700
   description_id: 14
   icon_set_id: 676
@@ -385,6 +420,7 @@
 
 # wearable_feet_mandalorian_mustafar
 - guid: 230035
+  cost: 5000
   name_id: 2702
   description_id: 14
   icon_set_id: 680
@@ -396,6 +432,7 @@
 
 # Clone Trooper Diver Suit
 - guid: 230036
+  cost: 5000
   name_id: 828
   description_id: 14
   icon_set_id: 450
@@ -407,6 +444,7 @@
 
 # Clone Trooper Diver Helmet
 - guid: 230037
+  cost: 5000
   name_id: 824
   description_id: 14
   icon_set_id: 453
@@ -418,6 +456,7 @@
 
 # Clone Trooper Diver Gloves
 - guid: 230038
+  cost: 5000
   name_id: 826
   description_id: 14
   icon_set_id: 452
@@ -429,6 +468,7 @@
 
 # Clone Trooper Diver Fins
 - guid: 230039
+  cost: 5000
   name_id: 830
   description_id: 14
   icon_set_id: 451
@@ -440,6 +480,7 @@
 
 # Commander Stone's Armor
 - guid: 230040
+  cost: 5000
   name_id: 1178
   description_id: 14
   icon_set_id: 372
@@ -451,6 +492,7 @@
 
 # Commander Stone's Helmet
 - guid: 230041
+  cost: 5000
   name_id: 1184
   description_id: 14
   icon_set_id: 390
@@ -462,6 +504,7 @@
 
 # Commander Stone's Gloves
 - guid: 230042
+  cost: 5000
   name_id: 1182
   description_id: 14
   icon_set_id: 384
@@ -473,6 +516,7 @@
 
 # Commander Stone's Boots
 - guid: 230043
+  cost: 5000
   name_id: 1180
   description_id: 14
   icon_set_id: 378
@@ -484,6 +528,7 @@
 
 # wearable_body_clone_blue_squares
 - guid: 230044
+  cost: 5000
   name_id: 2705
   description_id: 14
   icon_set_id: 673
@@ -495,6 +540,7 @@
 
 # wearable_head_clone_blue_squares
 - guid: 230045
+  cost: 5000
   name_id: 2703
   description_id: 14
   icon_set_id: 677
@@ -506,6 +552,7 @@
 
 # wearable_hands_clone_blue_squares
 - guid: 230046
+  cost: 5000
   name_id: 2704
   description_id: 14
   icon_set_id: 676
@@ -517,6 +564,7 @@
 
 # wearable_feet_clone_blue_squares
 - guid: 230047
+  cost: 5000
   name_id: 2706
   description_id: 14
   icon_set_id: 680
@@ -528,6 +576,7 @@
 
 # wearable_body_clone_red_stripe
 - guid: 230048
+  cost: 5000
   name_id: 2709
   description_id: 14
   icon_set_id: 673
@@ -539,6 +588,7 @@
 
 # wearable_head_clone_red_stripe
 - guid: 230049
+  cost: 5000
   name_id: 2707
   description_id: 14
   icon_set_id: 677
@@ -550,6 +600,7 @@
 
 # wearable_hands_clone_red_stripe
 - guid: 230050
+  cost: 5000
   name_id: 2708
   description_id: 14
   icon_set_id: 676
@@ -561,6 +612,7 @@
 
 # wearable_feet_clone_red_stripe
 - guid: 230051
+  cost: 5000
   name_id: 2710
   description_id: 14
   icon_set_id: 680
@@ -572,6 +624,7 @@
 
 # Captain Keeli's Armor
 - guid: 230052
+  cost: 5000
   name_id: 1458
   description_id: 14
   icon_set_id: 1076
@@ -583,6 +636,7 @@
 
 # Captain Keeli's Helmet
 - guid: 230053
+  cost: 5000
   name_id: 1486
   description_id: 14
   icon_set_id: 1079
@@ -594,6 +648,7 @@
 
 # Captain Keeli's Gloves
 - guid: 230054
+  cost: 5000
   name_id: 1480
   description_id: 14
   icon_set_id: 1078
@@ -605,6 +660,7 @@
 
 # Captain Keeli's Boots
 - guid: 230055
+  cost: 5000
   name_id: 1468
   description_id: 14
   icon_set_id: 1077
@@ -616,6 +672,7 @@
 
 # wearable_body_commander_wolffe
 - guid: 230056
+  cost: 5000
   name_id: 2681
   description_id: 14
   icon_set_id: 673
@@ -627,6 +684,7 @@
 
 # wearable_head_commander_wolffe
 - guid: 230057
+  cost: 5000
   name_id: 2679
   description_id: 14
   icon_set_id: 677
@@ -638,6 +696,7 @@
 
 # wearable_hands_commander_wolffe
 - guid: 230058
+  cost: 5000
   name_id: 2680
   description_id: 14
   icon_set_id: 676
@@ -649,6 +708,7 @@
 
 # wearable_feet_commander_wolffe
 - guid: 230059
+  cost: 5000
   name_id: 2682
   description_id: 14
   icon_set_id: 680
@@ -660,6 +720,7 @@
 
 # Phase II Armor
 - guid: 230060
+  cost: 5000
   name_id: 43699
   description_id: 14
   icon_set_id: 89
@@ -671,6 +732,7 @@
 
 # Phase II Helmet
 - guid: 230061
+  cost: 5000
   name_id: 1216
   description_id: 14
   icon_set_id: 677
@@ -682,6 +744,7 @@
 
 # Phase II Gloves
 - guid: 230062
+  cost: 5000
   name_id: 43698
   description_id: 14
   icon_set_id: 676
@@ -693,6 +756,7 @@
 
 # Phase II Boots
 - guid: 230063
+  cost: 5000
   name_id: 1212
   description_id: 14
   icon_set_id: 680
@@ -704,6 +768,7 @@
 
 # Azure Death Watch Commander Suit
 - guid: 230064
+  cost: 5000
   name_id: 53721
   description_id: 14
   icon_set_id: 3238
@@ -715,6 +780,7 @@
 
 # Azure Death Watch Commander Helmet
 - guid: 230065
+  cost: 5000
   name_id: 53719
   description_id: 14
   icon_set_id: 3236
@@ -726,6 +792,7 @@
 
 # Azure Death Watch Commander Gloves
 - guid: 230066
+  cost: 5000
   name_id: 53720
   description_id: 14
   icon_set_id: 3237
@@ -737,6 +804,7 @@
 
 # Azure Death Watch Commander Boots
 - guid: 230067
+  cost: 5000
   name_id: 53722
   description_id: 14
   icon_set_id: 3239
@@ -748,6 +816,7 @@
 
 # Byzantium Death Watch Commander Suit
 - guid: 230068
+  cost: 5000
   name_id: 53713
   description_id: 14
   icon_set_id: 3230
@@ -759,6 +828,7 @@
 
 # Byzantium Death Watch Commander Helmet
 - guid: 230069
+  cost: 5000
   name_id: 53711
   description_id: 14
   icon_set_id: 3228
@@ -770,6 +840,7 @@
 
 # Byzantium Death Watch Commander Gloves
 - guid: 230070
+  cost: 5000
   name_id: 53712
   description_id: 14
   icon_set_id: 3229
@@ -781,6 +852,7 @@
 
 # Byzantium Death Watch Commander Boots
 - guid: 230071
+  cost: 5000
   name_id: 53714
   description_id: 14
   icon_set_id: 3231
@@ -792,6 +864,7 @@
 
 # Cobalt Death Watch Commander Suit
 - guid: 230072
+  cost: 5000
   name_id: 53717
   description_id: 14
   icon_set_id: 3234
@@ -803,6 +876,7 @@
 
 # Cobalt Death Watch Commander Helmet
 - guid: 230073
+  cost: 5000
   name_id: 53715
   description_id: 14
   icon_set_id: 3232
@@ -814,6 +888,7 @@
 
 # Cobalt Death Watch Commander Gloves
 - guid: 230074
+  cost: 5000
   name_id: 53716
   description_id: 14
   icon_set_id: 3233
@@ -825,6 +900,7 @@
 
 # Cobalt Death Watch Commander Boots
 - guid: 230075
+  cost: 5000
   name_id: 53718
   description_id: 14
   icon_set_id: 3235
@@ -836,6 +912,7 @@
 
 # Republic General's Snow Hat - Do Not Use
 - guid: 230076
+  cost: 5000
   name_id: 1490
   description_id: 14
   icon_set_id: 474
@@ -847,6 +924,7 @@
 
 # Lurmen Suit
 - guid: 230077
+  cost: 5000
   description_id: 14
   icon_set_id: 673
   slot: !Equipment Body
@@ -857,6 +935,7 @@
 
 # Lurmen Beanie
 - guid: 230078
+  cost: 5000
   description_id: 14
   icon_set_id: 677
   slot: !Equipment Head
@@ -867,6 +946,7 @@
 
 # Lurmen Gloves
 - guid: 230079
+  cost: 5000
   description_id: 14
   icon_set_id: 676
   slot: !Equipment Hands
@@ -877,6 +957,7 @@
 
 # Lurmen Boots
 - guid: 230080
+  cost: 5000
   description_id: 14
   icon_set_id: 680
   slot: !Equipment Feet
@@ -887,6 +968,7 @@
 
 # Republic Fleet Officer Uniform
 - guid: 230081
+  cost: 5000
   name_id: 8540
   description_id: 14
   icon_set_id: 106
@@ -899,6 +981,7 @@
 
 # Republic Fleet Officer Hat
 - guid: 230082
+  cost: 5000
   name_id: 8542
   description_id: 14
   icon_set_id: 203
@@ -911,6 +994,7 @@
 
 # Senatorial Naboo Bodysuit
 - guid: 230083
+  cost: 5000
   name_id: 248
   description_id: 14
   icon_set_id: 110
@@ -922,6 +1006,7 @@
 
 # Senatorial Naboo Headwrap
 - guid: 230084
+  cost: 5000
   name_id: 246
   description_id: 14
   icon_set_id: 207
@@ -933,6 +1018,7 @@
 
 # Senatorial Naboo Boots
 - guid: 230085
+  cost: 5000
   name_id: 250
   description_id: 14
   icon_set_id: 151
@@ -944,6 +1030,7 @@
 
 # wearable_body_anakin_tatooine
 - guid: 230086
+  cost: 5000
   name_id: 2673
   description_id: 14
   icon_set_id: 673
@@ -955,6 +1042,7 @@
 
 # wearable_hands_anakin_tatooine
 - guid: 230087
+  cost: 5000
   name_id: 2672
   description_id: 14
   icon_set_id: 676
@@ -966,6 +1054,7 @@
 
 # wearable_feet_anakin_tatooine
 - guid: 230088
+  cost: 5000
   name_id: 2674
   description_id: 14
   icon_set_id: 680
@@ -977,6 +1066,7 @@
 
 # Boba Phat's Suit
 - guid: 230089
+  cost: 5000
   name_id: 1454
   description_id: 14
   icon_set_id: 673
@@ -988,6 +1078,7 @@
 
 # Boba Phat's Gloves
 - guid: 230090
+  cost: 5000
   name_id: 1478
   description_id: 14
   icon_set_id: 676
@@ -999,6 +1090,7 @@
 
 # Ming Po Robe
 - guid: 230091
+  cost: 5000
   name_id: 52835
   description_id: 14
   icon_set_id: 673
@@ -1010,6 +1102,7 @@
 
 # Ming Po Gloves
 - guid: 230092
+  cost: 5000
   name_id: 52834
   description_id: 14
   icon_set_id: 676
@@ -1021,6 +1114,7 @@
 
 # Ming Po Boots
 - guid: 230093
+  cost: 5000
   name_id: 52836
   description_id: 14
   icon_set_id: 680
@@ -1032,6 +1126,7 @@
 
 # DC-17m Interchangable Weapons System
 - guid: 230094
+  cost: 5000
   description_id: 14
   icon_set_id: 681
   item_class: 10000
@@ -1043,6 +1138,7 @@
 
 # Blaster Test E11
 - guid: 230095
+  cost: 5000
   name_id: 2561
   description_id: 14
   icon_set_id: 214
@@ -1054,6 +1150,7 @@
   category: 64
 
 - guid: 230096
+  cost: 5000
   description_id: 14
   icon_set_id: 681
   item_class: 10008
@@ -1064,6 +1161,7 @@
   category: 64
 
 - guid: 230097
+  cost: 5000
   description_id: 14
   icon_set_id: 681
   item_class: 10002
@@ -1075,6 +1173,7 @@
 
 # 'Umbara Academy: Ghost Attack 1'
 - guid: 230098
+  cost: 5000
   name_id: 51036
   description_id: 14
   icon_set_id: 425
@@ -1087,6 +1186,7 @@
 
 # 'Umbara Academy: Ghost Attack 2'
 - guid: 230099
+  cost: 5000
   name_id: 51037
   description_id: 14
   icon_set_id: 425
@@ -1099,6 +1199,7 @@
 
 # 'Umbara Academy: Ghost Attack 3'
 - guid: 230100
+  cost: 5000
   name_id: 51038
   description_id: 14
   icon_set_id: 425
@@ -1111,6 +1212,7 @@
 
 # 'Umbara Academy: Ghost Attack 2'
 - guid: 230101
+  cost: 5000
   name_id: 51037
   description_id: 14
   icon_set_id: 425
@@ -1122,6 +1224,7 @@
 
 # 'Umbara Academy: Ghost Attack 3'
 - guid: 230102
+  cost: 5000
   name_id: 51038
   description_id: 14
   icon_set_id: 425
@@ -1133,6 +1236,7 @@
 
 # Mandalorian Shatterer Battle Rifle
 - guid: 230103
+  cost: 5000
   name_id: 8780
   description_id: 14
   icon_set_id: 241
@@ -1145,6 +1249,7 @@
 
 # Rebel Pilot Blaster
 - guid: 230104
+  cost: 5000
   name_id: 2412
   description_id: 14
   icon_set_id: 245
@@ -1157,6 +1262,7 @@
 
 # Covert Diplomat Blaster Pistol
 - guid: 230105
+  cost: 5000
   name_id: 8792
   description_id: 14
   icon_set_id: 249
@@ -1169,6 +1275,7 @@
 
 # Imperial Royal Guard Force Pike
 - guid: 230106
+  cost: 5000
   name_id: 8799
   description_id: 14
   icon_set_id: 251
@@ -1181,6 +1288,7 @@
 
 # Tamtel Skreej's Pike
 - guid: 230107
+  cost: 5000
   name_id: 8798
   description_id: 14
   icon_set_id: 252
@@ -1193,6 +1301,7 @@
 
 # His cane
 - guid: 230108
+  cost: 5000
   name_id: 10423
   description_id: 14
   icon_set_id: 681
@@ -1204,6 +1313,7 @@
 
 # Renegade Heavy Blaster Pistol (Left)
 - guid: 230109
+  cost: 5000
   description_id: 14
   icon_set_id: 3792
   item_class: 9

@@ -1874,6 +1874,8 @@
   texture_alias: TCGRank5
   item_type: 1
   category: 61
+  cost: 5250
+  members: false
 
 # ARC Trooper General's Helmet
 - guid: 904
@@ -1885,6 +1887,8 @@
   texture_alias: TCGRank5
   item_type: 1
   category: 60
+  cost: 5250
+  members: false
 
 # ARC Trooper General's Gloves
 - guid: 889
@@ -1896,6 +1900,8 @@
   texture_alias: TCGRank5
   item_type: 1
   category: 62
+  cost: 5250
+  members: false
 
 # ARC Trooper General's Boots
 - guid: 872
@@ -1907,6 +1913,8 @@
   texture_alias: TCGRank5
   item_type: 1
   category: 63
+  cost: 5250
+  members: false
 
 # Commander Trauma's Armor
 - guid: 2260
@@ -3363,7 +3371,8 @@
   texture_alias: ShadowTech
   item_type: 1
   category: 61
-  members: true
+  cost: 25000
+  members: false
 
 # Shadow Tech Helmet
 - guid: 3276
@@ -3375,7 +3384,8 @@
   texture_alias: ShadowTech
   item_type: 1
   category: 60
-  members: true
+  cost: 25000
+  members: false
 
 # Shadow Tech Gloves
 - guid: 3277
@@ -3387,7 +3397,8 @@
   texture_alias: ShadowTech
   item_type: 1
   category: 62
-  members: true
+  cost: 25000
+  members: false
 
 # Shadow Tech Boots
 - guid: 3279
@@ -3399,7 +3410,8 @@
   texture_alias: ShadowTech
   item_type: 1
   category: 63
-  members: true
+  cost: 25000
+  members: false
 
 # Warthog Helmet
 - guid: 3331

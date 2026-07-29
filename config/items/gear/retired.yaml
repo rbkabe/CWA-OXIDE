@@ -1,6 +1,7 @@
 ---
 # Han Solo's Outfit
 - guid: 60
+  cost: 5000
   name_id: 302
   description_id: 14
   icon_set_id: 96
@@ -12,6 +13,7 @@
 
 # Han Solo's Boots
 - guid: 61
+  cost: 5000
   name_id: 304
   description_id: 14
   icon_set_id: 138
@@ -23,6 +25,7 @@
 
 # Lando Calrissian's Suit
 - guid: 922
+  cost: 5000
   name_id: 1462
   description_id: 14
   icon_set_id: 1100
@@ -34,6 +37,7 @@
 
 # Lando Calrissian's Shoes
 - guid: 927
+  cost: 5000
   name_id: 1472
   description_id: 14
   icon_set_id: 1101
@@ -45,6 +49,7 @@
 
 # Kyle Katarn's Uniform
 - guid: 602
+  cost: 5000
   name_id: 204
   description_id: 14
   icon_set_id: 100
@@ -56,6 +61,7 @@
 
 # Kyle Katarn's Gloves
 - guid: 601
+  cost: 5000
   name_id: 202
   description_id: 14
   icon_set_id: 171
@@ -67,6 +73,7 @@
 
 # Kyle Katarn's Boots
 - guid: 603
+  cost: 5000
   name_id: 206
   description_id: 14
   icon_set_id: 142
