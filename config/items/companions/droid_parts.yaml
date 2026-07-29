@@ -278,7 +278,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # 3PO Sheet
 - guid: 2087
@@ -327,7 +327,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Protocol Droid Light Kit
 - guid: 2156
@@ -337,7 +337,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Mouse Droid Light Kit
 - guid: 2157
@@ -347,7 +347,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Wind-up Key
 - guid: 2158
@@ -357,7 +357,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Snow Maker
 - guid: 2205
@@ -367,7 +367,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Candy Dispenser
 - guid: 2381
@@ -377,7 +377,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Potion Pack
 - guid: 2382
@@ -387,7 +387,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Puppy Datacard
 - guid: 2713
@@ -417,7 +417,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
 
 # Party Datacard 2.0
 - guid: 2903

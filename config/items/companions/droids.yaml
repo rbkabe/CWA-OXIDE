@@ -8,6 +8,8 @@
   model_name: Char_ProtocolDroid3PO.adr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # F1-V3L
 - guid: 542
@@ -19,6 +21,7 @@
   item_type: 1
   category: 0
   cost: 1000
+  members: false
 
 # PR-0B07
 - guid: 543
@@ -30,6 +33,7 @@
   item_type: 1
   category: 0
   cost: 3000
+  members: false
 
 # 5T-U85
 - guid: 544
@@ -76,6 +80,8 @@
   model_name: Char_AstroMechR4.adr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # M1-L0
 - guid: 548
@@ -109,6 +115,8 @@
   model_name: 3D_TC14.agr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # N-30H
 - guid: 551
@@ -141,6 +149,8 @@
   model_name: 3D_TC2.agr
   item_type: 1
   category: 0
+  cost: 5000 
+  members: false
 
 # BR-3R
 - guid: 554
@@ -197,6 +207,8 @@
   model_name: 3D_B3T4.agr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # RA-7
 - guid: 998
@@ -207,6 +219,8 @@
   model_name: Char_DeathStarDroidR7.adr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # 1M-AU5
 - guid: 2092
@@ -217,6 +231,8 @@
   model_name: Char_MouseDroidGold.adr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # J-4CK
 - guid: 2114
@@ -261,6 +277,8 @@
   model_name: Grp_R2_Nutcracker.agr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # H3-4RT
 - guid: 2393
@@ -282,6 +300,8 @@
   model_name: Grp_R2_711Promo.agr
   item_type: 1
   category: 0
+  cost: 5000
+  members: false
 
 # DU-3
 - guid: 3080

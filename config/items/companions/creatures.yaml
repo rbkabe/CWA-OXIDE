@@ -32,7 +32,7 @@
   model_name: Char_Millicreep.adr
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
   members: true
 
 # Vector
@@ -116,7 +116,7 @@
   model_name: Char_Sarlacc.adr
   item_type: 1
   category: 0
-  cost: 0
+  cost: 5000
   members: true
 
 # Marrok
