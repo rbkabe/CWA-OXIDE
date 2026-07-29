@@ -745,7 +745,8 @@
   texture_alias: ShadowTech
   item_type: 1
   category: 64
-  members: true
+  cost: 25000
+  members: false
   action_bar:
     ability_keys:
       - "shadow_tech_rifle"
