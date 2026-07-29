@@ -3,7 +3,7 @@ use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::fmt::Display;
 use std::io::{Cursor, Error};
 use std::num::ParseIntError;
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::str::ParseBoolError;
 use std::time::{Duration, Instant};
 use std::vec;
@@ -208,6 +208,7 @@ pub struct GameServer {
     quick_chats: Vec<QuickChatDefinition>,
     navmeshes: HashMap<String, (Navmesh, Collision)>,
     points_of_interest: BTreeMap<u32, (u8, PointOfInterestConfig)>,
+    profiles_dir: PathBuf,
     start_time: Instant,
     zone_templates: BTreeMap<u8, ZoneTemplate>,
     commands: CommandConfig,
@@ -239,6 +240,7 @@ impl GameServer {
             quick_chats: load_quick_chats(config_dir)?,
             navmeshes: load_navmeshes(config_dir)?,
             points_of_interest,
+            profiles_dir: config_dir.join("profiles"),
             start_time: Instant::now(),
             zone_templates: templates,
             commands: load_commands(config_dir)?,
@@ -1060,14 +1062,14 @@ impl GameServer {
                                         sender,
                                         set_active_pet_id(pet_id, npc_guid),
                                     ));
-                                } else if interaction.button_name == "ClickBuyAttachmentPetButton"
+                                } else if interaction.button_name == "onAttachmentsButtonClick"
                                 {
-                                    // The gear icon was clicked — resend PetInventory so
-                                    // BaseClient.PetInventory is populated at the moment the
-                                    // flyout subscribes to the DataSource.
-                                    // NOTE: window_name can be "ActivePetWindow" or "HudMenuBar"
-                                    // depending on which panel the gear icon lives in — we match
-                                    // on button_name only.
+                                    // Player clicked the gear/attachment icon in ActivePetWindow.
+                                    // Confirmed via AS2 bytecode: ActivePetView C[67] =
+                                    // "onAttachmentsButtonClick". Send the attachment items so
+                                    // PetAttachmentListWindow's delegates (registered by the
+                                    // AttachmentSelectionView constructor) receive them now that
+                                    // the flyout SWF is initialised.
                                     let (active_item_guid, npc_guid) = self.lock_enforcer().read_characters(|_| {
                                         CharacterLockRequest {
                                             read_guids: vec![player_guid(sender)],
@@ -1083,17 +1085,47 @@ impl GameServer {
 
                                     let pet_id = active_item_guid.unwrap_or(0);
                                     crate::info!(
-                                        "ClickBuyAttachmentPetButton {sender}: resending PetInventory (pet_id={pet_id} npc_guid={npc_guid:#018x})"
+                                        "onAttachmentsButtonClick {sender}: populating flyout (pet_id={pet_id} npc_guid={npc_guid:#018x})"
+                                    );
+                                    broadcasts.push(Broadcast::Single(
+                                        sender,
+                                        resend_pet_inventory(pet_id, npc_guid),
+                                    ));
+                                } else if interaction.button_name == "onHideTweenComplete"
+                                {
+                                    // PetAttachmentListWindow flyout just closed (hideTween
+                                    // finished). Re-send item data now so the delegates hold it
+                                    // for the next open — handles the edge case where our
+                                    // onAttachmentsButtonClick response arrived before the SWF
+                                    // finished initialising on first open.
+                                    let (active_item_guid, npc_guid) = self.lock_enforcer().read_characters(|_| {
+                                        CharacterLockRequest {
+                                            read_guids: vec![player_guid(sender)],
+                                            write_guids: vec![],
+                                            character_consumer: |_, characters_read, _, _| {
+                                                let ch = characters_read.get(&player_guid(sender));
+                                                let item = ch.and_then(|c| c.stats.active_companion_item_guid);
+                                                let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
+                                                Ok::<(Option<u32>, u64), ProcessPacketError>((item, npc))
+                                            },
+                                        }
+                                    })?;
+
+                                    let pet_id = active_item_guid.unwrap_or(0);
+                                    crate::info!(
+                                        "onHideTweenComplete {sender}: pre-loading flyout items (pet_id={pet_id})"
                                     );
                                     broadcasts.push(Broadcast::Single(
                                         sender,
                                         resend_pet_inventory(pet_id, npc_guid),
                                     ));
                                 } else if interaction.window_name == "ActivePetWindow"
-                                    && interaction.button_name == "ClickDismissPetButton"
+                                    && interaction.button_name == "onDismissPetButtonClick"
                                 {
                                     // Player clicked the Dismiss button in ActivePetWindow.
-                                    crate::info!("ClickDismissPetButton {sender}: despawning companion");
+                                    // Confirmed via AS2 bytecode: ActivePetView C[65] =
+                                    // "onDismissPetButtonClick".
+                                    crate::info!("onDismissPetButtonClick {sender}: despawning companion");
                                     broadcasts.append(
                                         &mut despawn_active_companion(sender, self)
                                     );
@@ -1134,6 +1166,7 @@ impl GameServer {
                     crate::debug!("Purchase from {sender}: raw={:x?}", &data);
                 }
                 OpCode::Portrait => {}
+                OpCode::StoreTransaction => {}
                 _ => {
                     return Err(ProcessPacketError::new(
                         ProcessPacketErrorType::UnknownOpCode,
@@ -1150,6 +1183,10 @@ impl GameServer {
         }
 
         Ok(broadcasts)
+    }
+
+    pub fn profiles_dir(&self) -> &Path {
+        &self.profiles_dir
     }
 
     pub fn abilities(&self) -> &HashMap<String, AbilityConfig> {
