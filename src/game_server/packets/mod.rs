@@ -78,6 +78,8 @@ pub enum OpCode {
     LobbyGameDefinition = 0x66,
     ClientMetrics = 0x69,
     ClientLog = 0x6d,
+    /// Sent by client around purchase events; exact semantics unknown.
+    StoreTransaction = 0x75,
     TeleportToSafety = 0x7a,
     UpdatePlayerPos = 0x7d,
     UpdatePlayerCamera = 0x7e,

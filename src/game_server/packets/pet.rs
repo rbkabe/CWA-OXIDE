@@ -4,7 +4,14 @@ use super::{GamePacket, OpCode};
 
 #[derive(Copy, Clone, Debug)]
 pub enum PetOpCode {
-    Inventory = 0x05,
+    /// Level-1 sub-opcode for the pet system: consumed by the per-opcode handler
+    /// registered for OpCode 0x35, which routes to 0x8c14e0 (the pet sub-system
+    /// dispatcher).  0x8c14e0 then reads a second 3-byte header [i16][i8] where
+    /// the i8 is the level-2 sub-opcode (0x05 for PetInventory; see `PetInventory`).
+    ///
+    /// Previous analysis incorrectly assumed this was the only sub-opcode level.
+    /// The correct chain: 0x0D → 0x8c14e0 → (i8=0x05) → 0x8c1f67 → 0x8c1020 → 0x8c00b0.
+    Inventory = 0x0D,
 }
 
 impl SerializePacket for PetOpCode {
@@ -29,37 +36,52 @@ impl SerializePacket for PetOpCode {
 ///                    0  = BaseClient.PetInventory (main)      [esi+0x133c]
 ///  name          → "Name"        ([item+0x34], string field 9)
 ///  tint_value    → [item+0x1C]   (field 13) = "Icon ID" in the DataSource.
-///                                Lua reads GetData("Icon ID") and passes it as
-///                                `iconId` to PetAttachmentListWindow:setAttachmentItem.
+///                                Lua (GenericItemSelectionData.lua, populateDataPetAttachments)
+///                                reads GetData("Icon ID") and uses it as imageSetId for the
+///                                icon graphic in the HudMenuBar_PetAttachments flyout.
 pub struct PetInventoryItem {
     pub instance_guid: u32,
     pub template_id: u32,
-    /// Sub-DataSource routing type (matches item_type field in droid_parts.yaml).
+    /// Sub-DataSource routing type.
+    ///   0  = BaseClient.PetInventory (main)      [esi+0x133c]  ← USE THIS
     ///   1  = BaseClient.PetInventory.HeadData    [esi+0x1328]
     ///   3  = BaseClient.PetInventory.ChestData   [esi+0x1330]
     ///   4  = BaseClient.PetInventory.FeetData    [esi+0x1334]
     ///   5  = BaseClient.PetInventory.CollarData  [esi+0x132c]
     /// 202  = BaseClient.PetInventory.ToyData     [esi+0x1338]
-    ///   0  = BaseClient.PetInventory (main)      [esi+0x133c]
+    ///
+    /// Lua's populateDataPetAttachments (GenericItemSelectionData.lua) reads ONLY from
+    /// "BaseClient.PetInventory" (the main DataSource), so all attachment items must use
+    /// item_type=0.  The slot-specific sub-DataSources (HeadData etc.) are never read by Lua.
     pub item_type: u32,
     pub name: String,
     pub tint_value: u32,
 }
 
-/// Packet sub_op 0x05 — populates `BaseClient.PetInventory` DataSource so
-/// the gear-icon flyout in `ActivePetWindow` shows the player's owned
-/// attachment items.
+/// Populates `BaseClient.PetInventory` DataSource so the gear-icon flyout
+/// in `ActivePetWindow` shows the player's owned attachment items.
 ///
-/// Wire format decoded from `CloneWars.exe`:
-///  0x8bfe40: item-list builder (reads item_count, pre_item_id, calls 0x78af80)
-///  0x78af80: per-item packet reader (reads 19 fields into 0x128-byte struct)
-///  0x8c00b0: wrapper that reads 3 trailing u32s after the item loop
-///            stored at [out+0x2C], [out+0x30], [out+0x34].
+/// ## Wire format
 ///
-/// Hypothesis: the trailing u32s are the companion NPC GUID split into
-/// (low_u32, high_u32) plus the pet item ID, telling the C++ pet system
-/// which companion's DataSource to update.  Without them the update is
-/// discarded and the flyout reads an empty DataSource.
+/// The packet has **two sub-opcode levels**:
+///
+/// ```text
+/// [OpCode 0x35 u16]          ← consumed by SOE outer dispatcher
+/// [level-1 sub-op 0x0D u8]  ← PetOpCode::Inventory; consumed by per-opcode handler
+///                              which routes to 0x8c14e0 (the pet sub-system dispatcher)
+/// [i16 = 0u16]               \
+/// [i8  = 0x05u8]             /  3-byte header; 0x8c14e0 reads these:
+///                              i16 is ignored; i8 is the level-2 sub-opcode.
+///                              Sub-opcode 5 → jump table → 0x8c1f67 → 0x8c1020 → 0x8c00b0.
+/// [item_count u32]
+/// [per-item fields × N]      ← 0x8bfe40 / 0x78af80 reads each item
+/// [companion_guid_lo u32]    → [out+0x2C]
+/// [companion_guid_hi u32]    → [out+0x30]
+/// [pet_item_id u32]          → [out+0x34]
+/// ```
+///
+/// 0x8c00b0 itself re-reads the 3-byte header (calls 0x8ba160 first) to skip
+/// it before delegating to 0x8bfe40 for the item list.
 pub struct PetInventory {
     pub items: Vec<PetInventoryItem>,
     /// Low 32 bits of the companion NPC GUID (or 0 to use old behaviour).
@@ -72,11 +94,13 @@ pub struct PetInventory {
 
 impl SerializePacket for PetInventory {
     fn serialize(&self, buffer: &mut Vec<u8>) {
-        // 3-byte header read by 0x8ba160 before the item loop:
-        //   i16 → [output+0x04]  (unused by PopulatePetInventory, value = 0)
-        //   i8  → [output+0x08]  (unused by PopulatePetInventory, value = 0)
+        // 3-byte level-2 header consumed by 0x8c14e0 (and re-skipped by 0x8c00b0):
+        //   i16 = 0   (ignored by dispatcher)
+        //   i8  = 5   ← level-2 sub-opcode: routes to handler 0x8c1f67 in dispatch
+        //               table at 0x8c36f4/0x8c36a0; i8=0 causes immediate exit via
+        //               `add eax,-1; ja bounds` check. MUST be 0x05.
         0u16.serialize(buffer);
-        0u8.serialize(buffer);
+        0x05u8.serialize(buffer);
 
         // item_count (u32)
         (self.items.len() as u32).serialize(buffer);
@@ -113,7 +137,7 @@ impl SerializePacket for PetInventory {
             0u32.serialize(buffer);
             // 12. blob [item+0x0C] via 0x748020: u32 len + len bytes (empty)
             0u32.serialize(buffer);
-            // 13. u32  → [item+0x1C] = "Tint Value"
+            // 13. u32  → [item+0x1C] = "Icon ID" (DataSource column read by Lua as imageSetId)
             item.tint_value.serialize(buffer);
             // 14. blob [item+0x100] via 0x748020: u32 len + len bytes (empty)
             0u32.serialize(buffer);

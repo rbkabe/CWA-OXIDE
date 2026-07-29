@@ -1,5 +1,5 @@
 use num_enum::TryFromPrimitive;
-use packet_serialize::SerializePacket;
+use packet_serialize::{DeserializePacket, SerializePacket};
 
 use super::{GamePacket, OpCode};
 
@@ -21,8 +21,34 @@ use super::{GamePacket, OpCode};
 pub enum StoreOpCode {
     ItemList = 0x1,
     ItemDefinitionsReply = 0x3,
+    /// Client -> server: purchase request sent when the player clicks "Buy".
+    /// Body: unknown u64, item_guid u32, currency_type u32, quantity u32.
+    BuyItem = 0x4,
+    /// Server -> client: `CoinStoreSellToClientResponsePacket`.
+    /// Confirmed via Ghidra jump table at FUN_00b24dc0: sub-opcode 6 → case 2
+    /// → calls FUN_00b24220, which on success calls the `MerchantPurchased`
+    /// ExternalInterface function into Flash, closing CWAStoreWindowSelectedItem.
+    ///
+    /// Format (confirmed from log strings "Successfully transaction type: %d,
+    /// tid: %d, item(s): %s, quantity: %d"):
+    ///   result        u32   0 = CoinStoreTransactionResultSuccess
+    ///   tid           u64   echo of BuyItemRequest.unknown (client transaction id)
+    ///   transaction_type u32  0 = direct purchase
+    ///   item_count    u32   number of items (always 1 for single-item groups)
+    ///   item_guid     u32   (repeated item_count times)
+    ///   quantity      u32
+    SellToClientResponse = 0x6,
     /// Client -> server only; not part of the client's receive dispatch table.
     RequestItemList = 0x8,
+}
+
+/// Parsed body of a `BuyItem` (sub-opcode 4) packet.
+#[derive(DeserializePacket)]
+pub struct BuyItemRequest {
+    pub unknown: u64,
+    pub item_guid: u32,
+    pub currency_type: u32,
+    pub quantity: u32,
 }
 
 impl SerializePacket for StoreOpCode {
@@ -76,6 +102,49 @@ pub struct StoreItemList {
 impl GamePacket for StoreItemList {
     type Header = StoreOpCode;
     const HEADER: Self::Header = StoreOpCode::ItemList;
+}
+
+/// Server → client purchase confirmation (sub-opcode 6).
+/// Confirmed via Ghidra: FUN_00b24220 parses this packet, then calls the Lua
+/// functions `MerchantPurchased` (any purchase) and `MerchantPurchasedOne`
+/// (single-item purchase) based on item_count.
+///
+/// Binary evidence from CloneWars.exe string table (offset 0x14562f8):
+///   "Failed transaction type: %d, result: %d, tid: %d, item(s): %s, quantity: %d."
+///   "Successfully transaction type: %d, tid: %d, item(s): %s, quantity: %d."
+/// All numeric fields use %d (32-bit), confirming tid is u32, NOT u64.
+/// (The same codebase uses %I64u for genuine 64-bit fields, e.g. merchant id.)
+///
+/// BuyItemRequest.unknown (u64) is the MERCHANT ID, not a client-generated tid.
+/// The server generates its own tid (u32) for the response; we use 0.
+pub struct SellToClientResponse {
+    /// 0 = CoinStoreTransactionResultSuccess; non-zero = failure.
+    pub result: u32,
+    /// Server-generated transaction id (u32, NOT u64 — confirmed via %d format).
+    pub tid: u32,
+    /// 0 = direct purchase.
+    pub transaction_type: u32,
+    /// Items purchased.
+    pub item_guids: Vec<u32>,
+    pub quantity: u32,
+}
+
+impl SerializePacket for SellToClientResponse {
+    fn serialize(&self, buffer: &mut Vec<u8>) {
+        self.result.serialize(buffer);
+        self.tid.serialize(buffer);
+        self.transaction_type.serialize(buffer);
+        (self.item_guids.len() as u32).serialize(buffer);
+        for guid in &self.item_guids {
+            guid.serialize(buffer);
+        }
+        self.quantity.serialize(buffer);
+    }
+}
+
+impl GamePacket for SellToClientResponse {
+    type Header = StoreOpCode;
+    const HEADER: Self::Header = StoreOpCode::SellToClientResponse;
 }
 
 #[derive(SerializePacket)]
