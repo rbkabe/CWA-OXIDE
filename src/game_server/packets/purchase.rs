@@ -5,6 +5,9 @@ use super::{GamePacket, OpCode};
 #[derive(Copy, Clone, Debug)]
 pub enum PurchaseOpCode {
     StoreCategories = 0xe,
+    /// InGamePurchaseEnableMarketplacePacket (client handler 0x9dd3f0, routed by
+    /// the 0x42 dispatcher at 0x9e6f20).  Body: one bool.
+    EnableMarketplace = 0x1c,
     Billboards = 0x28,
     StoreCategoryGroups = 0x2a,
 }
@@ -95,4 +98,18 @@ pub struct StoreCategoryGroups {
 impl GamePacket for StoreCategoryGroups {
     type Header = PurchaseOpCode;
     const HEADER: Self::Header = PurchaseOpCode::StoreCategoryGroups;
+}
+
+/// Turns the client's marketplace on (InGamePurchaseStoreScreen.IsMarketplaceEnabled).
+/// CommerceHandler:BuyItemSet — the item set view's Buy button — returns early with
+/// "Market not enabled." unless this has been sent; single-item Republic Credit
+/// purchases take a different path (purchaseCoinItem) and work without it.
+#[derive(SerializePacket, DeserializePacket)]
+pub struct EnableMarketplace {
+    pub enabled: bool,
+}
+
+impl GamePacket for EnableMarketplace {
+    type Header = PurchaseOpCode;
+    const HEADER: Self::Header = PurchaseOpCode::EnableMarketplace;
 }

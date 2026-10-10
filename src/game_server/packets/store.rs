@@ -20,6 +20,10 @@ use super::{GamePacket, OpCode};
 #[repr(u16)]
 pub enum StoreOpCode {
     ItemList = 0x1,
+    /// Client → server: list of item GUIDs the client needs definitions for.
+    /// Body: u32 count, then `count` × u32 item GUIDs.
+    /// Server replies with `ItemDefinitionsReply` (0x3).
+    ItemDefinitionsRequest = 0x2,
     ItemDefinitionsReply = 0x3,
     /// Client -> server: purchase request sent when the player clicks "Buy".
     /// Body: unknown u64, item_guid u32, currency_type u32, quantity u32.
@@ -118,11 +122,14 @@ impl GamePacket for StoreItemList {
 /// BuyItemRequest.unknown (u64) is the MERCHANT ID, not a client-generated tid.
 /// The server generates its own tid (u32) for the response; we use 0.
 pub struct SellToClientResponse {
-    /// 0 = CoinStoreTransactionResultSuccess; non-zero = failure.
+    /// 1 = success.  Client handler 0xb24220 treats anything else as a failure
+    /// ("Failed transaction ..." log, OnBuy reports failure).
     pub result: u32,
-    /// Server-generated transaction id (u32, NOT u64 — confirmed via %d format).
+    /// Server-generated transaction id (u32).  Must be non-zero for the client to
+    /// fire the MerchantPurchased / MerchantPurchasedOne Lua events.
     pub tid: u32,
-    /// 0 = direct purchase.
+    /// 1 = buy (client calls HandlerCoinStore.OnBuy), 2 = sell (OnSell); any
+    /// other value fires no callback, which leaves the purchase window spinning.
     pub transaction_type: u32,
     /// Items purchased.
     pub item_guids: Vec<u32>,
@@ -130,15 +137,45 @@ pub struct SellToClientResponse {
 }
 
 impl SerializePacket for SellToClientResponse {
+    /// Layout read by the client (handler 0xb24220 → 0xb21150 → 0xb1dd70): after
+    /// result/tid comes one transaction block describing ONE item:
+    ///   transaction_type u32, u64, tid u32, u64,
+    ///   item ref {item_def_id u32, item_guid u32}, quantity u32, u32, bool.
+    /// HandlerCoinStore.OnBuy passes item_def_id to the purchase window
+    /// (onCoinItemPurchase), which ticks items off its order with it — a wrong id
+    /// leaves it on "Processing" until it times out.  quantity == 1 fires
+    /// MerchantPurchasedOne, otherwise MerchantPurchased.  Multi-item purchases
+    /// send one response per item (see `per_item`).
     fn serialize(&self, buffer: &mut Vec<u8>) {
+        let item = self.item_guids.first().copied().unwrap_or(0);
         self.result.serialize(buffer);
         self.tid.serialize(buffer);
         self.transaction_type.serialize(buffer);
-        (self.item_guids.len() as u32).serialize(buffer);
-        for guid in &self.item_guids {
-            guid.serialize(buffer);
-        }
+        0u64.serialize(buffer);
+        self.tid.serialize(buffer);
+        0u64.serialize(buffer);
+        item.serialize(buffer); // item_def_id
+        item.serialize(buffer); // item_guid (same as the definition id here)
         self.quantity.serialize(buffer);
+        0u32.serialize(buffer);
+        false.serialize(buffer);
+    }
+}
+
+impl SellToClientResponse {
+    /// One response per purchased item (the client's transaction block holds a
+    /// single item reference).
+    pub fn per_item(result: u32, transaction_type: u32, item_guids: &[u32], quantity: u32, mut next_tid: impl FnMut() -> u32) -> Vec<Self> {
+        item_guids
+            .iter()
+            .map(|&guid| SellToClientResponse {
+                result,
+                tid: next_tid(),
+                transaction_type,
+                item_guids: vec![guid],
+                quantity,
+            })
+            .collect()
     }
 }
 

@@ -54,6 +54,11 @@ pub enum OpCode {
     ZoneDetailsDone = 0xe,
     Chat = 0xf,
     Logout = 0x10,
+    /// Routes to BaseClient::vtable[24] = 0x7c2930, the companion/pet system
+    /// dispatcher.  Inner message type (i16 LE at packet[0]) selects:
+    ///   0x000c → companion activation (sets BaseClient[0x3d0] = companion_ptr)
+    ///   0x0035 → pet sub-dispatcher → level-2 sub-op byte selects pet handler
+    Companion = 0x19,
     Command = 0x1a,
     ClientBeginZoning = 0x1f,
     Combat = 0x20,
