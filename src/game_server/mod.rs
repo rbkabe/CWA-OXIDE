@@ -23,7 +23,7 @@ use handlers::housing::process_housing_packet;
 use handlers::quick_chat::process_quick_chat_packet;
 use handlers::inventory::{
     customizations_from_guids, load_customization_item_mappings, load_customizations,
-    load_default_sabers, process_inventory_packet, update_player_equipped_items, DefaultSaber,
+    load_default_sabers, load_offhand_hilts, process_inventory_packet, update_player_equipped_items, DefaultSaber,
 };
 use handlers::item::{load_items, ItemConfig};
 use handlers::lock_enforcer::{
@@ -36,14 +36,15 @@ use handlers::minigame::{
     AllMinigameConfigs,
 };
 use handlers::companion::{
-    despawn_active_companion, move_companion_if_active, process_companion_packet,
+    despawn_active_companion, is_fullscreen_window_opened, is_hud_restored, move_companion_if_active,
+    note_fullscreen_window_opened, process_companion_packet, reopen_inactive_pet_window_if_pending,
     resend_pet_inventory, set_active_pet_id, show_inactive_pet_window,
 };
 use handlers::mount::{load_mounts, process_mount_packet, MountConfig};
 use handlers::reference_data::{load_categories, load_item_classes, load_item_groups, load_quick_chats};
 use packets::quick_chat::{QuickChatDefinition, QuickChatDefinitions};
 use handlers::social::process_social_packet;
-use handlers::store::{process_store_packet, CostEntry};
+use handlers::store::{process_buy_group, process_store_packet, CostEntry};
 use handlers::test_data::make_test_nameplate_image;
 use handlers::tick::{
     enqueue_tickable_chunks, enqueue_tickable_minigames, tick_matchmaking_groups, tick_minigame,
@@ -198,6 +199,7 @@ pub struct GameServer {
     customizations: BTreeMap<u32, Customization>,
     customization_item_mappings: BTreeMap<u32, Vec<u32>>,
     default_sabers: BTreeMap<u32, DefaultSaber>,
+    offhand_hilts: BTreeMap<u32, u32>,
     enemy_types: EnemyTypeConfig,
     lock_enforcer_source: LockEnforcerSource,
     items: BTreeMap<u32, ItemConfig>,
@@ -228,6 +230,7 @@ impl GameServer {
             customizations: load_customizations(config_dir)?,
             customization_item_mappings: load_customization_item_mappings(config_dir)?,
             default_sabers: load_default_sabers(config_dir)?,
+            offhand_hilts: load_offhand_hilts(config_dir)?,
             enemy_types: load_enemy_types(config_dir)?,
             lock_enforcer_source: LockEnforcerSource::from(characters, zones, GuidTable::new()),
             items,
@@ -304,7 +307,10 @@ impl GameServer {
     }
 
     pub fn tick_matchmaking_groups(&self) -> Vec<Broadcast> {
-        tick_matchmaking_groups(self)
+        let mut broadcasts = tick_matchmaking_groups(self);
+        // Piggyback on this 1 s tick: timed companion effects ending (dances etc.).
+        broadcasts.append(&mut handlers::companion::due_companion_restores());
+        broadcasts
     }
 
     pub fn enqueue_tickable_minigames(
@@ -461,6 +467,15 @@ impl GameServer {
                         inner: GamePacket::serialize(&StoreItemList::from(&self.costs)),
                     };
                     sender_only_packets.push(GamePacket::serialize(&store_items));
+
+                    // Enable the marketplace so the item-set view's Buy button
+                    // (CommerceHandler:BuyItemSet) doesn't bail out.
+                    sender_only_packets.push(GamePacket::serialize(&TunneledPacket {
+                        unknown1: true,
+                        inner: GamePacket::serialize(
+                            &crate::game_server::packets::purchase::EnableMarketplace { enabled: true },
+                        ),
+                    }));
 
                     let mut character_broadcasts = self.lock_enforcer().read_characters(|characters_table_read_handle| {
                         let possible_index = characters_table_read_handle.index1(player_guid(sender));
@@ -669,8 +684,13 @@ impl GameServer {
                     // bypass the FTE tutorial that PetController.show() would trigger.
                     sender_only_packets.extend(show_inactive_pet_window());
 
+                    // Replace the test-data weapon action bar with the real one for
+                    // the gear the player actually has equipped.
+                    sender_only_packets.extend(handlers::inventory::weapon_action_bar_packets(sender, self));
+
                     broadcasts.push(Broadcast::Single(sender, sender_only_packets));
                     broadcasts.append(&mut final_broadcasts);
+
                 }
                 OpCode::GameTimeSync => {
                     let sender_guid = player_guid(sender);
@@ -989,6 +1009,12 @@ impl GameServer {
                                     interaction.unknown1
                                 );
 
+                                if is_fullscreen_window_opened(&interaction.window_name, &interaction.button_name) {
+                                    note_fullscreen_window_opened(sender, self);
+                                } else if is_hud_restored(&interaction.window_name, &interaction.button_name) {
+                                    broadcasts.append(&mut reopen_inactive_pet_window_if_pending(sender, self));
+                                }
+
                                 if interaction.window_name == "CharacterWindow"
                                     && interaction.button_name == "SelectCollection"
                                 {
@@ -1041,7 +1067,7 @@ impl GameServer {
                                     // dropped or arrived before PetController was ready.
                                     // NOTE: window_name is "PetListWindow" when summoned from the
                                     // companion selection menu — we match on button_name only.
-                                    let (active_item_guid, npc_guid) = self.lock_enforcer().read_characters(|_| {
+                                    let (active_item_guid, _, purchased) = self.lock_enforcer().read_characters(|_| {
                                         CharacterLockRequest {
                                             read_guids: vec![player_guid(sender)],
                                             write_guids: vec![],
@@ -1049,18 +1075,64 @@ impl GameServer {
                                                 let ch = characters_read.get(&player_guid(sender));
                                                 let item = ch.and_then(|c| c.stats.active_companion_item_guid);
                                                 let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
-                                                Ok::<(Option<u32>, u64), ProcessPacketError>((item, npc))
+                                                let owned = ch.and_then(|c| {
+                                                    if let CharacterType::Player(p) = &c.stats.character_type {
+                                                        Some(p.purchased_items.clone())
+                                                    } else { None }
+                                                }).unwrap_or_default();
+                                                Ok::<(Option<u32>, u64, std::collections::HashSet<u32>), ProcessPacketError>((item, npc, owned))
                                             },
                                         }
                                     })?;
 
                                     let pet_id = active_item_guid.unwrap_or(0);
                                     crate::info!(
-                                        "ClickSummonPetButton {sender}: resending ActivePetWindow packets (pet_id={pet_id} npc_guid={npc_guid:#018x})"
+                                        "ClickSummonPetButton {sender}: setting attachment group id (pet_id={pet_id})"
+                                    );
+                                    // ClickSummonPetButton fires at spawn time — PetAttachmentListWindow
+                                    // is not open yet.  Only send SetPetAttachmentItemGroupId to enable
+                                    // the gear button.  Do NOT resend PetInventory here: a second
+                                    // PetInventory send may clear BaseClient.PetInventory DS before
+                                    // refilling it, and if the gate check then fails the DS stays
+                                    // empty — causing PetAttachmentListWindow to see 0 rows when it
+                                    // subscribes via setAttachmentItems later.
+                                    use handlers::companion::send_attachment_group_id;
+                                    broadcasts.push(Broadcast::Single(
+                                        sender,
+                                        send_attachment_group_id(pet_id),
+                                    ));
+                                } else if interaction.button_name == "ClickToggleButton"
+                                    && interaction.window_name == "ActivePetWindow"
+                                {
+                                    // Player clicked the gear icon in ActivePetWindow — this opens
+                                    // HudMenuBar_PetAttachments (GenericItemSelection.swf).
+                                    // The flyout fires WINDOW_OPENED → populateDataPetAttachments
+                                    // reads BaseClient.PetInventory DS once.  Resend PetInventory
+                                    // now so the DS is guaranteed current when the flyout opens.
+                                    let (active_item_guid, npc_guid, purchased) = self.lock_enforcer().read_characters(|_| {
+                                        CharacterLockRequest {
+                                            read_guids: vec![player_guid(sender)],
+                                            write_guids: vec![],
+                                            character_consumer: |_, characters_read, _, _| {
+                                                let ch = characters_read.get(&player_guid(sender));
+                                                let item = ch.and_then(|c| c.stats.active_companion_item_guid);
+                                                let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
+                                                let owned = ch.and_then(|c| {
+                                                    if let CharacterType::Player(p) = &c.stats.character_type {
+                                                        Some(p.purchased_items.clone())
+                                                    } else { None }
+                                                }).unwrap_or_default();
+                                                Ok::<(Option<u32>, u64, std::collections::HashSet<u32>), ProcessPacketError>((item, npc, owned))
+                                            },
+                                        }
+                                    })?;
+                                    let pet_id = active_item_guid.unwrap_or(0);
+                                    crate::info!(
+                                        "ActivePetWindow.ClickToggleButton {sender}: flyout opening, resending PetInventory (pet_id={pet_id} npc_guid={npc_guid:#018x})"
                                     );
                                     broadcasts.push(Broadcast::Single(
                                         sender,
-                                        set_active_pet_id(pet_id, npc_guid),
+                                        resend_pet_inventory(pet_id, npc_guid, &purchased),
                                     ));
                                 } else if interaction.button_name == "onAttachmentsButtonClick"
                                 {
@@ -1070,7 +1142,7 @@ impl GameServer {
                                     // PetAttachmentListWindow's delegates (registered by the
                                     // AttachmentSelectionView constructor) receive them now that
                                     // the flyout SWF is initialised.
-                                    let (active_item_guid, npc_guid) = self.lock_enforcer().read_characters(|_| {
+                                    let (active_item_guid, npc_guid, purchased) = self.lock_enforcer().read_characters(|_| {
                                         CharacterLockRequest {
                                             read_guids: vec![player_guid(sender)],
                                             write_guids: vec![],
@@ -1078,7 +1150,12 @@ impl GameServer {
                                                 let ch = characters_read.get(&player_guid(sender));
                                                 let item = ch.and_then(|c| c.stats.active_companion_item_guid);
                                                 let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
-                                                Ok::<(Option<u32>, u64), ProcessPacketError>((item, npc))
+                                                let owned = ch.and_then(|c| {
+                                                    if let CharacterType::Player(p) = &c.stats.character_type {
+                                                        Some(p.purchased_items.clone())
+                                                    } else { None }
+                                                }).unwrap_or_default();
+                                                Ok::<(Option<u32>, u64, std::collections::HashSet<u32>), ProcessPacketError>((item, npc, owned))
                                             },
                                         }
                                     })?;
@@ -1089,7 +1166,7 @@ impl GameServer {
                                     );
                                     broadcasts.push(Broadcast::Single(
                                         sender,
-                                        resend_pet_inventory(pet_id, npc_guid),
+                                        resend_pet_inventory(pet_id, npc_guid, &purchased),
                                     ));
                                 } else if interaction.button_name == "onHideTweenComplete"
                                 {
@@ -1098,7 +1175,7 @@ impl GameServer {
                                     // for the next open — handles the edge case where our
                                     // onAttachmentsButtonClick response arrived before the SWF
                                     // finished initialising on first open.
-                                    let (active_item_guid, npc_guid) = self.lock_enforcer().read_characters(|_| {
+                                    let (active_item_guid, npc_guid2, purchased) = self.lock_enforcer().read_characters(|_| {
                                         CharacterLockRequest {
                                             read_guids: vec![player_guid(sender)],
                                             write_guids: vec![],
@@ -1106,29 +1183,104 @@ impl GameServer {
                                                 let ch = characters_read.get(&player_guid(sender));
                                                 let item = ch.and_then(|c| c.stats.active_companion_item_guid);
                                                 let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
-                                                Ok::<(Option<u32>, u64), ProcessPacketError>((item, npc))
+                                                let owned = ch.and_then(|c| {
+                                                    if let CharacterType::Player(p) = &c.stats.character_type {
+                                                        Some(p.purchased_items.clone())
+                                                    } else { None }
+                                                }).unwrap_or_default();
+                                                Ok::<(Option<u32>, u64, std::collections::HashSet<u32>), ProcessPacketError>((item, npc, owned))
                                             },
                                         }
                                     })?;
 
                                     let pet_id = active_item_guid.unwrap_or(0);
                                     crate::info!(
-                                        "onHideTweenComplete {sender}: pre-loading flyout items (pet_id={pet_id})"
+                                        "onHideTweenComplete {sender}: pre-loading flyout items (pet_id={pet_id} npc_guid={npc_guid2:#018x})"
                                     );
                                     broadcasts.push(Broadcast::Single(
                                         sender,
-                                        resend_pet_inventory(pet_id, npc_guid),
+                                        resend_pet_inventory(pet_id, npc_guid2, &purchased),
+                                    ));
+                                } else if interaction.button_name == "ClickBuyAttachmentPetButton"
+                                    || interaction.button_name == "ClickUnEquipAttachmentButton"
+                                    || interaction.button_name == "ClickPetAttachment"
+                                    || interaction.button_name == "BuyMoreAttachments"
+                                {
+                                    // ClickBuyAttachmentPetButton: "GET MORE!" button — confirmed in logs,
+                                    //   window="HudMenuBar". Fires while GenericItemSelection flyout is open.
+                                    // ClickUnEquipAttachmentButton: "REMOVE ATTACHMENT" button — same.
+                                    //   Also triggers companion cmd=0x0b with item_guid=257.
+                                    // ClickPetAttachment / BuyMoreAttachments: alternative names seen in
+                                    //   ScriptsBase (kept for robustness).
+                                    // All arrive while GenericItemSelection IS open — use as hook to
+                                    // (re)populate the flyout via GFx calls on the correct window.
+                                    let (active_item_guid, npc_guid3, purchased) = self.lock_enforcer().read_characters(|_| {
+                                        CharacterLockRequest {
+                                            read_guids: vec![player_guid(sender)],
+                                            write_guids: vec![],
+                                            character_consumer: |_, characters_read, _, _| {
+                                                let ch = characters_read.get(&player_guid(sender));
+                                                let item = ch.and_then(|c| c.stats.active_companion_item_guid);
+                                                let npc = ch.and_then(|c| c.stats.companion_guid).unwrap_or(0);
+                                                let owned = ch.and_then(|c| {
+                                                    if let CharacterType::Player(p) = &c.stats.character_type {
+                                                        Some(p.purchased_items.clone())
+                                                    } else { None }
+                                                }).unwrap_or_default();
+                                                Ok::<(Option<u32>, u64, std::collections::HashSet<u32>), ProcessPacketError>((item, npc, owned))
+                                            },
+                                        }
+                                    })?;
+                                    let pet_id = active_item_guid.unwrap_or(0);
+                                    crate::info!(
+                                        "{} {sender}: repopulating flyout while open (pet_id={pet_id} npc_guid={npc_guid3:#018x})",
+                                        interaction.button_name
+                                    );
+                                    // Window IS open — send both PetInventory (to repopulate
+                                    // BaseClient.PetInventory DS for the Lua setAttachmentItems
+                                    // path) AND explicit GFx calls (clearAttachmentItems +
+                                    // setAttachmentItem × N + addAttachmentFinished) as a
+                                    // direct fallback in case the DS is read after the window
+                                    // opens. Both paths are needed because the Lua reads the DS
+                                    // when the window opens, while GFx calls land after the
+                                    // button-click UiInteraction arrives at the server.
+                                    broadcasts.push(Broadcast::Single(
+                                        sender,
+                                        resend_pet_inventory(pet_id, npc_guid3, &purchased),
                                     ));
                                 } else if interaction.window_name == "ActivePetWindow"
-                                    && interaction.button_name == "onDismissPetButtonClick"
+                                    && interaction.button_name == "ClickDismissPetButton"
                                 {
                                     // Player clicked the Dismiss button in ActivePetWindow.
-                                    // Confirmed via AS2 bytecode: ActivePetView C[65] =
-                                    // "onDismissPetButtonClick".
+                                    // UiInteraction observed: button="ClickDismissPetButton".
                                     crate::info!("onDismissPetButtonClick {sender}: despawning companion");
                                     broadcasts.append(
                                         &mut despawn_active_companion(sender, self)
                                     );
+                                } else if interaction.button_name == "handleBuyItemButtonClick" {
+                                    // "Buy Now" clicked in the item sets (bundles) view.
+                                    // The param should be the item group GUID as a decimal string.
+                                    // This is distinct from the individual-item flow
+                                    // (StoreTransaction → StoreItemList → BuyItem sub-opcode 4);
+                                    // item sets send only this UiInteraction with no preceding
+                                    // StoreTransaction.
+                                    match interaction.param.as_deref().and_then(|p| p.parse::<u32>().ok()) {
+                                        Some(group_guid) => {
+                                            crate::info!(
+                                                "handleBuyItemButtonClick {sender}: buying group {group_guid}"
+                                            );
+                                            match process_buy_group(sender, group_guid, 1, self) {
+                                                Ok(mut bs) => broadcasts.append(&mut bs),
+                                                Err(e) => crate::info!(
+                                                    "handleBuyItemButtonClick {sender}: group {group_guid} purchase failed: {e:?}"
+                                                ),
+                                            }
+                                        }
+                                        None => crate::info!(
+                                            "handleBuyItemButtonClick {sender}: param {:?} is not a u32 group GUID — log this and adjust parsing",
+                                            interaction.param
+                                        ),
+                                    }
                                 }
                             }
                             Err(err) => {
@@ -1166,7 +1318,36 @@ impl GameServer {
                     crate::debug!("Purchase from {sender}: raw={:x?}", &data);
                 }
                 OpCode::Portrait => {}
-                OpCode::StoreTransaction => {}
+                OpCode::StoreTransaction => {
+                    // Sent by client when Buy Now is clicked in the individual-item
+                    // coin store view (not item sets view).  Payload is always empty
+                    // ([75, 00] = just the u16 opcode).
+                    //
+                    // Hypothesis: C++ HandlerCoinStore::BuyItem queues the item ID
+                    // internally, sends this as a "ready to buy" signal, and waits
+                    // for a server ack before sending Store sub-opcode 4 (BuyItem).
+                    //
+                    // Probe: respond with StoreItemList (sub-opcode 1) as a minimal
+                    // ack.  If BuyItem (sub-opcode 4) appears in the next log after
+                    // this change, the hypothesis is confirmed and we know the server
+                    // should ack StoreTransaction with sub-opcode 1 (or similar).
+                    crate::info!(
+                        "StoreTransaction from {sender}: raw={:x?} — replying with StoreItemList probe",
+                        &data
+                    );
+                    use crate::game_server::packets::{
+                        store::StoreItemList,
+                        tunnel::TunneledPacket,
+                        GamePacket,
+                    };
+                    broadcasts.push(Broadcast::Single(
+                        sender,
+                        vec![GamePacket::serialize(&TunneledPacket {
+                            unknown1: true,
+                            inner: StoreItemList::from(self.costs()),
+                        })],
+                    ));
+                }
                 _ => {
                     return Err(ProcessPacketError::new(
                         ProcessPacketErrorType::UnknownOpCode,
@@ -1209,6 +1390,12 @@ impl GameServer {
         &self.default_sabers
     }
 
+    /// The offhand (SecondaryWeapon) copy of a one-handed primary hilt, if any.
+    /// Owning the primary hilt grants its offhand copy.
+    pub fn offhand_hilt(&self, primary_hilt: u32) -> Option<u32> {
+        self.offhand_hilts.get(&primary_hilt).copied()
+    }
+
     pub fn enemy_types(&self) -> &EnemyTypeConfig {
         &self.enemy_types
     }
@@ -1219,6 +1406,10 @@ impl GameServer {
 
     pub fn item_classes(&self) -> &ItemClassDefinitions {
         &self.item_classes
+    }
+
+    pub fn item_groups(&self) -> &ItemGroupDefinitions {
+        &self.item_groups
     }
 
     pub fn read_zone_templates(&self) -> &BTreeMap<u8, ZoneTemplate> {
