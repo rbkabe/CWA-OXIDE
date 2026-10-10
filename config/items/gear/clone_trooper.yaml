@@ -1203,6 +1203,7 @@
   item_type: 1
   category: 61
   members: true
+  cost: 5000
 
 # Commander Neyo's Helmet
 - guid: 160098
@@ -1215,6 +1216,7 @@
   item_type: 1
   category: 60
   members: true
+  cost: 5000
 
 # Commander Neyo's Gloves
 - guid: 160099
@@ -1227,6 +1229,7 @@
   item_type: 1
   category: 62
   members: true
+  cost: 5000
 
 # Commander Neyo's Boots
 - guid: 160100
@@ -1239,6 +1242,7 @@
   item_type: 1
   category: 63
   members: true
+  cost: 5000
 
 # Commander Jet's Armor
 - guid: 473
@@ -3609,3 +3613,137 @@
   item_type: 1
   category: 63
   cost: 500
+# ARF Sergeant Boomer's Helmet
+- guid: 190001
+  name_id: 190011
+  description_id: 14
+  icon_set_id: 3897
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_ArfTrooperHelm.adr
+  texture_alias: SGTBoomer
+  item_type: 1
+  category: 60
+  cost: 5000
+# ARF Sergeant Boomer's Gloves
+- guid: 190002
+  name_id: 190012
+  description_id: 14
+  icon_set_id: 3898
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: SGTBoomer
+  item_type: 1
+  category: 62
+  cost: 5000
+# ARF Sergeant Boomer's Armor
+- guid: 190003
+  name_id: 190013
+  description_id: 14
+  icon_set_id: 3896
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: SGTBoomer
+  item_type: 1
+  category: 61
+  cost: 5000
+# ARF Sergeant Boomer's Boots
+- guid: 190004
+  name_id: 190014
+  description_id: 14
+  icon_set_id: 3899
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: SGTBoomer
+  item_type: 1
+  category: 63
+  cost: 5000
+# Clone Basic Blue Armor
+- guid: 190005
+  name_id: 62021
+  description_id: 14
+  icon_set_id: 3881
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: BlueSquares
+  item_type: 1
+  category: 61
+  cost: 5000
+# Clone Basic Blue Helmet
+- guid: 190006
+  name_id: 62022
+  description_id: 14
+  icon_set_id: 3882
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: BlueSquares
+  item_type: 1
+  category: 60
+  cost: 5000
+# Clone Basic Blue Gloves
+- guid: 190007
+  name_id: 62023
+  description_id: 14
+  icon_set_id: 3883
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: BlueSquares
+  item_type: 1
+  category: 62
+  cost: 5000
+# Clone Basic Blue Boots
+- guid: 190008
+  name_id: 62024
+  description_id: 14
+  icon_set_id: 3884
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: BlueSquares
+  item_type: 1
+  category: 63
+  cost: 5000
+# Clone Assassin Armor
+- guid: 190009
+  name_id: 43683
+  description_id: 14
+  icon_set_id: 3886
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneCommanderWolffe.adr
+  texture_alias: CloneAssassin
+  item_type: 1
+  category: 61
+  cost: 10000
+# Clone Assassin Helmet
+- guid: 190010
+  name_id: 53964
+  description_id: 14
+  icon_set_id: 3887
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneCommanderNeyoHelm.adr
+  texture_alias: CloneAssassin
+  item_type: 1
+  category: 60
+  cost: 10000
+# Clone Assassin Gloves
+- guid: 190011
+  name_id: 53965
+  description_id: 14
+  icon_set_id: 3888
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneSeason4Gloves.adr
+  texture_alias: CloneAssassin
+  item_type: 1
+  category: 62
+  cost: 10000
+# Clone Assassin Boots
+- guid: 190012
+  name_id: 53967
+  description_id: 14
+  icon_set_id: 3889
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneSeason4Boots.adr
+  texture_alias: CloneAssassin
+  item_type: 1
+  category: 63
+  cost: 10000
+  
+  

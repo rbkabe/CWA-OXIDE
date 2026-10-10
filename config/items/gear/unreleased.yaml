@@ -574,48 +574,48 @@
   item_type: 1
   category: 63
 
-# wearable_body_clone_red_stripe
+# Red Stripe Clone Armor
 - guid: 230048
   cost: 5000
-  name_id: 2709
+  name_id: 62017
   description_id: 14
-  icon_set_id: 673
+  icon_set_id: 3891
   slot: !Equipment Body
   model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
   texture_alias: RedStripe
   item_type: 1
   category: 61
 
-# wearable_head_clone_red_stripe
+# Red Stripe Clone Helmet
 - guid: 230049
   cost: 5000
-  name_id: 2707
+  name_id: 62018
   description_id: 14
-  icon_set_id: 677
+  icon_set_id: 3892
   slot: !Equipment Head
   model_name: Wear_Human_<gender>_Head_CloneHelm.adr
   texture_alias: RedStripe
   item_type: 1
   category: 60
 
-# wearable_hands_clone_red_stripe
+# Red Stripe Clone Gloves
 - guid: 230050
   cost: 5000
-  name_id: 2708
+  name_id: 62019
   description_id: 14
-  icon_set_id: 676
+  icon_set_id: 3893
   slot: !Equipment Hands
   model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
   texture_alias: RedStripe
   item_type: 1
   category: 62
 
-# wearable_feet_clone_red_stripe
+# Red Stripe Clone Boots
 - guid: 230051
   cost: 5000
-  name_id: 2710
+  name_id: 62020
   description_id: 14
-  icon_set_id: 680
+  icon_set_id: 3894
   slot: !Equipment Feet
   model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
   texture_alias: RedStripe
@@ -1213,24 +1213,24 @@
 # 'Umbara Academy: Ghost Attack 2'
 - guid: 230101
   cost: 5000
-  name_id: 51037
+  name_id: 62154
   description_id: 14
   icon_set_id: 425
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Anakin_Ghost.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Anakin_Ghost_LEFT.adr
   texture_alias: Anakin
   item_type: 25
 
 # 'Umbara Academy: Ghost Attack 3'
 - guid: 230102
   cost: 5000
-  name_id: 51038
+  name_id: 62155
   description_id: 14
   icon_set_id: 425
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_MaceWindu_Ghost.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_MaceWindu_Ghost_LEFT.adr
   texture_alias: MaceWindu
   item_type: 25
 
