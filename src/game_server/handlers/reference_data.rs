@@ -8,7 +8,7 @@ use serde::Deserialize;
 
 use crate::{
     game_server::{
-        handlers::{item::ItemConfig, store::ItemCostMap},
+        handlers::{item::ItemConfig, store::{CostEntry, ItemCostMap}},
         packets::{
             quick_chat::QuickChatDefinition,
             reference_data::{
@@ -68,6 +68,11 @@ pub struct ItemGroupConfig {
     /// When 0 (the default), the per-item cost is used unchanged.
     #[serde(default)]
     pub cost: u32,
+    /// Optional display name sent as a literal string in the packet.
+    /// Use this for custom items whose name_id can't be resolved by the client
+    /// (e.g. large IDs > 65535 that overflow the client's u16 locale lookup).
+    #[serde(default)]
+    pub display_name: String,
     #[serde(default)]
     pub items: Vec<ItemGroupItem>,
 }
@@ -89,7 +94,7 @@ impl From<ItemGroupConfig> for ItemGroupDefinition {
             unknown12: 0,
             unknown13: 0,
             unknown14: 0,
-            unknown16: "".to_string(),
+            unknown16: value.display_name,
             members_only: value.members_only,
             items: value.items,
         }
@@ -129,6 +134,12 @@ pub fn load_quick_chats(config_dir: &Path) -> Result<Vec<QuickChatDefinition>, C
             unknown2: 0,
         })
         .collect())
+}
+
+/// An unnamed multi-item group that only exists to put items up for sale: one
+/// with a store category, or one of our own (guid >= 10000).
+fn is_hidden_store_group(group: &ItemGroupConfig) -> bool {
+    group.category != 0 || group.guid >= 10000
 }
 
 pub fn load_item_groups(
@@ -171,5 +182,43 @@ pub fn load_item_groups(
 
     costs.retain(|item_guid, _| items_for_sale.contains(item_guid));
 
-    Ok(groups.into_iter().map(|group| group.into()).collect())
+    // Add group-level costs for multi-item bundles so the client sees a price for the
+    // whole set and BuyItem with the group guid is handled server-side.
+    // Unnamed groups (name_id 0, no display_name) only exist to put their items
+    // up for sale individually; giving them a bundle price makes them show up in
+    // the store as blank "item set" listings, so they get no group cost.
+    for group in groups
+        .iter()
+        .filter(|g| g.for_sale && g.items.len() > 1)
+        .filter(|g| g.name_id != 0 || !g.display_name.is_empty())
+    {
+        let group_guid = group.guid as u32;
+        let total: u32 = group
+            .items
+            .iter()
+            .filter_map(|item| costs.get(&item.guid))
+            .map(|e| e.base)
+            .sum();
+        if total > 0 {
+            costs.entry(group_guid).or_insert(CostEntry {
+                base: total,
+                members: total,
+            });
+        }
+    }
+
+    // Don't send our unnamed store groups to the client: it lists every store
+    // group definition it receives as an "item set" (pricing it itself from the
+    // member items), and these would show as blank listings.  They have already
+    // done their job above — putting their items up for sale.
+    //
+    // The original game's unnamed, uncategorised groups must still be sent: the
+    // client binds them as picker lists, e.g. 3/4/5 = ItemGroup.LightsaberHilts/
+    // ColorGems/Shapes and 8/9/149 their offhand versions (Lightsaber
+    // Customization), 122-127/140 the Character Customization lists.
+    Ok(groups
+        .into_iter()
+        .filter(|g| !(g.items.len() > 1 && g.name_id == 0 && g.display_name.is_empty()) || !is_hidden_store_group(g))
+        .map(|group| group.into())
+        .collect())
 }

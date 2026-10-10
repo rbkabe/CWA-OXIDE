@@ -12,8 +12,9 @@ use crate::{
             minigame::{leave_active_minigame_if_any, LeaveMinigameTarget},
         },
         packets::{
-            item::ItemDefinition,
+            item::{EquipmentSlot, Item, ItemDefinition, ItemType, MarketData},
             login::{DefinePointsOfInterest, DeploymentEnv, GameSettings, LoginReply},
+            player_data::InventoryItem,
             player_update::ItemDefinitionsReply,
             tunnel::TunneledPacket,
             GamePacket,
@@ -25,6 +26,7 @@ use crate::{
 
 use super::{
     character::{Character, Player, PreviousLocation, RemovalMode, Role},
+    companion::{build_pet_for_companion, is_companion_item, COMPANION_ATTACHMENT_ITEMS, COMPANION_PET_DATA},
     guid::IndexedGuid,
     lock_enforcer::ZoneLockEnforcer,
     minigame::PlayerMinigameStats,
@@ -65,6 +67,206 @@ fn derive_initial_weapon_abilities(
             })
         })
         .collect()
+}
+
+/// Builds the `Player` packet struct for `sender` by starting from the
+/// test-data defaults and applying saved profile overrides.  Used by both
+/// `log_in()` (initial login) and `make_player_packet()` (live mid-session
+/// refresh, e.g. after a companion purchase to refresh `BaseClient.PetList`).
+fn build_player_data(
+    sender: u32,
+    profile: &super::profile::PlayerProfile,
+    game_server: &GameServer,
+) -> crate::game_server::packets::player_data::Player {
+    let mut player_data = make_test_player(sender, game_server.mounts(), game_server.items());
+
+    for (bc_guid, slot_map) in &profile.equipped {
+        if let Some(bc) = player_data.data.battle_classes.get_mut(bc_guid) {
+            // The saved loadout is authoritative: start from empty instead of the
+            // test-data defaults, otherwise any slot the player emptied (e.g. the
+            // default hilt 437) silently comes back on every login.
+            bc.items.clear();
+            for (slot_u32, item_guid) in slot_map {
+                if let Ok(slot) = EquipmentSlot::try_from_primitive(*slot_u32) {
+                    bc.items.insert(
+                        slot,
+                        crate::game_server::packets::player_data::EquippedItem {
+                            slot,
+                            guid: *item_guid,
+                            category: 0,
+                        },
+                    );
+                }
+            }
+        }
+    }
+
+    // Gender decides which wearable models load (Wear_Human_<gender>_*.adr):
+    // 1 = male, 2 = female.  It isn't stored in the profile, so derive it from the
+    // body model customization (slot 8): 70007-70012 are the female bodies
+    // (Human, Pantoran, Togruta, Trandoshan, Twi'lek, Zabrak).
+    if let Some(&body) = profile.customizations.get(&(crate::game_server::packets::player_update::CustomizationSlot::BodyModel as i32)) {
+        player_data.data.gender = if (70007..=70012).contains(&body) { 2 } else { 1 };
+    }
+
+    // Apply the saved appearance to the Player packet.  The local client builds
+    // its own character from these fields (other players see the AddPc built from
+    // Player.customizations), so without this the player always saw the test-data
+    // clone no matter what the profile said.  Same lookups as AddPc.
+    {
+        use crate::game_server::packets::player_update::CustomizationSlot as Slot;
+        let lookup = |slot: Slot| {
+            profile
+                .customizations
+                .get(&(slot as i32))
+                .and_then(|guid| game_server.customizations().get(guid))
+        };
+        let d = &mut player_data.data;
+        if let Some(c) = lookup(Slot::BodyModel) { d.body_model = c.customization_param2; }
+        if let Some(c) = lookup(Slot::HeadModel) { d.head_model = c.customization_param1.clone(); }
+        if let Some(c) = lookup(Slot::HairStyle) { d.hair_model = c.customization_param1.clone(); }
+        if let Some(c) = lookup(Slot::HairColor) { d.hair_color = c.customization_param2; }
+        if let Some(c) = lookup(Slot::EyeColor) { d.eye_color = c.customization_param2; }
+        if let Some(c) = lookup(Slot::SkinTone) { d.skin_tone = c.customization_param1.clone(); }
+        if let Some(c) = lookup(Slot::FacePattern) { d.face_paint = c.customization_param1.clone(); }
+        if let Some(c) = lookup(Slot::FacialHair) { d.facial_hair = c.customization_param1.clone(); }
+    }
+
+    // Drop saber blade shape/color parts whose hilt slot is empty.  Older builds
+    // didn't clear them when a hilt was unequipped, so profiles can hold orphaned
+    // parts — the client then draws bare blades and Lightsaber Customization shows
+    // no hilt.
+    for bc in player_data.data.battle_classes.values_mut() {
+        for (weapon, parts) in [
+            (EquipmentSlot::PrimaryWeapon, [EquipmentSlot::PrimarySaberShape, EquipmentSlot::PrimarySaberColor]),
+            (EquipmentSlot::SecondaryWeapon, [EquipmentSlot::SecondarySaberShape, EquipmentSlot::SecondarySaberColor]),
+        ] {
+            if !bc.items.contains_key(&weapon) {
+                for part in parts {
+                    bc.items.remove(&part);
+                }
+            }
+        }
+    }
+
+    if let Some(ref first) = profile.first_name {
+        player_data.data.name.first_name = first.clone();
+    }
+    if let Some(ref last) = profile.last_name {
+        player_data.data.name.last_name = last.clone();
+    }
+
+    const DEFAULT_STARTING_CREDITS: u32 = 100_000;
+    if profile.first_name.is_some() {
+        player_data.data.credits = profile.credits.unwrap_or(DEFAULT_STARTING_CREDITS);
+    }
+
+    if profile.first_name.is_some() {
+        player_data.data.inventory.retain(|guid, _| {
+            profile.purchased_items.contains(guid)
+                || matches!(
+                    game_server.items().get(guid).map(|c| &c.slot),
+                    Some(
+                        ItemType::Equipment(
+                            EquipmentSlot::PrimarySaberColor
+                                | EquipmentSlot::SecondarySaberColor
+                                | EquipmentSlot::PrimarySaberShape
+                                | EquipmentSlot::SecondarySaberShape,
+                        ),
+                    )
+                )
+        });
+        // Owning a one-handed hilt also grants its offhand copy.
+        for &primary in &profile.purchased_items {
+            if let Some(offhand) = game_server.offhand_hilt(primary) {
+                player_data.data.inventory
+                    .entry(offhand)
+                    .or_insert_with(|| InventoryItem {
+                        definition_id: offhand,
+                        item: Item {
+                            definition_id: offhand,
+                            tint: 0,
+                            guid: offhand,
+                            quantity: 1,
+                            num_consumed: 0,
+                            last_use_time: 0,
+                            market_data: MarketData::None,
+                            unknown2: false,
+                        },
+                    });
+            }
+        }
+        for &(_, attachment_items) in COMPANION_ATTACHMENT_ITEMS {
+            for &(item_guid, _, _) in attachment_items {
+                if profile.purchased_items.contains(&item_guid) {
+                    player_data.data.inventory
+                        .entry(item_guid)
+                        .or_insert_with(|| InventoryItem {
+                            definition_id: item_guid,
+                            item: Item {
+                                definition_id: item_guid,
+                                tint: 0,
+                                guid: item_guid,
+                                quantity: 1,
+                                num_consumed: 0,
+                                last_use_time: 0,
+                                market_data: MarketData::None,
+                                unknown2: false,
+                            },
+                        });
+                }
+            }
+        }
+        player_data.data.mounts.clear();
+        player_data.data.pets = COMPANION_PET_DATA
+            .iter()
+            .filter_map(|&(guid, _, _, _, _)| {
+                if !profile.purchased_items.contains(&guid) {
+                    return None;
+                }
+                let mut pet = build_pet_for_companion(guid, &profile.purchased_items)?;
+                pet.unknown2 = true;
+                Some(pet)
+            })
+            .collect();
+    } else {
+        for &(_, attachment_items) in COMPANION_ATTACHMENT_ITEMS {
+            for &(item_guid, _, _) in attachment_items {
+                player_data.data.inventory
+                    .entry(item_guid)
+                    .or_insert_with(|| InventoryItem {
+                        definition_id: item_guid,
+                        item: Item {
+                            definition_id: item_guid,
+                            tint: 0,
+                            guid: item_guid,
+                            quantity: 1,
+                            num_consumed: 0,
+                            last_use_time: 0,
+                            market_data: MarketData::None,
+                            unknown2: false,
+                        },
+                    });
+            }
+        }
+    }
+
+    player_data
+}
+
+/// Serializes a fresh `Player` (OpCode::Player) packet for `sender` from
+/// their saved profile.  Call this after any profile mutation that should
+/// be immediately reflected on the client — e.g. companion purchase, so
+/// `BaseClient.PetList` shows the new companion without a relog.
+pub fn make_player_packet(
+    sender: u32,
+    profile: &super::profile::PlayerProfile,
+    game_server: &GameServer,
+) -> Vec<u8> {
+    GamePacket::serialize(&TunneledPacket {
+        unknown1: true,
+        inner: build_player_data(sender, profile, game_server),
+    })
 }
 
 pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, ProcessPacketError> {
@@ -138,58 +340,9 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
             // saved overrides on top of the test-data defaults.
             let profile = load_profile(game_server.profiles_dir(), sender);
 
-            let mut player_data = make_test_player(sender, game_server.mounts(), game_server.items());
-
-            // Override equipped items from saved profile.
-            for (bc_guid, slot_map) in &profile.equipped {
-                if let Some(bc) = player_data.data.battle_classes.get_mut(bc_guid) {
-                    for (slot_u32, item_guid) in slot_map {
-                        if let Ok(slot) =
-                            crate::game_server::packets::item::EquipmentSlot::try_from_primitive(*slot_u32)
-                        {
-                            bc.items.insert(
-                                slot,
-                                crate::game_server::packets::player_data::EquippedItem {
-                                    slot,
-                                    guid: *item_guid,
-                                    category: 0,
-                                },
-                            );
-                        }
-                    }
-                }
-            }
-
-            // Override name from saved profile.
-            if let Some(ref first) = profile.first_name {
-                player_data.data.name.first_name = first.clone();
-            }
-            if let Some(ref last) = profile.last_name {
-                player_data.data.name.last_name = last.clone();
-            }
-
-            // Override credits from saved profile. New/anonymous players
-            // (no profile file) keep the test-data default. Profiled players
-            // use their persisted balance, defaulting to 100,000 on first login.
-            const DEFAULT_STARTING_CREDITS: u32 = 100_000;
-            if profile.first_name.is_some() {
-                player_data.data.credits =
-                    profile.credits.unwrap_or(DEFAULT_STARTING_CREDITS);
-            }
-
-            // Restrict client-visible inventory for profiled players: only send
-            // items they actually own, not the full test-data set.  New players
-            // (first_name is None) keep the full inventory so hosts can test
-            // everything.
-            if profile.first_name.is_some() {
-                player_data.data.inventory.retain(|guid, _| {
-                    profile.purchased_items.contains(guid)
-                });
-            }
-
             let player = TunneledPacket {
                 unknown1: true,
-                inner: player_data,
+                inner: build_player_data(sender, &profile, game_server),
             };
             packets.push(GamePacket::serialize(&player));
 
@@ -216,6 +369,28 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
             // Always ensure purchased items are present even for the full-inventory path.
             for item_guid in &profile.purchased_items {
                 base_inventory.insert(*item_guid);
+                if let Some(offhand) = game_server.offhand_hilt(*item_guid) {
+                    base_inventory.insert(offhand);
+                }
+            }
+            // Profiled players get all saber customization items (crystal colors and
+            // blade shapes) for free so they can equip any lightsaber without hitting
+            // ownership errors. The equip handler checks this BTreeSet, not the
+            // client-visible InventoryItem map, so both must include these items.
+            if profile.first_name.is_some() {
+                for (&guid, config) in game_server.items() {
+                    if matches!(
+                        &config.slot,
+                        ItemType::Equipment(
+                            EquipmentSlot::PrimarySaberColor
+                                | EquipmentSlot::SecondarySaberColor
+                                | EquipmentSlot::PrimarySaberShape
+                                | EquipmentSlot::SecondarySaberShape,
+                        )
+                    ) {
+                        base_inventory.insert(guid);
+                    }
+                }
             }
             let inventory = PlayerInventory::new(
                 player
@@ -300,8 +475,12 @@ pub fn log_in(sender: u32, game_server: &GameServer) -> Result<Vec<Broadcast>, P
                     // Remove once the real flow is confirmed working.
                     collection_replay: make_test_collection_replay(),
                     fav_emotes: profile.fav_emotes.into_iter().collect(),
-                    companions: player.inner.data.pets.iter()
-                        .filter_map(|pet| pet.item_guid.first().map(|ig| ig.guid))
+                    // Derive companions from purchased_items so they survive
+                    // server restarts.  (player_data.pets is cleared for
+                    // profiled players above, so we can't rely on it.)
+                    companions: profile.purchased_items.iter()
+                        .copied()
+                        .filter(|&guid| is_companion_item(guid))
                         .collect(),
                     purchased_items: profile.purchased_items,
                     action_bar: PlayerActionBar {

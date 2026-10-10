@@ -128,7 +128,7 @@ pub fn process_quick_chat_packet(
                                             triggered_by_guid: requester_guid,
                                             composite_effect: *effect_id,
                                             delay_millis: *delay_ms,
-                                            duration_millis: 1000,
+                                            duration_millis: super::chat_command::mind_trick_effect_duration_millis(*effect_id),
                                             pos: effect_pos,
                                         },
                                     })

@@ -2502,6 +2502,9 @@ impl BaseNpcTemplate {
                 companion_guid: None,
                 active_companion_item_guid: None,
                 companion_world_pos: None,
+                companion_attachments: Default::default(),
+                refresh_inactive_pet_window: false,
+                companion_click_count: 0,
             },
             tickable_procedure_tracker: TickableProcedureTracker::new(
                 self.tickable_procedures.clone(),
@@ -2650,6 +2653,14 @@ pub struct CharacterStats {
     /// Used in movement updates to move the companion by delta rather than recalculating
     /// "behind the player", so the companion turns in place instead of orbiting.
     pub companion_world_pos: Option<(f32, f32, f32)>,
+    /// Equipped attachment per companion: companion item_guid → attachment item_guid.
+    pub companion_attachments: std::collections::HashMap<u32, u32>,
+    /// Set when a full-screen window (store, Play Games) opens while no companion
+    /// is out; the next movement update re-opens InactivePetWindow (see companion.rs).
+    pub refresh_inactive_pet_window: bool,
+    /// Clicks on the active companion since it was summoned / its attachment changed
+    /// (drives click-cycled attachment meshes such as the Candy Dispenser heart colour).
+    pub companion_click_count: u32,
 }
 
 impl CharacterStats {
@@ -2914,6 +2925,9 @@ impl Character {
                 companion_guid: None,
                 active_companion_item_guid: None,
                 companion_world_pos: None,
+                companion_attachments: Default::default(),
+                refresh_inactive_pet_window: false,
+                companion_click_count: 0,
             },
             tickable_procedure_tracker: TickableProcedureTracker::new(
                 tickable_procedures,
@@ -2988,6 +3002,9 @@ impl Character {
                 companion_guid: None,
                 active_companion_item_guid: None,
                 companion_world_pos: None,
+                companion_attachments: Default::default(),
+                refresh_inactive_pet_window: false,
+                companion_click_count: 0,
             },
             tickable_procedure_tracker: TickableProcedureTracker::new(HashMap::new(), Vec::new()),
             synchronize_with: None,

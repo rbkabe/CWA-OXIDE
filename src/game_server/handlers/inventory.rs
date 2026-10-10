@@ -100,6 +100,22 @@ pub fn process_inventory_packet(
     }
 }
 
+#[derive(Deserialize)]
+#[serde(deny_unknown_fields)]
+struct OffhandHilt {
+    primary: u32,
+    offhand: u32,
+}
+
+/// Loads config/offhand_hilts.yaml: each one-handed primary lightsaber hilt
+/// mapped to its offhand copy (whose model is the primary's with `_LEFT`, built
+/// by tools/cwa_offhand_hilts.py).
+pub fn load_offhand_hilts(config_dir: &Path) -> Result<BTreeMap<u32, u32>, ConfigError> {
+    let mut file = File::open(config_dir.join("offhand_hilts.yaml"))?;
+    let entries: Vec<OffhandHilt> = serde_yaml::from_reader(&mut file)?;
+    Ok(entries.into_iter().map(|e| (e.primary, e.offhand)).collect())
+}
+
 pub fn wield_type_from_slot(
     items: &BTreeMap<EquipmentSlot, u32>,
     slot: EquipmentSlot,
@@ -250,6 +266,29 @@ fn build_action_bar_packets(
     packets
 }
 
+/// The weapon action bar for `sender`'s currently equipped gear.  Sent once the
+/// client has loaded (ClientIsReady): the Player packet's action bars come from
+/// test data, whose weapon bar shows the default hilt's (437) abilities whatever
+/// is actually equipped.
+pub fn weapon_action_bar_packets(sender: u32, game_server: &GameServer) -> Vec<Vec<u8>> {
+    game_server
+        .lock_enforcer()
+        .read_characters(|_| CharacterLockRequest {
+            read_guids: vec![],
+            write_guids: vec![player_guid(sender)],
+            character_consumer: |_, _, mut characters_write, _| {
+                let Some(character) = characters_write.get_mut(&player_guid(sender)) else {
+                    return Ok::<Vec<Vec<u8>>, ProcessPacketError>(vec![]);
+                };
+                let CharacterType::Player(ref mut player) = character.stats.character_type else {
+                    return Ok(vec![]);
+                };
+                build_weapon_slot_assignments(sender, player, game_server)
+            },
+        })
+        .unwrap_or_default()
+}
+
 fn build_weapon_slot_assignments(
     sender: u32,
     player: &mut Player,
@@ -349,6 +388,47 @@ fn process_unequip_slot(
 
             let mut packets_for_all = Vec::new();
             let mut packets_for_sender = Vec::new();
+
+            // Unequipping a saber hilt must also clear the blade shape/color slots
+            // that process_equip_saber filled; otherwise the client keeps drawing
+            // the blades with no hilt (and they persist in the saved profile).
+            let saber_part_slots: &[EquipmentSlot] = match unequip_slot.slot {
+                EquipmentSlot::PrimaryWeapon => {
+                    &[EquipmentSlot::PrimarySaberShape, EquipmentSlot::PrimarySaberColor]
+                }
+                EquipmentSlot::SecondaryWeapon => {
+                    &[EquipmentSlot::SecondarySaberShape, EquipmentSlot::SecondarySaberColor]
+                }
+                _ => &[],
+            };
+            for &part_slot in saber_part_slots {
+                if player.inventory.unequip_item(unequip_slot.battle_class, part_slot)? {
+                    packets_for_sender.push(GamePacket::serialize(&TunneledPacket {
+                        unknown1: true,
+                        inner: UnequipItem {
+                            slot: part_slot,
+                            battle_class: unequip_slot.battle_class,
+                        },
+                    }));
+                    packets_for_all.push(GamePacket::serialize(&TunneledPacket {
+                        unknown1: true,
+                        inner: UpdateEquippedItem {
+                            guid: player_guid(sender),
+                            item_guid: 0,
+                            item: Attachment {
+                                model_name: "".to_string(),
+                                texture_alias: "".to_string(),
+                                tint_alias: "".to_string(),
+                                tint: 0,
+                                composite_effect: 0,
+                                slot: part_slot,
+                            },
+                            battle_class: unequip_slot.battle_class,
+                            wield_type: WieldType::None,
+                        },
+                    }));
+                }
+            }
 
             if !item_def.action_bar.ability_keys.is_empty() {
                 player

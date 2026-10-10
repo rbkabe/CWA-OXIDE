@@ -264,19 +264,24 @@ pub const MIND_TRICKS: &[(&str, u32, Option<i32>, (f32, f32, f32), &[(u32, u32)]
         565,
         None,
         (0.0, 0.0, 0.0),
-        &[
-            (1073, 0),
-            (1074, 1200),
-            (1075, 2400),
-            (1076, 3600),
-            (1077, 4800),
-            (1078, 6000),
-            (1079, 7200),
-        ],
+        // PFX_Fireworks_OverHead_sm: small fireworks show over the character's head
+        // (10 s lifetime, two staggered bursts).  The coloured PFX_fireworks_* bursts
+        // (1073-1079) previously used here are the same fireworks the Mouse Droid
+        // Top Hat fires.
+        &[(1722, 0)],
     ),
     ("forceexplosion", 662, Some(3605), (2.0, 0.0, -0.3), &[(1752, 500)]),
     ("forcepushtrick", 2084, Some(3015), (1.5, 1.75, -0.2), &[(2114, 0)]),
 ];
+
+/// Playback duration for a one-shot mind trick effect.  Most are short bursts;
+/// effects with a longer defaultLifeTime need it here or they get cut off.
+pub fn mind_trick_effect_duration_millis(composite_effect_id: u32) -> u32 {
+    match composite_effect_id {
+        1722 => 10_000, // PFX_Fireworks_OverHead_sm (defaultLifeTime 10 s)
+        _ => 1000,
+    }
+}
 
 fn find_mind_trick(name: &str) -> Option<(u32, Option<i32>, (f32, f32, f32), &'static [(u32, u32)])> {
     MIND_TRICKS
@@ -786,7 +791,7 @@ pub fn process_chat_command(
                                             triggered_by_guid: requester_guid,
                                             composite_effect: *composite_effect_id,
                                             delay_millis: *delay_millis,
-                                            duration_millis: 1000,
+                                            duration_millis: mind_trick_effect_duration_millis(*composite_effect_id),
                                             pos: effect_pos,
                                         },
                                     })
