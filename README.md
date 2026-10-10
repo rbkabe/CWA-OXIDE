@@ -119,6 +119,6 @@ Patch Contains WexToxicstinger's shop implementations and my shop npcs
 
 Thank you to Delta-07 for making the oxide build that I referenced to get the actions menu working.
 
-at this point I think I have every single emote fully functioning besides a few, all holoprojectors and mind tricks are there.
+at this point the only emotes left to add are the class emotes which can be manually added to your profile if you really want to. 
 
 next goals: add ambient npcs to the rest of the temple, implement profile tab
