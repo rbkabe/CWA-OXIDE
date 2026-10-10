@@ -10,7 +10,7 @@ START IN YOUR BACKED UP CLIENT FOLDER
 
 OPEN CLIENT FOLDER IN TERMINAL
 
-run: python path\to\pythontool "path\to\clientfolder"
+RUN: python path\to\pythontool "path\to\clientfolder"
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
