@@ -1,0 +1,835 @@
+# Custom models: Models.txt lines plus the .agr actor groups they point at.
+# Applied by tools/cwa_models.py (see the docs at the top of that file).
+---
+
+# Changes to models the game already has
+- id: 1944   # 3D_Babbo.agr
+  scale: 1.0
+- id: 1945   # 3D_Duppa.agr
+  scale: 1.0
+
+# New models
+
+# 5P-0T              (Grp_ATAT.agr → Char_ATAT.adr, validatePcNpc=0)
+- id: 2833
+  file: Grp_ATAT.agr
+  description: Marketplace Model
+  actors:
+    - {model: Char_ATAT.adr}
+
+# R2-D2              (Grp_Companion_AstroMechR2.agr → Char_AstroMechR2.adr)
+- id: 2834
+  file: Grp_Companion_AstroMechR2.agr
+  description: "Companion Model: R2-D2 companion"
+  actors:
+    - {model: Char_AstroMechR2.adr}
+
+# C-3PO              (Grp_Companion_ProtocolDroid3PO.agr → Char_ProtocolDroid3PO.adr)
+- id: 2835
+  file: Grp_Companion_ProtocolDroid3PO.agr
+  description: "Companion Model: C-3PO companion"
+  actors:
+    - {model: Char_ProtocolDroid3PO.adr}
+
+# 5T-U85             (Grp_Companion_PowerDroid.agr → Char_PowerDroid.adr)
+- id: 2836
+  file: Grp_Companion_PowerDroid.agr
+  description: "Companion Model: 5T-U85 companion"
+  actors:
+    - {model: Char_PowerDroid.adr}
+
+# F1-V3L             (Grp_Companion_MouseDroid.agr → Char_MouseDroid.adr)
+- id: 2837
+  file: Grp_Companion_MouseDroid.agr
+  description: "Companion Model: F1-V3L companion"
+  actors:
+    - {model: Char_MouseDroid.adr}
+
+# B3-3P5             (Grp_Companion_AstroMechR4.agr → Char_AstroMechR4.adr)
+- id: 2838
+  file: Grp_Companion_AstroMechR4.agr
+  description: "Companion Model: B3-3P5 companion"
+  actors:
+    - {model: Char_AstroMechR4.adr}
+
+# B0-LT5             (Grp_Companion_AstroMechR5.agr → Char_AstroMechR5.adr)
+- id: 2839
+  file: Grp_Companion_AstroMechR5.agr
+  description: "Companion Model: B0-LT5 companion"
+  actors:
+    - {model: Char_AstroMechR5.adr}
+
+# BR-3R              (Grp_Companion_LEPServantDroid.agr → Char_LEPServantDroid.adr)
+- id: 2840
+  file: Grp_Companion_LEPServantDroid.agr
+  description: "Companion Model: BR-3R companion"
+  actors:
+    - {model: Char_LEPServantDroid.adr}
+
+# T0-D0              (Grp_Companion_TechnoServiceDroid.agr → Char_TechnoServiceDroid.adr)
+- id: 2841
+  file: Grp_Companion_TechnoServiceDroid.agr
+  description: "Companion Model: T0-D0 companion"
+  actors:
+    - {model: Char_TechnoServiceDroid.adr}
+
+- id: 2842
+  file: Grp_Companion_ProbeDroid_TD.agr
+  description: "Companion Model: PR-0B07 companion"
+  actors:
+    - {model: Char_ProbeDroid_TD.adr}
+
+# RA-7               (Grp_Companion_DeathStarDroidR7.agr → Char_DeathStarDroidR7.adr)
+- id: 2843
+  file: Grp_Companion_DeathStarDroidR7.agr
+  description: "Companion Model: RA-7 companion"
+  actors:
+    - {model: Char_DeathStarDroidR7.adr}
+
+# 1M-AU5             (Grp_Companion_MouseDroidGold.agr → Char_MouseDroidGold.adr)
+- id: 2844
+  file: Grp_Companion_MouseDroidGold.agr
+  description: "Companion Model: 1M-AU5 companion"
+  actors:
+    - {model: Char_MouseDroidGold.adr}
+
+# Aedalus            (Grp_Companion_Convor.agr → Char_Convor.adr)
+- id: 2845
+  file: Grp_Companion_Convor.agr
+  description: "Companion Model: Aedalus companion"
+  actors:
+    - {model: Char_Convor.adr}
+
+# Gnarls             (Grp_Companion_Anoobus.agr → Char_Anoobus_LOD0.adr)
+- id: 2846
+  file: Grp_Companion_Anoobus.agr
+  description: "Companion Model: Gnarls companion"
+  actors:
+    - {model: Char_Anoobus_LOD0.adr}
+
+# Eeetch             (Grp_Companion_KowakianMonkeyLizard.agr → Char_KowakianMonkeyLizard.adr, default Red)
+- id: 2847
+  file: Grp_Companion_KowakianMonkeyLizard.agr
+  description: "Companion Model: Eeetch companion"
+  actors:
+    - {model: Char_KowakianMonkeyLizard.adr}
+
+# Aktik              (Grp_Companion_Holo_Jawa.agr → Holo_Jawa.adr)
+- id: 2848
+  file: Grp_Companion_Holo_Jawa.agr
+  description: "Companion Model: Aktik companion"
+  actors:
+    - {model: Holo_Jawa.adr}
+
+# DU-3               (Grp_Companion_PitDroid.agr → Char_PitDroid.adr)
+- id: 2849
+  file: Grp_Companion_PitDroid.agr
+  description: "Companion Model: DU-3 companion"
+  actors:
+    - {model: Char_PitDroid.adr}
+
+# K0-5D              (Grp_Companion_GladiatorDroid.agr → Char_GladiatorDroid.adr)
+- id: 2850
+  file: Grp_Companion_GladiatorDroid.agr
+  description: "Companion Model: K0-5D companion"
+  actors:
+    - {model: Char_GladiatorDroid.adr}
+
+# Jynx               (Grp_Companion_Holo_NPCGungan.agr → Holo_NPCGungan.adr)
+- id: 2851
+  file: Grp_Companion_Holo_NPCGungan.agr
+  description: "Companion Model: Jynx companion"
+  actors:
+    - {model: Holo_NPCGungan.adr}
+
+# Phileas            (Grp_Companion_Sarlacc.agr → Char_Sarlacc.adr)
+- id: 2852
+  file: Grp_Companion_Sarlacc.agr
+  description: "Companion Model: Phileas companion"
+  actors:
+    - {model: Char_Sarlacc.adr}
+
+# Barnibus           (Grp_Companion_Rancor_Glow.agr → Char_Rancor_Glow.adr)
+- id: 2853
+  file: Grp_Companion_Rancor_Glow.agr
+  description: "Companion Model: Barnibus companion"
+  actors:
+    - {model: Char_Rancor_Glow.adr}
+
+# Fang               (Grp_Companion_Rancor.agr → Char_Rancor.adr)
+- id: 2854
+  file: Grp_Companion_Rancor.agr
+  description: "Companion Model: Fang companion"
+  actors:
+    - {model: Char_Rancor.adr}
+
+# Klug               (Grp_Companion_Holo_GamorreanGuard.agr → Holo_GamorreanGuard.adr)
+- id: 2855
+  file: Grp_Companion_Holo_GamorreanGuard.agr
+  description: "Companion Model: Klug companion"
+  actors:
+    - {model: Holo_GamorreanGuard.adr}
+
+- id: 2856
+  file: Grp_Companion_Tooka.agr
+  description: "Companion Model: Tooka"
+  actors:
+    - {model: Char_Tooka.adr}
+
+# Security Battle Droid (Grp_Companion_BattleDroid.agr → Char_BattleDroid.adr)
+- id: 2857
+  file: Grp_Companion_BattleDroid.agr
+  description: "Companion Model: Security Battle Droid companion"
+  actors:
+    - {model: Char_BattleDroid.adr}
+
+# WAC-47             (Grp_Companion_PitDroidAsym.agr → Char_PitDroidAsym.adr)
+- id: 2858
+  file: Grp_Companion_PitDroidAsym.agr
+  description: "Companion Model: WAC-47 companion"
+  actors:
+    - {model: Char_PitDroidAsym.adr}
+
+# BNI-393            (Grp_Companion_LEPServantDroidBNI393.agr)
+- id: 2859
+  file: Grp_Companion_LEPServantDroidBNI393.agr
+  description: "Companion Model: BNI-393 companion"
+  actors:
+    - {model: Char_LEPServantDroidBNI393.adr}
+
+# H0DG3-P0DG3        (Grp_Companion_HodgepodgeDroid.agr → Char_HodgepodgeDroid.adr)
+- id: 2860
+  file: Grp_Companion_HodgepodgeDroid.agr
+  description: "Companion Model: L1-LR3D companion"
+  actors:
+    - {model: Char_HodgepodgeDroid.adr}
+
+# Skreech            (Grp_Companion_KowakianMonkeyLizard_Blue.agr — blue Kowakian)
+- id: 2861
+  file: Grp_Companion_KowakianMonkeyLizard_Blue.agr
+  description: "Companion Model: Skreech companion"
+  actors:
+    - {model: Char_KowakianMonkeyLizard.adr, aliases: [Blue]}
+
+# Cercopes           (Grp_Companion_KowakianMonkeyLizard_Green.agr — green Kowakian)
+- id: 2862
+  file: Grp_Companion_KowakianMonkeyLizard_Green.agr
+  description: "Companion Model: Cercopes companion"
+  actors:
+    - {model: Char_KowakianMonkeyLizard.adr, aliases: [Green]}
+
+# Kharroh            (Grp_Companion_Gundark_Green.agr — green Gundark)
+- id: 2863
+  file: Grp_Companion_Gundark_Green.agr
+  description: "Companion Model: Kharroh companion"
+  actors:
+    - {model: Char_Gundark.adr, aliases: [Green]}
+
+# Gash               (Grp_Companion_Narglatch_Green.agr — green Narglatch)
+- id: 2864
+  file: Grp_Companion_Narglatch_Green.agr
+  description: "Companion Model: Gash companion"
+  actors:
+    - {model: Char_Narglatch.adr, aliases: [Green]}
+
+# Cinch              (Grp_Companion_Anacondan.agr → Char_Anacondan.adr, Morley)
+- id: 2865
+  file: Grp_Companion_Anacondan.agr
+  description: "Companion Model: Cinch companion"
+  actors:
+    - {model: Char_Anacondan.adr, aliases: [Morley]}
+
+# M5-BZ              (Grp_Companion_AstroMechR4_M5BZ.agr — R4 body, M5_BZ texture)
+- id: 2866
+  file: Grp_Companion_AstroMechR4_M5BZ.agr
+  description: "Companion Model: M5-BZ companion"
+  actors:
+    - {model: Char_AstroMechR4.adr, aliases: [M5_BZ]}
+
+# Bianca             (Grp_Companion_Bianca.agr → Char_Convor.adr, White)
+- id: 2867
+  file: Grp_Companion_Bianca.agr
+  description: "Companion Model: Bianca companion"
+  actors:
+    - {model: Char_Convor.adr, aliases: [White]}
+
+# Cairo              (Grp_Companion_Cairo.agr → Char_Convor.adr, Blue)
+- id: 2868
+  file: Grp_Companion_Cairo.agr
+  description: "Companion Model: Cairo companion"
+  actors:
+    - {model: Char_Convor.adr, aliases: [Blue]}
+
+# Tully              (Grp_Companion_Tully.agr → Char_Convor.adr, Green)
+- id: 2869
+  file: Grp_Companion_Tully.agr
+  description: "Companion Model: Tully companion"
+  actors:
+    - {model: Char_Convor.adr, aliases: [Green]}
+
+# Caldwell           (Grp_Companion_Caldwell.agr → Char_Monong.adr, TanGreen)
+- id: 2870
+  file: Grp_Companion_Caldwell.agr
+  description: "Companion Model: Caldwell companion"
+  actors:
+    - {model: Char_Monong.adr, aliases: [TanGreen]}
+
+# Mona               (Grp_Companion_Mona.agr → Char_Monong.adr, Ice)
+- id: 2871
+  file: Grp_Companion_Mona.agr
+  description: "Companion Model: Mona companion"
+  actors:
+    - {model: Char_Monong.adr, aliases: [Ice]}
+
+# Omma               (Grp_Companion_Omma.agr → Char_Monong.adr, Zanbar)
+- id: 2872
+  file: Grp_Companion_Omma.agr
+  description: "Companion Model: Omma companion"
+  actors:
+    - {model: Char_Monong.adr, aliases: [Zanbar]}
+
+# Oppa               (Grp_Companion_Oppa.agr → Char_Monong.adr, YellowBlack)
+- id: 2873
+  file: Grp_Companion_Oppa.agr
+  description: "Companion Model: Oppa companion"
+  actors:
+    - {model: Char_Monong.adr, aliases: [YellowBlack]}
+
+# Ceith              (Grp_Companion_Ceith.agr → Char_KowakianMonkeyLizard.adr, Yellow)
+- id: 2874
+  file: Grp_Companion_Ceith.agr
+  description: "Companion Model: Ceith companion"
+  actors:
+    - {model: Char_KowakianMonkeyLizard.adr, aliases: [Yellow]}
+
+# Syther             (Grp_Companion_Syther.agr → Char_KowakianMonkeyLizard.adr, Black)
+- id: 2875
+  file: Grp_Companion_Syther.agr
+  description: "Companion Model: Syther companion"
+  actors:
+    - {model: Char_KowakianMonkeyLizard.adr, aliases: [Black]}
+
+# Fogg               (Grp_Companion_Fogg.agr → Char_Rancor_Glow.adr, Blue)
+- id: 2876
+  file: Grp_Companion_Fogg.agr
+  description: "Companion Model: Fogg companion"
+  actors:
+    - {model: Char_Rancor_Glow.adr, aliases: [Blue]}
+
+# Minoan             (Grp_Companion_Minoan.agr → Char_Rancor_Combat_Small.adr, Zanbar)
+- id: 2877
+  file: Grp_Companion_Minoan.agr
+  description: "Companion Model: Minoan companion"
+  actors:
+    - {model: Char_Rancor_Combat_Small.adr, aliases: [Zanbar]}
+
+# Halcombe           (Grp_Companion_Halcombe.agr → Char_Gundark.adr, BlueSilver)
+- id: 2878
+  file: Grp_Companion_Halcombe.agr
+  description: "Companion Model: Halcombe companion"
+  actors:
+    - {model: Char_Gundark.adr, aliases: [BlueSilver]}
+
+# Rosie              (Grp_Companion_Rosie.agr → Char_Tooka.adr, Magenta)
+- id: 2879
+  file: Grp_Companion_Rosie.agr
+  description: "Companion Model: Rosie companion"
+  actors:
+    - {model: Char_Tooka.adr, aliases: [Magenta]}
+
+# Tardar             (Grp_Companion_Tardar.agr → Char_Tooka.adr, PurpleGreen)
+- id: 2880
+  file: Grp_Companion_Tardar.agr
+  description: "Companion Model: Tardar companion"
+  actors:
+    - {model: Char_Tooka.adr, aliases: [PurpleGreen]}
+
+# Tooka              (Grp_Companion_TookaGray.agr → Char_Tooka.adr, Zanbar)
+- id: 2881
+  file: Grp_Companion_TookaGray.agr
+  description: "Companion Model: Tooka companion"
+  actors:
+    - {model: Char_Tooka.adr, aliases: [Zanbar]}
+
+# Zanbar             (Grp_Companion_Zanbar.agr → Char_Anoobus_LOD0.adr, AnoobusZanbar)
+- id: 2882
+  file: Grp_Companion_Zanbar.agr
+  description: "Companion Model: Zanbar companion"
+  actors:
+    - {model: Char_Anoobus_LOD0.adr, aliases: [AnoobusZanbar]}
+
+# R4-T1              (Grp_Companion_R4T1.agr → Char_AstroMechR4.adr, R4RD)
+- id: 2883
+  file: Grp_Companion_R4T1.agr
+  description: "Companion Model: R4-T1 companion"
+  actors:
+    - {model: Char_AstroMechR4.adr, aliases: [R4RD]}
+
+# R4-YL0             (Grp_Companion_R4YL0.agr → Char_AstroMechR4.adr, R4YL0)
+- id: 2884
+  file: Grp_Companion_R4YL0.agr
+  description: "Companion Model: R4-YL0 companion"
+  actors:
+    - {model: Char_AstroMechR4.adr, aliases: [R4YL0]}
+
+# R4-LT              (Grp_Companion_R4LT.agr → Char_AstroMechR4.adr, R4TL)
+- id: 2885
+  file: Grp_Companion_R4LT.agr
+  description: "Companion Model: R4-LT companion"
+  actors:
+    - {model: Char_AstroMechR4.adr, aliases: [R4TL]}
+
+# R4-L9              (Grp_Companion_R4L9.agr → Char_AstroMechR4.adr, R4BL9)
+- id: 2886
+  file: Grp_Companion_R4L9.agr
+  description: "Companion Model: R4-L9 companion"
+  actors:
+    - {model: Char_AstroMechR4.adr, aliases: [R4BL9]}
+
+# R4-PRP             (Grp_Companion_R4PRP.agr → Char_AstroMechR4.adr, R4PRP)
+- id: 2887
+  file: Grp_Companion_R4PRP.agr
+  description: "Companion Model: R4-PRP companion"
+  actors:
+    - {model: Char_AstroMechR4.adr, aliases: [R4PRP]}
+
+- id: 2888
+  file: Grp_Clone_ARF_SGTBoomer.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneBasicArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [SGTBoomer]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [SGTBoomer]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [SGTBoomer]}
+    - {model: Wear_Human_Male_Head_ArfTrooperHelm.adr, usage: 2, slot: Head, slots: true, aliases: [SGTBoomer]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2889
+  file: Grp_Clone_Assassin.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneCommanderWolffe.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneAssassin]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneAssassin]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneAssassin]}
+    - {model: Wear_Human_Male_Head_CloneCommanderNeyoHelm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneAssassin]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2890
+  file: Grp_Clone_BlueSquares.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneBasicArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [BlueSquares]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [BlueSquares]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [BlueSquares]}
+    - {model: Wear_Human_Male_Head_CloneHelm.adr, usage: 2, slot: Head, slots: true, aliases: [BlueSquares]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+# PR-0B07            (Grp_Companion_ProbeDroid.agr → Char_ProbeDroid.adr, Blue — has the Jurassic / Missile / Saucer Loc_Attach sets; the _TD model does not)
+- id: 2891
+  file: Grp_Companion_ProbeDroid.agr
+  description: "Companion Model: PR-0B07 companion (full probe droid with attachment sets)"
+  actors:
+    - {model: Char_ProbeDroid.adr, aliases: [Blue]}
+
+- id: 2892
+  file: Grp_Clone_RedStripe.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneBasicArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [RedStripe]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [RedStripe]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [RedStripe]}
+    - {model: Wear_Human_Male_Head_CloneHelm.adr, usage: 2, slot: Head, slots: true, aliases: [RedStripe]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2893
+  file: Grp_Clone_CaptainRexOnderon.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_OnderonRexSuit.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [OnderonRex]}
+    - {model: Wear_Human_Male_Feet_OnderonRexBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [OnderonRex]}
+    - {model: Wear_Human_Male_Hands_ShortGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [OnderonRex]}
+    - {model: Wear_Human_Male_Head_OnderonRexGoggles.adr, usage: 2, slot: Head, slots: true, aliases: [OnderonRex]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2894
+  file: Grp_Clone_CommanderBlitz.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneFivesSeason4Suit.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [Blitz]}
+    - {model: Wear_Human_Male_Feet_CloneFivesSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [Blitz]}
+    - {model: Wear_Human_Male_Hands_CloneCommanderColtGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [Blitz]}
+    - {model: Wear_Human_Male_Head_CloneCommanderColtHelmAsym.adr, usage: 2, slot: Head, slots: true, aliases: [Blitz]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2895
+  file: Grp_Clone_CommanderBacara.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneCommanderBacaraSuit.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneBacara]}
+    - {model: Wear_Human_Male_Feet_CloneCommanderBacaraBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneBacara]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneBacara]}
+    - {model: Wear_Human_Male_Head_CloneCommanderBacaraHelm.adr, usage: 2, slot: Head, slots: true, aliases: [Bacara]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2896
+  file: Grp_Clone_CommanderFox.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneFoxArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneFox]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneFox]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneFox]}
+    - {model: Wear_Human_Male_Head_CloneFoxHelm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneFox]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2897
+  file: Grp_Clone_CommanderColt.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneFivesSeason4Suit.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [Colt]}
+    - {model: Wear_Human_Male_Feet_CloneFivesSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [Colt]}
+    - {model: Wear_Human_Male_Hands_CloneCommanderColtGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [Colt]}
+    - {model: Wear_Human_Male_Head_CloneCommanderColtHelm.adr, usage: 2, slot: Head, slots: true, aliases: [Colt]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2898
+  file: Grp_Clone_SwampTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneBasicArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneSwamp]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneSwamp]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneSwamp]}
+    - {model: Wear_Human_Male_Head_ArfTrooperHelm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneSwamp]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2899
+  file: Grp_Clone_501stCloneTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4JetPackArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [Clone501]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [Clone501]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [Clone501]}
+    - {model: Wear_Human_Male_Head_CloneSeason4Helm.adr, usage: 2, slot: Head, slots: true, aliases: [Clone501]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2900
+  file: Grp_Clone_SpaceTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSpaceTrooperArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [SpaceTrooper]}
+    - {model: Wear_Human_Male_Feet_CloneSpaceTrooperBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [SpaceTrooper]}
+    - {model: Wear_Human_Male_Hands_CloneSpaceTrooperGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [SpaceTrooper]}
+    - {model: Wear_Human_Male_Head_CloneSpaceTrooperHelmet.adr, usage: 2, slot: Head, slots: true, aliases: [SpaceTrooper]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2901
+  file: Grp_Clone_EliteSpaceTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSpaceTrooperArmorGlow.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [SpaceTrooperGlow]}
+    - {model: Wear_Human_Male_Feet_CloneSpaceTrooperBootsGlow.adr, usage: 2, slot: Feet, slots: true, aliases: [SpaceTrooperGlow]}
+    - {model: Wear_Human_Male_Hands_CloneSpaceTrooperGlovesGlow.adr, usage: 2, slot: Hands, slots: true, aliases: [SpaceTrooperGlow]}
+    - {model: Wear_Human_Male_Head_CloneSpaceTrooperHelmetGlow.adr, usage: 2, slot: Head, slots: true, aliases: [SpaceTrooperGlow]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2902
+  file: Grp_Clone_ShockTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4Armor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneShock]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneShock]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneBasic]}
+    - {model: Wear_Human_Male_Head_CloneSeason4Helm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneShock]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2903
+  file: Grp_Clone_SergeantAppo.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4Armor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneAppo]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneAppo]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneAppo]}
+    - {model: Wear_Human_Male_Head_CloneAppoHelm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneAppo]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2904
+  file: Grp_Clone_EliteCloneTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneEliteArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [Burgundy]}
+    - {model: Wear_Human_Male_Feet_CloneEliteBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [Burgundy]}
+    - {model: Wear_Human_Male_Hands_CloneEliteGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [Burgundy]}
+    - {model: Wear_Human_Male_Head_CloneEliteHelmet.adr, usage: 2, slot: Head, slots: true, aliases: [CloneElite]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2905
+  file: Grp_Clone_CloneTrooperGunner.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneGunnerArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [GunnerBlue]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [GunnerBlue]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [GunnerBlue]}
+    - {model: Wear_Human_Male_Head_CloneGunnerHelm.adr, usage: 2, slot: Head, slots: true, aliases: [GunnerBlue]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2906
+  file: Grp_Clone_GrandOfficer.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneGrandOfficerSuit.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [GrandOfficer]}
+    - {model: Wear_Human_Male_Feet_CloneGrandOfficerBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [GrandOfficer]}
+    - {model: Wear_Human_Male_Hands_CloneGrandOfficerGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [GrandOfficer]}
+    - {model: Wear_Human_Male_Head_CloneGrandOfficerHelm.adr, usage: 2, slot: Head, slots: true, aliases: [GrandOfficer]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2907
+  file: Grp_Clone_CloneTrooperDiver.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneDiverSuit.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneDiver]}
+    - {model: Wear_Human_Male_Feet_CloneDiverFins.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneDiver]}
+    - {model: Wear_Human_Male_Hands_CloneDiverGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneDiver]}
+    - {model: Wear_Human_Male_Head_CloneDiverHelmet.adr, usage: 2, slot: Head, slots: true, aliases: [CloneDiver]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2908
+  file: Grp_Clone_CommanderStone.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneBasicArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CommanderStone]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [CommanderStone]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CommanderStone]}
+    - {model: Wear_Human_Male_Head_CloneHelm.adr, usage: 2, slot: Head, slots: true, aliases: [CommanderStone]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2909
+  file: Grp_Clone_CommanderFil.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneShoulderGuardSkirt.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneFil]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneFil]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneFil]}
+    - {model: Wear_Human_Male_Head_CloneHelm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneFil]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2910
+  file: Grp_Clone_SparksStealthPilot.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneBasicArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [Spark]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [Spark]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [Spark]}
+    - {model: Wear_Human_Male_Head_CloneHelmEarPlate.adr, usage: 2, slot: Head, slots: true, aliases: [Spark]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2911
+  file: Grp_Clone_Phase2Red.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_ClonePhase2Armor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [Phase2Red]}
+    - {model: Wear_Human_Male_Feet_CloneBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [Phase2Red]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [Phase2Red]}
+    - {model: Wear_Human_Male_Head_ClonePhase2Helm.adr, usage: 2, slot: Head, slots: true, aliases: [Phase2Red]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2912
+  file: Grp_Clone_CaptainKeeli.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneShoulderGuardSkirt.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CaptainKeeli]}
+    - {model: Wear_Human_Male_Feet_CloneBootsAsymmetrical.adr, usage: 2, slot: Feet, slots: true, aliases: [CaptainKeeli]}
+    - {model: Wear_Human_Male_Hands_CloneGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CaptainKeeli]}
+    - {model: Wear_Human_Male_Head_CloneHelmEyepiece.adr, usage: 2, slot: Head, slots: true, aliases: [CaptainKeeli]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2913
+  file: Grp_Clone_CloneCommandoGregor.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneCommandoArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [Gregor]}
+    - {model: Wear_Human_Male_Feet_CloneCommandoBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [Gregor]}
+    - {model: Wear_Human_Male_Hands_CloneCommandoGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [Gregor]}
+    - {model: Wear_Human_Male_Head_CloneCommandoGregorHelm.adr, usage: 2, slot: Head, slots: true, aliases: [Gregor]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2914
+  file: Grp_Clone_FelucianCommando.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneCommandoScorchArmor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [BlackTiger]}
+    - {model: Wear_Human_Male_Feet_CloneCommandoBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [BlackTiger]}
+    - {model: Wear_Human_Male_Hands_CloneCommandoGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [BlackTiger]}
+    - {model: Wear_Human_Male_Head_CloneCommandoHelm.adr, usage: 2, slot: Head, slots: true, aliases: [BlackTiger]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2915
+  file: Grp_Clone_BattleDamagedCloneTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4Armor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneDamaged]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4AsymBoots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneDamaged]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4AsymGloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneDamaged]}
+    - {model: Wear_Human_Male_Head_CloneSeason4Helm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneDamaged]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2916
+  file: Grp_Clone_GreyDarksideTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4Armor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [ShadowTrooperSilver]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [ShadowTrooperSilver]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [ShadowTrooperSilver]}
+    - {model: Wear_Human_Male_Head_CloneSeason4Helm.adr, usage: 2, slot: Head, slots: true, aliases: [ShadowTrooperSilver]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2917
+  file: Grp_Clone_WhiteDarksideTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4Armor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [ShadowTrooperBlkWht]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [ShadowTrooperBlkWht]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [ShadowTrooperBlkWht]}
+    - {model: Wear_Human_Male_Head_CloneSeason4Helm.adr, usage: 2, slot: Head, slots: true, aliases: [ShadowTrooperBlkWht]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2918
+  file: Grp_Clone_RedDarksideTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4ArmorGlow.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [ShadowTrooperRedGlow]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4BootsGlow.adr, usage: 2, slot: Feet, slots: true, aliases: [ShadowTrooperRedGlow]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4GlovesGlow.adr, usage: 2, slot: Hands, slots: true, aliases: [ShadowTrooperRedGlow]}
+    - {model: Wear_Human_Male_Head_CloneSeason4HelmGlow.adr, usage: 2, slot: Head, slots: true, aliases: [ShadowTrooperRedGlow]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}
+
+- id: 2919
+  file: Grp_Clone_StPatricksCloneTrooper.agr
+  race: "1"
+  description: Marketplace Model
+  gender: "1"
+  actors:
+    - {model: Char_HumanMaleBody.adr, validate: 1, aliases: [CloneTan]}
+    - {model: Char_CloneHead.adr, usage: 3, slot: CustomizationHead, aliases: [Whiskers, CloneTan]}
+    - {model: Wear_Human_Male_Body_CloneSeason4Armor.adr, usage: 2, validate: 1, slot: Body, slots: true, aliases: [CloneStPatrick]}
+    - {model: Wear_Human_Male_Feet_CloneSeason4Boots.adr, usage: 2, slot: Feet, slots: true, aliases: [CloneStPatrick]}
+    - {model: Wear_Human_Male_Hands_CloneSeason4Gloves.adr, usage: 2, slot: Hands, slots: true, aliases: [CloneStPatrick]}
+    - {model: Wear_Human_Male_Head_CloneSeason4Helm.adr, usage: 2, slot: Head, slots: true, aliases: [CloneStPatrick]}
+    - {model: Wield_BlasterRifle_DC15S.adr, usage: 3, validate: 1, slot: Weapon, slots: true, aliases: [CloneBasic]}

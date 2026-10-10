@@ -1,0 +1,43 @@
+# Custom texture aliases for wearable models, built into loose .adr files in the
+# game folder by:
+#   python tools/cwa_aliases.py "C:\Games\Clone_Wars\Clone_Wars"
+# (run with the game closed).  Items then use `texture_alias: <alias>`.
+# `<gender>` in `adr` builds both the Male and Female model; female wearables
+# reuse the male textures, so `texture` is always the Wear_Human_Male_* file.
+# `source` is copied into the game folder as `texture`.
+
+# ── ARF Sergeant Boomer ──────────────────────────────────────────────────────
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: SGTBoomer
+  texture: Wear_Human_Male_Body_CloneBasicArmor_SGTBoomer_C.dds
+  source: custom_armor/SGTBoomer_Body.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: SGTBoomer
+  texture: Wear_Human_Male_Hands_CloneGloves_SGTBoomer_C.dds
+  source: custom_armor/SGTBoomer_Hands.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: SGTBoomer
+  texture: Wear_Human_Male_Feet_CloneBoots_SGTBoomer_C.dds
+  source: custom_armor/SGTBoomer_Feet.dds
+- adr: Wear_Human_<gender>_Head_ArfTrooperHelm.adr
+  alias: SGTBoomer
+  texture: Wear_Human_Male_Head_ARFTrooperHelm_SGTBoomer_C.dds
+  source: custom_armor/SGTBoomer_Head.dds
+
+# ── Clone Assassin ───────────────────────────────────────────────────────────
+- adr: Wear_Human_<gender>_Body_CloneCommanderWolffe.adr
+  alias: CloneAssassin
+  texture: Wear_Human_Male_Body_CloneCommanderWolffe_CloneAssassin_C.dds
+  source: custom_armor/CloneAssassin_Body.dds
+- adr: Wear_Human_<gender>_Head_CloneCommanderNeyoHelm.adr
+  alias: CloneAssassin
+  texture: Wear_Human_Male_Head_CloneCommanderNeyoHelm_CloneAssassin_C.dds
+  source: custom_armor/CloneAssassin_Head.dds
+- adr: Wear_Human_<gender>_Hands_CloneSeason4Gloves.adr
+  alias: CloneAssassin
+  texture: Wear_Human_Male_Hands_CloneSeason4Gloves_CloneAssassin_C.dds
+  source: custom_armor/CloneAssassin_Hands.dds
+- adr: Wear_Human_<gender>_Feet_CloneSeason4Boots.adr
+  alias: CloneAssassin
+  texture: Wear_Human_Male_Feet_CloneSeason4Boots_CloneAssassin_C.dds
+  source: custom_armor/CloneAssassin_Feet.dds

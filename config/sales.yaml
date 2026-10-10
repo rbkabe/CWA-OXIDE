@@ -14,3 +14,8 @@
 - item_group_guid: 139
   members_cost_expression: 'max(0.9*x - 1, 0.0)'
 - item_group_guid: 10000
+- item_group_guid: 33
+- item_group_guid: 19001
+- item_group_guid: 19002
+- item_group_guid: 19003
+- item_group_guid: 19004

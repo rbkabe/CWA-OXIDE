@@ -15820,7 +15820,7 @@
 - guid: 20064
   name_id: 2703
   description_id: 14
-  icon_set_id: 677
+  icon_set_id: 893
   tint: 0
   unknown6: 0
   unknown7: 0
@@ -68475,6 +68475,49 @@
   unknown37: 0
   customization_slot: BodyModel
   customization_id: 180012
+  unknown40: 0
+  stats: []
+  abilities: []
+# ARF Seargent Boomer's Helmet
+- guid: 190001
+  name_id: 900000001
+  description_id: 14
+  icon_set_id: 184
+  tint: 0
+  unknown6: 0
+  unknown7: 0
+  cost: 5000
+  item_class:
+  required_battle_class: 0
+  slot: !Equipment Head
+  disable_trade: false
+  disable_sale: false
+  model_name: Wear_Human_<gender>_Head_ArfTrooperHelm.adr
+  texture_alias: SGTBoomer
+  required_gender: 0
+  item_type: 1
+  category: 60
+  members: false
+  non_minigame: false
+  weapon_trail_effect: 0
+  composite_effect: 0
+  power_rating: 0
+  min_battle_class_level: 0
+  rarity: 0
+  activatable_ability_id: 0
+  passive_ability_id: 0
+  single_use: false
+  max_stack_size: 1
+  is_tintable: false
+  tint_alias: ''
+  disable_preview: false
+  unknown33: false
+  race_set_id: 0
+  unknown35: false
+  unknown36: 0
+  unknown37: 0
+  customization_slot: None
+  customization_id: 0
   unknown40: 0
   stats: []
   abilities: []

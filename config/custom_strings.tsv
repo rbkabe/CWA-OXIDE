@@ -1,0 +1,98 @@
+# Custom client strings, built into the game's locale/en_us_data.dat/.dir by
+#   python tools/cwa_locale.py "C:\Games\Clone_Wars\Clone_Wars"
+# Format: name_id<TAB>text   (name ids must be <= 65535 to be usable by items)
+# Companions added 3470-3490
+62000	Bianca
+62001	Cairo
+62002	Tully
+62003	Caldwell
+62004	Mona
+62005	Ceith
+62006	Syther
+62007	Minoan
+62008	Halcombe
+62009	Rosie
+62010	R4-YL0
+62011	R4-LT
+62012	R4-PRP
+# Store sets
+62013	ARF Sergeant Boomer
+62014	Clone Assassin
+62015	Clone Trooper Blue Squares
+62016	Clone Trooper Red Stripe
+62017	Red Stripe Clone Armor
+62018	Red Stripe Clone Helmet
+62019	Red Stripe Clone Gloves
+62020	Red Stripe Clone Boots
+62021	Blue Squares Clone Armor
+62022	Blue Squares Clone Helmet
+62023	Blue Squares Clone Gloves
+62024	Blue Squares Clone Boots
+# Clone armor sets added to the store
+62025	Commander Fil
+62026	Spark's Stealth Pilot
+62027	Phase 2 Red
+62028	Captain Keeli
+62029	Felucian Commando
+62030	Grey Darkside Trooper
+62031	White Darkside Trooper
+62032	Red Darkside Trooper
+62033	Clone Diver Blue
+
+# Offhand (left-hand) lightsaber copies
+62100	Aayla Secura's Lightsaber (Left)
+62101	Adi Gallia's Lightsaber (Left)
+62102	Anakin Skywalker's Lightsaber (Left)
+62103	Barriss Offee's Lightsaber (Left)
+62104	Byph's Lightsaber (Left)
+62105	Miko Jedi Lightsaber (Left)
+62106	Sith Infiltrator Lightsaber (Left)
+62107	Pre Vizsla's Darksaber (Left)
+62108	Dolovite Darksaber (Left)
+62109	Phrik Darksaber (Left)
+62110	Darth Maul's Lightsaber (Left)
+62111	Count Dooku's Lightsaber (Left)
+62112	Eeth Koth's Lightsaber (Left)
+62113	Jedi Exile Lightsaber (Left)
+62114	Forked Lightsaber (Left)
+62115	Ganodi's Lightsaber (Left)
+62116	Ultimate FX Gungan Lightsaber (Left)
+62117	Gungi's Lightsaber (Left)
+62118	Jocasta Nu's Lightsaber (Left)
+62119	Kashyyyk Lightsaber (Left)
+62120	Mestare Lightsaber (Left)
+62121	Katooni's Lightsaber (Left)
+62122	Ki-Adi-Mundi's Lightsaber (Left)
+62123	Kit Fisto's Lightsaber (Left)
+62124	Kyle Katarn's Lightsaber (Left)
+62125	Sulon Jedi Lightsaber (Left)
+62126	Luke Skywalker's Lightsaber (Left)
+62127	Luminara Unduli's Lightsaber (Left)
+62128	Plo Koon's Lightsaber (Left)
+62129	Mace Windu's Lightsaber (Left)
+62130	Obi-Wan Kenobi's Lightsaber (Left)
+62131	Petro's Lightsaber (Left)
+62132	Shotem Jedi Lightsaber (Left)
+62133	Shotem Master Lightsaber (Left)
+62134	Quinlan Vos' Lightsaber (Left)
+62135	Saesee Tiin's Lightsaber (Left)
+62136	Shaak Ti's Lightsaber (Left)
+62137	Darth Sidious' Lightsaber (Left)
+62138	Bravis Sith Lightsaber (Left)
+62139	Crimson Prowler Lightsaber (Left)
+62140	Ermi Jedi Lightsaber (Left)
+62141	Talz Lightsaber (Left)
+62142	Training Lightsaber (Left)
+62143	Ancient Cobal Lightsaber (Left)
+62144	Savek Lightsaber (Left)
+62145	Yoda's Lightsaber (Left)
+62146	Zatt's Lightsaber (Left)
+62147	Dahgee Jedi Lightsaber (Left)
+62148	Ahsoka Tano's Reverse Lightsaber (Left)
+62149	Sith Inquisitor Lightsaber (Left)
+62150	Forgotten Jedi Reverse Lightsaber (Left)
+62151	Jedi Champion Reverse Lightsaber (Left)
+62152	Kofun Lightsaber (Left)
+62153	Umbara Academy: Ghost Attack 1 (Left)
+62154	Umbara Academy: Ghost Attack 2 (Left)
+62155	Umbara Academy: Ghost Attack 3 (Left)

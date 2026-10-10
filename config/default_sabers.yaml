@@ -344,3 +344,21 @@
 - hilt_item_guid: 230102
   shape_item_guid: 120000
   color_item_guid: 130004
+- hilt_item_guid: 140048
+  shape_item_guid: 120000
+  color_item_guid: 130001
+- hilt_item_guid: 140049
+  shape_item_guid: 120000
+  color_item_guid: 130004
+- hilt_item_guid: 140050
+  shape_item_guid: 120006
+  color_item_guid: 130006
+- hilt_item_guid: 140051
+  shape_item_guid: 120016
+  color_item_guid: 130001
+- hilt_item_guid: 140052
+  shape_item_guid: 120001
+  color_item_guid: 130010
+- hilt_item_guid: 140053
+  shape_item_guid: 120000
+  color_item_guid: 130004
