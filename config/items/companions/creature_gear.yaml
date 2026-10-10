@@ -5,7 +5,8 @@
   description_id: 14
   icon_set_id: 1847
   slot: !Equipment None
-  item_type: 1
+  item_type: 3   # pet attachment (BaseClient.PetInventory filter requires 3)
+  item_class: 2715   # must be a key in the pet's battle_class_items map
   category: 0
   cost: 2000
 
@@ -15,7 +16,8 @@
   description_id: 14
   icon_set_id: 1848
   slot: !Equipment None
-  item_type: 1
+  item_type: 3   # pet attachment (BaseClient.PetInventory filter requires 3)
+  item_class: 2716   # must be a key in the pet's battle_class_items map
   category: 0
   cost: 2000
 
@@ -25,7 +27,8 @@
   description_id: 14
   icon_set_id: 2526
   slot: !Equipment None
-  item_type: 1
+  item_type: 3   # pet attachment (BaseClient.PetInventory filter requires 3)
+  item_class: 3274   # must be a key in the pet's battle_class_items map
   category: 0
   cost: 3500
 
@@ -35,7 +38,20 @@
   description_id: 14
   icon_set_id: 2527
   slot: !Equipment None
-  item_type: 1
+  item_type: 3   # pet attachment (BaseClient.PetInventory filter requires 3)
+  item_class: 3275   # must be a key in the pet's battle_class_items map
+  category: 0
+  cost: 3500
+
+# Fez & Cymbals (Trained Kowakian Monkey-lizard Gear)
+# name_id 51330 = "Fez & Cymbals"; description 4795; icon 2829
+- guid: 3288
+  name_id: 51330
+  description_id: 4795
+  icon_set_id: 2829
+  slot: !Equipment None
+  item_type: 3   # pet attachment (BaseClient.PetInventory filter requires 3)
+  item_class: 3288   # must be a key in the pet's battle_class_items map
   category: 0
   cost: 3500
 
@@ -45,7 +61,20 @@
   description_id: 14
   icon_set_id: 2575
   slot: !Equipment None
-  item_type: 1
+  item_type: 3   # pet attachment (BaseClient.PetInventory filter requires 3)
+  item_class: 3285   # must be a key in the pet's battle_class_items map
   category: 0
   cost: 12000
   members: true
+
+# Mon Calamari Hat (Mon Calamari Sarlacc Attachment)
+# name_id 51858 = "Mon Calamari Hat"; description 4891; icon 2926
+- guid: 3289
+  name_id: 51858
+  description_id: 4891
+  icon_set_id: 2926
+  slot: !Equipment None
+  item_type: 3   # pet attachment (BaseClient.PetInventory filter requires 3)
+  item_class: 3289   # must be a key in the pet's battle_class_items map
+  category: 0
+  cost: 3500

@@ -341,7 +341,7 @@
 - guid: 3407
   name_id: 53975
   description_id: 14
-  icon_set_id: 2807
+  icon_set_id: 3260
   slot: !Equipment None
   model_name: Char_PitDroidAsym.adr
   item_type: 1
@@ -353,19 +353,19 @@
 - guid: 3408
   name_id: 54000
   description_id: 14
-  icon_set_id: 2808
+  icon_set_id: 3265
   slot: !Equipment None
-  model_name: 3D_R2M5.agr
+  model_name: 3D_Astromech_M5BZ.agr
   item_type: 1
   category: 0
   cost: 4000
   members: true
 
 # U9-C4
-- guid: 3425
+- guid: 3465
   name_id: 54074
   description_id: 14
-  icon_set_id: 2809
+  icon_set_id: 3313
   slot: !Equipment None
   model_name: 3D_Astromech_U9C4.agr
   item_type: 1
@@ -374,10 +374,10 @@
   members: true
 
 # BNI-393
-- guid: 3440
+- guid: 3466
   name_id: 54175
   description_id: 14
-  icon_set_id: 2810
+  icon_set_id: 3341
   slot: !Equipment None
   model_name: Char_LEPServantDroidBNI393.adr
   item_type: 1
@@ -386,10 +386,10 @@
   members: true
 
 # Security Battle Droid
-- guid: 3446
+- guid: 3467
   name_id: 54430
   description_id: 14
-  icon_set_id: 2811
+  icon_set_id: 3691
   slot: !Equipment None
   model_name: Char_BattleDroid.adr
   item_type: 1
@@ -398,13 +398,86 @@
   members: true
 
 # L1-LR3D
-- guid: 3447
+- guid: 3468
   name_id: 5486
   description_id: 14
-  icon_set_id: 2812
+  icon_set_id: 65
+  slot: !Equipment None
+  model_name: Char_AstroMechR2.adr
+  texture_alias: R2M5
+  item_type: 1
+  category: 0
+  cost: 3500
+  members: true
+  
+# H0DG3-P0DG3
+- guid: 3448
+  name_id: 51767
+  description_id: 51766
+  icon_set_id: 3873
   slot: !Equipment None
   model_name: Char_HodgepodgeDroid.adr
   item_type: 1
   category: 0
-  cost: 3500
+  cost: 5000
+  members: true
+
+# R4-T1
+- guid: 3486
+  name_id: 60782
+  description_id: 14
+  icon_set_id: 3863
+  slot: !Equipment None
+  model_name: Grp_Companion_R4T1.agr
+  item_type: 1
+  category: 0
+  cost: 3000
+  members: true
+
+# R4-YL0
+- guid: 3487
+  name_id: 62010
+  description_id: 14
+  icon_set_id: 3865
+  slot: !Equipment None
+  model_name: Grp_Companion_R4YL0.agr
+  item_type: 1
+  category: 0
+  cost: 3000
+  members: true
+
+# R4-LT
+- guid: 3488
+  name_id: 62011
+  description_id: 14
+  icon_set_id: 3864
+  slot: !Equipment None
+  model_name: Grp_Companion_R4LT.agr
+  item_type: 1
+  category: 0
+  cost: 3000
+  members: true
+
+# R4-L9
+- guid: 3489
+  name_id: 60777
+  description_id: 14
+  icon_set_id: 3861
+  slot: !Equipment None
+  model_name: Grp_Companion_R4L9.agr
+  item_type: 1
+  category: 0
+  cost: 3000
+  members: true
+
+# R4-PRP
+- guid: 3490
+  name_id: 62012
+  description_id: 14
+  icon_set_id: 3862
+  slot: !Equipment None
+  model_name: Grp_Companion_R4PRP.agr
+  item_type: 1
+  category: 0
+  cost: 3000
   members: true
