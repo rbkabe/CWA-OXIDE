@@ -28,547 +28,616 @@
 
 # Aayla Secura's Lightsaber
 - guid: 140000
-  name_id: 306
+  name_id: 62100
   description_id: 14
   icon_set_id: 221
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_AaylaSecura.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_AaylaSecura_LEFT.adr
   texture_alias: AaylaSecura
   item_type: 25
 
 # Adi Gallia's Lightsaber
 - guid: 140001
-  name_id: 8768
+  name_id: 62101
   description_id: 14
   icon_set_id: 222
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_AdiGallia.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_AdiGallia_LEFT.adr
   texture_alias: AdiGallia
   item_type: 25
   members: true
 
 # Anakin Skywalker's Lightsaber
 - guid: 140002
-  name_id: 8762
+  name_id: 62102
   description_id: 14
   icon_set_id: 223
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Anakin.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Anakin_LEFT.adr
   texture_alias: Anakin
   item_type: 25
 
 # Barriss Offee's Lightsaber
 - guid: 140003
-  name_id: 14786
+  name_id: 62103
   description_id: 14
   icon_set_id: 508
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_BarrissOffee.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_BarrissOffee_LEFT.adr
   texture_alias: BarrissOffee
   item_type: 25
   members: true
 
 # Byph's Lightsaber
 - guid: 140004
-  name_id: 53615
+  name_id: 62104
   description_id: 14
   icon_set_id: 3207
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Byph.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Byph_LEFT.adr
   texture_alias: Byph
   item_type: 25
   members: true
 
 # Miko Jedi Lightsaber
 - guid: 140005
-  name_id: 14788
+  name_id: 62105
   description_id: 14
   icon_set_id: 509
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_CompressedCrystal.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_CompressedCrystal_LEFT.adr
   texture_alias: CompressedCrystal
   item_type: 25
 
 # Sith Infiltrator Lightsaber
 - guid: 140006
-  name_id: 4976
+  name_id: 62106
   description_id: 14
   icon_set_id: 3045
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_DarkForcePhaseI.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_DarkForcePhaseI_LEFT.adr
   texture_alias: DarkForcePhaseI
   item_type: 25
 
 # Pre Vizsla's Darksaber
 - guid: 140007
-  name_id: 8763
+  name_id: 62107
   description_id: 14
   icon_set_id: 224
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Darksaber.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Darksaber_LEFT.adr
   texture_alias: PreVizsla
   item_type: 25
 
 # Dolovite Darksaber
 - guid: 140008
-  name_id: 54592
+  name_id: 62108
   description_id: 14
   icon_set_id: 3829
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Darksaber.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Darksaber_LEFT.adr
   texture_alias: Gold
   item_type: 25
 
 # Phrik Darksaber
 - guid: 140009
-  name_id: 54521
+  name_id: 62109
   description_id: 14
   icon_set_id: 3791
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Darksaber_Ancient.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Darksaber_Ancient_LEFT.adr
   texture_alias: PreVizsla
   item_type: 25
 
 # Darth Maul's Lightsaber
 - guid: 140010
-  name_id: 4718
+  name_id: 62110
   description_id: 14
   icon_set_id: 2764
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_DarthMaul.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_DarthMaul_LEFT.adr
   texture_alias: Maul
   item_type: 25
   members: true
 
 # Count Dooku's Lightsaber
 - guid: 140011
-  name_id: 8766
+  name_id: 62111
   description_id: 14
   icon_set_id: 225
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Dooku.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Dooku_LEFT.adr
   texture_alias: Dooku
   item_type: 25
 
 # Eeth Koth's Lightsaber
 - guid: 140012
-  name_id: 2440
+  name_id: 62112
   description_id: 14
   icon_set_id: 226
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_EethKoth.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_EethKoth_LEFT.adr
   texture_alias: EethKoth
   item_type: 25
 
 # Jedi Exile Lightsaber
 - guid: 140013
-  name_id: 54602
+  name_id: 62113
   description_id: 14
   icon_set_id: 3835
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Exile.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Exile_LEFT.adr
   texture_alias: Exile
   item_type: 25
 
 # Forked Lightsaber
 - guid: 140014
-  name_id: 54593
+  name_id: 62114
   description_id: 14
   icon_set_id: 3828
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Forked.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Forked_LEFT.adr
   texture_alias: Forked
   item_type: 25
 
 # Ganodi's Lightsaber
 - guid: 140015
-  name_id: 53620
+  name_id: 62115
   description_id: 14
   icon_set_id: 3212
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Ganodi.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Ganodi_LEFT.adr
   texture_alias: Ganodi
   item_type: 25
   members: true
 
 # Ultimate FX Gungan Lightsaber
 - guid: 140016
-  name_id: 2650
+  name_id: 62116
   description_id: 14
   icon_set_id: 2136
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Gungan.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Gungan_LEFT.adr
   texture_alias: Gungan
   item_type: 25
 
 # Gungi's Lightsaber
 - guid: 140017
-  name_id: 53616
+  name_id: 62117
   description_id: 14
   icon_set_id: 3208
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Gungi.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Gungi_LEFT.adr
   texture_alias: Gundi
   item_type: 25
   members: true
 
 # Jocasta Nu's Lightsaber
 - guid: 140018
-  name_id: 8769
+  name_id: 62118
   description_id: 14
   icon_set_id: 227
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Jocasta.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Jocasta_LEFT.adr
   texture_alias: Jocasta
   item_type: 25
   members: true
 
 # Kashyyyk Lightsaber
 - guid: 140019
-  name_id: 44507
+  name_id: 62119
   description_id: 14
   icon_set_id: 1993
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Kashyyk.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Kashyyk_LEFT.adr
   texture_alias: Kashyyk
   item_type: 25
   members: true
 
 # Mestare Lightsaber
 - guid: 140020
-  name_id: 44850
+  name_id: 62120
   description_id: 14
   icon_set_id: 510
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Katana.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Katana_LEFT.adr
   texture_alias: SamuraiJedi
   item_type: 25
 
 # Katooni's Lightsaber
 - guid: 140021
-  name_id: 53621
+  name_id: 62121
   description_id: 14
   icon_set_id: 3213
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Katooni.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Katooni_LEFT.adr
   texture_alias: Katooni
   item_type: 25
   members: true
 
 # Ki-Adi-Mundi's Lightsaber
 - guid: 140022
-  name_id: 2444
+  name_id: 62122
   description_id: 14
   icon_set_id: 228
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_KiAdiMundi.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_KiAdiMundi_LEFT.adr
   texture_alias: KiAdiMundi
   item_type: 25
 
 # Kit Fisto's Lightsaber
 - guid: 140023
-  name_id: 8767
+  name_id: 62123
   description_id: 14
   icon_set_id: 229
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_KitFisto.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_KitFisto_LEFT.adr
   texture_alias: KitFisto
   item_type: 25
 
 # Kyle Katarn's Lightsaber
 - guid: 140024
-  name_id: 974
+  name_id: 62124
   description_id: 14
   icon_set_id: 511
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_KyleKatarn.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_KyleKatarn_LEFT.adr
   texture_alias: KyleKatarn
   item_type: 25
 
 # Sulon Jedi Lightsaber
 - guid: 140025
-  name_id: 60157
+  name_id: 62125
   description_id: 14
   icon_set_id: 511
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_KyleKatarn.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_KyleKatarn_LEFT.adr
   texture_alias: KyleKatarn
   item_type: 25
 
 # Luke Skywalker's Lightsaber
 - guid: 140026
-  name_id: 8770
+  name_id: 62126
   description_id: 14
   icon_set_id: 230
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_LukeSkywalker.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_LukeSkywalker_LEFT.adr
   texture_alias: LukeSkywalker
   item_type: 25
 
 # Luminara Unduli's Lightsaber
 - guid: 140027
-  name_id: 8771
+  name_id: 62127
   description_id: 14
   icon_set_id: 231
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Luminara.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Luminara_LEFT.adr
   texture_alias: Luminara
   item_type: 25
   members: true
 
 # Plo Koon's Lightsaber
 - guid: 140028
-  name_id: 308
+  name_id: 62128
   description_id: 14
   icon_set_id: 232
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Luminara.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Luminara_LEFT.adr
   texture_alias: PloKoon
   item_type: 25
   members: true
 
 # Mace Windu's Lightsaber
 - guid: 140029
-  name_id: 8772
+  name_id: 62129
   description_id: 14
   icon_set_id: 233
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_MaceWindu.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_MaceWindu_LEFT.adr
   texture_alias: MaceWindu
   item_type: 25
 
 # Obi-Wan Kenobi's Lightsaber
 - guid: 140030
-  name_id: 8773
+  name_id: 62130
   description_id: 14
   icon_set_id: 234
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_ObiWan.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_ObiWan_LEFT.adr
   texture_alias: ObiWan
   item_type: 25
   members: true
 
 # Petro's Lightsaber
 - guid: 140031
-  name_id: 53617
+  name_id: 62131
   description_id: 14
   icon_set_id: 3209
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Petro.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Petro_LEFT.adr
   texture_alias: Petro
   item_type: 25
   members: true
 
 # Shotem Jedi Lightsaber
 - guid: 140032
-  name_id: 976
+  name_id: 62132
   description_id: 14
   icon_set_id: 512
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Pulsating.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Pulsating_LEFT.adr
   texture_alias: PulsatingCrystal
   item_type: 25
 
 # Shotem Master Lightsaber
 - guid: 140033
-  name_id: 60678
+  name_id: 62133
   description_id: 14
   icon_set_id: 3788
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Pulsating.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Pulsating_LEFT.adr
   texture_alias: PulsingCrystalBlue
   item_type: 25
 
 # Quinlan Vos' Lightsaber
 - guid: 140034
-  name_id: 19637
+  name_id: 62134
   description_id: 14
   icon_set_id: 1436
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_QuinlanVos.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_QuinlanVos_LEFT.adr
   texture_alias: QuinlanVos
   item_type: 25
 
 # Saesee Tiin's Lightsaber
 - guid: 140035
-  name_id: 43190
+  name_id: 62135
   description_id: 14
   icon_set_id: 1792
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_SaeseeTiin.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_SaeseeTiin_LEFT.adr
   texture_alias: SaeseeTiin
   item_type: 25
 
 # Shaak Ti's Lightsaber
 - guid: 140036
-  name_id: 14792
+  name_id: 62136
   description_id: 14
   icon_set_id: 513
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_ShaakTi.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_ShaakTi_LEFT.adr
   texture_alias: ShaakTi
   item_type: 25
   members: true
 
 # Darth Sidious' Lightsaber
 - guid: 140037
-  name_id: 8774
+  name_id: 62137
   description_id: 14
   icon_set_id: 235
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Sidious.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Sidious_LEFT.adr
   texture_alias: Sidious
   item_type: 25
 
 # Bravis Sith Lightsaber
 - guid: 140038
-  name_id: 978
+  name_id: 62138
   description_id: 14
   icon_set_id: 514
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_SparkingCrystal.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_SparkingCrystal_LEFT.adr
   texture_alias: SparkingCrystal
   item_type: 25
   members: true
 
 # Crimson Prowler Lightsaber
 - guid: 140039
-  name_id: 60198
+  name_id: 62139
   description_id: 14
   icon_set_id: 3721
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_SparkingCrystal.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_SparkingCrystal_LEFT.adr
   texture_alias: DarkKnight
   item_type: 25
 
 # Ermi Jedi Lightsaber
 - guid: 140040
-  name_id: 980
+  name_id: 62140
   description_id: 14
   icon_set_id: 515
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Spiraling.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Spiraling_LEFT.adr
   texture_alias: Spiraling
   item_type: 25
   members: true
 
 # Talz Lightsaber
 - guid: 140041
-  name_id: 4824
+  name_id: 62141
   description_id: 14
   icon_set_id: 2863
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Talz.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Talz_LEFT.adr
   texture_alias: Talz
   item_type: 25
 
 # Training Lightsaber
 - guid: 140042
-  name_id: 8775
+  name_id: 62142
   description_id: 14
   icon_set_id: 236
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Training.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Training_LEFT.adr
   texture_alias: Padawan1
   item_type: 25
 
 # Ancient Cobal Lightsaber
 - guid: 140043
-  name_id: 982
+  name_id: 62143
   description_id: 14
   icon_set_id: 516
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Training.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Training_LEFT.adr
   texture_alias: BuggyCrystal
   item_type: 25
 
 # Savek Lightsaber
 - guid: 140044
-  name_id: 14794
+  name_id: 62144
   description_id: 14
   icon_set_id: 517
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Unstable.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Unstable_LEFT.adr
   texture_alias: Unstable
   item_type: 25
   members: true
 
 # Yoda's Lightsaber
 - guid: 140045
-  name_id: 1797
+  name_id: 62145
   description_id: 14
   icon_set_id: 3169
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Yoda.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Yoda_LEFT.adr
   texture_alias: Yoda
   item_type: 25
 
 # Zatt's Lightsaber
 - guid: 140046
-  name_id: 53619
+  name_id: 62146
   description_id: 14
   icon_set_id: 3211
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Zatt.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Zatt_LEFT.adr
   texture_alias: Zatt
   item_type: 25
   members: true
 
 # Dahgee Jedi Lightsaber
 - guid: 140047
-  name_id: 986
+  name_id: 62147
   description_id: 14
   icon_set_id: 1148
   item_class: 10
-  slot: !Equipment None
-  model_name: Wield_LightsaberHiltStandard_Zebra.adr
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_Zebra_LEFT.adr
   texture_alias: ZebraStripes
   item_type: 25
   members: true
+
+# Ahsoka Tano's Reverse Lightsaber (offhand copy of 422)
+- guid: 140048
+  name_id: 62148
+  description_id: 14
+  icon_set_id: 220
+  item_class: 10
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltReverse_Ahsoka_LEFT.adr
+  texture_alias: Ahsoka
+  item_type: 25
+  members: true
+
+# Sith Inquisitor Lightsaber (offhand copy of 110003)
+- guid: 140049
+  name_id: 62149
+  description_id: 14
+  icon_set_id: 2938
+  item_class: 10
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltReverse_DarkForcePhaseII_LEFT.adr
+  texture_alias: DarkForcePhaseII
+  item_type: 25
+
+# Forgotten Jedi Reverse Lightsaber (offhand copy of 110004)
+- guid: 140050
+  name_id: 62150
+  description_id: 14
+  icon_set_id: 3735
+  item_class: 10
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltReverse_FeluciaCollection_LEFT.adr
+  texture_alias: FeluciaCollection
+  item_type: 25
+  members: true
+
+# Jedi Champion Reverse Lightsaber (offhand copy of 110005)
+- guid: 140051
+  name_id: 62151
+  description_id: 14
+  icon_set_id: 3133
+  item_class: 10
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltReverse_LightsideAffiliation_LEFT.adr
+  texture_alias: Lightside
+  item_type: 25
+  members: true
+
+# Kofun Lightsaber (offhand copy of 110006)
+- guid: 140052
+  name_id: 62152
+  description_id: 14
+  icon_set_id: 2862
+  item_class: 10
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltReverse_Samurai_LEFT.adr
+  texture_alias: Samurai
+  item_type: 25
+
+# Umbara Academy: Ghost Attack 1 (offhand copy of 230098)
+- guid: 140053
+  name_id: 62153
+  description_id: 14
+  icon_set_id: 425
+  item_class: 10
+  slot: !Equipment SecondaryWeapon
+  model_name: Wield_LightsaberHiltStandard_AhsokaV2_Ghost_LEFT.adr
+  texture_alias: Ahsoka
+  item_type: 25
