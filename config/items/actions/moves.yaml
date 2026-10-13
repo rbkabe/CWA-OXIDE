@@ -115,7 +115,7 @@
 - guid: 2830
   name_id: 44761
   description_id: 14
-  icon_set_id: 2034
+  icon_set_id: 1731
   slot: !Equipment None
   item_type: 1
   category: 81
@@ -163,7 +163,7 @@
   category: 81
   cost: 3000
 
-# Sprinler
+# Sprinkler
 - guid: 3171
   name_id: 4319
   description_id: 14
@@ -172,3 +172,43 @@
   item_type: 1
   category: 81
   cost: 3000
+
+# Pose (Emo_PortraitPose1, animation 3401)
+- guid: 250024
+  name_id: 62216
+  description_id: 14
+  icon_set_id: 3997
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 500
+
+# Battle Class Flourish I (Emo_Standard_Flourish1, animation 3301)
+- guid: 250025
+  name_id: 54017
+  description_id: 14
+  icon_set_id: 3283
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1500
+
+# Battle Class Flourish II (placeholder: same Emo_Standard_Flourish1 animation as I)
+- guid: 250026
+  name_id: 54018
+  description_id: 14
+  icon_set_id: 3284
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1500
+
+# Battle Class Flourish III (placeholder: same Emo_Standard_Flourish1 animation as I)
+- guid: 250027
+  name_id: 54019
+  description_id: 14
+  icon_set_id: 3285
+  slot: !Equipment None
+  item_type: 1
+  category: 81
+  cost: 1500

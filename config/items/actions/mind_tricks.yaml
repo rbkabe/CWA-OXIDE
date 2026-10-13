@@ -85,3 +85,43 @@
   item_type: 1
   category: 83
   cost: 250
+
+# Orbiting Starfighters Mind Trick
+- guid: 250020
+  name_id: 62212
+  description_id: 14
+  icon_set_id: 3996
+  slot: !Equipment None
+  item_type: 1
+  category: 83
+  cost: 500
+
+# Orbiting Vulture Droids Mind Trick
+- guid: 250021
+  name_id: 62213
+  description_id: 14
+  icon_set_id: 1535
+  slot: !Equipment None
+  item_type: 1
+  category: 83
+  cost: 500
+
+# Orbiting Y-Wings Mind Trick
+- guid: 250022
+  name_id: 62214
+  description_id: 14
+  icon_set_id: 1536
+  slot: !Equipment None
+  item_type: 1
+  category: 83
+  cost: 500
+
+# Force Glow Hands Mind Trick
+- guid: 250023
+  name_id: 62215
+  description_id: 14
+  icon_set_id: 1534
+  slot: !Equipment None
+  item_type: 1
+  category: 83
+  cost: 500

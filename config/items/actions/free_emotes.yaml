@@ -27,7 +27,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # ─── General Emotes ──────────────────────────────────────────────────────────
 
@@ -39,7 +39,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Cry
 - guid: 6002
@@ -49,17 +49,17 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Drink
 - guid: 6003
-  name_id: 0
+  name_id: 62194
   description_id: 14
-  icon_set_id: 996
+  icon_set_id: 266
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Fist Pump
 - guid: 6004
@@ -69,7 +69,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Facepalm
 - guid: 6005
@@ -79,7 +79,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Head Shake (locale: "No")
 - guid: 6006
@@ -89,17 +89,17 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Hit the Deck
 - guid: 6007
-  name_id: 0
+  name_id: 62195
   description_id: 14
-  icon_set_id: 1012
+  icon_set_id: 3985
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Laugh
 - guid: 6008
@@ -109,7 +109,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Nod
 - guid: 6009
@@ -119,7 +119,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Nod Yes (locale: "Yes")
 - guid: 6010
@@ -129,7 +129,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Point
 - guid: 6011
@@ -139,7 +139,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Threaten
 - guid: 6012
@@ -149,7 +149,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Tusken Raider
 - guid: 6013
@@ -159,7 +159,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Wave
 - guid: 6014
@@ -169,67 +169,67 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Charge
 - guid: 6015
-  name_id: 0
+  name_id: 62196
   description_id: 14
-  icon_set_id: 1000
+  icon_set_id: 3982
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 500
 
 # Flank Left
 - guid: 6016
-  name_id: 0
+  name_id: 62197
   description_id: 14
-  icon_set_id: 1008
+  icon_set_id: 3983
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Flank Right
 - guid: 6017
-  name_id: 0
+  name_id: 62198
   description_id: 14
-  icon_set_id: 1006
+  icon_set_id: 3984
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Retreat
 - guid: 6018
-  name_id: 0
+  name_id: 62199
   description_id: 14
-  icon_set_id: 1010
+  icon_set_id: 3986
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Return to Leader
 - guid: 6019
-  name_id: 0
+  name_id: 62200
   description_id: 14
-  icon_set_id: 1004
+  icon_set_id: 3987
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Force Lift
 - guid: 6020
-  name_id: 0
+  name_id: 62201
   description_id: 14
   icon_set_id: 998
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Force Push
 - guid: 6021
@@ -239,29 +239,29 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # ─── Basic Free Dances ────────────────────────────────────────────────────────
 
 # Bad Dance
 - guid: 6022
-  name_id: 0
+  name_id: 62202
   description_id: 14
-  icon_set_id: 2418
+  icon_set_id: 3994
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Running Man
 - guid: 6023
-  name_id: 0
+  name_id: 62203
   description_id: 14
-  icon_set_id: 2419
+  icon_set_id: 3995
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Gungan Style
 - guid: 6024
@@ -271,7 +271,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # ─── Class Emotes ─────────────────────────────────────────────────────────────
 # name_ids sourced from out.txt locale string table (IDs 54026-54037)
@@ -284,7 +284,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Trooper: Man Down
 - guid: 6026
@@ -294,7 +294,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Trooper: Transmission Received
 - guid: 6027
@@ -304,7 +304,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Jedi: Force Pound
 - guid: 6028
@@ -314,7 +314,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1000
 
 # Jedi: Handstand
 - guid: 6029
@@ -324,7 +324,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Jedi: Meditate
 - guid: 6030
@@ -334,7 +334,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Sith: Rage
 - guid: 6031
@@ -344,7 +344,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Sith: Seethe (locale id 54034 = "Sith: Seeth" — original game typo)
 - guid: 6032
@@ -354,7 +354,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Mercenary: Barter
 - guid: 6033
@@ -364,7 +364,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Mercenary: Intimidate
 - guid: 6034
@@ -374,7 +374,7 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
 
 # Mercenary: Punch
 - guid: 6035
@@ -384,4 +384,4 @@
   slot: !Equipment None
   item_type: 1
   category: 81
-  cost: 0
+  cost: 1500
