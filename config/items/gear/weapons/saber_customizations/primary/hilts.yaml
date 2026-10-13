@@ -765,7 +765,7 @@
   item_class: 10
   slot: !Equipment PrimaryWeapon
   model_name: Wield_LightsaberHiltStandard_Darksaber_Ancient.adr
-  texture_alias: PreVizsla
+  texture_alias: Ancient
   item_type: 25
   category: 64
   action_bar:
@@ -870,7 +870,7 @@
   item_class: 10
   slot: !Equipment PrimaryWeapon
   model_name: Wield_LightsaberHiltStandard_Gungi.adr
-  texture_alias: Gundi
+  texture_alias: Gungi
   item_type: 25
   category: 64
   members: true
