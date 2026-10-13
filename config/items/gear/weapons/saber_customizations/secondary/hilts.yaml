@@ -136,7 +136,7 @@
   item_class: 10
   slot: !Equipment SecondaryWeapon
   model_name: Wield_LightsaberHiltStandard_Darksaber_Ancient_LEFT.adr
-  texture_alias: PreVizsla
+  texture_alias: Ancient
   item_type: 25
 
 # Darth Maul's Lightsaber
@@ -226,7 +226,7 @@
   item_class: 10
   slot: !Equipment SecondaryWeapon
   model_name: Wield_LightsaberHiltStandard_Gungi_LEFT.adr
-  texture_alias: Gundi
+  texture_alias: Gungi
   item_type: 25
   members: true
 
