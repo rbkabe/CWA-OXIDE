@@ -97,8 +97,6 @@ def add_aliases(adr_bytes, aliases):
     top = parse(adr_bytes)
     i5 = next(i for i, (t, _) in enumerate(top) if t == 5)
     items = parse(top[i5][1])
-    # Single-alias models (e.g. the Neyo helmet) have no 0xFE count header; give
-    # them the standard [01 01 count] one, which 478/478 headered models use.
     if items[0][0] != 0xFE:
         items.insert(0, [0xFE, b"\x01\x01\x00"])
     existing = {}
@@ -123,7 +121,7 @@ def add_aliases(adr_bytes, aliases):
             elif st == 5:
                 sub.append([5, texture.encode() + b"\0"])
             elif st == 7:
-                continue  # default-alias flag stays on the original first alias
+                continue  
             else:
                 sub.append([st, sv])
         existing[alias] = sub
@@ -155,9 +153,6 @@ def main():
 
     by_adr = {}
     for e in entries:
-        # `<gender>` in the model name covers both Male and Female models (like
-        # item model_name).  Female wearables reuse the male textures (their
-        # aliases point at Wear_Human_Male_*_C.dds), so `texture` stays as-is.
         genders = ("Male", "Female") if "<gender>" in e["adr"] else (None,)
         for g in genders:
             adr = e["adr"].replace("<gender>", g) if g else e["adr"]
@@ -179,9 +174,12 @@ def main():
                 shutil.copyfile(src, dst)
                 print(f"  texture {e['texture']} <- {src}")
             elif not os.path.exists(os.path.join(game_dir, e["texture"])):
-                print(f"  warning: {e['texture']} is not in the game folder (and no source given)")
+                # Fine if the game already ships the texture in its packs
+                # (e.g. the unused White cyclops helmet texture).
+                if e["texture"] not in find_in_packs(game_dir, {e["texture"]}):
+                    print(f"  warning: {e['texture']} is not in the game folder or the packs (and no source given)")
         out = add_aliases(originals[adr], [(e["alias"], e["texture"]) for e in es])
-        assert parse(out)  # sanity: re-parses
+        assert parse(out)  
         with open(os.path.join(game_dir, adr), "wb") as f:
             f.write(out)
         print(f"wrote {adr}: +{', '.join(e['alias'] for e in es)}")
