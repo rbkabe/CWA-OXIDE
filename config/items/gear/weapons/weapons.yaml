@@ -893,6 +893,7 @@
       - "cold_warrior_rifle"
       - "thermal_grenade"
       - "aimed_shot"
+  cost: 5000
 
 # Ming Po Militia Rifle
 - guid: 80001
@@ -911,6 +912,7 @@
       - "ming_po_militia_rifle"
       - "thermal_grenade"
       - "aimed_shot"
+  cost: 5000
 
 # Usk Bunker General Blaster Rifle
 - guid: 80002
@@ -929,6 +931,7 @@
       - "usk_bunker_general_blaster_rifle"
       - "proximity_mine"
       - "aimed_shot"
+  cost: 5000
 
 # Grek Bunker General Blaster Rifle
 - guid: 80003
@@ -947,6 +950,7 @@
       - "grek_bunker_general_blaster_rifle"
       - "proximity_mine"
       - "aimed_shot"
+  cost: 5000
 
 # Republic Grenade Launcher
 - guid: 80004
@@ -964,6 +968,7 @@
       - "republic_grenade_launcher"
       - "deflector_shield"
       - "rapid_fire"
+  cost: 5000
 
 # Accelerated Thermal Carbine
 - guid: 80005
@@ -981,6 +986,7 @@
       - "accelerated_thermal_carbine"
       - "deflector_shield"
       - "charged_shot"
+  cost: 5000
 
 # Rail Cannon
 - guid: 80006
@@ -998,6 +1004,7 @@
       - "rail_cannon"
       - "deflector_shield"
       - "charged_shot"
+  cost: 5000
 
 # Hip-Mounted Cannon
 - guid: 80007
@@ -1015,6 +1022,7 @@
       - "hip_mounted_cannon"
       - "deflector_shield"
       - "charged_shot"
+  cost: 5000
 
 # Mandalorian Repeater
 - guid: 80008
@@ -1032,6 +1040,7 @@
       - "mandalorian_repeater"
       - "deflector_shield"
       - "rapid_fire"
+  cost: 5000
 
 # Repeater Cannon
 - guid: 80009
@@ -1049,6 +1058,7 @@
       - "repeater_cannon"
       - "deflector_shield"
       - "rapid_fire"
+  cost: 5000
 
 # Turbolaser
 - guid: 80010
@@ -1066,6 +1076,7 @@
       - "turbolaser"
       - "deflector_shield"
       - "charged_shot"
+  cost: 5000
 
 # Bossk's Long Rifle
 - guid: 80011
@@ -1083,6 +1094,7 @@
       - "bossk_long_rifle"
       - "proximity_mine"
       - "aimed_shot"
+  cost: 5000
 
 # Grand Officer Rifle
 - guid: 80012
@@ -1100,6 +1112,7 @@
       - "grand_officer_rifle"
       - "cryo_grenade"
       - "aimed_shot"
+  cost: 5000
 
 # Felucian Commando Rifle
 - guid: 80013
@@ -1117,6 +1130,7 @@
       - "felucian_commando_rifle"
       - "thermal_grenade"
       - "aimed_shot"
+  cost: 5000
 
 # Onderon Long Rifle
 - guid: 80014
@@ -1135,6 +1149,7 @@
       - "onderon_long_rifle"
       - "proximity_mine"
       - "aimed_shot"
+  cost: 5000
 
 # Energized Disruptor
 - guid: 80015
@@ -1153,6 +1168,7 @@
       - "energized_disruptor"
       - "deflector_shield"
       - "focused_shot"
+  cost: 5000
 
 # Light Plasma Pistol
 - guid: 80016
@@ -1171,6 +1187,7 @@
       - "light_plasma_pistol"
       - "deflector_shield"
       - "focused_shot"
+  cost: 5000
 
 # Major Rigosso's Quarzite Pistol
 - guid: 80017
@@ -1189,6 +1206,7 @@
       - "major_rigosso_quarzite_pistol"
       - "proximity_mine"
       - "focused_shot"
+  cost: 5000
 
 # Major Rigosso's Offhand Quarzite Pistol
 - guid: 80018
@@ -1202,6 +1220,7 @@
   item_type: 1
   category: 64
   members: true
+  cost: 5000
 
 # Black Sun Blaster Pistol
 - guid: 80019
@@ -1219,6 +1238,7 @@
       - "black_sun_blaster_pistol"
       - "proximity_mine"
       - "focused_shot"
+  cost: 5000
 
 # Subtram Hunter Blaster
 - guid: 80020
@@ -1236,6 +1256,7 @@
       - "subtram_hunter_blaster"
       - "proximity_mine"
       - "focused_shot"
+  cost: 5000
 
 # Subtram Hunter Offhand Blaster
 - guid: 80021
@@ -1248,6 +1269,7 @@
   texture_alias: BobaGreen
   item_type: 1
   category: 64
+  cost: 5000
 
 # Royal Hold-out Blaster Pistol
 - guid: 80022
@@ -1266,6 +1288,7 @@
       - "royal_hold_out_blaster_pistol"
       - "thermal_grenade"
       - "focused_shot"
+  cost: 5000
 
 # Corrupt Warlord Right Pistol
 - guid: 80023
@@ -1283,6 +1306,7 @@
       - "corrupt_warlord_right_pistol"
       - "deploy_turret"
       - "focused_shot"
+  cost: 5000
 
 # Corrupt Warlord Left Pistol
 - guid: 80024
@@ -1295,6 +1319,7 @@
   texture_alias: Mercenary
   item_type: 1
   category: 64
+  cost: 5000
 
 # Pyke Blaster Pistol
 - guid: 80025
@@ -1312,6 +1337,7 @@
       - "pyke_blaster_pistol"
       - "thermal_grenade"
       - "focused_shot"
+  cost: 5000
 
 # Onderon Blaster Pistol
 - guid: 80026
@@ -1330,6 +1356,7 @@
       - "onderon_blaster_pistol"
       - "proximity_mine"
       - "focused_shot"
+  cost: 5000
 
 # IG-113's Electrostaff
 - guid: 80027
@@ -1348,6 +1375,7 @@
       - "ig_113_electrostaff"
       - "force_lightning"
       - "chopping_lunge"
+  cost: 5000
 
 # Renegade Heavy Blaster Pistol (Right)
 - guid: 80028
@@ -1357,7 +1385,7 @@
   item_class: 9
   slot: !Equipment PrimaryWeapon
   model_name: Wield_Pistol_RenegadeHeavyBlaster.adr
-  texture_alias: RenegadeHeavyBlaster
+  texture_alias: Renegade
   item_type: 1
   category: 64
   action_bar:
@@ -1365,3 +1393,4 @@
       - "renegade_heavy_blaster_pistol_right"
       - "proximity_mine"
       - "focused_shot"
+  cost: 5000
