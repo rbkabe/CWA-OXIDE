@@ -301,10 +301,11 @@
 - guid: 2086
   name_id: 17861
   description_id: 14
+  icon_set_id: 74
   slot: !Equipment None
   item_type: 1
-  category: 0
   cost: 5000
+  category: 72
 
 # 3PO Sheet
 - guid: 2087
