@@ -1,0 +1,144 @@
+---
+# Supplies: combat consumables (Consumables, category 78) and nanites (Components,
+# category 10002).  Names and icons are the original game's; guids and prices are ours.
+# Using them (healing, crafting) is not implemented on the server yet.
+# Field Kit - Small
+- guid: 250000
+  name_id: 52019
+  description_id: 14
+  icon_set_id: 2963
+  slot: !Equipment None
+  item_type: 1
+  category: 78
+  cost: 250
+  max_stack_size: 1000
+# Field Kit - Medium
+- guid: 250001
+  name_id: 52018
+  description_id: 14
+  icon_set_id: 2962
+  slot: !Equipment None
+  item_type: 1
+  category: 78
+  cost: 500
+  max_stack_size: 1000
+# Field Kit - Large
+- guid: 250002
+  name_id: 52017
+  description_id: 14
+  icon_set_id: 2961
+  slot: !Equipment None
+  item_type: 1
+  category: 78
+  cost: 1000
+  max_stack_size: 1000
+# Force Focus - Small
+- guid: 250003
+  name_id: 52016
+  description_id: 14
+  icon_set_id: 3221
+  slot: !Equipment None
+  item_type: 1
+  category: 78
+  cost: 250
+  max_stack_size: 1000
+# Force Focus - Medium
+- guid: 250004
+  name_id: 52015
+  description_id: 14
+  icon_set_id: 3221
+  slot: !Equipment None
+  item_type: 1
+  category: 78
+  cost: 500
+  max_stack_size: 1000
+# Force Focus - Large
+- guid: 250005
+  name_id: 52014
+  description_id: 14
+  icon_set_id: 3221
+  slot: !Equipment None
+  item_type: 1
+  category: 78
+  cost: 1000
+  max_stack_size: 1000
+# Field Kit Supply Pack
+- guid: 250006
+  name_id: 53654
+  description_id: 14
+  icon_set_id: 3223
+  slot: !Equipment None
+  item_type: 1
+  category: 78
+  cost: 1500
+  max_stack_size: 1000
+# Silver Nanite
+- guid: 250010
+  name_id: 53675
+  description_id: 14
+  icon_set_id: 3603
+  slot: !Equipment None
+  item_type: 1
+  category: 10002
+  cost: 100
+  max_stack_size: 1000
+# Gold Nanite
+- guid: 250011
+  name_id: 53676
+  description_id: 14
+  icon_set_id: 3601
+  slot: !Equipment None
+  item_type: 1
+  category: 10002
+  cost: 500
+  max_stack_size: 1000
+# Nanite Pack I
+- guid: 250012
+  name_id: 54233
+  description_id: 14
+  icon_set_id: 3602
+  slot: !Equipment None
+  item_type: 1
+  category: 10002
+  cost: 1000
+  max_stack_size: 1000
+# Nanite Pack II
+- guid: 250013
+  name_id: 54234
+  description_id: 14
+  icon_set_id: 3602
+  slot: !Equipment None
+  item_type: 1
+  category: 10002
+  cost: 2500
+  max_stack_size: 1000
+# Nanite Pack III
+- guid: 250014
+  name_id: 54235
+  description_id: 14
+  icon_set_id: 3602
+  slot: !Equipment None
+  item_type: 1
+  category: 10002
+  cost: 5000
+  max_stack_size: 1000
+# Nanite Pack IV
+- guid: 250015
+  name_id: 54236
+  description_id: 14
+  icon_set_id: 3602
+  slot: !Equipment None
+  item_type: 1
+  category: 10002
+  cost: 10000
+  max_stack_size: 1000
+# Nanite Pack V
+- guid: 250016
+  name_id: 54237
+  description_id: 14
+  icon_set_id: 3602
+  slot: !Equipment None
+  item_type: 1
+  category: 10002
+  cost: 20000
+  max_stack_size: 1000

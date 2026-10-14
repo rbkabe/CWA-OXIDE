@@ -21,6 +21,7 @@
   cost: 15
   slot: !Equipment None
   item_type: 1
+  category: 78
 # Holocron Boost
 - guid: 2384
   name_id: 33818
@@ -29,6 +30,7 @@
   cost: 15
   slot: !Equipment None
   item_type: 1
+  category: 78
 # Trivia Boost
 - guid: 2385
   name_id: 33820
@@ -37,3 +39,4 @@
   cost: 15
   slot: !Equipment None
   item_type: 1
+  category: 78
