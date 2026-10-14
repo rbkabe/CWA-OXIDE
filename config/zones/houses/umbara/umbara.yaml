@@ -10,9 +10,9 @@ umbara_house:
   default_point_of_interest:
     guid: 105
     pos:
-      x: 380
-      y: 110
-      z: 380
+      x: 369.3
+      y: 10.1
+      z: 316.7
       w: 1
     rot:
       x: -1
