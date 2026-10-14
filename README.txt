@@ -137,6 +137,28 @@ I HAVE ALREADY ADDED CUSTOM ICONS UNLESS YOU ARE ADDING SOMETHING NEW YOU DO NOT
 
 RUN: python path\to\cwa_icons.py "path\to\clientfolder"
 
+---------------------------------------------------------------------------------------------------------
+
+
+I THREW IN cwa_effects.py BECAUSE SOME OF THE ORBITING MIND TRICKS WERE MISSING SHIPS, THIS SCRIPT ADDS EXTRA MESH EMITTERS FOR COMPOSITE EFFECTS
+
+LIST THE MESHES YOU WANT TO BE USED
+
+LIST WHAT EFFECTS NEED THE MESHES APPLIES
+
+mesh_emitters:
+
+{id: 1274, copy_of: 1172, name: Emote_Starfighter_Orbit_2, set: {heading: 2.094395, pitch: -0.349066}}
+{id: 1275, copy_of: 1172, name: Emote_Starfighter_Orbit_3, set: {heading: 4.188790, pitch: 0.174533}}
+{id: 1276, copy_of: 1178, name: Emote_YWing_Orbit_2, set: {heading: 2.094395, pitch: -0.349066}}
+{id: 1277, copy_of: 1178, name: Emote_YWing_Orbit_3, set: {heading: 4.188790, pitch: 0.174533}}
+{id: 1278, copy_of: 1179, name: Emote_Vulture_Orbit_2, set: {heading: 2.094395, pitch: -0.349066}}
+{id: 1279, copy_of: 1179, name: Emote_Vulture_Orbit_3, set: {heading: 4.188790, pitch: 0.174533}} composite_effects:
+{id: 2109, add_mesh: [1274, 1275]} # PFX_Emote_Orbit_Starfighter
+{id: 2110, add_mesh: [1276, 1277]} # PFX_Emote_Orbit_Ywing
+{id: 2111, add_mesh: [1278, 1279]} # PFX_Emote_Orbit_Vulture
+RUN: python path\to\cwa_effects.py "path\to\clientfolder"
+
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
