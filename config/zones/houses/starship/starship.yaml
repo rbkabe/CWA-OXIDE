@@ -10,20 +10,42 @@ starship_house:
   default_point_of_interest:
     guid: 107
     pos:
-      x: 79
-      y: 121
-      z: -3200
+      x: 244.08
+      y: 10.3
+      z: 432.9
       w: 1
     rot:
-      x: -1
+      x: -0.01
       y: 0
-      z: 0
+      z: 1.5
       w: 0
   speed: 8
   jump_height_multiplier: 1
   gravity_multiplier: 1
   seconds_per_day: 10800
   update_previous_location_on_leave: false
+  # Bridge blast door <-> gunnery room door (terrain objects from Starship_Housing_*.gcnk)
+  other_points_of_interest:
+    # Bridge -> gunnery room
+    - guid: 10700
+      pos: {x: 101, y: 19.9, z: -3208, w: 1}
+      rot: {x: -0.96, y: 0, z: 1.16, w: 0}
+    # Gunnery room -> bridge
+    - guid: 10701
+      pos: {x: 244.05, y: 10.3, z: 432.9, w: 1}
+      rot: {x: -0.01, y: 0, z: 1.5, w: 0}
+    # Bridge -> Captain's Quarters
+    - guid: 10702
+      pos: {x: 100, y: 23.9, z: -2539, w: 1}
+      rot: {x: -0.86, y: 0, z: 1.23, w: 0}
+    # Bridge -> Cargo Hold
+    - guid: 10703
+      pos: {x: 132.8, y: 20.4, z: -1878.8, w: 1}
+      rot: {x: -0.25, y: 0, z: -1.48, w: 0}
+    # Bridge -> Trophy Room
+    - guid: 10704
+      pos: {x: 393.0, y: 47.3, z: -4055.7, w: 1}
+      rot: {x: 0.0, y: 0, z: 1.5, w: 0}
   ambient_npcs:
     fighter:
       name_id: 32914
@@ -46,3 +68,86 @@ starship_house:
       one_shot_interaction:
         script: OpenGalaxyMap
         duration_millis: 1
+    bridge_to_gunnery_room:
+      pos: {x: 244.1, y: 10.0, z: 426.9, w: 1}
+      terrain_object_id: 1288831071
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 4
+      interact_radius: 10
+      one_shot_interaction:
+        dialog_option_key: Cruiser Rooms
+        duration_millis: 1
+    gunnery_room_to_bridge:
+      pos: {x: 101.6, y: 21.6, z: -3211.2, w: 1}
+      terrain_object_id: 1291665215
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10701
+        duration_millis: 1
+    captains_quarters_to_bridge:
+      pos: {x: 103.2, y: 26.3, z: -2539.2, w: 1}
+      terrain_object_id: 1291671961
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10701
+        duration_millis: 1
+    cargo_hold_to_bridge:
+      pos: {x: 128.1, y: 20.2, z: -1876.0, w: 1}
+      terrain_object_id: 1291665138
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10701
+        duration_millis: 1
+    trophy_room_to_bridge:
+      pos: {x: 393.0, y: 47.0, z: -4058.7, w: 1}
+      terrain_object_id: 1291665320
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 10701
+        duration_millis: 1
+  # Bridge blast door menu: every room is in this same map, so you stay in your cruiser (and its skybox)
+  dialog_choices:
+    - button_key: Cruiser Rooms
+      new_dialog:
+        dialog_message_id: 62239
+        camera_placement: {x: 244.0, y: 13.0, z: 437.0, w: 1}
+        look_at: {x: 244.1, y: 11.0, z: 426.9, w: 1}
+        choices:
+          # The client lays these out right to left, so they're listed in reverse
+          - button_key: Exit
+            button_text_id: 3870
+          - button_key: Trophy Room
+            button_text_id: 32443
+          - button_key: Cargo Hold
+            button_text_id: 32441
+          - button_key: Captain's Quarters
+            button_text_id: 32442
+          - button_key: Gunnery Room
+            button_text_id: 62240
+    - button_key: Gunnery Room
+      point_of_interest: 10700
+      close_dialog: true
+    - button_key: Captain's Quarters
+      point_of_interest: 10702
+      close_dialog: true
+    - button_key: Cargo Hold
+      point_of_interest: 10703
+      close_dialog: true
+    - button_key: Trophy Room
+      point_of_interest: 10704
+      close_dialog: true
+    - button_key: Exit
+      close_dialog: true
