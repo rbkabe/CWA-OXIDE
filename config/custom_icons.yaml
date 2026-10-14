@@ -378,3 +378,15 @@
 - icon_set_id: 3997
   image_id: 7191
   file: icon_sample_emote_pose_63x66.dds
+- icon_set_id: 3998
+  image_id: 5147
+  file: icon_member_housing_256.dds
+- icon_set_id: 3999
+  image_id: 5148
+  file: icon_non_member_housing_256.dds
+- icon_set_id: 4000
+  image_id: 6261
+  file: icon_housing_coruscant_luxury.dds
+- icon_set_id: 4001
+  image_id: 6083
+  file: icon_housing_lot_xl_sithacademy_256.dds

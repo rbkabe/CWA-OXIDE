@@ -2282,3 +2282,19 @@
   file: HousingRoom_Tatooine_Image.adr
   description: Marketplace Housing Preview
   preview_image: icon_housing_lot_tatooine_256.dds
+- id: 3087
+  file: HousingRoom_MemberHousing_Image.adr
+  description: Marketplace Housing Preview
+  preview_image: icon_member_housing_256.dds
+- id: 3088
+  file: HousingRoom_NonMemberHousing_Image.adr
+  description: Marketplace Housing Preview
+  preview_image: icon_non_member_housing_256.dds
+- id: 3089
+  file: HousingRoom_CoruscantLuxury_Image.adr
+  description: Marketplace Housing Preview
+  preview_image: icon_housing_coruscant_luxury_256.dds
+- id: 3090
+  file: HousingRoom_DathomirSithTemple_Image.adr
+  description: Marketplace Housing Preview
+  preview_image: icon_housing_lot_xl_sithacademy_256.dds

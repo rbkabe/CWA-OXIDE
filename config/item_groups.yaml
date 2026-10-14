@@ -16467,7 +16467,7 @@
   description_id: 62225
   for_sale: true
   guid: 10209
-  icon_set_id: 2858
+  icon_set_id: 4001
   is_new: true
   items:
   - guid: 230209
@@ -16476,7 +16476,7 @@
   name_id: 52687
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 3090
   sort_order: 0
 # Felucia Starter Lot
 - category: 34
@@ -16499,7 +16499,7 @@
   description_id: 62228
   for_sale: true
   guid: 10211
-  icon_set_id: 1074
+  icon_set_id: 4000
   is_new: true
   items:
   - guid: 230211
@@ -16508,5 +16508,69 @@
   name_id: 62227
   page: 0
   preview_animation_id: 0
+  preview_model_id: 3089
+  sort_order: 0
+# Test Lot (Excis5-1)
+- category: 34
+  description_id: 62231
+  for_sale: true
+  guid: 10212
+  icon_set_id: 1074
+  is_new: true
+  items:
+  - guid: 230212
+    unknown: 0
+  members_only: false
+  name_id: 62229
+  page: 0
+  preview_animation_id: 0
   preview_model_id: 0
+  sort_order: 0
+# Test Lot (Ryloth8-1)
+- category: 34
+  description_id: 62231
+  for_sale: true
+  guid: 10213
+  icon_set_id: 1074
+  is_new: true
+  items:
+  - guid: 230213
+    unknown: 0
+  members_only: false
+  name_id: 62230
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Luxury Padawan Apartment
+- category: 34
+  description_id: 62234
+  for_sale: true
+  guid: 10214
+  icon_set_id: 3998
+  is_new: true
+  items:
+  - guid: 230214
+    unknown: 0
+  members_only: false
+  name_id: 62232
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3087
+  sort_order: 0
+# Padawan Apartment
+- category: 34
+  description_id: 62235
+  for_sale: true
+  guid: 10215
+  icon_set_id: 3999
+  is_new: true
+  items:
+  - guid: 230215
+    unknown: 0
+  members_only: false
+  name_id: 62233
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3088
   sort_order: 0
