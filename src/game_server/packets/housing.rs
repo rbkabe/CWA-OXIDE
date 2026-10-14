@@ -7,6 +7,7 @@ use super::{item::BaseAttachmentGroup, GamePacket, OpCode, Pos};
 #[repr(u16)]
 pub enum HousingOpCode {
     SetEditMode = 0x6,
+    ExitHouse = 0x9,
     RequestPlayerHouseList = 0xb,
     EnterRequest = 0x10,
     InstanceData = 0x18,
@@ -160,13 +161,16 @@ impl GamePacket for HouseZoneData {
 
 #[derive(SerializePacket, DeserializePacket)]
 pub struct HouseInstanceEntry {
+    // The client reads exactly one HouseDescription per entry (CloneWars.exe 0x8a3220).
     pub description: HouseDescription,
-    pub unknown1: u64,
 }
 
 #[derive(SerializePacket, DeserializePacket)]
 pub struct HouseInstanceList {
     pub instances: Vec<HouseInstanceEntry>,
+    // The client reads this after the list and only fills My Homes when it equals the
+    // player guid it asked for (CloneWars.exe 0x8ae1b0 / 0x8b12f0).
+    pub owner_guid: u64,
 }
 
 impl GamePacket for HouseInstanceList {

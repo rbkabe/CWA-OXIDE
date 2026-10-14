@@ -60,3 +60,16 @@ impl GamePacket for MountSpawn {
     type Header = MountOpCode;
     const HEADER: Self::Header = MountOpCode::MountSpawn;
 }
+
+/// The player's full mount list (client `PacketMountList`): a count followed by
+/// entries in the same layout as the login Player packet's mounts.  The client
+/// clears its list before reading, so this replaces `BaseClient.MountList`.
+#[derive(SerializePacket)]
+pub struct MountList {
+    pub mounts: Vec<super::player_data::Mount>,
+}
+
+impl GamePacket for MountList {
+    type Header = MountOpCode;
+    const HEADER: Self::Header = MountOpCode::MountList;
+}
