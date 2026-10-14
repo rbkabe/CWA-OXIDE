@@ -1,6 +1,7 @@
 ---
 # AT-RT
 - id: 1
+  item_guid: 3281
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -12,6 +13,7 @@
   dismount_composite_effect: 2697
 # AT-RT Snow Camo
 - id: 2
+  item_guid: 240000
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -23,6 +25,7 @@
   dismount_composite_effect: 2697
 # BARC Green
 - id: 3
+  item_guid: 240001
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -34,6 +37,7 @@
   dismount_composite_effect: 2756
 # BARC Red
 - id: 4
+  item_guid: 240002
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -45,6 +49,7 @@
   dismount_composite_effect: 2756
 # BARC Blue
 - id: 5
+  item_guid: 240003
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -56,6 +61,7 @@
   dismount_composite_effect: 2756
 # Mando White
 - id: 6
+  item_guid: 240004
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -67,6 +73,7 @@
   dismount_composite_effect: 2798
 # Mando Purple
 - id: 7
+  item_guid: 240005
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -78,6 +85,7 @@
   dismount_composite_effect: 2798
 # Mando Camo
 - id: 8
+  item_guid: 240006
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -89,6 +97,7 @@
   dismount_composite_effect: 2798
 # Mando Blue
 - id: 9
+  item_guid: 240007
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -100,6 +109,7 @@
   dismount_composite_effect: 2798
 # FC20 Blood
 - id: 10
+  item_guid: 240008
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -111,6 +121,7 @@
   dismount_composite_effect: 2816
 # FC20 Sith
 - id: 11
+  item_guid: 240009
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -122,6 +133,7 @@
   dismount_composite_effect: 2816
 # Tauntaun
 - id: 12
+  item_guid: 240010
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -133,6 +145,7 @@
   dismount_composite_effect: 2821
 # Bantha
 - id: 13
+  item_guid: 240011
   speed_multiplier: 0.5
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -144,6 +157,7 @@
   dismount_composite_effect: 2833
 # Narglatch Blue
 - id: 14
+  item_guid: 240012
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -155,6 +169,7 @@
   dismount_composite_effect: 2997
 # Narglatch Maroon
 - id: 15
+  item_guid: 240013
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -166,6 +181,7 @@
   dismount_composite_effect: 2997
 # Narglatch Brown (Red Icon)
 - id: 16
+  item_guid: 240014
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -177,6 +193,7 @@
   dismount_composite_effect: 2997
 # Narglatch Green
 - id: 17
+  item_guid: 240015
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -188,6 +205,7 @@
   dismount_composite_effect: 2997
 # 74-Z Blue
 - id: 18
+  item_guid: 240016
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -199,6 +217,7 @@
   dismount_composite_effect: 2858
 # 74-Z Tan
 - id: 19
+  item_guid: 240017
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -210,6 +229,7 @@
   dismount_composite_effect: 2858
 # 74-Z White
 - id: 20
+  item_guid: 240018
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -221,6 +241,7 @@
   dismount_composite_effect: 2858
 # Zephyr Green
 - id: 21
+  item_guid: 240019
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -232,6 +253,7 @@
   dismount_composite_effect: 2848
 # Zephyr Flame
 - id: 22
+  item_guid: 240020
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -243,6 +265,7 @@
   dismount_composite_effect: 2848
 # Zephyr Rust
 - id: 23
+  item_guid: 240021
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -254,6 +277,7 @@
   dismount_composite_effect: 2848
 # Starhawk Black
 - id: 24
+  item_guid: 240022
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -265,6 +289,7 @@
   dismount_composite_effect: 2882
 # Starhawk Blue
 - id: 25
+  item_guid: 240023
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -276,6 +301,7 @@
   dismount_composite_effect: 2882
 # Starhawk Brown
 - id: 26
+  item_guid: 240024
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -287,6 +313,7 @@
   dismount_composite_effect: 2882
 # Tauntaun Holiday
 - id: 27
+  item_guid: 240025
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -298,6 +325,7 @@
   dismount_composite_effect: 2821
 # Rancor Brown
 - id: 28
+  item_guid: 240026
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -309,6 +337,7 @@
   dismount_composite_effect: 2889
 # Rancor Zanbar
 - id: 29
+  item_guid: 240027
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -320,6 +349,7 @@
   dismount_composite_effect: 2889
 # Grievous Speeder
 - id: 30
+  item_guid: 240028
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -331,6 +361,7 @@
   dismount_composite_effect: 2995
 # Brezak
 - id: 31
+  item_guid: 240029
   speed_multiplier: 1.5625
   jump_height_multiplier: 2
   gravity_multiplier: 0.25
@@ -342,6 +373,7 @@
   dismount_composite_effect: 3009
 # Brezak Green
 - id: 32
+  item_guid: 240030
   speed_multiplier: 1.5625
   jump_height_multiplier: 2
   gravity_multiplier: 0.25
@@ -353,6 +385,7 @@
   dismount_composite_effect: 3009
 # STAP
 - id: 33
+  item_guid: 240031
   speed_multiplier: 1.5625
   jump_height_multiplier: 1
   gravity_multiplier: 1
@@ -364,6 +397,7 @@
   dismount_composite_effect: 3012
 # Fambaa
 - id: 34
+  item_guid: 240032
   speed_multiplier: 0.5
   jump_height_multiplier: 1
   gravity_multiplier: 1

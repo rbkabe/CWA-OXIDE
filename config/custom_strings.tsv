@@ -20,14 +20,14 @@
 62014	Clone Assassin
 62015	Clone Trooper Blue Squares
 62016	Clone Trooper Red Stripe
-62017	Red Stripe Clone Armor
-62018	Red Stripe Clone Helmet
-62019	Red Stripe Clone Gloves
-62020	Red Stripe Clone Boots
-62021	Blue Squares Clone Armor
-62022	Blue Squares Clone Helmet
-62023	Blue Squares Clone Gloves
-62024	Blue Squares Clone Boots
+62017	Clone Armor Red Stripe
+62018	Clone Helmet Red Stripe
+62019	Clone Gloves Red Stripe
+62020	Clone Boots Red Stripe
+62021	Clone Armor Blue Squares
+62022	Clone Helmet Blue Squares
+62023	Clone Gloves Blue Squares
+62024	Clone Boots Blue Squares
 # Clone armor sets added to the store
 62025	Commander Fil
 62026	Spark's Stealth Pilot
@@ -38,6 +38,126 @@
 62031	White Darkside Trooper
 62032	Red Darkside Trooper
 62033	Clone Diver Blue
+62034	Cyclops Clone Trooper Helmet
+62035	Denal's Armor
+62036	Denal's Helmet
+62037	Denal's Gloves
+62038	Denal's Boots
+62039	Denal
+62040	Denal's Helmet (Rangefinder)
+62041	Clone Trooper Purple Squares
+62042	Clone Armor Purple Squares
+62043	Clone Helmet Purple Squares
+62044	Clone Gloves Purple Squares
+62045	Clone Boots Purple Squares
+62068	Clone Trooper Purple Stripes
+62069	Clone Armor Purple Stripes
+62070	Clone Helmet Purple Stripes
+62071	Clone Gloves Purple Stripes
+62072	Clone Boots Purple Stripes
+62073	Phase 2 Clone Trooper (Purple)
+62074	Phase 2 Clone Armor (Purple)
+62075	Phase 2 Clone Helmet (Purple)
+62076	Phase 2 Clone Gloves (Purple)
+62077	Phase 2 Clone Boots (Purple)
+62078	Clone Trooper Orange Squares
+62079	Clone Armor Orange Squares
+62080	Clone Helmet Orange Squares
+62081	Clone Gloves Orange Squares
+62082	Clone Boots Orange Squares
+62083	Clone Trooper Orange Stripes
+62084	Clone Armor Orange Stripes
+62085	Clone Helmet Orange Stripes
+62086	Clone Gloves Orange Stripes
+62087	Clone Boots Orange Stripes
+62088	Phase 2 Clone Trooper (Orange)
+62089	Phase 2 Clone Armor (Orange)
+62090	Phase 2 Clone Gloves (Orange)
+62091	Phase 2 Clone Boots (Orange)
+62193	Phase 2 Clone Helmet (Orange)
+62092	Clone Trooper Aqua Squares
+62093	Clone Armor Aqua Squares
+62094	Clone Helmet Aqua Squares
+62095	Clone Gloves Aqua Squares
+62096	Clone Boots Aqua Squares
+62097	Clone Trooper Aqua Stripes
+62098	Clone Armor Aqua Stripes
+62099	Clone Helmet Aqua Stripes
+62156	Clone Gloves Aqua Stripes
+62157	Clone Boots Aqua Stripes
+62158	Phase 2 Clone Trooper (Aqua)
+62159	Phase 2 Clone Armor (Aqua)
+62160	Phase 2 Clone Helmet (Aqua)
+62161	Phase 2 Clone Gloves (Aqua)
+62162	Phase 2 Clone Boots (Aqua)
+62163	Clone Trooper Green Squares
+62164	Clone Armor Green Squares
+62165	Clone Helmet Green Squares
+62166	Clone Gloves Green Squares
+62167	Clone Boots Green Squares
+62168	Clone Trooper Green Stripes
+62169	Clone Armor Green Stripes
+62170	Clone Helmet Green Stripes
+62192	Clone Gloves Green Stripes
+62171	Clone Boots Green Stripes
+62172	Phase 2 Clone Trooper (Green)
+62173	Phase 2 Clone Armor (Green)
+62174	Phase 2 Clone Helmet (Green)
+62175	Phase 2 Clone Gloves (Green)
+62176	Phase 2 Clone Boots (Green)
+62177	Clone Trooper Blue Stripes
+62178	Clone Armor Blue Stripes
+62179	Clone Helmet Blue Stripes
+62180	Clone Gloves Blue Stripes
+62181	Clone Boots Blue Stripes
+62182	Phase 2 Clone Trooper (Blue)
+62183	Phase 2 Clone Armor (Blue)
+62184	Phase 2 Clone Helmet (Blue)
+62185	Phase 2 Clone Gloves (Blue)
+62186	Phase 2 Clone Boots (Blue)
+62187	Clone Trooper Red Squares
+62188	Clone Armor Red Squares
+62189	Clone Helmet Red Squares
+62190	Clone Gloves Red Squares
+62191	Clone Boots Red Squares
+
+
+# Free emotes that had no name
+62194	Drink
+62195	Hit the Deck
+62196	Charge
+62197	Flank Left
+62198	Flank Right
+62199	Retreat
+62200	Return to Leader
+62201	Force Lift
+62202	Bad Dance
+62203	Running Man
+
+# Mounts that shared a name
+62204	Brown Narglatch Mount
+62205	Dark Narglatch Mount
+
+# Emote packs
+62206	Battle Commander Pack I
+62207	Battle Commander Pack II
+62208	Trooper Emote Pack
+62209	Jedi Emote Pack
+62210	Sith Emote Pack
+62211	Mercenary Emote Pack
+
+# Extra mind tricks and emotes
+62212	Orbiting Starfighters Mind Trick
+62213	Orbiting Vulture Droids Mind Trick
+62214	Orbiting Y-Wings Mind Trick
+62215	Force Glow Hands Mind Trick
+62216	Pose
+
+# Standalone items that had no name
+62217	Front-Angled Boots
+62218	Renegade Heavy Blaster Pistol (Left)
+62219	Republic General's Snow Hat (Hood Down)
+62220	Boba Phat's Sneakers
 
 # Offhand (left-hand) lightsaber copies
 62100	Aayla Secura's Lightsaber (Left)
@@ -96,3 +216,35 @@
 62153	Umbara Academy: Ghost Attack 1 (Left)
 62154	Umbara Academy: Ghost Attack 2 (Left)
 62155	Umbara Academy: Ghost Attack 3 (Left)
+
+# Store listings: names for unreleased items and sets
+62046	Commander Wolffe's Armor
+62047	Commander Wolffe's Helmet
+62048	Commander Wolffe's Gloves
+62049	Commander Wolffe's Boots
+62050	Mustafar Mandalorian Armor
+62051	Mustafar Mandalorian Helmet
+62052	Mustafar Mandalorian Gloves
+62053	Mustafar Mandalorian Boots
+62054	Lurmen Outfit
+62055	Lurmen Beanie
+62056	Lurmen Gloves
+62057	Lurmen Boots
+62058	Tatooine Anakin's Tunic
+62059	Tatooine Anakin's Gloves
+62060	Tatooine Anakin's Boots
+62061	DC-17m Interchangeable Weapons System
+62062	Heavy Hip Cannon
+62063	Quad Cannon
+62064	Green Rebel Pilot Suit
+62065	Red Rebel Pilot Suit
+62066	Plain Ming Po Robe
+62067	Repeating Blaster Turrets
+62221	Settle down on the quiet plains of Dantooine and build a retreat far from the front lines!
+62222	The frozen homeworld of the Talz makes a striking spot for an icy hideout!
+62223	Celebrate the season all year long with this festive, snow-covered lot on Orto Plutonia!
+62224	Build your own homestead under the twin suns of Tatooine!
+62225	Claim the ancient Sith Temple on Dathomir as your own dark sanctuary!
+62226	A cozy lot on Felucia, perfect for building your very first home!
+62227	Luxury Coruscant Apartment
+62228	Live among the skylanes in this luxurious apartment high above Coruscant!

@@ -41,3 +41,320 @@
   alias: CloneAssassin
   texture: Wear_Human_Male_Feet_CloneSeason4Boots_CloneAssassin_C.dds
   source: custom_armor/CloneAssassin_Feet.dds
+
+# -- Denal --------------------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: Denal
+  texture: Wear_Human_Male_Body_CloneBasicArmor_Denal_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_Denal_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: Denal
+  texture: Wear_Human_Male_Head_CloneHelm_Denal_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_Denal_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: Denal
+  texture: Wear_Human_Male_Hands_CloneGloves_Denal_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_Denal_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: Denal
+  texture: Wear_Human_Male_Feet_CloneBoots_Denal_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_Denal_C.dds
+
+# -- Cyclops Clone Trooper Helmet --------------------------------------------
+- adr: Wear_Human_<gender>_Head_CloneHelmCyclops.adr
+  alias: White
+  texture: Wear_Human_Male_Head_CloneHelmCyclops_White_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelmCyclops.adr
+  alias: Denal
+  texture: Wear_Human_Male_Head_CloneHelmCyclops_Denal_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelmCyclops_Denal_C.dds
+  
+# -- Clone Trooper Purple Squares
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: PurpleSquares
+  texture: Wear_Human_Male_Body_CloneBasicArmor_PurpleSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_PurpleSquares_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: PurpleSquares
+  texture: Wear_Human_Male_Head_CloneHelm_PurpleSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_PurpleSquares_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: PurpleSquares
+  texture: Wear_Human_Male_Hands_CloneGloves_PurpleSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_PurpleSquares_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: PurpleSquares
+  texture: Wear_Human_Male_Feet_CloneBoots_PurpleSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_PurpleSquares_C.dds
+
+# -- Fixes for the game's own data ------------------------------------------
+# The male Black Sun armor's alias is misspelled "BlackSunDolsier" (the female
+# model has "BlackSunSoldier"); add the correct name pointing at the same texture.
+- adr: Wear_Human_Male_Body_BlackSunSoldierArmor.adr
+  alias: BlackSunSoldier
+  texture: Wear_Human_Male_Body_BlackSunSoldierArmor_BlackSunSoldier_C.dds
+
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: BlueSquares
+  texture: Wear_Human_Male_Body_CloneBasicArmor_BlueSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_BlueSquares_C.dds
+
+# ===== Squares / Stripes / Phase 2 color variants =====
+
+# -- PurpleStripe ----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: PurpleStripe
+  texture: Wear_Human_Male_Body_CloneBasicArmor_PurpleStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_PurpleStripe_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: PurpleStripe
+  texture: Wear_Human_Male_Head_CloneHelm_PurpleStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_PurpleStripe_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: PurpleStripe
+  texture: Wear_Human_Male_Hands_CloneGloves_PurpleStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_PurpleStripe_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: PurpleStripe
+  texture: Wear_Human_Male_Feet_CloneBoots_PurpleStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_PurpleStripe_C.dds
+
+# -- Phase2Purple ----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  alias: Phase2Purple
+  texture: Wear_Human_Male_Body_ClonePhase2Armor_Phase2Purple_C.dds
+  source: custom_armor/Wear_Human_Male_Body_ClonePhase2Armor_Phase2Purple_C.dds
+- adr: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  alias: Phase2Purple
+  texture: Wear_Human_Male_Head_ClonePhase2Helm_Phase2Purple_C.dds
+  source: custom_armor/Wear_Human_Male_Head_ClonePhase2Helm_Phase2Purple_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: Phase2Purple
+  texture: Wear_Human_Male_Hands_CloneGloves_Phase2Purple_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_Phase2Purple_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: Phase2Purple
+  texture: Wear_Human_Male_Feet_CloneBoots_Phase2Purple_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_Phase2Purple_C.dds
+
+# -- OrangeSquares ---------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: OrangeSquares
+  texture: Wear_Human_Male_Body_CloneBasicArmor_OrangeSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_OrangeSquares_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: OrangeSquares
+  texture: Wear_Human_Male_Head_CloneHelm_OrangeSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_OrangeSquares_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: OrangeSquares
+  texture: Wear_Human_Male_Hands_CloneGloves_OrangeSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_OrangeSquares_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: OrangeSquares
+  texture: Wear_Human_Male_Feet_CloneBoots_OrangeSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_OrangeSquares_C.dds
+
+# -- OrangeStripe ----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: OrangeStripe
+  texture: Wear_Human_Male_Body_CloneBasicArmor_OrangeStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_OrangeStripe_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: OrangeStripe
+  texture: Wear_Human_Male_Head_CloneHelm_OrangeStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_OrangeStripe_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: OrangeStripe
+  texture: Wear_Human_Male_Hands_CloneGloves_OrangeStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_OrangeStripe_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: OrangeStripe
+  texture: Wear_Human_Male_Feet_CloneBoots_OrangeStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_OrangeStripe_C.dds
+
+# -- Phase2Orange ----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  alias: Phase2Orange
+  texture: Wear_Human_Male_Body_ClonePhase2Armor_Phase2Orange_C.dds
+  source: custom_armor/Wear_Human_Male_Body_ClonePhase2Armor_Phase2Orange_C.dds
+- adr: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  alias: Phase2Orange
+  texture: Wear_Human_Male_Head_ClonePhase2Helm_Phase2Orange_C.dds
+  source: custom_armor/Wear_Human_Male_Head_ClonePhase2Helm_Phase2Orange_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: Phase2Orange
+  texture: Wear_Human_Male_Hands_CloneGloves_Phase2Orange_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_Phase2Orange_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: Phase2Orange
+  texture: Wear_Human_Male_Feet_CloneBoots_Phase2Orange_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_Phase2Orange_C.dds
+
+# -- AquaSquares -----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: AquaSquares
+  texture: Wear_Human_Male_Body_CloneBasicArmor_AquaSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_AquaSquares_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: AquaSquares
+  texture: Wear_Human_Male_Head_CloneHelm_AquaSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_AquaSquares_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: AquaSquares
+  texture: Wear_Human_Male_Hands_CloneGloves_AquaSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_AquaSquares_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: AquaSquares
+  texture: Wear_Human_Male_Feet_CloneBoots_AquaSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_AquaSquares_C.dds
+
+# -- AquaStripe ------------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: AquaStripe
+  texture: Wear_Human_Male_Body_CloneBasicArmor_AquaStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_AquaStripe_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: AquaStripe
+  texture: Wear_Human_Male_Head_CloneHelm_AquaStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_AquaStripe_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: AquaStripe
+  texture: Wear_Human_Male_Hands_CloneGloves_AquaStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_AquaStripe_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: AquaStripe
+  texture: Wear_Human_Male_Feet_CloneBoots_AquaStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_AquaStripe_C.dds
+
+# -- Phase2Aqua ------------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  alias: Phase2Aqua
+  texture: Wear_Human_Male_Body_ClonePhase2Armor_Phase2Aqua_C.dds
+  source: custom_armor/Wear_Human_Male_Body_ClonePhase2Armor_Phase2Aqua_C.dds
+- adr: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  alias: Phase2Aqua
+  texture: Wear_Human_Male_Head_ClonePhase2Helm_Phase2Aqua_C.dds
+  source: custom_armor/Wear_Human_Male_Head_ClonePhase2Helm_Phase2Aqua_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: Phase2Aqua
+  texture: Wear_Human_Male_Hands_CloneGloves_Phase2Aqua_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_Phase2Aqua_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: Phase2Aqua
+  texture: Wear_Human_Male_Feet_CloneBoots_Phase2Aqua_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_Phase2Aqua_C.dds
+
+# -- GreenSquares ----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: GreenSquares
+  texture: Wear_Human_Male_Body_CloneBasicArmor_GreenSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_GreenSquares_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: GreenSquares
+  texture: Wear_Human_Male_Head_CloneHelm_GreenSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_GreenSquares_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: GreenSquares
+  texture: Wear_Human_Male_Hands_CloneGloves_GreenSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_GreenSquares_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: GreenSquares
+  texture: Wear_Human_Male_Feet_CloneBoots_GreenSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_GreenSquares_C.dds
+
+# -- GreenStripe -----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: GreenStripe
+  texture: Wear_Human_Male_Body_CloneBasicArmor_GreenStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_GreenStripe_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: GreenStripe
+  texture: Wear_Human_Male_Head_CloneHelm_GreenStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_GreenStripe_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: GreenStripe
+  texture: Wear_Human_Male_Hands_CloneGloves_GreenStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_GreenStripe_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: GreenStripe
+  texture: Wear_Human_Male_Feet_CloneBoots_GreenStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_GreenStripe_C.dds
+
+# -- Phase2Green -----------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  alias: Phase2Green
+  texture: Wear_Human_Male_Body_ClonePhase2Armor_Phase2Green_C.dds
+  source: custom_armor/Wear_Human_Male_Body_ClonePhase2Armor_Phase2Green_C.dds
+- adr: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  alias: Phase2Green
+  texture: Wear_Human_Male_Head_ClonePhase2Helm_Phase2Green_C.dds
+  source: custom_armor/Wear_Human_Male_Head_ClonePhase2Helm_Phase2Green_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: Phase2Green
+  texture: Wear_Human_Male_Hands_CloneGloves_Phase2Green_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_Phase2Green_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: Phase2Green
+  texture: Wear_Human_Male_Feet_CloneBoots_Phase2Green_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_Phase2Green_C.dds
+
+# -- BlueStripe ------------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: BlueStripe
+  texture: Wear_Human_Male_Body_CloneBasicArmor_BlueStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_BlueStripe_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: BlueStripe
+  texture: Wear_Human_Male_Head_CloneHelm_BlueStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_BlueStripe_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: BlueStripe
+  texture: Wear_Human_Male_Hands_CloneGloves_BlueStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_BlueStripe_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: BlueStripe
+  texture: Wear_Human_Male_Feet_CloneBoots_BlueStripe_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_BlueStripe_C.dds
+
+# -- Phase2Blue ------------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  alias: Phase2Blue
+  texture: Wear_Human_Male_Body_ClonePhase2Armor_Phase2Blue_C.dds
+  source: custom_armor/Wear_Human_Male_Body_ClonePhase2Armor_Phase2Blue_C.dds
+- adr: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  alias: Phase2Blue
+  texture: Wear_Human_Male_Head_ClonePhase2Helm_Phase2Blue_C.dds
+  source: custom_armor/Wear_Human_Male_Head_ClonePhase2Helm_Phase2Blue_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: Phase2Blue
+  texture: Wear_Human_Male_Hands_CloneGloves_Phase2Blue_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_Phase2Blue_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: Phase2Blue
+  texture: Wear_Human_Male_Feet_CloneBoots_Phase2Blue_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_Phase2Blue_C.dds
+
+# -- RedSquares ------------------------------------------------------------
+- adr: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  alias: RedSquares
+  texture: Wear_Human_Male_Body_CloneBasicArmor_RedSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Body_CloneBasicArmor_RedSquares_C.dds
+- adr: Wear_Human_<gender>_Head_CloneHelm.adr
+  alias: RedSquares
+  texture: Wear_Human_Male_Head_CloneHelm_RedSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Head_CloneHelm_RedSquares_C.dds
+- adr: Wear_Human_<gender>_Hands_CloneGloves.adr
+  alias: RedSquares
+  texture: Wear_Human_Male_Hands_CloneGloves_RedSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Hands_CloneGloves_RedSquares_C.dds
+- adr: Wear_Human_<gender>_Feet_CloneBoots.adr
+  alias: RedSquares
+  texture: Wear_Human_Male_Feet_CloneBoots_RedSquares_C.dds
+  source: custom_armor/Wear_Human_Male_Feet_CloneBoots_RedSquares_C.dds
+
+# -- Boba Phat's sneakers: the game ships the texture but the BobaSneakers
+# model only has the BobaFett variant.
+- adr: Wear_Human_<gender>_Feet_BobaSneakers.adr
+  alias: BobaPhat
+  texture: Wear_Human_Male_Feet_BobaSneakers_BobaPhat_C.dds

@@ -1162,6 +1162,8 @@
     unknown: 0
   - guid: 254
     unknown: 0
+  - guid: 230076
+    unknown: 0
   members_only: false
   name_id: 8634
   page: 0
@@ -1906,7 +1908,7 @@
   members_only: true
   name_id: 8474
   page: 0
-  preview_animation_id: 0
+  preview_animation_id: 3101
   preview_model_id: 83
   sort_order: 0
 - category: 21
@@ -3418,7 +3420,7 @@
   name_id: 1539
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1028
   sort_order: 0
 - category: 101
   description_id: 1542
@@ -3439,7 +3441,7 @@
   name_id: 1541
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1029
   sort_order: 0
 - category: 101
   description_id: 1544
@@ -3460,7 +3462,7 @@
   name_id: 1543
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1030
   sort_order: 0
 - category: 101
   description_id: 1546
@@ -3481,7 +3483,7 @@
   name_id: 1545
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1031
   sort_order: 0
 - category: 101
   description_id: 1548
@@ -3502,7 +3504,7 @@
   name_id: 1547
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1032
   sort_order: 0
 - category: 80
   description_id: 2637
@@ -3813,7 +3815,7 @@
   name_id: 1827
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1042
   sort_order: 0
 - category: 32
   description_id: 1885
@@ -4291,8 +4293,8 @@
   members_only: false
   name_id: 1879
   page: 0
-  preview_animation_id: 0
-  preview_model_id: 0
+  preview_animation_id: 3501
+  preview_model_id: 83
   sort_order: 0
 - category: 72
   description_id: 19265
@@ -4764,7 +4766,7 @@
   name_id: 32451
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1283
   sort_order: 0
 - category: 34
   description_id: 32454
@@ -4880,6 +4882,8 @@
   - guid: 1378
     unknown: 0
   - guid: 1382
+    unknown: 0
+  - guid: 1346
     unknown: 0
   members_only: true
   name_id: 32698
@@ -5572,7 +5576,7 @@
   name_id: 43529
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1499
   sort_order: 0
 - category: 108
   description_id: 43524
@@ -6391,7 +6395,7 @@
   members_only: false
   name_id: 44778
   page: 0
-  preview_animation_id: 0
+  preview_animation_id: 3106
   preview_model_id: 83
   sort_order: 0
 - category: 21
@@ -7459,7 +7463,7 @@
   name_id: 2905
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 1871
   sort_order: 0
 - category: 30
   description_id: 2908
@@ -8024,7 +8028,7 @@
   members_only: true
   name_id: 4274
   page: 0
-  preview_animation_id: 0
+  preview_animation_id: 3016
   preview_model_id: 83
   sort_order: 0
 - category: 107
@@ -8146,7 +8150,7 @@
   members_only: false
   name_id: 4315
   page: 0
-  preview_animation_id: 0
+  preview_animation_id: 3111
   preview_model_id: 83
   sort_order: 0
 - category: 108
@@ -8631,7 +8635,7 @@
   name_id: 4532
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 3006
   sort_order: 0
 - category: 104
   description_id: 0
@@ -8652,7 +8656,7 @@
   name_id: 4533
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 3083
   sort_order: 0
 # R2-KT
 - category: 71
@@ -9170,7 +9174,7 @@
   name_id: 4609
   page: 0
   preview_animation_id: 0
-  preview_model_id: 0
+  preview_model_id: 3084
   sort_order: 0
 # Felucia Furniture Set
 - category: 30
@@ -9208,6 +9212,8 @@
   is_new: false
   items:
   - guid: 3399
+    unknown: 0
+  - guid: 3400
     unknown: 0
   members_only: true
   name_id: 4647
@@ -9278,6 +9284,12 @@
   is_new: false
   items:
   - guid: 150039
+    unknown: 0
+  - guid: 3402
+    unknown: 0
+  - guid: 3401
+    unknown: 0
+  - guid: 3403
     unknown: 0
   members_only: false
   name_id: 4651
@@ -9548,7 +9560,7 @@
   name_id: 4532
   page: 0
   preview_animation_id: 0
-  preview_model_id: 2367
+  preview_model_id: 3006
   sort_order: 0
 - category: 72
   description_id: 0
@@ -9587,6 +9599,8 @@
     unknown: 1
   - guid: 2905
     unknown: 1
+  - guid: 2086
+    unknown: 0
   members_only: false
   name_id: 0
   page: 0
@@ -10988,4 +11002,5511 @@
   page: 0
   preview_animation_id: 0
   preview_model_id: 2919
+  sort_order: 0
+# Cyclops Clone Trooper Helmet
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9527
+  icon_set_id: 3905
+  is_new: true
+  items:
+  - guid: 190013
+    unknown: 0
+  members_only: true
+  name_id: 62034
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2924
+  sort_order: 0
+# Denal
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9528
+  icon_set_id: 3900
+  is_new: true
+  items:
+  - guid: 190014
+    unknown: 0
+  - guid: 190020
+    unknown: 0
+  - guid: 190019
+    unknown: 0
+  - guid: 190022
+    unknown: 0
+  members_only: true
+  name_id: 62039
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2925
+  sort_order: 0
+# Denal's Helmet (Rangefinder)
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9529
+  icon_set_id: 3906
+  items:
+  - guid: 190023
+    unknown: 0
+  members_only: true
+  name_id: 62040
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2926
+  sort_order: 0
+# Clone Trooper Purple Squares
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9530
+  icon_set_id: 3911
+  items:
+  - guid: 190027
+    unknown: 0
+  - guid: 190024
+    unknown: 0
+  - guid: 190025
+    unknown: 0
+  - guid: 190026
+    unknown: 0
+  members_only: true
+  name_id: 62041
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2927
+  sort_order: 0
+# ===== Store listings added for every armor set / standalone item =====
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9532
+  icon_set_id: 3781
+  is_new: true
+  items:
+  - guid: 150031
+    unknown: 0
+  - guid: 150030
+    unknown: 0
+  - guid: 150032
+    unknown: 0
+  - guid: 150033
+    unknown: 0
+  members_only: false
+  name_id: 60670
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2801
+  sort_order: 0
+# Dengar's Armor (set)
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9533
+  icon_set_id: 2737
+  is_new: true
+  items:
+  - guid: 3409
+    unknown: 0
+  - guid: 3411
+    unknown: 0
+  - guid: 3410
+    unknown: 0
+  - guid: 3412
+    unknown: 0
+  members_only: false
+  name_id: 4683
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2335
+  sort_order: 0
+# Latts Razzi Suit (set)
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9534
+  icon_set_id: 2855
+  is_new: true
+  items:
+  - guid: 150057
+    unknown: 0
+  - guid: 150058
+    unknown: 0
+  - guid: 150059
+    unknown: 0
+  members_only: false
+  name_id: 4821
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2398
+  sort_order: 0
+# Corrupt Warlord Duster (set)
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9535
+  icon_set_id: 3139
+  is_new: true
+  items:
+  - guid: 150054
+    unknown: 0
+  - guid: 150053
+    unknown: 0
+  - guid: 150055
+    unknown: 0
+  - guid: 150056
+    unknown: 0
+  members_only: false
+  name_id: 52806
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2565
+  sort_order: 0
+# Petro's Gypsy Suit (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9536
+  icon_set_id: 3204
+  is_new: true
+  items:
+  - guid: 170066
+    unknown: 0
+  - guid: 170065
+    unknown: 0
+  - guid: 170067
+    unknown: 0
+  - guid: 170068
+    unknown: 0
+  members_only: false
+  name_id: 53605
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2598
+  sort_order: 0
+# Bariss' Cloak (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9537
+  icon_set_id: 3714
+  is_new: true
+  items:
+  - guid: 180134
+    unknown: 0
+  - guid: 180133
+    unknown: 0
+  - guid: 180135
+    unknown: 0
+  - guid: 180136
+    unknown: 0
+  members_only: false
+  name_id: 54470
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2770
+  sort_order: 0
+# Jedi Exile Tunic (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9538
+  icon_set_id: 3833
+  is_new: true
+  items:
+  - guid: 180150
+    unknown: 0
+  - guid: 180149
+    unknown: 0
+  - guid: 180151
+    unknown: 0
+  - guid: 180152
+    unknown: 0
+  members_only: false
+  name_id: 54600
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2928
+  sort_order: 0
+# Forgotten Jedi Armor (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9539
+  icon_set_id: 3738
+  is_new: true
+  items:
+  - guid: 180146
+    unknown: 0
+  - guid: 180145
+    unknown: 0
+  - guid: 180147
+    unknown: 0
+  - guid: 180148
+    unknown: 0
+  members_only: false
+  name_id: 60289
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2929
+  sort_order: 0
+# Temple Guard Cloak (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9540
+  icon_set_id: 3710
+  is_new: true
+  items:
+  - guid: 180044
+    unknown: 0
+  - guid: 180043
+    unknown: 0
+  - guid: 180045
+    unknown: 0
+  - guid: 180046
+    unknown: 0
+  members_only: false
+  name_id: 54476
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2771
+  sort_order: 0
+# Jocasta Nu's Robes (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9541
+  icon_set_id: 98
+  is_new: true
+  items:
+  - guid: 180160
+    unknown: 0
+  - guid: 180161
+    unknown: 0
+  members_only: false
+  name_id: 198
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 414
+  sort_order: 0
+# Flanneled Cold Weather Kit Fisto's Suit (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9542
+  icon_set_id: 3334
+  is_new: true
+  items:
+  - guid: 180122
+    unknown: 0
+  - guid: 180121
+    unknown: 0
+  - guid: 180123
+    unknown: 0
+  - guid: 180124
+    unknown: 0
+  members_only: false
+  name_id: 2677
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2666
+  sort_order: 0
+# Sulon Jedi Suit (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9543
+  icon_set_id: 3837
+  is_new: true
+  items:
+  - guid: 180162
+    unknown: 0
+  - guid: 180163
+    unknown: 0
+  - guid: 180164
+    unknown: 0
+  members_only: false
+  name_id: 54605
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2930
+  sort_order: 0
+# Jedi Champion Robe (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9544
+  icon_set_id: 3110
+  is_new: true
+  items:
+  - guid: 180154
+    unknown: 0
+  - guid: 180153
+    unknown: 0
+  - guid: 180155
+    unknown: 0
+  - guid: 180156
+    unknown: 0
+  members_only: false
+  name_id: 52787
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2931
+  sort_order: 0
+# Shotem Master Robes (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9545
+  icon_set_id: 3786
+  is_new: true
+  items:
+  - guid: 180022
+    unknown: 0
+  - guid: 180021
+    unknown: 0
+  - guid: 180023
+    unknown: 0
+  - guid: 180024
+    unknown: 0
+  members_only: false
+  name_id: 60676
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2802
+  sort_order: 0
+# Kofun Jedi Armor (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9546
+  icon_set_id: 2848
+  is_new: true
+  items:
+  - guid: 180142
+    unknown: 0
+  - guid: 180141
+    unknown: 0
+  - guid: 180143
+    unknown: 0
+  - guid: 180144
+    unknown: 0
+  members_only: false
+  name_id: 4818
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2396
+  sort_order: 0
+# Adept Jedi Cloak (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9547
+  icon_set_id: 2686
+  is_new: true
+  items:
+  - guid: 180138
+    unknown: 0
+  - guid: 180137
+    unknown: 0
+  - guid: 180139
+    unknown: 0
+  - guid: 180140
+    unknown: 0
+  members_only: false
+  name_id: 4619
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2932
+  sort_order: 0
+# Black Sun Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9548
+  icon_set_id: 3763
+  is_new: true
+  items:
+  - guid: 190168
+    unknown: 0
+  - guid: 190167
+    unknown: 0
+  - guid: 190169
+    unknown: 0
+  members_only: false
+  name_id: 54508
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2787
+  sort_order: 0
+# Cold Warrior Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9549
+  icon_set_id: 2971
+  is_new: true
+  items:
+  - guid: 190182
+    unknown: 0
+  - guid: 190181
+    unknown: 0
+  - guid: 190183
+    unknown: 0
+  - guid: 190184
+    unknown: 0
+  members_only: false
+  name_id: 52062
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2933
+  sort_order: 0
+# Orange Death Watch Commander Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9550
+  icon_set_id: 3226
+  is_new: true
+  items:
+  - guid: 190190
+    unknown: 0
+  - guid: 190189
+    unknown: 0
+  - guid: 190191
+    unknown: 0
+  - guid: 190192
+    unknown: 0
+  members_only: false
+  name_id: 53709
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2934
+  sort_order: 0
+# Craggy Pirate Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9551
+  icon_set_id: 3748
+  is_new: true
+  items:
+  - guid: 190160
+    unknown: 0
+  - guid: 190161
+    unknown: 0
+  - guid: 190162
+    unknown: 0
+  members_only: false
+  name_id: 54495
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2783
+  sort_order: 0
+# Dark Side Acolyte Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9552
+  icon_set_id: 2787
+  is_new: true
+  items:
+  - guid: 190217
+    unknown: 0
+  - guid: 190216
+    unknown: 0
+  - guid: 190218
+    unknown: 0
+  - guid: 190219
+    unknown: 0
+  members_only: false
+  name_id: 4747
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2270
+  sort_order: 0
+# Dark Side Adept Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9553
+  icon_set_id: 2783
+  is_new: true
+  items:
+  - guid: 190221
+    unknown: 0
+  - guid: 190220
+    unknown: 0
+  - guid: 190222
+    unknown: 0
+  - guid: 190223
+    unknown: 0
+  members_only: false
+  name_id: 4743
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2269
+  sort_order: 0
+# Darth Maul's Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9554
+  icon_set_id: 3706
+  is_new: true
+  items:
+  - guid: 190236
+    unknown: 0
+  - guid: 190237
+    unknown: 0
+  - guid: 190238
+    unknown: 0
+  members_only: false
+  name_id: 54481
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2772
+  sort_order: 0
+# Carlac Death Watch Elite Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9555
+  icon_set_id: 2936
+  is_new: true
+  items:
+  - guid: 190186
+    unknown: 0
+  - guid: 190185
+    unknown: 0
+  - guid: 190187
+    unknown: 0
+  - guid: 190188
+    unknown: 0
+  members_only: false
+  name_id: 4905
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2935
+  sort_order: 0
+# Death Watch Lieutenant Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9556
+  icon_set_id: 3629
+  is_new: true
+  items:
+  - guid: 190198
+    unknown: 0
+  - guid: 190197
+    unknown: 0
+  - guid: 190199
+    unknown: 0
+  - guid: 190200
+    unknown: 0
+  members_only: false
+  name_id: 54249
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2690
+  sort_order: 0
+# Gray Sith Agent Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9557
+  icon_set_id: 3013
+  is_new: true
+  items:
+  - guid: 190233
+    unknown: 0
+  - guid: 190232
+    unknown: 0
+  - guid: 190234
+    unknown: 0
+  - guid: 190235
+    unknown: 0
+  members_only: false
+  name_id: 4955
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2936
+  sort_order: 0
+# Smuggler Vest (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9558
+  icon_set_id: 3839
+  is_new: true
+  items:
+  - guid: 190241
+    unknown: 0
+  - guid: 190242
+    unknown: 0
+  members_only: false
+  name_id: 54608
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2937
+  sort_order: 0
+# Jiro's Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9559
+  icon_set_id: 3813
+  is_new: true
+  items:
+  - guid: 190157
+    unknown: 0
+  - guid: 190158
+    unknown: 0
+  - guid: 190159
+    unknown: 0
+  members_only: false
+  name_id: 52886
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2807
+  sort_order: 0
+# Scoundrel Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9560
+  icon_set_id: 3841
+  is_new: true
+  items:
+  - guid: 190239
+    unknown: 0
+  - guid: 190240
+    unknown: 0
+  members_only: false
+  name_id: 54609
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2938
+  sort_order: 0
+# Mandalorian Super Commando Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9561
+  icon_set_id: 3699
+  is_new: true
+  items:
+  - guid: 190206
+    unknown: 0
+  - guid: 190205
+    unknown: 0
+  members_only: false
+  name_id: 54435
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2754
+  sort_order: 0
+# Super Commando Captain Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9562
+  icon_set_id: 3687
+  is_new: true
+  items:
+  - guid: 190202
+    unknown: 0
+  - guid: 190201
+    unknown: 0
+  - guid: 190203
+    unknown: 0
+  - guid: 190204
+    unknown: 0
+  members_only: false
+  name_id: 54416
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2741
+  sort_order: 0
+# Ming Po Militia Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9563
+  icon_set_id: 3083
+  is_new: true
+  items:
+  - guid: 190178
+    unknown: 0
+  - guid: 190177
+    unknown: 0
+  - guid: 190179
+    unknown: 0
+  - guid: 190180
+    unknown: 0
+  members_only: false
+  name_id: 52855
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2549
+  sort_order: 0
+# Death Watch Night Owl Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9564
+  icon_set_id: 3634
+  is_new: true
+  items:
+  - guid: 190194
+    unknown: 0
+  - guid: 190193
+    unknown: 0
+  - guid: 190195
+    unknown: 0
+  - guid: 190196
+    unknown: 0
+  members_only: false
+  name_id: 54255
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2691
+  sort_order: 0
+# Nikto Spacesuit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9565
+  icon_set_id: 3855
+  is_new: true
+  items:
+  - guid: 190171
+    unknown: 0
+  - guid: 190170
+    unknown: 0
+  - guid: 190172
+    unknown: 0
+  - guid: 190173
+    unknown: 0
+  members_only: false
+  name_id: 60771
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2825
+  sort_order: 0
+# Onderon Guard Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9566
+  icon_set_id: 3182
+  is_new: true
+  items:
+  - guid: 190150
+    unknown: 0
+  - guid: 190149
+    unknown: 0
+  - guid: 190151
+    unknown: 0
+  - guid: 190152
+    unknown: 0
+  members_only: false
+  name_id: 53542
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2596
+  sort_order: 0
+# Ming Po Robe (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9567
+  icon_set_id: 3061
+  is_new: true
+  items:
+  - guid: 190174
+    unknown: 0
+  - guid: 190175
+    unknown: 0
+  - guid: 190176
+    unknown: 0
+  members_only: false
+  name_id: 52835
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2515
+  sort_order: 0
+# Police Guard Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9568
+  icon_set_id: 1884
+  is_new: true
+  items:
+  - guid: 190154
+    unknown: 0
+  - guid: 190153
+    unknown: 0
+  - guid: 190155
+    unknown: 0
+  - guid: 190156
+    unknown: 0
+  members_only: false
+  name_id: 43707
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 1511
+  sort_order: 0
+# Pre Vizsla's Death Watch Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9569
+  icon_set_id: 3697
+  is_new: true
+  items:
+  - guid: 190016
+    unknown: 0
+  - guid: 190015
+    unknown: 0
+  - guid: 190017
+    unknown: 0
+  - guid: 190018
+    unknown: 0
+  members_only: false
+  name_id: 54427
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2753
+  sort_order: 0
+# Byzantium Sith Agent Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9570
+  icon_set_id: 3005
+  is_new: true
+  items:
+  - guid: 190225
+    unknown: 0
+  - guid: 190224
+    unknown: 0
+  - guid: 190226
+    unknown: 0
+  - guid: 190227
+    unknown: 0
+  members_only: false
+  name_id: 4947
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2939
+  sort_order: 0
+# Carmine Sith Agent Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9571
+  icon_set_id: 3009
+  is_new: true
+  items:
+  - guid: 190229
+    unknown: 0
+  - guid: 190228
+    unknown: 0
+  - guid: 190230
+    unknown: 0
+  - guid: 190231
+    unknown: 0
+  members_only: false
+  name_id: 4951
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2940
+  sort_order: 0
+# Major Rigosso's Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9572
+  icon_set_id: 2806
+  is_new: true
+  items:
+  - guid: 190134
+    unknown: 0
+  - guid: 190135
+    unknown: 0
+  - guid: 190136
+    unknown: 0
+  members_only: false
+  name_id: 4764
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2371
+  sort_order: 0
+# Gerrera's Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9573
+  icon_set_id: 3149
+  is_new: true
+  items:
+  - guid: 190146
+    unknown: 0
+  - guid: 190147
+    unknown: 0
+  - guid: 190148
+    unknown: 0
+  members_only: false
+  name_id: 52906
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2570
+  sort_order: 0
+# Umbaran General Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9574
+  icon_set_id: 2821
+  is_new: true
+  items:
+  - guid: 190143
+    unknown: 0
+  - guid: 190144
+    unknown: 0
+  - guid: 190145
+    unknown: 0
+  members_only: false
+  name_id: 4780
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2409
+  sort_order: 0
+# Usk Bunker General Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9575
+  icon_set_id: 2817
+  is_new: true
+  items:
+  - guid: 190137
+    unknown: 0
+  - guid: 190138
+    unknown: 0
+  - guid: 190139
+    unknown: 0
+  members_only: false
+  name_id: 4776
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2389
+  sort_order: 0
+# Grek Bunker General Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9576
+  icon_set_id: 2813
+  is_new: true
+  items:
+  - guid: 190140
+    unknown: 0
+  - guid: 190141
+    unknown: 0
+  - guid: 190142
+    unknown: 0
+  members_only: false
+  name_id: 4772
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2374
+  sort_order: 0
+# Weequay Pirate Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9577
+  icon_set_id: 3187
+  is_new: true
+  items:
+  - guid: 190164
+    unknown: 0
+  - guid: 190163
+    unknown: 0
+  - guid: 190165
+    unknown: 0
+  - guid: 190166
+    unknown: 0
+  members_only: false
+  name_id: 53546
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2599
+  sort_order: 0
+# Crimson Prowler Suit (set)
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9578
+  icon_set_id: 3717
+  is_new: true
+  items:
+  - guid: 220066
+    unknown: 0
+  - guid: 220065
+    unknown: 0
+  - guid: 220067
+    unknown: 0
+  - guid: 220068
+    unknown: 0
+  members_only: false
+  name_id: 60196
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2750
+  sort_order: 0
+# Sith Infiltrator Armor (set)
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9579
+  icon_set_id: 2852
+  is_new: true
+  items:
+  - guid: 220047
+    unknown: 0
+  - guid: 220046
+    unknown: 0
+  - guid: 220048
+    unknown: 0
+  - guid: 220049
+    unknown: 0
+  members_only: false
+  name_id: 2685
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2397
+  sort_order: 0
+# Sith Inquisitor Suit (set)
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9580
+  icon_set_id: 1876
+  is_new: true
+  items:
+  - guid: 220055
+    unknown: 0
+  - guid: 220054
+    unknown: 0
+  - guid: 220056
+    unknown: 0
+  - guid: 220057
+    unknown: 0
+  members_only: false
+  name_id: 4926
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 1509
+  sort_order: 0
+# Sith Marauder Robe (set)
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9581
+  icon_set_id: 1880
+  is_new: true
+  items:
+  - guid: 220051
+    unknown: 0
+  - guid: 220050
+    unknown: 0
+  - guid: 220052
+    unknown: 0
+  - guid: 220053
+    unknown: 0
+  members_only: false
+  name_id: 43703
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 1510
+  sort_order: 0
+# Crimson Kofun Armor (set)
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9582
+  icon_set_id: 3272
+  is_new: true
+  items:
+  - guid: 220059
+    unknown: 0
+  - guid: 220058
+    unknown: 0
+  - guid: 220060
+    unknown: 0
+  - guid: 220061
+    unknown: 0
+  members_only: false
+  name_id: 53972
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2626
+  sort_order: 0
+# Sith Warrior Robe (set)
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9583
+  icon_set_id: 3114
+  is_new: true
+  items:
+  - guid: 220043
+    unknown: 0
+  - guid: 220042
+    unknown: 0
+  - guid: 220044
+    unknown: 0
+  - guid: 220045
+    unknown: 0
+  members_only: false
+  name_id: 52793
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2554
+  sort_order: 0
+# Boba Phat's Suit (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9584
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230089
+    unknown: 0
+  - guid: 230090
+    unknown: 0
+  - guid: 230110
+    unknown: 0
+  members_only: false
+  name_id: 1454
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2941
+  sort_order: 0
+# Azure Death Watch Commander Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9585
+  icon_set_id: 3238
+  is_new: true
+  items:
+  - guid: 230065
+    unknown: 0
+  - guid: 230064
+    unknown: 0
+  - guid: 230066
+    unknown: 0
+  - guid: 230067
+    unknown: 0
+  members_only: false
+  name_id: 53721
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2942
+  sort_order: 0
+# Cobalt Death Watch Commander Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9586
+  icon_set_id: 3234
+  is_new: true
+  items:
+  - guid: 230073
+    unknown: 0
+  - guid: 230072
+    unknown: 0
+  - guid: 230074
+    unknown: 0
+  - guid: 230075
+    unknown: 0
+  members_only: false
+  name_id: 53717
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2943
+  sort_order: 0
+# Byzantium Death Watch Commander Suit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9587
+  icon_set_id: 3230
+  is_new: true
+  items:
+  - guid: 230069
+    unknown: 0
+  - guid: 230068
+    unknown: 0
+  - guid: 230070
+    unknown: 0
+  - guid: 230071
+    unknown: 0
+  members_only: false
+  name_id: 53713
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2944
+  sort_order: 0
+# Commander Wolffe's Armor (set)
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9588
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230057
+    unknown: 0
+  - guid: 230056
+    unknown: 0
+  - guid: 230058
+    unknown: 0
+  - guid: 230059
+    unknown: 0
+  members_only: false
+  name_id: 62046
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2945
+  sort_order: 0
+# Dash Rendar's Suit (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9589
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230017
+    unknown: 0
+  - guid: 230018
+    unknown: 0
+  - guid: 230019
+    unknown: 0
+  members_only: false
+  name_id: 1565
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2946
+  sort_order: 0
+# None (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9590
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230027
+    unknown: 0
+  - guid: 230026
+    unknown: 0
+  - guid: 230024
+    unknown: 0
+  - guid: 230025
+    unknown: 0
+  members_only: false
+  name_id: 62064
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2947
+  sort_order: 0
+# Han Solo's Outfit (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9591
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230020
+    unknown: 0
+  - guid: 230021
+    unknown: 0
+  members_only: false
+  name_id: 302
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2948
+  sort_order: 0
+# Kyle Katarn's Uniform (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9592
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230002
+    unknown: 0
+  - guid: 230003
+    unknown: 0
+  - guid: 230004
+    unknown: 0
+  members_only: false
+  name_id: 204
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2949
+  sort_order: 0
+# Lando Calrissian's Suit (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9593
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230005
+    unknown: 0
+  - guid: 230006
+    unknown: 0
+  members_only: false
+  name_id: 1462
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2950
+  sort_order: 0
+# Luke Skywalker's Robes (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9594
+  icon_set_id: 480
+  is_new: true
+  items:
+  - guid: 230000
+    unknown: 0
+  - guid: 230001
+    unknown: 0
+  members_only: false
+  name_id: 924
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 636
+  sort_order: 0
+# Mara Jade's Battle Suit (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9595
+  icon_set_id: 104
+  is_new: true
+  items:
+  - guid: 230010
+    unknown: 0
+  - guid: 230011
+    unknown: 0
+  - guid: 230012
+    unknown: 0
+  members_only: false
+  name_id: 216
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 426
+  sort_order: 0
+# Mustafar Mandalorian Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9596
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230033
+    unknown: 0
+  - guid: 230032
+    unknown: 0
+  - guid: 230034
+    unknown: 0
+  - guid: 230035
+    unknown: 0
+  members_only: false
+  name_id: 62050
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2951
+  sort_order: 0
+# Republic Fleet Officer Uniform (set)
+- category: 105
+  description_id: 0
+  for_sale: true
+  guid: 9597
+  icon_set_id: 106
+  is_new: true
+  items:
+  - guid: 230082
+    unknown: 0
+  - guid: 230081
+    unknown: 0
+  members_only: false
+  name_id: 8540
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 220
+  sort_order: 0
+# Senatorial Naboo Bodysuit (set)
+- category: 105
+  description_id: 0
+  for_sale: true
+  guid: 9598
+  icon_set_id: 110
+  is_new: true
+  items:
+  - guid: 230083
+    unknown: 0
+  - guid: 230085
+    unknown: 0
+  - guid: 230084
+    unknown: 0
+  members_only: false
+  name_id: 248
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 607
+  sort_order: 0
+# None (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9599
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230091
+    unknown: 0
+  - guid: 230092
+    unknown: 0
+  - guid: 230093
+    unknown: 0
+  members_only: false
+  name_id: 62066
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2952
+  sort_order: 0
+# Rebel Pilot Jumpsuit (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9600
+  icon_set_id: 108
+  is_new: true
+  items:
+  - guid: 230023
+    unknown: 0
+  - guid: 230022
+    unknown: 0
+  - guid: 230024
+    unknown: 0
+  - guid: 230025
+    unknown: 0
+  members_only: false
+  name_id: 240
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 435
+  sort_order: 0
+# None (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9601
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230029
+    unknown: 0
+  - guid: 230028
+    unknown: 0
+  - guid: 230024
+    unknown: 0
+  - guid: 230025
+    unknown: 0
+  members_only: false
+  name_id: 62065
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2953
+  sort_order: 0
+# Imperial Royal Guard Armor (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9602
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230014
+    unknown: 0
+  - guid: 230013
+    unknown: 0
+  - guid: 230015
+    unknown: 0
+  - guid: 230016
+    unknown: 0
+  members_only: false
+  name_id: 1650
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2954
+  sort_order: 0
+# Tamtel Skreej's Armor (set)
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9603
+  icon_set_id: 495
+  is_new: true
+  items:
+  - guid: 230008
+    unknown: 0
+  - guid: 230007
+    unknown: 0
+  - guid: 230009
+    unknown: 0
+  members_only: false
+  name_id: 930
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 637
+  sort_order: 0
+# Tatooine Anakin's Tunic (set)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9604
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230086
+    unknown: 0
+  - guid: 230087
+    unknown: 0
+  - guid: 230088
+    unknown: 0
+  members_only: false
+  name_id: 62058
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2955
+  sort_order: 0
+# Lurmen Outfit (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9605
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230078
+    unknown: 0
+  - guid: 230077
+    unknown: 0
+  - guid: 230079
+    unknown: 0
+  - guid: 230080
+    unknown: 0
+  members_only: false
+  name_id: 62054
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2956
+  sort_order: 0
+# Gold Death Watch Armor (set)
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9606
+  icon_set_id: 2741
+  is_new: true
+  items:
+  - guid: 190212
+    unknown: 0
+  - guid: 190211
+    unknown: 0
+  - guid: 190213
+    unknown: 0
+  - guid: 190214
+    unknown: 0
+  members_only: false
+  name_id: 2693
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2957
+  sort_order: 0
+# Standalone gear & weapons sold individually (unnamed group: not shown as a set)
+- category: 0
+  description_id: 0
+  for_sale: true
+  guid: 10100
+  icon_set_id: 0
+  is_new: false
+  items:
+  - guid: 150060
+    unknown: 0
+  - guid: 170028
+    unknown: 0
+  - guid: 170029
+    unknown: 0
+  - guid: 170030
+    unknown: 0
+  - guid: 220062
+    unknown: 0
+  - guid: 220063
+    unknown: 0
+  - guid: 220064
+    unknown: 0
+  - guid: 230030
+    unknown: 0
+  - guid: 230031
+    unknown: 0
+  - guid: 230084
+    unknown: 0
+  - guid: 80000
+    unknown: 0
+  - guid: 80001
+    unknown: 0
+  - guid: 80002
+    unknown: 0
+  - guid: 80003
+    unknown: 0
+  - guid: 80004
+    unknown: 0
+  - guid: 80005
+    unknown: 0
+  - guid: 80006
+    unknown: 0
+  - guid: 80007
+    unknown: 0
+  - guid: 80008
+    unknown: 0
+  - guid: 80009
+    unknown: 0
+  - guid: 80010
+    unknown: 0
+  - guid: 80011
+    unknown: 0
+  - guid: 80012
+    unknown: 0
+  - guid: 80013
+    unknown: 0
+  - guid: 80014
+    unknown: 0
+  - guid: 80015
+    unknown: 0
+  - guid: 80016
+    unknown: 0
+  - guid: 80017
+    unknown: 0
+  - guid: 80018
+    unknown: 0
+  - guid: 80019
+    unknown: 0
+  - guid: 80020
+    unknown: 0
+  - guid: 80021
+    unknown: 0
+  - guid: 80022
+    unknown: 0
+  - guid: 80023
+    unknown: 0
+  - guid: 80024
+    unknown: 0
+  - guid: 80025
+    unknown: 0
+  - guid: 80026
+    unknown: 0
+  - guid: 80027
+    unknown: 0
+  - guid: 80028
+    unknown: 0
+  - guid: 230094
+    unknown: 0
+  - guid: 230095
+    unknown: 0
+  - guid: 230096
+    unknown: 0
+  - guid: 230097
+    unknown: 0
+  - guid: 230103
+    unknown: 0
+  - guid: 230104
+    unknown: 0
+  - guid: 230105
+    unknown: 0
+  - guid: 230106
+    unknown: 0
+  - guid: 230107
+    unknown: 0
+  - guid: 230108
+    unknown: 0
+  - guid: 230109
+    unknown: 0
+  - guid: 230076
+    unknown: 0
+  members_only: false
+  name_id: 0
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Kage Warrior Holoprojector
+- category: 21
+  description_id: 0
+  for_sale: true
+  guid: 9607
+  icon_set_id: 2774
+  is_new: true
+  items:
+  - guid: 3441
+    unknown: 0
+  members_only: true
+  name_id: 4728
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2352
+  sort_order: 0
+# Ortolan Holoprojector
+- category: 21
+  description_id: 0
+  for_sale: true
+  guid: 9608
+  icon_set_id: 2778
+  is_new: true
+  items:
+  - guid: 3442
+    unknown: 0
+  members_only: true
+  name_id: 4732
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2356
+  sort_order: 0
+# Umbaran Soldier Holoprojector
+- category: 21
+  description_id: 0
+  for_sale: true
+  guid: 9609
+  icon_set_id: 2801
+  is_new: true
+  items:
+  - guid: 3443
+    unknown: 0
+  members_only: true
+  name_id: 4753
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 1965
+  sort_order: 0
+# Narglatch Holoprojector
+- category: 21
+  description_id: 0
+  for_sale: true
+  guid: 9610
+  icon_set_id: 2869
+  is_new: true
+  items:
+  - guid: 3444
+    unknown: 0
+  members_only: true
+  name_id: 4833
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2470
+  sort_order: 0
+# Old Daka Holoprojector
+- category: 21
+  description_id: 0
+  for_sale: true
+  guid: 9611
+  icon_set_id: 2919
+  is_new: true
+  items:
+  - guid: 3445
+    unknown: 0
+  members_only: true
+  name_id: 4868
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2436
+  sort_order: 0
+# Repeating Blaster Turrets
+- category: 30
+  description_id: 0
+  for_sale: true
+  guid: 9612
+  icon_set_id: 2249
+  is_new: true
+  items:
+  - guid: 1532
+    unknown: 0
+  - guid: 1533
+    unknown: 0
+  - guid: 1534
+    unknown: 0
+  - guid: 1535
+    unknown: 0
+  - guid: 1536
+    unknown: 0
+  members_only: false
+  name_id: 62067
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 1804
+  sort_order: 0
+# Sith Holocron
+- category: 30
+  description_id: 0
+  for_sale: true
+  guid: 9613
+  icon_set_id: 2733
+  is_new: true
+  items:
+  - guid: 3404
+    unknown: 0
+  members_only: false
+  name_id: 4997
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2328
+  sort_order: 0
+# PurpleStripe
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9614
+  icon_set_id: 3912
+  is_new: true
+  items:
+  - guid: 190028
+    unknown: 0
+  - guid: 190029
+    unknown: 0
+  - guid: 190030
+    unknown: 0
+  - guid: 190031
+    unknown: 0
+  members_only: true
+  name_id: 62068
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2958
+  sort_order: 0
+# Phase2Purple
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9615
+  icon_set_id: 3917
+  is_new: true
+  items:
+  - guid: 190032
+    unknown: 0
+  - guid: 190033
+    unknown: 0
+  - guid: 190034
+    unknown: 0
+  - guid: 190035
+    unknown: 0
+  members_only: true
+  name_id: 62073
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2959
+  sort_order: 0
+# OrangeSquares
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9616
+  icon_set_id: 3922
+  is_new: true
+  items:
+  - guid: 190036
+    unknown: 0
+  - guid: 190037
+    unknown: 0
+  - guid: 190038
+    unknown: 0
+  - guid: 190039
+    unknown: 0
+  members_only: true
+  name_id: 62078
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2960
+  sort_order: 0
+# OrangeStripe
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9617
+  icon_set_id: 3927
+  is_new: true
+  items:
+  - guid: 190040
+    unknown: 0
+  - guid: 190041
+    unknown: 0
+  - guid: 190042
+    unknown: 0
+  - guid: 190043
+    unknown: 0
+  members_only: true
+  name_id: 62083
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2961
+  sort_order: 0
+# Phase2Orange
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9618
+  icon_set_id: 3932
+  is_new: true
+  items:
+  - guid: 190044
+    unknown: 0
+  - guid: 190045
+    unknown: 0
+  - guid: 190046
+    unknown: 0
+  - guid: 190047
+    unknown: 0
+  members_only: true
+  name_id: 62088
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2962
+  sort_order: 0
+# AquaSquares
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9619
+  icon_set_id: 3937
+  is_new: true
+  items:
+  - guid: 190048
+    unknown: 0
+  - guid: 190049
+    unknown: 0
+  - guid: 190050
+    unknown: 0
+  - guid: 190051
+    unknown: 0
+  members_only: true
+  name_id: 62092
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2963
+  sort_order: 0
+# AquaStripe
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9620
+  icon_set_id: 3942
+  is_new: true
+  items:
+  - guid: 190052
+    unknown: 0
+  - guid: 190053
+    unknown: 0
+  - guid: 190054
+    unknown: 0
+  - guid: 190055
+    unknown: 0
+  members_only: true
+  name_id: 62097
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2964
+  sort_order: 0
+# Phase2Aqua
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9621
+  icon_set_id: 3947
+  is_new: true
+  items:
+  - guid: 190056
+    unknown: 0
+  - guid: 190057
+    unknown: 0
+  - guid: 190058
+    unknown: 0
+  - guid: 190059
+    unknown: 0
+  members_only: true
+  name_id: 62158
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2965
+  sort_order: 0
+# GreenSquares
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9622
+  icon_set_id: 3952
+  is_new: true
+  items:
+  - guid: 190060
+    unknown: 0
+  - guid: 190061
+    unknown: 0
+  - guid: 190062
+    unknown: 0
+  - guid: 190063
+    unknown: 0
+  members_only: true
+  name_id: 62163
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2966
+  sort_order: 0
+# GreenStripe
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9623
+  icon_set_id: 3957
+  is_new: true
+  items:
+  - guid: 190064
+    unknown: 0
+  - guid: 190065
+    unknown: 0
+  - guid: 190066
+    unknown: 0
+  - guid: 190067
+    unknown: 0
+  members_only: true
+  name_id: 62168
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2967
+  sort_order: 0
+# Phase2Green
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9624
+  icon_set_id: 3962
+  is_new: true
+  items:
+  - guid: 190068
+    unknown: 0
+  - guid: 190069
+    unknown: 0
+  - guid: 190070
+    unknown: 0
+  - guid: 190071
+    unknown: 0
+  members_only: true
+  name_id: 62172
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2968
+  sort_order: 0
+# BlueStripe
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9625
+  icon_set_id: 3967
+  is_new: true
+  items:
+  - guid: 190072
+    unknown: 0
+  - guid: 190073
+    unknown: 0
+  - guid: 190074
+    unknown: 0
+  - guid: 190075
+    unknown: 0
+  members_only: true
+  name_id: 62177
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2969
+  sort_order: 0
+# Phase2Blue
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9626
+  icon_set_id: 3972
+  is_new: true
+  items:
+  - guid: 190076
+    unknown: 0
+  - guid: 190077
+    unknown: 0
+  - guid: 190078
+    unknown: 0
+  - guid: 190079
+    unknown: 0
+  members_only: true
+  name_id: 62182
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2970
+  sort_order: 0
+# RedSquares
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9627
+  icon_set_id: 3977
+  is_new: true
+  items:
+  - guid: 190080
+    unknown: 0
+  - guid: 190081
+    unknown: 0
+  - guid: 190082
+    unknown: 0
+  - guid: 190083
+    unknown: 0
+  members_only: true
+  name_id: 62187
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2971
+  sort_order: 0
+# Count Dooku-la Cape (protocol droid attachment)
+- category: 72
+  description_id: 0
+  for_sale: true
+  guid: 9628
+  icon_set_id: 74
+  is_new: true
+  items:
+  - guid: 2086
+    unknown: 0
+  members_only: false
+  name_id: 17861
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2972
+  sort_order: 0
+# Free emotes: sold individually for 0 credits so players can own them (unnamed: not a set)
+- category: 0
+  description_id: 0
+  for_sale: true
+  guid: 10101
+  icon_set_id: 0
+  is_new: false
+  items:
+  - guid: 6001
+    unknown: 0
+  - guid: 6002
+    unknown: 0
+  - guid: 6003
+    unknown: 0
+  - guid: 6004
+    unknown: 0
+  - guid: 6005
+    unknown: 0
+  - guid: 6006
+    unknown: 0
+  - guid: 6007
+    unknown: 0
+  - guid: 6008
+    unknown: 0
+  - guid: 6009
+    unknown: 0
+  - guid: 6010
+    unknown: 0
+  - guid: 6011
+    unknown: 0
+  - guid: 6012
+    unknown: 0
+  - guid: 6013
+    unknown: 0
+  - guid: 6014
+    unknown: 0
+  - guid: 6015
+    unknown: 0
+  - guid: 6016
+    unknown: 0
+  - guid: 6017
+    unknown: 0
+  - guid: 6018
+    unknown: 0
+  - guid: 6019
+    unknown: 0
+  - guid: 6020
+    unknown: 0
+  - guid: 6021
+    unknown: 0
+  - guid: 6022
+    unknown: 0
+  - guid: 6023
+    unknown: 0
+  - guid: 6024
+    unknown: 0
+  - guid: 6025
+    unknown: 0
+  - guid: 6026
+    unknown: 0
+  - guid: 6027
+    unknown: 0
+  - guid: 6028
+    unknown: 0
+  - guid: 6029
+    unknown: 0
+  - guid: 6030
+    unknown: 0
+  - guid: 6031
+    unknown: 0
+  - guid: 6032
+    unknown: 0
+  - guid: 6033
+    unknown: 0
+  - guid: 6034
+    unknown: 0
+  - guid: 6035
+    unknown: 0
+  - guid: 6036
+    unknown: 0
+  - guid: 250024
+    unknown: 0
+  - guid: 250025
+    unknown: 0
+  - guid: 250026
+    unknown: 0
+  - guid: 250027
+    unknown: 0
+  members_only: false
+  name_id: 0
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Mount: mount 2 (SnowCamo)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9629
+  icon_set_id: 3041
+  is_new: true
+  items:
+  - guid: 240000
+    unknown: 0
+  members_only: false
+  name_id: 52573
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2973
+  sort_order: 0
+# Mount: mount 3 (BasicGreen)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9630
+  icon_set_id: 2695
+  is_new: true
+  items:
+  - guid: 240001
+    unknown: 0
+  members_only: false
+  name_id: 4811
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2974
+  sort_order: 0
+# Mount: mount 4 (MustafarRed)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9631
+  icon_set_id: 2696
+  is_new: true
+  items:
+  - guid: 240002
+    unknown: 0
+  members_only: false
+  name_id: 4621
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2975
+  sort_order: 0
+# Mount: mount 5 (UmbaranBlue)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9632
+  icon_set_id: 2697
+  is_new: true
+  items:
+  - guid: 240003
+    unknown: 0
+  members_only: false
+  name_id: 50805
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2976
+  sort_order: 0
+# Mount: mount 6 (MandalorianWhiteBlue)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9633
+  icon_set_id: 2920
+  is_new: true
+  items:
+  - guid: 240004
+    unknown: 0
+  members_only: false
+  name_id: 4869
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2977
+  sort_order: 0
+# Mount: mount 7 (CoruscantPurple)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9634
+  icon_set_id: 3068
+  is_new: true
+  items:
+  - guid: 240005
+    unknown: 0
+  members_only: false
+  name_id: 51372
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2978
+  sort_order: 0
+# Mount: mount 8 (Kashyyyk)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9635
+  icon_set_id: 2954
+  is_new: true
+  items:
+  - guid: 240006
+    unknown: 0
+  members_only: false
+  name_id: 51374
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2979
+  sort_order: 0
+# Mount: mount 9 (SOE)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9636
+  icon_set_id: 2920
+  is_new: true
+  items:
+  - guid: 240007
+    unknown: 0
+  members_only: false
+  name_id: 51370
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2980
+  sort_order: 0
+# Mount: mount 10 (Bloodfin)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9637
+  icon_set_id: 3043
+  is_new: true
+  items:
+  - guid: 240008
+    unknown: 0
+  members_only: false
+  name_id: 51937
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2981
+  sort_order: 0
+# Mount: mount 11 (Sith)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9638
+  icon_set_id: 3039
+  is_new: true
+  items:
+  - guid: 240009
+    unknown: 0
+  members_only: false
+  name_id: 52569
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2982
+  sort_order: 0
+# Mount: mount 12 (Gray)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9639
+  icon_set_id: 3040
+  is_new: true
+  items:
+  - guid: 240010
+    unknown: 0
+  members_only: false
+  name_id: 52571
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2983
+  sort_order: 0
+# Mount: mount 13 (Bantha)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9640
+  icon_set_id: 3042
+  is_new: true
+  items:
+  - guid: 240011
+    unknown: 0
+  members_only: false
+  name_id: 52581
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2984
+  sort_order: 0
+# Mount: mount 14 (Blue)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9641
+  icon_set_id: 3080
+  is_new: true
+  items:
+  - guid: 240012
+    unknown: 0
+  members_only: false
+  name_id: 52849
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2985
+  sort_order: 0
+# Mount: mount 15 (Red)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9642
+  icon_set_id: 3844
+  is_new: true
+  items:
+  - guid: 240013
+    unknown: 0
+  members_only: false
+  name_id: 60763
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2986
+  sort_order: 0
+# Mount: mount 16 (Brown)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9643
+  icon_set_id: 2952
+  is_new: true
+  items:
+  - guid: 240014
+    unknown: 0
+  members_only: false
+  name_id: 62204
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2987
+  sort_order: 0
+# Mount: mount 17 (Dark)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9644
+  icon_set_id: 3132
+  is_new: true
+  items:
+  - guid: 240015
+    unknown: 0
+  members_only: false
+  name_id: 62205
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2988
+  sort_order: 0
+# Mount: mount 18 (74ZBlue)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9645
+  icon_set_id: 3201
+  is_new: true
+  items:
+  - guid: 240016
+    unknown: 0
+  members_only: false
+  name_id: 53524
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2989
+  sort_order: 0
+# Mount: mount 19 (74ZSand)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9646
+  icon_set_id: 3200
+  is_new: true
+  items:
+  - guid: 240017
+    unknown: 0
+  members_only: false
+  name_id: 53522
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2990
+  sort_order: 0
+# Mount: mount 20 (74ZWhite)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9647
+  icon_set_id: 3199
+  is_new: true
+  items:
+  - guid: 240018
+    unknown: 0
+  members_only: false
+  name_id: 53520
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2991
+  sort_order: 0
+# Mount: mount 21 (ZephyrGreen)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9648
+  icon_set_id: 3263
+  is_new: true
+  items:
+  - guid: 240019
+    unknown: 0
+  members_only: false
+  name_id: 53979
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2992
+  sort_order: 0
+# Mount: mount 22 (ZephyrRedFlame)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9649
+  icon_set_id: 3262
+  is_new: true
+  items:
+  - guid: 240020
+    unknown: 0
+  members_only: false
+  name_id: 53978
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2993
+  sort_order: 0
+# Mount: mount 23 (ZephyrRust)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9650
+  icon_set_id: 3261
+  is_new: true
+  items:
+  - guid: 240021
+    unknown: 0
+  members_only: false
+  name_id: 53977
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2994
+  sort_order: 0
+# Mount: mount 24 (StarhawkBlack)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9651
+  icon_set_id: 3308
+  is_new: true
+  items:
+  - guid: 240022
+    unknown: 0
+  members_only: false
+  name_id: 54065
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2995
+  sort_order: 0
+# Mount: mount 25 (StarhawkBlue)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9652
+  icon_set_id: 3309
+  is_new: true
+  items:
+  - guid: 240023
+    unknown: 0
+  members_only: false
+  name_id: 54067
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2996
+  sort_order: 0
+# Mount: mount 26 (StarhawkTribal)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9653
+  icon_set_id: 3310
+  is_new: true
+  items:
+  - guid: 240024
+    unknown: 0
+  members_only: false
+  name_id: 54069
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2997
+  sort_order: 0
+# Mount: mount 27 (White)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9654
+  icon_set_id: 3312
+  is_new: true
+  items:
+  - guid: 240025
+    unknown: 0
+  members_only: false
+  name_id: 54076
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2998
+  sort_order: 0
+# Mount: mount 28 (Brown)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9655
+  icon_set_id: 2587
+  is_new: true
+  items:
+  - guid: 240026
+    unknown: 0
+  members_only: false
+  name_id: 50492
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2999
+  sort_order: 0
+# Mount: mount 29 (Zanbar)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9656
+  icon_set_id: 3654
+  is_new: true
+  items:
+  - guid: 240027
+    unknown: 0
+  members_only: false
+  name_id: 54205
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3000
+  sort_order: 0
+# Mount: mount 30 (GrievousSpeeder)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9657
+  icon_set_id: 3704
+  is_new: true
+  items:
+  - guid: 240028
+    unknown: 0
+  members_only: false
+  name_id: 60252
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3001
+  sort_order: 0
+# Mount: mount 31 (Brezak)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9658
+  icon_set_id: 3789
+  is_new: true
+  items:
+  - guid: 240029
+    unknown: 0
+  members_only: false
+  name_id: 60647
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3002
+  sort_order: 0
+# Mount: mount 32 (Teal)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9659
+  icon_set_id: 3860
+  is_new: true
+  items:
+  - guid: 240030
+    unknown: 0
+  members_only: false
+  name_id: 60776
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3003
+  sort_order: 0
+# Mount: mount 33 (STAP)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9660
+  icon_set_id: 3826
+  is_new: true
+  items:
+  - guid: 240031
+    unknown: 0
+  members_only: false
+  name_id: 43028
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3004
+  sort_order: 0
+# Mount: mount 34 (Fambaa)
+- category: 93
+  description_id: 0
+  for_sale: true
+  guid: 9661
+  icon_set_id: 3843
+  is_new: true
+  items:
+  - guid: 240032
+    unknown: 0
+  members_only: false
+  name_id: 60759
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3005
+  sort_order: 0
+# Supplies (consumables + nanites) sold individually (unnamed: not a set)
+- category: 0
+  description_id: 0
+  for_sale: true
+  guid: 10102
+  icon_set_id: 0
+  is_new: false
+  items:
+  - guid: 250000
+    unknown: 0
+  - guid: 250001
+    unknown: 0
+  - guid: 250002
+    unknown: 0
+  - guid: 250003
+    unknown: 0
+  - guid: 250004
+    unknown: 0
+  - guid: 250005
+    unknown: 0
+  - guid: 250006
+    unknown: 0
+  - guid: 250010
+    unknown: 0
+  - guid: 250011
+    unknown: 0
+  - guid: 250012
+    unknown: 0
+  - guid: 250013
+    unknown: 0
+  - guid: 250014
+    unknown: 0
+  - guid: 250015
+    unknown: 0
+  - guid: 250016
+    unknown: 0
+  members_only: false
+  name_id: 0
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Battle Commander Pack I
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9662
+  icon_set_id: 3988
+  is_new: true
+  items:
+  - guid: 6015
+    unknown: 0
+  - guid: 6016
+    unknown: 0
+  - guid: 6017
+    unknown: 0
+  members_only: false
+  name_id: 62206
+  page: 0
+  preview_animation_id: 3018
+  preview_model_id: 83
+  sort_order: 0
+# Battle Commander Pack II
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9663
+  icon_set_id: 3989
+  is_new: true
+  items:
+  - guid: 6007
+    unknown: 0
+  - guid: 6018
+    unknown: 0
+  - guid: 6019
+    unknown: 0
+  members_only: false
+  name_id: 62207
+  page: 0
+  preview_animation_id: 3023
+  preview_model_id: 83
+  sort_order: 0
+# Trooper Emote Pack
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9664
+  icon_set_id: 3990
+  is_new: true
+  items:
+  - guid: 6025
+    unknown: 0
+  - guid: 6026
+    unknown: 0
+  - guid: 6027
+    unknown: 0
+  members_only: false
+  name_id: 62208
+  page: 0
+  preview_animation_id: 3602
+  preview_model_id: 83
+  sort_order: 0
+# Jedi Emote Pack
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9665
+  icon_set_id: 3991
+  is_new: true
+  items:
+  - guid: 6028
+    unknown: 0
+  - guid: 6029
+    unknown: 0
+  - guid: 6030
+    unknown: 0
+  members_only: false
+  name_id: 62209
+  page: 0
+  preview_animation_id: 3605
+  preview_model_id: 83
+  sort_order: 0
+# Sith Emote Pack
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9666
+  icon_set_id: 3992
+  is_new: true
+  items:
+  - guid: 6036
+    unknown: 0
+  - guid: 6031
+    unknown: 0
+  - guid: 6032
+    unknown: 0
+  members_only: false
+  name_id: 62210
+  page: 0
+  preview_animation_id: 3608
+  preview_model_id: 83
+  sort_order: 0
+# Mercenary Emote Pack
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9667
+  icon_set_id: 3993
+  is_new: true
+  items:
+  - guid: 6033
+    unknown: 0
+  - guid: 6034
+    unknown: 0
+  - guid: 6035
+    unknown: 0
+  members_only: false
+  name_id: 62211
+  page: 0
+  preview_animation_id: 3611
+  preview_model_id: 83
+  sort_order: 0
+# Orbiting Starfighters Mind Trick
+- category: 22
+  description_id: 0
+  for_sale: true
+  guid: 9668
+  icon_set_id: 3996
+  is_new: true
+  items:
+  - guid: 250020
+    unknown: 0
+  members_only: false
+  name_id: 62212
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 83
+  sort_order: 0
+# Orbiting Vulture Droids Mind Trick
+- category: 22
+  description_id: 0
+  for_sale: true
+  guid: 9669
+  icon_set_id: 1535
+  is_new: true
+  items:
+  - guid: 250021
+    unknown: 0
+  members_only: false
+  name_id: 62213
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 83
+  sort_order: 0
+# Orbiting Y-Wings Mind Trick
+- category: 22
+  description_id: 0
+  for_sale: true
+  guid: 9670
+  icon_set_id: 1536
+  is_new: true
+  items:
+  - guid: 250022
+    unknown: 0
+  members_only: false
+  name_id: 62214
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 83
+  sort_order: 0
+# Force Glow Hands Mind Trick
+- category: 22
+  description_id: 0
+  for_sale: true
+  guid: 9671
+  icon_set_id: 1534
+  is_new: true
+  items:
+  - guid: 250023
+    unknown: 0
+  members_only: false
+  name_id: 62215
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 83
+  sort_order: 0
+# Supplies: item 2240
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9672
+  icon_set_id: 1691
+  is_new: true
+  items:
+  - guid: 2240
+    unknown: 0
+  members_only: false
+  name_id: 33536
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 2384
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9673
+  icon_set_id: 1687
+  is_new: true
+  items:
+  - guid: 2384
+    unknown: 0
+  members_only: false
+  name_id: 33818
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 2385
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9674
+  icon_set_id: 1693
+  is_new: true
+  items:
+  - guid: 2385
+    unknown: 0
+  members_only: false
+  name_id: 33820
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250000
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9675
+  icon_set_id: 2963
+  is_new: true
+  items:
+  - guid: 250000
+    unknown: 0
+  members_only: false
+  name_id: 52019
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250001
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9676
+  icon_set_id: 2962
+  is_new: true
+  items:
+  - guid: 250001
+    unknown: 0
+  members_only: false
+  name_id: 52018
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250002
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9677
+  icon_set_id: 2961
+  is_new: true
+  items:
+  - guid: 250002
+    unknown: 0
+  members_only: false
+  name_id: 52017
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250003
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9678
+  icon_set_id: 3221
+  is_new: true
+  items:
+  - guid: 250003
+    unknown: 0
+  members_only: false
+  name_id: 52016
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250004
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9679
+  icon_set_id: 3221
+  is_new: true
+  items:
+  - guid: 250004
+    unknown: 0
+  members_only: false
+  name_id: 52015
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250005
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9680
+  icon_set_id: 3221
+  is_new: true
+  items:
+  - guid: 250005
+    unknown: 0
+  members_only: false
+  name_id: 52014
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250006
+- category: 78
+  description_id: 0
+  for_sale: true
+  guid: 9681
+  icon_set_id: 3223
+  is_new: true
+  items:
+  - guid: 250006
+    unknown: 0
+  members_only: false
+  name_id: 53654
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250010
+- category: 10002
+  description_id: 0
+  for_sale: true
+  guid: 9682
+  icon_set_id: 3603
+  is_new: true
+  items:
+  - guid: 250010
+    unknown: 0
+  members_only: false
+  name_id: 53675
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250011
+- category: 10002
+  description_id: 0
+  for_sale: true
+  guid: 9683
+  icon_set_id: 3601
+  is_new: true
+  items:
+  - guid: 250011
+    unknown: 0
+  members_only: false
+  name_id: 53676
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250012
+- category: 10002
+  description_id: 0
+  for_sale: true
+  guid: 9684
+  icon_set_id: 3602
+  is_new: true
+  items:
+  - guid: 250012
+    unknown: 0
+  members_only: false
+  name_id: 54233
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250013
+- category: 10002
+  description_id: 0
+  for_sale: true
+  guid: 9685
+  icon_set_id: 3602
+  is_new: true
+  items:
+  - guid: 250013
+    unknown: 0
+  members_only: false
+  name_id: 54234
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250014
+- category: 10002
+  description_id: 0
+  for_sale: true
+  guid: 9686
+  icon_set_id: 3602
+  is_new: true
+  items:
+  - guid: 250014
+    unknown: 0
+  members_only: false
+  name_id: 54235
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250015
+- category: 10002
+  description_id: 0
+  for_sale: true
+  guid: 9687
+  icon_set_id: 3602
+  is_new: true
+  items:
+  - guid: 250015
+    unknown: 0
+  members_only: false
+  name_id: 54236
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Supplies: item 250016
+- category: 10002
+  description_id: 0
+  for_sale: true
+  guid: 9688
+  icon_set_id: 3602
+  is_new: true
+  items:
+  - guid: 250016
+    unknown: 0
+  members_only: false
+  name_id: 54237
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Standalone: Bossk's Jumpsuit
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9689
+  icon_set_id: 2779
+  is_new: true
+  items:
+  - guid: 150060
+    unknown: 0
+  members_only: false
+  name_id: 4739
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3007
+  sort_order: 0
+# Standalone: Count Dooku Pumpkinhead
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9690
+  icon_set_id: 3144
+  is_new: true
+  items:
+  - guid: 170028
+    unknown: 0
+  members_only: false
+  name_id: 53065
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3008
+  sort_order: 0
+# Standalone: General Grievous Pumpkinhead
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9691
+  icon_set_id: 3145
+  is_new: true
+  items:
+  - guid: 170029
+    unknown: 0
+  members_only: false
+  name_id: 53066
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3009
+  sort_order: 0
+# Standalone: Asajj Ventress Pumpkinhead
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9692
+  icon_set_id: 3146
+  is_new: true
+  items:
+  - guid: 170030
+    unknown: 0
+  members_only: false
+  name_id: 53067
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3010
+  sort_order: 0
+# Standalone: Dark Sith Cowl
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9693
+  icon_set_id: 3015
+  is_new: true
+  items:
+  - guid: 220062
+    unknown: 0
+  members_only: false
+  name_id: 4979
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3011
+  sort_order: 0
+# Standalone: Maroon Sith Cowl
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9694
+  icon_set_id: 3016
+  is_new: true
+  items:
+  - guid: 220063
+    unknown: 0
+  members_only: false
+  name_id: 4978
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3012
+  sort_order: 0
+# Standalone: Red Sith Cowl
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9695
+  icon_set_id: 3017
+  is_new: true
+  items:
+  - guid: 220064
+    unknown: 0
+  members_only: false
+  name_id: 4977
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3013
+  sort_order: 0
+# Standalone: None
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9696
+  icon_set_id: 680
+  is_new: true
+  items:
+  - guid: 230030
+    unknown: 0
+  members_only: false
+  name_id: 62217
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3014
+  sort_order: 0
+# Standalone: C-3PO Backpack
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9697
+  icon_set_id: 673
+  is_new: true
+  items:
+  - guid: 230031
+    unknown: 0
+  members_only: false
+  name_id: 3074
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3015
+  sort_order: 0
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9699
+  icon_set_id: 2976
+  is_new: true
+  items:
+  - guid: 80000
+    unknown: 0
+  members_only: false
+  name_id: 52060
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 954
+  sort_order: 0
+# Standalone: Ming Po Militia Rifle
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9700
+  icon_set_id: 3085
+  is_new: true
+  items:
+  - guid: 80001
+    unknown: 0
+  members_only: false
+  name_id: 52857
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3017
+  sort_order: 0
+# Standalone: Usk Bunker General Blaster Rifle
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9701
+  icon_set_id: 2819
+  is_new: true
+  items:
+  - guid: 80002
+    unknown: 0
+  members_only: false
+  name_id: 4778
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3018
+  sort_order: 0
+# Standalone: Grek Bunker General Blaster Rifle
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9702
+  icon_set_id: 2815
+  is_new: true
+  items:
+  - guid: 80003
+    unknown: 0
+  members_only: false
+  name_id: 4774
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3019
+  sort_order: 0
+# Standalone: Republic Grenade Launcher
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9703
+  icon_set_id: 2809
+  is_new: true
+  items:
+  - guid: 80004
+    unknown: 0
+  members_only: false
+  name_id: 4768
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3020
+  sort_order: 0
+# Standalone: Accelerated Thermal Carbine
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9704
+  icon_set_id: 2882
+  is_new: true
+  items:
+  - guid: 80005
+    unknown: 0
+  members_only: false
+  name_id: 4857
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3021
+  sort_order: 0
+# Standalone: Rail Cannon
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9705
+  icon_set_id: 3771
+  is_new: true
+  items:
+  - guid: 80006
+    unknown: 0
+  members_only: false
+  name_id: 54518
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3022
+  sort_order: 0
+# Standalone: Hip-Mounted Cannon
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9706
+  icon_set_id: 2810
+  is_new: true
+  items:
+  - guid: 80007
+    unknown: 0
+  members_only: false
+  name_id: 4769
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3023
+  sort_order: 0
+# Standalone: Mandalorian Repeater
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9707
+  icon_set_id: 3790
+  is_new: true
+  items:
+  - guid: 80008
+    unknown: 0
+  members_only: false
+  name_id: 54520
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3024
+  sort_order: 0
+# Standalone: Repeater Cannon
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9708
+  icon_set_id: 3827
+  is_new: true
+  items:
+  - guid: 80009
+    unknown: 0
+  members_only: false
+  name_id: 54594
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 937
+  sort_order: 0
+# Standalone: Turbolaser
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9709
+  icon_set_id: 2811
+  is_new: true
+  items:
+  - guid: 80010
+    unknown: 0
+  members_only: false
+  name_id: 4770
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3025
+  sort_order: 0
+# Standalone: Bossk's Long Rifle
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9710
+  icon_set_id: 2789
+  is_new: true
+  items:
+  - guid: 80011
+    unknown: 0
+  members_only: false
+  name_id: 4749
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3026
+  sort_order: 0
+# Standalone: Grand Officer Rifle
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9711
+  icon_set_id: 3108
+  is_new: true
+  items:
+  - guid: 80012
+    unknown: 0
+  members_only: false
+  name_id: 52798
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3027
+  sort_order: 0
+# Standalone: Felucian Commando Rifle
+- category: 101
+  description_id: 0
+  for_sale: true
+  guid: 9712
+  icon_set_id: 3726
+  is_new: true
+  items:
+  - guid: 80013
+    unknown: 0
+  members_only: false
+  name_id: 60183
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 925
+  sort_order: 0
+# Standalone: Onderon Long Rifle
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9713
+  icon_set_id: 3158
+  is_new: true
+  items:
+  - guid: 80014
+    unknown: 0
+  members_only: false
+  name_id: 53491
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3028
+  sort_order: 0
+# Standalone: Energized Disruptor
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9714
+  icon_set_id: 2924
+  is_new: true
+  items:
+  - guid: 80015
+    unknown: 0
+  members_only: false
+  name_id: 4882
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3029
+  sort_order: 0
+# Standalone: Light Plasma Pistol
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9715
+  icon_set_id: 2925
+  is_new: true
+  items:
+  - guid: 80016
+    unknown: 0
+  members_only: false
+  name_id: 4883
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3030
+  sort_order: 0
+# Standalone: Major Rigosso's Quarzite Pistol
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9716
+  icon_set_id: 2808
+  is_new: true
+  items:
+  - guid: 80017
+    unknown: 0
+  members_only: false
+  name_id: 4766
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3031
+  sort_order: 0
+# Standalone: Major Rigosso's Offhand Quarzite Pistol
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9717
+  icon_set_id: 2808
+  is_new: true
+  items:
+  - guid: 80018
+    unknown: 0
+  members_only: false
+  name_id: 4767
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3032
+  sort_order: 0
+# Standalone: Black Sun Blaster Pistol
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9718
+  icon_set_id: 3637
+  is_new: true
+  items:
+  - guid: 80019
+    unknown: 0
+  members_only: false
+  name_id: 54263
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3033
+  sort_order: 0
+# Standalone: Subtram Hunter Blaster
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9719
+  icon_set_id: 3783
+  is_new: true
+  items:
+  - guid: 80020
+    unknown: 0
+  members_only: false
+  name_id: 60672
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3034
+  sort_order: 0
+# Standalone: Subtram Hunter Offhand Blaster
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9720
+  icon_set_id: 3783
+  is_new: true
+  items:
+  - guid: 80021
+    unknown: 0
+  members_only: false
+  name_id: 60673
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3035
+  sort_order: 0
+# Standalone: Royal Hold-out Blaster Pistol
+- category: 105
+  description_id: 0
+  for_sale: true
+  guid: 9721
+  icon_set_id: 247
+  is_new: true
+  items:
+  - guid: 80022
+    unknown: 0
+  members_only: false
+  name_id: 8791
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 932
+  sort_order: 0
+# Standalone: Corrupt Warlord Right Pistol
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9722
+  icon_set_id: 3143
+  is_new: true
+  items:
+  - guid: 80023
+    unknown: 0
+  members_only: false
+  name_id: 52805
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3036
+  sort_order: 0
+# Standalone: Corrupt Warlord Left Pistol
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9723
+  icon_set_id: 3143
+  is_new: true
+  items:
+  - guid: 80024
+    unknown: 0
+  members_only: false
+  name_id: 52804
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3037
+  sort_order: 0
+# Standalone: Pyke Blaster Pistol
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9724
+  icon_set_id: 3638
+  is_new: true
+  items:
+  - guid: 80025
+    unknown: 0
+  members_only: false
+  name_id: 54264
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3038
+  sort_order: 0
+# Standalone: Onderon Blaster Pistol
+- category: 108
+  description_id: 0
+  for_sale: true
+  guid: 9725
+  icon_set_id: 3159
+  is_new: true
+  items:
+  - guid: 80026
+    unknown: 0
+  members_only: false
+  name_id: 53492
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3039
+  sort_order: 0
+# Standalone: Electrostaff
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9726
+  icon_set_id: 3002
+  is_new: true
+  items:
+  - guid: 80027
+    unknown: 0
+  members_only: false
+  name_id: 4959
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3040
+  sort_order: 0
+# Standalone: Renegade Heavy Blaster Pistol
+- category: 104
+  description_id: 0
+  for_sale: true
+  guid: 9727
+  icon_set_id: 3792
+  is_new: true
+  items:
+  - guid: 80028
+    unknown: 0
+  members_only: false
+  name_id: 54522
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3041
+  sort_order: 0
+# Standalone: DC-17m Interchangeable Weapons System
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9728
+  icon_set_id: 681
+  is_new: true
+  items:
+  - guid: 230094
+    unknown: 0
+  members_only: false
+  name_id: 62061
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3042
+  sort_order: 0
+# Standalone: Blaster Test E11
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9729
+  icon_set_id: 214
+  is_new: true
+  items:
+  - guid: 230095
+    unknown: 0
+  members_only: false
+  name_id: 2561
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 926
+  sort_order: 0
+# Standalone: Heavy Hip Cannon
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9730
+  icon_set_id: 681
+  is_new: true
+  items:
+  - guid: 230096
+    unknown: 0
+  members_only: false
+  name_id: 62062
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3043
+  sort_order: 0
+# Standalone: Quad Cannon
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9731
+  icon_set_id: 681
+  is_new: true
+  items:
+  - guid: 230097
+    unknown: 0
+  members_only: false
+  name_id: 62063
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3044
+  sort_order: 0
+# Standalone: Mandalorian Shatterer Battle Rifle
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9732
+  icon_set_id: 241
+  is_new: true
+  items:
+  - guid: 230103
+    unknown: 0
+  members_only: false
+  name_id: 8780
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 933
+  sort_order: 0
+# Standalone: Rebel Pilot Blaster
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9733
+  icon_set_id: 245
+  is_new: true
+  items:
+  - guid: 230104
+    unknown: 0
+  members_only: false
+  name_id: 2412
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 930
+  sort_order: 0
+# Standalone: Covert Diplomat Blaster Pistol
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9734
+  icon_set_id: 249
+  is_new: true
+  items:
+  - guid: 230105
+    unknown: 0
+  members_only: false
+  name_id: 8792
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 934
+  sort_order: 0
+# Standalone: Imperial Royal Guard Force Pike
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9735
+  icon_set_id: 251
+  is_new: true
+  items:
+  - guid: 230106
+    unknown: 0
+  members_only: false
+  name_id: 8799
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 938
+  sort_order: 0
+# Standalone: Tamtel Skreej's Pike
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9736
+  icon_set_id: 252
+  is_new: true
+  items:
+  - guid: 230107
+    unknown: 0
+  members_only: false
+  name_id: 8798
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 917
+  sort_order: 0
+# Standalone: His cane
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9737
+  icon_set_id: 681
+  is_new: true
+  items:
+  - guid: 230108
+    unknown: 0
+  members_only: false
+  name_id: 10423
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3045
+  sort_order: 0
+# Standalone: None
+- category: 107
+  description_id: 0
+  for_sale: true
+  guid: 9738
+  icon_set_id: 3792
+  is_new: true
+  items:
+  - guid: 230109
+    unknown: 0
+  members_only: false
+  name_id: 62218
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3046
+  sort_order: 0
+# Emote: Bow
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9739
+  icon_set_id: 1185
+  is_new: false
+  items:
+  - guid: 6001
+    unknown: 0
+  members_only: false
+  name_id: 3985
+  page: 0
+  preview_animation_id: 3001
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Cry
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9740
+  icon_set_id: 1186
+  is_new: false
+  items:
+  - guid: 6002
+    unknown: 0
+  members_only: false
+  name_id: 3986
+  page: 0
+  preview_animation_id: 3002
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Drink
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9741
+  icon_set_id: 266
+  is_new: false
+  items:
+  - guid: 6003
+    unknown: 0
+  members_only: false
+  name_id: 62194
+  page: 0
+  preview_animation_id: 3013
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Fist Pump
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9742
+  icon_set_id: 1188
+  is_new: false
+  items:
+  - guid: 6004
+    unknown: 0
+  members_only: false
+  name_id: 3984
+  page: 0
+  preview_animation_id: 3003
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Facepalm
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9743
+  icon_set_id: 1187
+  is_new: false
+  items:
+  - guid: 6005
+    unknown: 0
+  members_only: false
+  name_id: 3987
+  page: 0
+  preview_animation_id: 3004
+  preview_model_id: 83
+  sort_order: 0
+# Emote: No
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9744
+  icon_set_id: 1190
+  is_new: false
+  items:
+  - guid: 6006
+    unknown: 0
+  members_only: false
+  name_id: 3988
+  page: 0
+  preview_animation_id: 3005
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Hit the Deck
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9745
+  icon_set_id: 3985
+  is_new: false
+  items:
+  - guid: 6007
+    unknown: 0
+  members_only: false
+  name_id: 62195
+  page: 0
+  preview_animation_id: 3023
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Laugh
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9746
+  icon_set_id: 1189
+  is_new: false
+  items:
+  - guid: 6008
+    unknown: 0
+  members_only: false
+  name_id: 3989
+  page: 0
+  preview_animation_id: 3006
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Nod
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9747
+  icon_set_id: 1191
+  is_new: false
+  items:
+  - guid: 6009
+    unknown: 0
+  members_only: false
+  name_id: 3990
+  page: 0
+  preview_animation_id: 3007
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Yes
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9748
+  icon_set_id: 1192
+  is_new: false
+  items:
+  - guid: 6010
+    unknown: 0
+  members_only: false
+  name_id: 3991
+  page: 0
+  preview_animation_id: 3008
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Point
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9749
+  icon_set_id: 1193
+  is_new: false
+  items:
+  - guid: 6011
+    unknown: 0
+  members_only: false
+  name_id: 3983
+  page: 0
+  preview_animation_id: 3009
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Threaten
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9750
+  icon_set_id: 1194
+  is_new: false
+  items:
+  - guid: 6012
+    unknown: 0
+  members_only: false
+  name_id: 3992
+  page: 0
+  preview_animation_id: 3010
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Tusken Raider
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9751
+  icon_set_id: 994
+  is_new: false
+  items:
+  - guid: 6013
+    unknown: 0
+  members_only: false
+  name_id: 8628
+  page: 0
+  preview_animation_id: 3012
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Wave
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9752
+  icon_set_id: 1195
+  is_new: false
+  items:
+  - guid: 6014
+    unknown: 0
+  members_only: false
+  name_id: 3982
+  page: 0
+  preview_animation_id: 3011
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Charge
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9753
+  icon_set_id: 3982
+  is_new: false
+  items:
+  - guid: 6015
+    unknown: 0
+  members_only: false
+  name_id: 62196
+  page: 0
+  preview_animation_id: 3018
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Flank Left
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9754
+  icon_set_id: 3983
+  is_new: false
+  items:
+  - guid: 6016
+    unknown: 0
+  members_only: false
+  name_id: 62197
+  page: 0
+  preview_animation_id: 3021
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Flank Right
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9755
+  icon_set_id: 3984
+  is_new: false
+  items:
+  - guid: 6017
+    unknown: 0
+  members_only: false
+  name_id: 62198
+  page: 0
+  preview_animation_id: 3020
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Retreat
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9756
+  icon_set_id: 3986
+  is_new: false
+  items:
+  - guid: 6018
+    unknown: 0
+  members_only: false
+  name_id: 62199
+  page: 0
+  preview_animation_id: 3022
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Return to Leader
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9757
+  icon_set_id: 3987
+  is_new: false
+  items:
+  - guid: 6019
+    unknown: 0
+  members_only: false
+  name_id: 62200
+  page: 0
+  preview_animation_id: 3019
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Force Lift
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9758
+  icon_set_id: 998
+  is_new: false
+  items:
+  - guid: 6020
+    unknown: 0
+  members_only: false
+  name_id: 62201
+  page: 0
+  preview_animation_id: 3014
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Force Push
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9759
+  icon_set_id: 1002
+  is_new: false
+  items:
+  - guid: 6021
+    unknown: 0
+  members_only: false
+  name_id: 50564
+  page: 0
+  preview_animation_id: 3015
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Bad Dance
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9760
+  icon_set_id: 3994
+  is_new: false
+  items:
+  - guid: 6022
+    unknown: 0
+  members_only: false
+  name_id: 62202
+  page: 0
+  preview_animation_id: 3104
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Running Man
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9761
+  icon_set_id: 3995
+  is_new: false
+  items:
+  - guid: 6023
+    unknown: 0
+  members_only: false
+  name_id: 62203
+  page: 0
+  preview_animation_id: 3105
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Gungan Style
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9762
+  icon_set_id: 2420
+  is_new: false
+  items:
+  - guid: 6024
+    unknown: 0
+  members_only: false
+  name_id: 53004
+  page: 0
+  preview_animation_id: 3113
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Trooper: Acknowledge
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9763
+  icon_set_id: 3289
+  is_new: false
+  items:
+  - guid: 6025
+    unknown: 0
+  members_only: false
+  name_id: 54026
+  page: 0
+  preview_animation_id: 3602
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Trooper: Man Down
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9764
+  icon_set_id: 3290
+  is_new: false
+  items:
+  - guid: 6026
+    unknown: 0
+  members_only: false
+  name_id: 54027
+  page: 0
+  preview_animation_id: 3603
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Trooper: Transmission Received
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9765
+  icon_set_id: 3291
+  is_new: false
+  items:
+  - guid: 6027
+    unknown: 0
+  members_only: false
+  name_id: 54028
+  page: 0
+  preview_animation_id: 3604
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Jedi: Force Pound
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9766
+  icon_set_id: 3292
+  is_new: false
+  items:
+  - guid: 6028
+    unknown: 0
+  members_only: false
+  name_id: 54029
+  page: 0
+  preview_animation_id: 3605
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Jedi: Handstand
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9767
+  icon_set_id: 3293
+  is_new: false
+  items:
+  - guid: 6029
+    unknown: 0
+  members_only: false
+  name_id: 54030
+  page: 0
+  preview_animation_id: 3606
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Jedi: Meditate
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9768
+  icon_set_id: 3294
+  is_new: false
+  items:
+  - guid: 6030
+    unknown: 0
+  members_only: false
+  name_id: 54031
+  page: 0
+  preview_animation_id: 3607
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Sith: Rage
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9769
+  icon_set_id: 3296
+  is_new: false
+  items:
+  - guid: 6031
+    unknown: 0
+  members_only: false
+  name_id: 54033
+  page: 0
+  preview_animation_id: 3609
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Sith: Seeth
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9770
+  icon_set_id: 3297
+  is_new: false
+  items:
+  - guid: 6032
+    unknown: 0
+  members_only: false
+  name_id: 54034
+  page: 0
+  preview_animation_id: 3610
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Mercenary: Barter
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9771
+  icon_set_id: 3298
+  is_new: false
+  items:
+  - guid: 6033
+    unknown: 0
+  members_only: false
+  name_id: 54035
+  page: 0
+  preview_animation_id: 3611
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Mercenary: Intimidate
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9772
+  icon_set_id: 3299
+  is_new: false
+  items:
+  - guid: 6034
+    unknown: 0
+  members_only: false
+  name_id: 54036
+  page: 0
+  preview_animation_id: 3612
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Mercenary: Punch
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9773
+  icon_set_id: 3300
+  is_new: false
+  items:
+  - guid: 6035
+    unknown: 0
+  members_only: false
+  name_id: 54037
+  page: 0
+  preview_animation_id: 3613
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Force Lightning
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9774
+  icon_set_id: 3295
+  is_new: false
+  items:
+  - guid: 6036
+    unknown: 0
+  members_only: false
+  name_id: 10641
+  page: 0
+  preview_animation_id: 3608
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Pose
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9775
+  icon_set_id: 3997
+  is_new: false
+  items:
+  - guid: 250024
+    unknown: 0
+  members_only: false
+  name_id: 62216
+  page: 0
+  preview_animation_id: 3401
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Battle Class Flourish I
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9776
+  icon_set_id: 3283
+  is_new: false
+  items:
+  - guid: 250025
+    unknown: 0
+  members_only: false
+  name_id: 54017
+  page: 0
+  preview_animation_id: 3301
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Battle Class Flourish II
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9777
+  icon_set_id: 3284
+  is_new: false
+  items:
+  - guid: 250026
+    unknown: 0
+  members_only: false
+  name_id: 54018
+  page: 0
+  preview_animation_id: 3301
+  preview_model_id: 83
+  sort_order: 0
+# Emote: Battle Class Flourish III
+- category: 20
+  description_id: 0
+  for_sale: true
+  guid: 9778
+  icon_set_id: 3285
+  is_new: false
+  items:
+  - guid: 250027
+    unknown: 0
+  members_only: false
+  name_id: 54019
+  page: 0
+  preview_animation_id: 3301
+  preview_model_id: 83
+  sort_order: 0
+# Lightsaber: Sith Marauder Lightsaber
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9779
+  icon_set_id: 3044
+  is_new: true
+  items:
+  - guid: 110000
+    unknown: 0
+  members_only: false
+  name_id: 4975
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3047
+  sort_order: 0
+# Lightsaber: Nelona Lightsaber
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9780
+  icon_set_id: 2838
+  is_new: true
+  items:
+  - guid: 110001
+    unknown: 0
+  members_only: false
+  name_id: 4806
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3048
+  sort_order: 0
+# Lightsaber: Sith Warrior Lightsaber
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9781
+  icon_set_id: 3118
+  is_new: true
+  items:
+  - guid: 110002
+    unknown: 0
+  members_only: false
+  name_id: 52792
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3049
+  sort_order: 0
+# Lightsaber: Sith Inquisitor Lightsaber
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9782
+  icon_set_id: 2938
+  is_new: true
+  items:
+  - guid: 110003
+    unknown: 0
+  members_only: false
+  name_id: 4907
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3050
+  sort_order: 0
+# Lightsaber: Forgotten Jedi Reverse Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9783
+  icon_set_id: 3735
+  is_new: true
+  items:
+  - guid: 110004
+    unknown: 0
+  members_only: false
+  name_id: 60286
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3051
+  sort_order: 0
+# Lightsaber: Jedi Champion Reverse Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9784
+  icon_set_id: 3133
+  is_new: true
+  items:
+  - guid: 110005
+    unknown: 0
+  members_only: false
+  name_id: 52786
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3052
+  sort_order: 0
+# Lightsaber: Kofun Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9785
+  icon_set_id: 2862
+  is_new: true
+  items:
+  - guid: 110006
+    unknown: 0
+  members_only: false
+  name_id: 4823
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3053
+  sort_order: 0
+# Lightsaber: Aayla Secura's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9786
+  icon_set_id: 221
+  is_new: true
+  items:
+  - guid: 110007
+    unknown: 0
+  members_only: false
+  name_id: 306
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3054
+  sort_order: 0
+# Lightsaber: Barriss Offee's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9787
+  icon_set_id: 508
+  is_new: true
+  items:
+  - guid: 110008
+    unknown: 0
+  members_only: false
+  name_id: 14786
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3055
+  sort_order: 0
+# Lightsaber: Byph's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9788
+  icon_set_id: 3207
+  is_new: true
+  items:
+  - guid: 110009
+    unknown: 0
+  members_only: false
+  name_id: 53615
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3056
+  sort_order: 0
+# Lightsaber: Sith Infiltrator Lightsaber
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9789
+  icon_set_id: 3045
+  is_new: true
+  items:
+  - guid: 110010
+    unknown: 0
+  members_only: false
+  name_id: 4976
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3057
+  sort_order: 0
+# Lightsaber: Dolovite Darksaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9790
+  icon_set_id: 3829
+  is_new: true
+  items:
+  - guid: 110011
+    unknown: 0
+  members_only: false
+  name_id: 54592
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3058
+  sort_order: 0
+# Lightsaber: Phrik Darksaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9791
+  icon_set_id: 3791
+  is_new: true
+  items:
+  - guid: 110012
+    unknown: 0
+  members_only: false
+  name_id: 54521
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3059
+  sort_order: 0
+# Lightsaber: Darth Maul's Lightsaber
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9792
+  icon_set_id: 2764
+  is_new: true
+  items:
+  - guid: 110013
+    unknown: 0
+  members_only: false
+  name_id: 4718
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3060
+  sort_order: 0
+# Lightsaber: Eeth Koth's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9793
+  icon_set_id: 226
+  is_new: true
+  items:
+  - guid: 110014
+    unknown: 0
+  members_only: false
+  name_id: 2440
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3061
+  sort_order: 0
+# Lightsaber: Jedi Exile Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9794
+  icon_set_id: 3835
+  is_new: true
+  items:
+  - guid: 110015
+    unknown: 0
+  members_only: false
+  name_id: 54602
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3062
+  sort_order: 0
+# Lightsaber: Forked Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9795
+  icon_set_id: 3828
+  is_new: true
+  items:
+  - guid: 110016
+    unknown: 0
+  members_only: false
+  name_id: 54593
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3063
+  sort_order: 0
+# Lightsaber: Ganodi's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9796
+  icon_set_id: 3212
+  is_new: true
+  items:
+  - guid: 110017
+    unknown: 0
+  members_only: false
+  name_id: 53620
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3064
+  sort_order: 0
+# Lightsaber: Gungi's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9797
+  icon_set_id: 3208
+  is_new: true
+  items:
+  - guid: 110018
+    unknown: 0
+  members_only: false
+  name_id: 53616
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3065
+  sort_order: 0
+# Lightsaber: Jocasta Nu's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9798
+  icon_set_id: 227
+  is_new: true
+  items:
+  - guid: 110019
+    unknown: 0
+  members_only: false
+  name_id: 8769
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3066
+  sort_order: 0
+# Lightsaber: Katooni's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9799
+  icon_set_id: 3213
+  is_new: true
+  items:
+  - guid: 110020
+    unknown: 0
+  members_only: false
+  name_id: 53621
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3067
+  sort_order: 0
+# Lightsaber: Ki-Adi-Mundi's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9800
+  icon_set_id: 228
+  is_new: true
+  items:
+  - guid: 110021
+    unknown: 0
+  members_only: false
+  name_id: 2444
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3068
+  sort_order: 0
+# Lightsaber: Sulon Jedi Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9801
+  icon_set_id: 511
+  is_new: true
+  items:
+  - guid: 110022
+    unknown: 0
+  members_only: false
+  name_id: 60157
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3069
+  sort_order: 0
+# Lightsaber: Luke Skywalker's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9802
+  icon_set_id: 230
+  is_new: true
+  items:
+  - guid: 110023
+    unknown: 0
+  members_only: false
+  name_id: 8770
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3070
+  sort_order: 0
+# Lightsaber: Petro's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9803
+  icon_set_id: 3209
+  is_new: true
+  items:
+  - guid: 110024
+    unknown: 0
+  members_only: false
+  name_id: 53617
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3071
+  sort_order: 0
+# Lightsaber: Shotem Master Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9804
+  icon_set_id: 3788
+  is_new: true
+  items:
+  - guid: 110025
+    unknown: 0
+  members_only: false
+  name_id: 60678
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3072
+  sort_order: 0
+# Lightsaber: Crimson Prowler Lightsaber
+- category: 109
+  description_id: 0
+  for_sale: true
+  guid: 9805
+  icon_set_id: 3721
+  is_new: true
+  items:
+  - guid: 110026
+    unknown: 0
+  members_only: false
+  name_id: 60198
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3073
+  sort_order: 0
+# Lightsaber: Talz Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9806
+  icon_set_id: 2863
+  is_new: true
+  items:
+  - guid: 110027
+    unknown: 0
+  members_only: false
+  name_id: 4824
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3074
+  sort_order: 0
+# Lightsaber: Yoda's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9807
+  icon_set_id: 3169
+  is_new: true
+  items:
+  - guid: 110028
+    unknown: 0
+  members_only: false
+  name_id: 1797
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3075
+  sort_order: 0
+# Lightsaber: Zatt's Lightsaber
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9808
+  icon_set_id: 3211
+  is_new: true
+  items:
+  - guid: 110029
+    unknown: 0
+  members_only: false
+  name_id: 53619
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3076
+  sort_order: 0
+# Lightsaber: Umbara Academy: Ghost Attack 1
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9809
+  icon_set_id: 425
+  is_new: true
+  items:
+  - guid: 230098
+    unknown: 0
+  members_only: false
+  name_id: 51036
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3077
+  sort_order: 0
+# Lightsaber: Umbara Academy: Ghost Attack 2
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9810
+  icon_set_id: 425
+  is_new: true
+  items:
+  - guid: 230099
+    unknown: 0
+  members_only: false
+  name_id: 51037
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3078
+  sort_order: 0
+# Lightsaber: Umbara Academy: Ghost Attack 3
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9811
+  icon_set_id: 425
+  is_new: true
+  items:
+  - guid: 230100
+    unknown: 0
+  members_only: false
+  name_id: 51038
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3079
+  sort_order: 0
+# Lightsaber: Umbara Academy: Ghost Attack 2 (Left)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9812
+  icon_set_id: 425
+  is_new: true
+  items:
+  - guid: 230101
+    unknown: 0
+  members_only: false
+  name_id: 62154
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3080
+  sort_order: 0
+# Lightsaber: Umbara Academy: Ghost Attack 3 (Left)
+- category: 102
+  description_id: 0
+  for_sale: true
+  guid: 9813
+  icon_set_id: 425
+  is_new: true
+  items:
+  - guid: 230102
+    unknown: 0
+  members_only: false
+  name_id: 62155
+  page: 0
+  preview_animation_id: 902
+  preview_model_id: 3081
+  sort_order: 0
+# Carlac Lot
+- category: 34
+  description_id: 52820
+  for_sale: true
+  guid: 10200
+  icon_set_id: 3057
+  is_new: true
+  items:
+  - guid: 230200
+    unknown: 0
+  members_only: false
+  name_id: 52819
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2523
+  sort_order: 0
+# Dantooine Lot
+- category: 34
+  description_id: 62221
+  for_sale: true
+  guid: 10201
+  icon_set_id: 3846
+  is_new: true
+  items:
+  - guid: 230201
+    unknown: 0
+  members_only: false
+  name_id: 54589
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3085
+  sort_order: 0
+# Geonosis Open Lot
+- category: 34
+  description_id: 4757
+  for_sale: true
+  guid: 10202
+  icon_set_id: 2799
+  is_new: true
+  items:
+  - guid: 230202
+    unknown: 0
+  members_only: false
+  name_id: 4751
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2370
+  sort_order: 0
+# Maridun Open Lot
+- category: 34
+  description_id: 4859
+  for_sale: true
+  guid: 10203
+  icon_set_id: 2877
+  is_new: true
+  items:
+  - guid: 230203
+    unknown: 0
+  members_only: false
+  name_id: 4849
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2419
+  sort_order: 0
+# Orto Plutonia Open Lot
+- category: 34
+  description_id: 62222
+  for_sale: true
+  guid: 10204
+  icon_set_id: 2921
+  is_new: true
+  items:
+  - guid: 230204
+    unknown: 0
+  members_only: false
+  name_id: 4870
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2437
+  sort_order: 0
+# Orto Plutonia Holiday Lot
+- category: 34
+  description_id: 62223
+  for_sale: true
+  guid: 10205
+  icon_set_id: 3866
+  is_new: true
+  items:
+  - guid: 230205
+    unknown: 0
+  members_only: false
+  name_id: 4880
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2830
+  sort_order: 0
+# Deluxe Ryloth Housing Lot
+- category: 34
+  description_id: 54527
+  for_sale: true
+  guid: 10206
+  icon_set_id: 3795
+  is_new: true
+  items:
+  - guid: 230206
+    unknown: 0
+  members_only: false
+  name_id: 54526
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2804
+  sort_order: 0
+# Tatooine Lot
+- category: 34
+  description_id: 62224
+  for_sale: true
+  guid: 10207
+  icon_set_id: 3282
+  is_new: true
+  items:
+  - guid: 230207
+    unknown: 0
+  members_only: false
+  name_id: 53745
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 3086
+  sort_order: 0
+# Sith Academy Lot
+- category: 34
+  description_id: 4838
+  for_sale: true
+  guid: 10208
+  icon_set_id: 2858
+  is_new: true
+  items:
+  - guid: 230208
+    unknown: 0
+  members_only: false
+  name_id: 4825
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2408
+  sort_order: 0
+# Dathomir Sith Temple Lot
+- category: 34
+  description_id: 62225
+  for_sale: true
+  guid: 10209
+  icon_set_id: 2858
+  is_new: true
+  items:
+  - guid: 230209
+    unknown: 0
+  members_only: false
+  name_id: 52687
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
+  sort_order: 0
+# Felucia Starter Lot
+- category: 34
+  description_id: 62226
+  for_sale: true
+  guid: 10210
+  icon_set_id: 2694
+  is_new: true
+  items:
+  - guid: 230210
+    unknown: 0
+  members_only: false
+  name_id: 51744
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 2298
+  sort_order: 0
+# Luxury Coruscant Apartment
+- category: 34
+  description_id: 62228
+  for_sale: true
+  guid: 10211
+  icon_set_id: 1074
+  is_new: true
+  items:
+  - guid: 230211
+    unknown: 0
+  members_only: false
+  name_id: 62227
+  page: 0
+  preview_animation_id: 0
+  preview_model_id: 0
   sort_order: 0

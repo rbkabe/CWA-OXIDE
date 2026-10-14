@@ -27,8 +27,8 @@
 # Drink
 - id: 65
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 996
+  menu_text: 62194
+  menu_icon_id: 266
   animation_id: 3013
   item_id: 6003
 
@@ -59,8 +59,8 @@
 # Hit the Deck
 - id: 69
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 1012
+  menu_text: 62195
+  menu_icon_id: 3985
   animation_id: 3023
   item_id: 6007
 
@@ -123,47 +123,47 @@
 # Charge
 - id: 77
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 1000
+  menu_text: 62196
+  menu_icon_id: 3982
   animation_id: 3018
   item_id: 6015
 
 # Flank Left
 - id: 78
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 1008
+  menu_text: 62197
+  menu_icon_id: 3983
   animation_id: 3021
   item_id: 6016
 
 # Flank Right
 - id: 79
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 1006
+  menu_text: 62198
+  menu_icon_id: 3984
   animation_id: 3020
   item_id: 6017
 
 # Retreat
 - id: 80
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 1010
+  menu_text: 62199
+  menu_icon_id: 3986
   animation_id: 3022
   item_id: 6018
 
 # Return to Leader
 - id: 81
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 1004
+  menu_text: 62200
+  menu_icon_id: 3987
   animation_id: 3019
   item_id: 6019
 
 # Force Lift
 - id: 82
   parent_id: 1
-  menu_text: 0
+  menu_text: 62201
   menu_icon_id: 998
   animation_id: 3014
   item_id: 6020
@@ -211,15 +211,15 @@
 # Basic dances (free)
 - id: 87
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 2418
+  menu_text: 62202
+  menu_icon_id: 3994
   animation_id: 3104
   item_id: 6022  # Bad Dance
 
 - id: 88
   parent_id: 1
-  menu_text: 0
-  menu_icon_id: 2419
+  menu_text: 62203
+  menu_icon_id: 3995
   animation_id: 3105
   item_id: 6023  # Running Man
 
@@ -248,7 +248,7 @@
 - id: 92
   parent_id: 1
   menu_text: 44761
-  menu_icon_id: 2034
+  menu_icon_id: 1731
   animation_id: 3108
   item_id: 2830  # The Shudder
 
@@ -518,7 +518,7 @@
 
 - id: 22
   parent_id: 3
-  menu_text: 9613
+  menu_text: 18167
   menu_icon_id: 1340
   animation_id: 0
   item_id: 2106  # Gotal Holoprojector
@@ -795,3 +795,59 @@
   menu_icon_id: 1403
   animation_id: 3503  # holoanakin
   item_id: 2113  # Anakin Skywalker Handheld Holoprojector
+
+- id: 114
+  parent_id: 2
+  menu_text: 62212
+  menu_icon_id: 3996
+  animation_id: 0
+  item_id: 250020  # Orbiting Starfighters Mind Trick
+
+- id: 115
+  parent_id: 2
+  menu_text: 62213
+  menu_icon_id: 1535
+  animation_id: 0
+  item_id: 250021  # Orbiting Vulture Droids Mind Trick
+
+- id: 116
+  parent_id: 2
+  menu_text: 62214
+  menu_icon_id: 1536
+  animation_id: 0
+  item_id: 250022  # Orbiting Y-Wings Mind Trick
+
+- id: 117
+  parent_id: 2
+  menu_text: 62215
+  menu_icon_id: 1534
+  animation_id: 0
+  item_id: 250023  # Force Glow Hands Mind Trick
+
+- id: 118
+  parent_id: 1
+  menu_text: 62216
+  menu_icon_id: 3997
+  animation_id: 3401  # Emo_PortraitPose1
+  item_id: 250024  # Pose
+
+- id: 119
+  parent_id: 1
+  menu_text: 54017
+  menu_icon_id: 3283
+  animation_id: 3301  # Emo_Standard_Flourish1
+  item_id: 250025  # Battle Class Flourish I
+
+- id: 120
+  parent_id: 1
+  menu_text: 54018
+  menu_icon_id: 3284
+  animation_id: 3301  # Emo_Standard_Flourish1 (placeholder)
+  item_id: 250026  # Battle Class Flourish II
+
+- id: 121
+  parent_id: 1
+  menu_text: 54019
+  menu_icon_id: 3285
+  animation_id: 3301  # Emo_Standard_Flourish1 (placeholder)
+  item_id: 250027  # Battle Class Flourish III
