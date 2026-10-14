@@ -10,9 +10,9 @@ kamino:
   default_point_of_interest:
     guid: 101
     pos:
-      x: 570
-      y: 110
-      z: 405
+      x: 570.5
+      y: 9.6
+      z: 384.2
       w: 1
     rot:
       x: -1
