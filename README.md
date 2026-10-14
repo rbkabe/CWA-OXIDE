@@ -10,7 +10,7 @@ While this is an experimental update it is still very beginner friendly, if you 
 
 THIS UPDATE WILL ADD:
 102 armor sets and 84 single armor pieces (with a few that were never for sale in the original game)
-23 Houses and all additional rooms can be spawned in and explored
+23 Houses and all additional rooms can be spawned in and explored ( I will not be implementing building since it's already in CWA Legacy)
 33 mounts
 56 emotes (52 usable)
 35 companions
