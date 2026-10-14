@@ -1,0 +1,28 @@
+---
+# Dathomir Sith Temple Lot: added to test whether the map loads.  Spawn point is the centre of
+# the map grid from Housing_Room_Dathomir_SithAcademy.gzne (8x12 chunks of 64); adjust once seen in game.
+dathomir_sith_temple_house:
+  guid: 117
+  max_players: 4294967295
+  template_name: 52687
+  template_icon: 4209
+  asset_name: Housing_Room_Dathomir_SithAcademy
+  hide_ui: false
+  is_combat: false
+  default_point_of_interest:
+    guid: 117
+    pos:
+      x: 190.9
+      y: 91.8
+      z: 247.0
+      w: 1
+    rot:
+      x: -1
+      y: 0
+      z: 0
+      w: 0
+  speed: 8
+  jump_height_multiplier: 1
+  gravity_multiplier: 1
+  seconds_per_day: 10800
+  update_previous_location_on_leave: false
