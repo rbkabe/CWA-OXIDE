@@ -1,0 +1,28 @@
+---
+# Test Lot (Excis5-1): added to test whether the map loads.  Spawn point is the centre of
+# the map grid from Housing_EmptyLot_Excis5-1.gzne (8x8 chunks of 64); adjust once seen in game.
+test_excis_house:
+  guid: 120
+  max_players: 4294967295
+  template_name: 53536
+  template_icon: 4209
+  asset_name: Housing_EmptyLot_Excis5-1
+  hide_ui: false
+  is_combat: false
+  default_point_of_interest:
+    guid: 120
+    pos:
+      x: 231.4
+      y: 11.8
+      z: 245.3
+      w: 1
+    rot:
+      x: -1
+      y: 0
+      z: 0
+      w: 0
+  speed: 8
+  jump_height_multiplier: 1
+  gravity_multiplier: 1
+  seconds_per_day: 10800
+  update_previous_location_on_leave: false
