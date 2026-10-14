@@ -9,18 +9,31 @@ MAKE SURE THE GAME IS NOT OPEN WHEN YOU RUN THE SCRIPTS
 While this is an experimental update it is still very beginner friendly, if you can read this file you can update your client. This update contains EVERYTHING, well almost everything. I believe this update makes the game "cosmetically complete". As far as I know EVERYTHING is available in the store now.
 
 THIS UPDATE WILL ADD:
+
 102 armor sets and 84 single armor pieces (with a few that were never for sale in the original game)
+
 23 Houses and all additional rooms can be spawned in and explored ( I will not be implementing building since it's already in CWA Legacy)
+
 33 mounts
+
 56 emotes (52 usable)
+
 35 companions
+
 38 companion attachments
+
 46 holoprojectors
+
 12 mind tricks
+
 10 consumables
+
 7 components
+
 2 furniture listings
+
 21 custom armor sets and 2 custom single armor pieces (they are lore friendly)
+
 SCRIPTS TO CREATE YOUR OWN ARMOR SETS, STRINGS, ICONS, MODELS, AND EFFECTS (this is the fun part)
 
 All you need to do is download Python from here: https://www.python.org/downloads/release/python-3150/
