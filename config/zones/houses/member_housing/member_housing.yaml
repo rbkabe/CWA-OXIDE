@@ -1,0 +1,153 @@
+---
+# Luxury Padawan Apartment (MemberHousing).  Spawn point is the centre of the music area in MemberHousingAreas.xml; adjust once seen in game.
+member_housing_house:
+  guid: 122
+  max_players: 4294967295
+  template_name: 62232
+  template_icon: 4209
+  asset_name: MemberHousing
+  hide_ui: false
+  is_combat: false
+  default_point_of_interest:
+    guid: 122
+    pos:
+      x: 212.9
+      y: 27.5
+      z: 293.8
+      w: 1
+    rot:
+      x: -1
+      y: 0
+      z: 0
+      w: 0
+  speed: 8
+  jump_height_multiplier: 1
+  gravity_multiplier: 1
+  seconds_per_day: 10800
+  update_previous_location_on_leave: false
+  # Doors (terrain object ids and positions from the MemberHousing_*.gcnk chunks).  Destinations are
+  # 3 units in front of the matching door, facing into the room.
+  other_points_of_interest:
+    # Living quarters -> party deck
+    - guid: 12200
+      pos: {x: -1101.23, y: 145.4, z: 233.54, w: 1}
+      rot: {x: 0.23, y: 0, z: -1.48, w: 0}
+    # party deck -> living quarters
+    - guid: 12201
+      pos: {x: 167.84, y: 27.4, z: 298.72, w: 1}
+      rot: {x: 1.37, y: 0, z: 0.61, w: 0}
+    # Living quarters -> personal hangar
+    - guid: 12202
+      pos: {x: -160.0, y: 40.7, z: 295.5, w: 1}
+      rot: {x: 0.0, y: 0, z: -1.5, w: 0}
+    # personal hangar -> living quarters
+    - guid: 12203
+      pos: {x: 171.11, y: 27.4, z: 290.82, w: 1}
+      rot: {x: 1.11, y: 0, z: 1.01, w: 0}
+    # Living quarters -> droid destruction chamber
+    - guid: 12204
+      pos: {x: 317.1, y: 21.3, z: 353.99, w: 1}
+      rot: {x: 1.4, y: 0, z: 0.54, w: 0}
+    # droid destruction chamber -> living quarters
+    - guid: 12205
+      pos: {x: 215.07, y: 27.4, z: 314.35, w: 1}
+      rot: {x: -1.46, y: 0, z: -0.33, w: 0}
+    # Living quarters -> hidden armory
+    - guid: 12206
+      pos: {x: -97.31, y: -7.7, z: 215.75, w: 1}
+      rot: {x: 0.6, y: 0, z: 1.38, w: 0}
+    # hidden armory -> living quarters
+    - guid: 12207
+      pos: {x: 191.99, y: 27.3, z: 299.28, w: 1}
+      rot: {x: -0.15, y: 0, z: 1.49, w: 0}
+  ambient_npcs:
+    living_quarters_to_party_deck:
+      pos: {x: 165.1, y: 27.1, z: 297.5, w: 1}
+      terrain_object_id: 1270699504
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12200
+        duration_millis: 1
+    party_deck_to_living_quarters:
+      pos: {x: -1101.7, y: 145.1, z: 236.5, w: 1}
+      terrain_object_id: 1280876583
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12201
+        duration_millis: 1
+    living_quarters_to_personal_hangar:
+      pos: {x: 168.9, y: 27.1, z: 288.8, w: 1}
+      terrain_object_id: 1270699877
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12202
+        duration_millis: 1
+    personal_hangar_to_living_quarters:
+      pos: {x: -160.0, y: 40.4, z: 298.5, w: 1}
+      terrain_object_id: 1279746018
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12203
+        duration_millis: 1
+    living_quarters_to_droid_destruction_chamber:
+      pos: {x: 218.0, y: 27.1, z: 315.0, w: 1}
+      terrain_object_id: 1270699519
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12204
+        duration_millis: 1
+    droid_destruction_chamber_to_living_quarters:
+      pos: {x: 314.3, y: 21.0, z: 352.9, w: 1}
+      terrain_object_id: 1268776826
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12205
+        duration_millis: 1
+    living_quarters_to_hidden_armory:
+      pos: {x: 192.3, y: 27.0, z: 296.3, w: 1}
+      terrain_object_id: 1277941282
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12206
+        duration_millis: 1
+    hidden_armory_to_living_quarters:
+      pos: {x: -98.5, y: -8.0, z: 213.0, w: 1}
+      terrain_object_id: 1282929921
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 12207
+        duration_millis: 1
+    living_quarters_to_jedi_temple:
+      pos: {x: 210.6, y: 27.4, z: 283.7, w: 1}
+      terrain_object_id: 1270699513
+      cursor: 55
+      enable_interact_popup: false
+      auto_interact_radius: 1.5
+      interact_radius: 7
+      one_shot_interaction:
+        point_of_interest: 24
+        duration_millis: 1
