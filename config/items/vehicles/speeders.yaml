@@ -52,6 +52,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
+  cost: 1000
 # Blue 74-Z Speeder
 - guid: 651
   name_id: 5840
@@ -60,6 +61,7 @@
   slot: !Equipment None
   item_type: 1
   category: 0
+  cost: 1000
 # Black Starhawk Speeder
 - guid: 652
   name_id: 5842
