@@ -295,7 +295,7 @@
   icon_set_id: 177
   slot: !Equipment Hands
   model_name: Wear_Human_<gender>_Hands_RebelPilotGloves.adr
-  texture_alias: Black
+  texture_alias: RebelPilot
   item_type: 1
   category: 62
 
@@ -307,7 +307,7 @@
   icon_set_id: 150
   slot: !Equipment Feet
   model_name: Wear_Human_<gender>_Feet_RebelPilotBoots.adr
-  texture_alias: Black
+  texture_alias: RebelPilot
   item_type: 1
   category: 63
 
@@ -361,6 +361,7 @@
 
 # Unknown boots
 - guid: 230030
+  name_id: 62217
   cost: 5000
   description_id: 14
   icon_set_id: 680
@@ -378,14 +379,14 @@
   icon_set_id: 673
   slot: !Equipment Body
   model_name: Wear_Human_<gender>_Body_CloneDroidBackpackSet.adr
-  texture_alias: C3POPack
+  texture_alias: C3PO
   item_type: 1
   category: 61
 
 # wearable_body_mandalorian_mustafar
 - guid: 230032
   cost: 5000
-  name_id: 2701
+  name_id: 62050
   description_id: 14
   icon_set_id: 673
   slot: !Equipment Body
@@ -397,7 +398,7 @@
 # wearable_head_mandalorian_mustafar
 - guid: 230033
   cost: 5000
-  name_id: 2699
+  name_id: 62051
   description_id: 14
   icon_set_id: 677
   slot: !Equipment Head
@@ -409,7 +410,7 @@
 # wearable_hands_mandalorian_mustafar
 - guid: 230034
   cost: 5000
-  name_id: 2700
+  name_id: 62052
   description_id: 14
   icon_set_id: 676
   slot: !Equipment Hands
@@ -421,7 +422,7 @@
 # wearable_feet_mandalorian_mustafar
 - guid: 230035
   cost: 5000
-  name_id: 2702
+  name_id: 62053
   description_id: 14
   icon_set_id: 680
   slot: !Equipment Feet
@@ -673,7 +674,7 @@
 # wearable_body_commander_wolffe
 - guid: 230056
   cost: 5000
-  name_id: 2681
+  name_id: 62046
   description_id: 14
   icon_set_id: 673
   slot: !Equipment Body
@@ -685,7 +686,7 @@
 # wearable_head_commander_wolffe
 - guid: 230057
   cost: 5000
-  name_id: 2679
+  name_id: 62047
   description_id: 14
   icon_set_id: 677
   slot: !Equipment Head
@@ -697,7 +698,7 @@
 # wearable_hands_commander_wolffe
 - guid: 230058
   cost: 5000
-  name_id: 2680
+  name_id: 62048
   description_id: 14
   icon_set_id: 676
   slot: !Equipment Hands
@@ -709,7 +710,7 @@
 # wearable_feet_commander_wolffe
 - guid: 230059
   cost: 5000
-  name_id: 2682
+  name_id: 62049
   description_id: 14
   icon_set_id: 680
   slot: !Equipment Feet
@@ -910,20 +911,21 @@
   item_type: 1
   category: 63
 
-# Republic General's Snow Hat - Do Not Use
+# Republic General's Snow Hat (Hood Down): human-only model (no species versions)
 - guid: 230076
   cost: 5000
-  name_id: 1490
+  name_id: 62219
   description_id: 14
   icon_set_id: 474
   slot: !Equipment Head
   model_name: Wear_Human_<gender>_Head_GeneralSnowHoodieDown.adr
-  texture_alias: GeneralSnowHoodieDown
+  texture_alias: GeneralSnowUniform
   item_type: 1
   category: 60
 
 # Lurmen Suit
 - guid: 230077
+  name_id: 62054
   cost: 5000
   description_id: 14
   icon_set_id: 673
@@ -935,6 +937,7 @@
 
 # Lurmen Beanie
 - guid: 230078
+  name_id: 62055
   cost: 5000
   description_id: 14
   icon_set_id: 677
@@ -946,6 +949,7 @@
 
 # Lurmen Gloves
 - guid: 230079
+  name_id: 62056
   cost: 5000
   description_id: 14
   icon_set_id: 676
@@ -957,6 +961,7 @@
 
 # Lurmen Boots
 - guid: 230080
+  name_id: 62057
   cost: 5000
   description_id: 14
   icon_set_id: 680
@@ -1031,7 +1036,7 @@
 # wearable_body_anakin_tatooine
 - guid: 230086
   cost: 5000
-  name_id: 2673
+  name_id: 62058
   description_id: 14
   icon_set_id: 673
   slot: !Equipment Body
@@ -1043,7 +1048,7 @@
 # wearable_hands_anakin_tatooine
 - guid: 230087
   cost: 5000
-  name_id: 2672
+  name_id: 62059
   description_id: 14
   icon_set_id: 676
   slot: !Equipment Hands
@@ -1055,7 +1060,7 @@
 # wearable_feet_anakin_tatooine
 - guid: 230088
   cost: 5000
-  name_id: 2674
+  name_id: 62060
   description_id: 14
   icon_set_id: 680
   slot: !Equipment Feet
@@ -1126,6 +1131,7 @@
 
 # DC-17m Interchangable Weapons System
 - guid: 230094
+  name_id: 62061
   cost: 5000
   description_id: 14
   icon_set_id: 681
@@ -1150,6 +1156,7 @@
   category: 64
 
 - guid: 230096
+  name_id: 62062
   cost: 5000
   description_id: 14
   icon_set_id: 681
@@ -1161,6 +1168,7 @@
   category: 64
 
 - guid: 230097
+  name_id: 62063
   cost: 5000
   description_id: 14
   icon_set_id: 681
@@ -1313,12 +1321,25 @@
 
 # Renegade Heavy Blaster Pistol (Left)
 - guid: 230109
+  name_id: 62218
   cost: 5000
   description_id: 14
   icon_set_id: 3792
   item_class: 9
   slot: !Equipment SecondaryWeapon
   model_name: Wield_Pistol_RenegadeHeavyBlaster_LEFT.adr
-  texture_alias: RenegadeHeavyBlaster
+  texture_alias: Renegade
   item_type: 1
   category: 64
+
+# Boba Phat's Sneakers (BobaSneakers model, BobaPhat texture added by cwa_aliases.py)
+- guid: 230110
+  name_id: 62220
+  description_id: 14
+  icon_set_id: 120
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_BobaSneakers.adr
+  texture_alias: BobaPhat
+  item_type: 1
+  category: 63
+  cost: 5000

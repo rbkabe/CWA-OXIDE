@@ -571,7 +571,7 @@
   icon_set_id: 3798
   slot: !Equipment Head
   model_name: Wear_Human_<gender>_Head_CloneCommanderBacaraHelm.adr
-  texture_alias: Bacara
+  texture_alias: CloneBacara
   item_type: 1
   category: 60
   members: true
@@ -3124,7 +3124,7 @@
   icon_set_id: 2836
   slot: !Equipment Body
   model_name: Wear_Human_<gender>_Body_CloneEliteArmor.adr
-  texture_alias: Burgundy
+  texture_alias: CloneElite
   item_type: 1
   category: 61
 
@@ -3146,7 +3146,7 @@
   icon_set_id: 2835
   slot: !Equipment Hands
   model_name: Wear_Human_<gender>_Hands_CloneEliteGloves.adr
-  texture_alias: Burgundy
+  texture_alias: CloneElite
   item_type: 1
   category: 62
 
@@ -3157,7 +3157,7 @@
   icon_set_id: 2837
   slot: !Equipment Feet
   model_name: Wear_Human_<gender>_Feet_CloneEliteBoots.adr
-  texture_alias: Burgundy
+  texture_alias: CloneElite
   item_type: 1
   category: 63
 
@@ -3746,4 +3746,795 @@
   category: 63
   cost: 10000
   
+# Cyclops Clone Trooper Helmet
+- guid: 190013
+  name_id: 62034
+  description_id: 14
+  icon_set_id: 3905
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelmCyclops.adr
+  texture_alias: White
+  item_type: 1
+  category: 60
+  cost: 15000
   
+# Denal's Armor
+- guid: 190014
+  name_id: 62035
+  description_id: 14
+  icon_set_id: 3902
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: Denal
+  item_type: 1
+  category: 61
+  cost: 5000
+  
+# Denal's Helmet
+- guid: 190020
+  name_id: 62036
+  description_id: 14
+  icon_set_id: 3901
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: Denal
+  item_type: 1
+  category: 60
+  cost: 5000
+  
+# Denal's Gloves
+- guid: 190019
+  name_id: 62037
+  description_id: 14
+  icon_set_id: 3903
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: Denal
+  item_type: 1
+  category: 62
+  cost: 5000
+  
+# Denal's Boots
+- guid: 190022
+  name_id: 62038
+  description_id: 14
+  icon_set_id: 3904
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: Denal
+  item_type: 1
+  category: 63
+  cost: 5000
+  
+# Denal's Helmet (Rangefinder)
+- guid: 190023
+  name_id: 62040
+  description_id: 14
+  icon_set_id: 3906
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelmCyclops.adr
+  texture_alias: Denal
+  item_type: 1
+  category: 60
+  cost: 5000
+  
+# Clone Helmet Purple Squares
+- guid: 190027
+  name_id: 62043
+  description_id: 14
+  icon_set_id: 3907
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: PurpleSquares
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Clone Armor Purple Squares
+- guid: 190024
+  name_id: 62042
+  description_id: 14
+  icon_set_id: 3908
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: PurpleSquares
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Clone Gloves Purple Squares
+- guid: 190025
+  name_id: 62044
+  description_id: 14
+  icon_set_id: 3909
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: PurpleSquares
+  item_type: 1
+  category: 62
+  cost: 5000
+  
+# Clone Boots Purple Squares
+- guid: 190026
+  name_id: 62045
+  description_id: 14
+  icon_set_id: 3910
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: PurpleSquares
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (PurpleStripe)
+- guid: 190028
+  name_id: 62069
+  description_id: 14
+  icon_set_id: 3913
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: PurpleStripe
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (PurpleStripe)
+- guid: 190029
+  name_id: 62070
+  description_id: 14
+  icon_set_id: 3914
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: PurpleStripe
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (PurpleStripe)
+- guid: 190030
+  name_id: 62071
+  description_id: 14
+  icon_set_id: 3915
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: PurpleStripe
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (PurpleStripe)
+- guid: 190031
+  name_id: 62072
+  description_id: 14
+  icon_set_id: 3916
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: PurpleStripe
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (Phase2Purple)
+- guid: 190032
+  name_id: 62074
+  description_id: 14
+  icon_set_id: 3918
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  texture_alias: Phase2Purple
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (Phase2Purple)
+- guid: 190033
+  name_id: 62075
+  description_id: 14
+  icon_set_id: 3919
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  texture_alias: Phase2Purple
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (Phase2Purple)
+- guid: 190034
+  name_id: 62076
+  description_id: 14
+  icon_set_id: 3920
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: Phase2Purple
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (Phase2Purple)
+- guid: 190035
+  name_id: 62077
+  description_id: 14
+  icon_set_id: 3921
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: Phase2Purple
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (OrangeSquares)
+- guid: 190036
+  name_id: 62079
+  description_id: 14
+  icon_set_id: 3923
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: OrangeSquares
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (OrangeSquares)
+- guid: 190037
+  name_id: 62080
+  description_id: 14
+  icon_set_id: 3924
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: OrangeSquares
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (OrangeSquares)
+- guid: 190038
+  name_id: 62081
+  description_id: 14
+  icon_set_id: 3925
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: OrangeSquares
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (OrangeSquares)
+- guid: 190039
+  name_id: 62082
+  description_id: 14
+  icon_set_id: 3926
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: OrangeSquares
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (OrangeStripe)
+- guid: 190040
+  name_id: 62084
+  description_id: 14
+  icon_set_id: 3928
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: OrangeStripe
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (OrangeStripe)
+- guid: 190041
+  name_id: 62085
+  description_id: 14
+  icon_set_id: 3929
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: OrangeStripe
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (OrangeStripe)
+- guid: 190042
+  name_id: 62086
+  description_id: 14
+  icon_set_id: 3930
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: OrangeStripe
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (OrangeStripe)
+- guid: 190043
+  name_id: 62087
+  description_id: 14
+  icon_set_id: 3931
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: OrangeStripe
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (Phase2Orange)
+- guid: 190044
+  name_id: 62089
+  description_id: 14
+  icon_set_id: 3933
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  texture_alias: Phase2Orange
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (Phase2Orange)
+- guid: 190045
+  name_id: 62193
+  description_id: 14
+  icon_set_id: 3934
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  texture_alias: Phase2Orange
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (Phase2Orange)
+- guid: 190046
+  name_id: 62090
+  description_id: 14
+  icon_set_id: 3935
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: Phase2Orange
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (Phase2Orange)
+- guid: 190047
+  name_id: 62091
+  description_id: 14
+  icon_set_id: 3936
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: Phase2Orange
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (AquaSquares)
+- guid: 190048
+  name_id: 62093
+  description_id: 14
+  icon_set_id: 3938
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: AquaSquares
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (AquaSquares)
+- guid: 190049
+  name_id: 62094
+  description_id: 14
+  icon_set_id: 3939
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: AquaSquares
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (AquaSquares)
+- guid: 190050
+  name_id: 62095
+  description_id: 14
+  icon_set_id: 3940
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: AquaSquares
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (AquaSquares)
+- guid: 190051
+  name_id: 62096
+  description_id: 14
+  icon_set_id: 3941
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: AquaSquares
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (AquaStripe)
+- guid: 190052
+  name_id: 62098
+  description_id: 14
+  icon_set_id: 3943
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: AquaStripe
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (AquaStripe)
+- guid: 190053
+  name_id: 62099
+  description_id: 14
+  icon_set_id: 3944
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: AquaStripe
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (AquaStripe)
+- guid: 190054
+  name_id: 62156
+  description_id: 14
+  icon_set_id: 3945
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: AquaStripe
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (AquaStripe)
+- guid: 190055
+  name_id: 62157
+  description_id: 14
+  icon_set_id: 3946
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: AquaStripe
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (Phase2Aqua)
+- guid: 190056
+  name_id: 62159
+  description_id: 14
+  icon_set_id: 3948
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  texture_alias: Phase2Aqua
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (Phase2Aqua)
+- guid: 190057
+  name_id: 62160
+  description_id: 14
+  icon_set_id: 3949
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  texture_alias: Phase2Aqua
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (Phase2Aqua)
+- guid: 190058
+  name_id: 62161
+  description_id: 14
+  icon_set_id: 3950
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: Phase2Aqua
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (Phase2Aqua)
+- guid: 190059
+  name_id: 62162
+  description_id: 14
+  icon_set_id: 3951
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: Phase2Aqua
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (GreenSquares)
+- guid: 190060
+  name_id: 62164
+  description_id: 14
+  icon_set_id: 3953
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: GreenSquares
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (GreenSquares)
+- guid: 190061
+  name_id: 62165
+  description_id: 14
+  icon_set_id: 3954
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: GreenSquares
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (GreenSquares)
+- guid: 190062
+  name_id: 62166
+  description_id: 14
+  icon_set_id: 3955
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: GreenSquares
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (GreenSquares)
+- guid: 190063
+  name_id: 62167
+  description_id: 14
+  icon_set_id: 3956
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: GreenSquares
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (GreenStripe)
+- guid: 190064
+  name_id: 62169
+  description_id: 14
+  icon_set_id: 3958
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: GreenStripe
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (GreenStripe)
+- guid: 190065
+  name_id: 62170
+  description_id: 14
+  icon_set_id: 3959
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: GreenStripe
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (GreenStripe)
+- guid: 190066
+  name_id: 62192
+  description_id: 14
+  icon_set_id: 3960
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: GreenStripe
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (GreenStripe)
+- guid: 190067
+  name_id: 62171
+  description_id: 14
+  icon_set_id: 3961
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: GreenStripe
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (Phase2Green)
+- guid: 190068
+  name_id: 62173
+  description_id: 14
+  icon_set_id: 3963
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  texture_alias: Phase2Green
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (Phase2Green)
+- guid: 190069
+  name_id: 62174
+  description_id: 14
+  icon_set_id: 3964
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  texture_alias: Phase2Green
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (Phase2Green)
+- guid: 190070
+  name_id: 62175
+  description_id: 14
+  icon_set_id: 3965
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: Phase2Green
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (Phase2Green)
+- guid: 190071
+  name_id: 62176
+  description_id: 14
+  icon_set_id: 3966
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: Phase2Green
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (BlueStripe)
+- guid: 190072
+  name_id: 62178
+  description_id: 14
+  icon_set_id: 3968
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: BlueStripe
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (BlueStripe)
+- guid: 190073
+  name_id: 62179
+  description_id: 14
+  icon_set_id: 3969
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: BlueStripe
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (BlueStripe)
+- guid: 190074
+  name_id: 62180
+  description_id: 14
+  icon_set_id: 3970
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: BlueStripe
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (BlueStripe)
+- guid: 190075
+  name_id: 62181
+  description_id: 14
+  icon_set_id: 3971
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: BlueStripe
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (Phase2Blue)
+- guid: 190076
+  name_id: 62183
+  description_id: 14
+  icon_set_id: 3973
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_ClonePhase2Armor.adr
+  texture_alias: Phase2Blue
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (Phase2Blue)
+- guid: 190077
+  name_id: 62184
+  description_id: 14
+  icon_set_id: 3974
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_ClonePhase2Helm.adr
+  texture_alias: Phase2Blue
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (Phase2Blue)
+- guid: 190078
+  name_id: 62185
+  description_id: 14
+  icon_set_id: 3975
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: Phase2Blue
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (Phase2Blue)
+- guid: 190079
+  name_id: 62186
+  description_id: 14
+  icon_set_id: 3976
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: Phase2Blue
+  item_type: 1
+  category: 63
+  cost: 5000
+
+# Armor (RedSquares)
+- guid: 190080
+  name_id: 62188
+  description_id: 14
+  icon_set_id: 3978
+  slot: !Equipment Body
+  model_name: Wear_Human_<gender>_Body_CloneBasicArmor.adr
+  texture_alias: RedSquares
+  item_type: 1
+  category: 61
+  cost: 5000
+
+# Helmet (RedSquares)
+- guid: 190081
+  name_id: 62189
+  description_id: 14
+  icon_set_id: 3979
+  slot: !Equipment Head
+  model_name: Wear_Human_<gender>_Head_CloneHelm.adr
+  texture_alias: RedSquares
+  item_type: 1
+  category: 60
+  cost: 5000
+
+# Gloves (RedSquares)
+- guid: 190082
+  name_id: 62190
+  description_id: 14
+  icon_set_id: 3980
+  slot: !Equipment Hands
+  model_name: Wear_Human_<gender>_Hands_CloneGloves.adr
+  texture_alias: RedSquares
+  item_type: 1
+  category: 62
+  cost: 5000
+
+# Boots (RedSquares)
+- guid: 190083
+  name_id: 62191
+  description_id: 14
+  icon_set_id: 3981
+  slot: !Equipment Feet
+  model_name: Wear_Human_<gender>_Feet_CloneBoots.adr
+  texture_alias: RedSquares
+  item_type: 1
+  category: 63
+  cost: 5000
+

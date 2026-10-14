@@ -528,6 +528,7 @@
   texture_alias: SithAffiliation
   item_type: 1
   category: 61
+  cost: 5000
 
 # Sith Warrior Mask
 - guid: 220043
@@ -539,6 +540,7 @@
   texture_alias: SithAffiliation
   item_type: 1
   category: 60
+  cost: 5000
 
 # Sith Warrior Gauntlets
 - guid: 220044
@@ -550,6 +552,7 @@
   texture_alias: SithAffiliation
   item_type: 1
   category: 62
+  cost: 5000
 
 # Sith Warrior Boots
 - guid: 220045
@@ -561,6 +564,7 @@
   texture_alias: SithAffiliation
   item_type: 1
   category: 63
+  cost: 5000
 
 # Sith Infiltrator Armor
 - guid: 220046
@@ -572,6 +576,7 @@
   texture_alias: Phase01
   item_type: 1
   category: 61
+  cost: 5000
 
 # Sith Infiltrator Helm
 - guid: 220047
@@ -583,6 +588,7 @@
   texture_alias: Phase01
   item_type: 1
   category: 60
+  cost: 5000
 
 # Sith Infiltrator Gauntlets
 - guid: 220048
@@ -594,6 +600,7 @@
   texture_alias: Phase01
   item_type: 1
   category: 62
+  cost: 5000
 
 # Sith Infiltrator Greaves
 - guid: 220049
@@ -605,6 +612,7 @@
   texture_alias: Phase01
   item_type: 1
   category: 63
+  cost: 5000
 
 # Sith Marauder Robe
 - guid: 220050
@@ -616,6 +624,7 @@
   texture_alias: Phase03
   item_type: 1
   category: 61
+  cost: 5000
 
 # Sith Marauder Helm
 - guid: 220051
@@ -627,6 +636,7 @@
   texture_alias: Phase03
   item_type: 1
   category: 60
+  cost: 5000
 
 # Sith Marauder Vambraces
 - guid: 220052
@@ -638,6 +648,7 @@
   texture_alias: Phase03
   item_type: 1
   category: 62
+  cost: 5000
 
 # Sith Marauder Greaves
 - guid: 220053
@@ -649,6 +660,7 @@
   texture_alias: Phase03
   item_type: 1
   category: 63
+  cost: 5000
 
 # Sith Inquisitor Suit
 - guid: 220054
@@ -660,6 +672,7 @@
   texture_alias: Phase02
   item_type: 1
   category: 61
+  cost: 5000
 
 # Sith Inquisitor Helm
 - guid: 220055
@@ -671,6 +684,7 @@
   texture_alias: Phase02
   item_type: 1
   category: 60
+  cost: 5000
 
 # Sith Inquisitor Gauntlets
 - guid: 220056
@@ -682,6 +696,7 @@
   texture_alias: Phase02
   item_type: 1
   category: 62
+  cost: 5000
 
 # Sith Inquisitor Boots
 - guid: 220057
@@ -693,6 +708,7 @@
   texture_alias: Phase02
   item_type: 1
   category: 63
+  cost: 5000
 
 # Crimson Kofun Armor
 - guid: 220058
@@ -704,6 +720,7 @@
   texture_alias: SamuraiSith
   item_type: 1
   category: 61
+  cost: 5000
 
 # Crimson Kofun Helmet
 - guid: 220059
@@ -715,6 +732,7 @@
   texture_alias: SamuraiSith
   item_type: 1
   category: 60
+  cost: 5000
 
 # Crimson Kofun Arm Wraps
 - guid: 220060
@@ -726,6 +744,7 @@
   texture_alias: SamuraiSith
   item_type: 1
   category: 62
+  cost: 5000
 
 # Crimson Kofun Leg Wraps
 - guid: 220061
@@ -737,6 +756,7 @@
   texture_alias: SamuraiSith
   item_type: 1
   category: 63
+  cost: 5000
 
 # Dark Sith Cowl
 - guid: 220062
@@ -748,6 +768,7 @@
   texture_alias: RebornRedTrim
   item_type: 1
   category: 60
+  cost: 5000
 
 # Maroon Sith Cowl
 - guid: 220063
@@ -759,6 +780,7 @@
   texture_alias: RebornRedStripes
   item_type: 1
   category: 60
+  cost: 5000
 
 # Red Sith Cowl
 - guid: 220064
@@ -770,6 +792,7 @@
   texture_alias: RebornBlack
   item_type: 1
   category: 60
+  cost: 5000
 
 # Crimson Prowler Suit
 - guid: 220065
@@ -781,6 +804,7 @@
   texture_alias: DarkKnight
   item_type: 1
   category: 61
+  cost: 5000
 
 # Crimson Prowler Hood
 - guid: 220066
@@ -792,6 +816,7 @@
   texture_alias: DarkKnight
   item_type: 1
   category: 60
+  cost: 5000
 
 # Crimson Prowler Gloves
 - guid: 220067
@@ -803,6 +828,7 @@
   texture_alias: DarkKnight
   item_type: 1
   category: 62
+  cost: 5000
 
 # Crimson Prowler Boots
 - guid: 220068
@@ -814,3 +840,4 @@
   texture_alias: DarkKnight
   item_type: 1
   category: 63
+  cost: 5000

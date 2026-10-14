@@ -377,6 +377,7 @@
   texture_alias: BobaGreen
   item_type: 1
   category: 61
+  cost: 5000
 
 # Subtram Hunter Helmet
 - guid: 150031
@@ -388,6 +389,7 @@
   texture_alias: BobaGreen
   item_type: 1
   category: 60
+  cost: 5000
 
 # Subtram Hunter Gauntlets
 - guid: 150032
@@ -399,6 +401,7 @@
   texture_alias: BobaGreen
   item_type: 1
   category: 62
+  cost: 5000
 
 # Subtram Hunter Boots
 - guid: 150033
@@ -410,6 +413,7 @@
   texture_alias: BobaGreen
   item_type: 1
   category: 63
+  cost: 5000
 
 # Dengar's Armor
 - guid: 3411
@@ -660,6 +664,7 @@
   texture_alias: Mercenary
   item_type: 1
   category: 61
+  cost: 5000
 
 # Corrupt Warlord Visor
 - guid: 150054
@@ -671,6 +676,7 @@
   texture_alias: Mercenary
   item_type: 1
   category: 60
+  cost: 5000
 
 # Corrupt Warlord Gloves
 - guid: 150055
@@ -682,6 +688,7 @@
   texture_alias: Mercenary
   item_type: 1
   category: 62
+  cost: 5000
 
 # Corrupt Warlord Boots
 - guid: 150056
@@ -693,6 +700,7 @@
   texture_alias: Mercenary
   item_type: 1
   category: 63
+  cost: 5000
 
 # Latts Razzi Suit
 - guid: 150057
@@ -705,6 +713,7 @@
   item_type: 1
   category: 61
   members: true
+  cost: 5000
 
 # Latts Razzi Gloves
 - guid: 150058
@@ -717,6 +726,7 @@
   item_type: 1
   category: 62
   members: true
+  cost: 5000
 
 # Latts Razzi Boots
 - guid: 150059
@@ -729,6 +739,7 @@
   item_type: 1
   category: 63
   members: true
+  cost: 5000
 
 # Bossk's Jumpsuit
 - guid: 150060
@@ -740,6 +751,7 @@
   texture_alias: Bossk
   item_type: 1
   category: 61
+  cost: 5000
 
 # Boba Fett's Armor
 - guid: 577
