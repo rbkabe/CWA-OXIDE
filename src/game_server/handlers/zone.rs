@@ -41,6 +41,7 @@ use super::{
         CharacterSquadIndex, CharacterSynchronizationIndex, CharacterType, Chunk, PreviousFixture,
         PreviousLocation, RemovalMode,
     },
+    profile::{save_profile, PlayerProfile},
     guid::{Guid, GuidTable, GuidTableIndexer, GuidTableWriteHandle, IndexedGuid},
     housing::prepare_init_house_packets,
     lock_enforcer::{
@@ -1197,6 +1198,13 @@ pub fn teleport_anywhere(
                     let destination_zone_guid = match destination_zone {
                         DestinationZoneInstance::Same => source_zone_guid,
                         DestinationZoneInstance::Other { instance_guid } => instance_guid,
+                        // Already in a zone of that template (e.g. a door inside a house):
+                        // stay in this instance instead of picking another one.
+                        DestinationZoneInstance::Any { template_guid }
+                            if zone_template_guid(source_zone_guid) == template_guid =>
+                        {
+                            source_zone_guid
+                        }
                         DestinationZoneInstance::Any { template_guid } => game_server
                             .get_or_create_instance(
                                 characters_table_write_handle,
@@ -1340,6 +1348,25 @@ pub fn interact_with_character(
                                 game_server,
                             )
                         })();
+
+                        // Save profile if interaction succeeded (credits or collectibles may have changed).
+                        if result.is_ok() {
+                            if let CharacterType::Player(player) = &requester_read_handle.stats.character_type {
+                                save_profile(
+                                    game_server.profiles_dir(),
+                                    requester_guid,
+                                    &PlayerProfile::from_player(
+                                        &player.name,
+                                        &player.inventory,
+                                        &player.customizations,
+                                        &player.collected_items,
+                                        &player.fav_emotes,
+                                        &player.purchased_items,
+                                        player.credits,
+                                    ),
+                                );
+                            }
+                        }
 
                         characters_write.insert(requester, requester_read_handle);
                         result

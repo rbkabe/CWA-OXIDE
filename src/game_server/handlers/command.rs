@@ -27,6 +27,7 @@ pub fn process_command(
             CommandOpCode::SelectPlayer => Ok(Vec::new()),
             CommandOpCode::InteractRequest => {
                 let req = InteractRequest::deserialize(cursor)?;
+                crate::info!("InteractRequest from {}: target={}", sender, req.target);
                 // Clicking a companion plays its equipped attachment's trick.
                 if let Some(broadcasts) = super::companion::companion_trick(player_guid(sender), req.target, game_server) {
                     return Ok(broadcasts);

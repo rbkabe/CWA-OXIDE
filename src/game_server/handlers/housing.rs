@@ -63,11 +63,16 @@ pub const HOUSE_LOTS: &[HouseLot] = &[
     lot(113, 230205, 4880, "Orto Plutonia Holiday Lot", 7058),
     lot(114, 230206, 54526, "Deluxe Ryloth Housing Lot", 6969),
     lot(115, 230207, 53745, "Tatooine Lot", 6423),
-    lot(116, 230208, 4825, "Sith Academy Lot", 6083),
-    lot(117, 230209, 52687, "Dathomir Sith Temple Lot", 5826),
+    lot(116, 230208, 4825, "Sith Academy Lot", 5826),
+    lot(117, 230209, 52687, "Dathomir Sith Temple Lot", 6083),
     lot(118, 230210, 51744, "Felucia Starter Lot", 5931),
     lot(119, 230211, 62227, "Luxury Coruscant Apartment", 6262),
-    // 120/121 (test_excis, test_ryloth8) have no store item, so they're never listed.
+    // Unfinished test lots from the game files
+    lot(120, 230212, 62229, "Excis 5-1", 5148),
+    lot(121, 230213, 62230, "Ryloth 8-1", 5148),
+    // The original Jedi Temple apartments (MemberHousing / NonMemberHousing)
+    lot(122, 230214, 62232, "Luxury Padawan Apartment", 5147),
+    lot(123, 230215, 62233, "Padawan Apartment", 5148),
 ];
 
 fn placed_fixture(
