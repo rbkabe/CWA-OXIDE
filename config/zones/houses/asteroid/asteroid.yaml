@@ -10,9 +10,9 @@ asteroid_house:
   default_point_of_interest:
     guid: 104
     pos:
-      x: 515
-      y: 111
-      z: 481.5
+      x: 514.9
+      y: 13.94
+      z: 481.1
       w: 1
     rot:
       x: -1
