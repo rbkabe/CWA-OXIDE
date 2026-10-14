@@ -35,6 +35,8 @@ pub struct DialogEffectsReferenceConfig {
 pub struct DialogChoiceReferenceConfig {
     pub button_key: String,
     pub button_text_id: u32,
+    /// Only show this button to players who have bought this item.
+    pub required_item: Option<u32>,
 }
 
 #[derive(Clone, Deserialize)]
@@ -114,7 +116,11 @@ pub fn handle_dialog_buttons(
                         speaker_guid: dialog.speaker_guid.unwrap_or(0),
                         enable_escape: true,
                         unknown4: 0.0,
-                        dialog_choices: dialog.choices.iter().map(|choice| DialogChoice {
+                        dialog_choices: dialog.choices.iter().filter(|choice| {
+                            choice.required_item.map_or(true, |item| super::housing::house_owner_has_item(
+                                zone_instance, sender, &player_stats.purchased_items, item, game_server,
+                            ))
+                        }).map(|choice| DialogChoice {
                             button_id: choice.button_id,
                             unknown2: 0,
                             button_text_id: choice.button_text_id,
@@ -204,6 +210,7 @@ pub fn handle_dialog_buttons(
 pub struct DialogChoiceReference {
     pub button_id: u32,
     pub button_text_id: u32,
+    pub required_item: Option<u32>,
 }
 
 #[derive(Clone)]
@@ -261,6 +268,7 @@ impl DialogChoiceTemplate {
                     DialogChoiceReference {
                         button_id,
                         button_text_id: choice.button_text_id,
+                        required_item: choice.required_item,
                     }
                 })
                 .collect();

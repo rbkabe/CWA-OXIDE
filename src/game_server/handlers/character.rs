@@ -736,6 +736,9 @@ pub struct OneShotInteractionConfig {
     pub duration_millis: u64,
     /// If set, clicking this NPC awards one collection piece.
     pub collection_item: Option<CollectionItemConfig>,
+    /// If set, the interaction does nothing for players who haven't bought this item
+    /// (e.g. a house room door that needs its room module).
+    pub required_item: Option<u32>,
 }
 
 /// Runtime representation of a collection piece attached to an NPC.
@@ -769,6 +772,7 @@ pub struct OneShotInteractionTemplate {
     pub despawn_npc: bool,
     pub duration_millis: u64,
     pub collection_item: Option<CollectionItemTemplate>,
+    pub required_item: Option<u32>,
 }
 
 impl OneShotInteractionTemplate {
@@ -814,6 +818,7 @@ impl OneShotInteractionTemplate {
             despawn_npc: config.despawn_npc,
             duration_millis: config.duration_millis,
             collection_item,
+            required_item: config.required_item,
         }
     }
 
@@ -828,6 +833,19 @@ impl OneShotInteractionTemplate {
     ) -> Result<Vec<Broadcast>, ProcessPacketError> {
         let mut packets_for_all = Vec::new();
         let mut packets_for_sender = Vec::new();
+
+        // Room doors etc.: in a house it's the owner's purchases that count.
+        if let Some(item) = self.required_item {
+            if !super::housing::house_owner_has_item(
+                zone_instance,
+                requester,
+                &player_stats.purchased_items,
+                item,
+                game_server,
+            ) {
+                return Ok(Vec::new());
+            }
+        }
 
         if self.despawn_npc {
             character.is_spawned = false;

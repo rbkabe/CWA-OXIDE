@@ -484,7 +484,7 @@ pub fn process_housing_packet(
                     .map(|lot| HouseInstanceEntry {
                         description: HouseDescription {
                             owner_guid: request.player_guid,
-                            house_guid: zone_instance_guid(0, lot.template_guid),
+                            house_guid: owned_house_guid(request.player_guid, lot.template_guid),
                             house_name: lot.name_id,
                             player_given_name: lot.name.to_string(),
                             owner_name: String::new(),
@@ -689,11 +689,44 @@ fn build_areas_for_template(template_guid: u8) -> Vec<BuildArea> {
     }
 }
 
+/// House instances carry their owner in the zone index (high bit set), so every
+/// player gets their own copy of each lot they own.
+const HOUSE_OWNER_FLAG: u32 = 1 << 31;
+
+pub fn owned_house_guid(owner_guid: u64, template_guid: u8) -> u64 {
+    zone_instance_guid(HOUSE_OWNER_FLAG | (owner_guid as u32 & !HOUSE_OWNER_FLAG), template_guid)
+}
+
+pub fn house_owner(house_guid: u64) -> Option<u32> {
+    let index = super::unique_guid::shorten_zone_index(house_guid);
+    (index & HOUSE_OWNER_FLAG != 0).then_some(index & !HOUSE_OWNER_FLAG)
+}
+
+/// Whether the owner of the house `zone_instance` is (or, outside a house, the
+/// requester) has bought `item`.  Visitors use the owner's saved profile.
+pub fn house_owner_has_item(
+    zone_instance: &ZoneInstance,
+    requester: u32,
+    requester_items: &std::collections::HashSet<u32>,
+    item: u32,
+    game_server: &GameServer,
+) -> bool {
+    match zone_instance.house_data.as_ref().map(|house| house.owner) {
+        Some(owner) if owner != requester => {
+            super::profile::load_profile(game_server.profiles_dir(), owner)
+                .purchased_items
+                .contains(&item)
+        }
+        _ => requester_items.contains(&item),
+    }
+}
+
 pub fn lookup_house(sender: u32, house_guid: u64) -> Result<House, ProcessPacketError> {
     let template_guid = super::unique_guid::zone_template_guid(house_guid);
-    info!("Found test house {} (template {})", house_guid, template_guid);
+    let owner = house_owner(house_guid).unwrap_or(sender);
+    info!("Found house {} (template {}, owner {})", house_guid, template_guid, owner);
     Ok(House {
-        owner: sender,
+        owner,
         owner_name: "BLASTER NICESHOt".to_string(),
         custom_name: "Blaster's Test Lot".to_string(),
         rating: 3.5,
