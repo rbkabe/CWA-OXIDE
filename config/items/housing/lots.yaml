@@ -175,7 +175,7 @@
 - guid: 230209
   name_id: 52687
   description_id: 14
-  icon_set_id: 2858
+  icon_set_id: 4001
   slot: !Equipment None
   item_type: 0
   category: 34
@@ -195,8 +195,51 @@
 - guid: 230211
   name_id: 62227
   description_id: 14
+  icon_set_id: 4000
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Test Lot (Excis5-1)
+- guid: 230212
+  name_id: 62229
+  description_id: 14
   icon_set_id: 1074
   slot: !Equipment None
   item_type: 0
   category: 34
   cost: 3000
+
+# Test Lot (Ryloth8-1)
+- guid: 230213
+  name_id: 62230
+  description_id: 14
+  icon_set_id: 1074
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Luxury Padawan Apartment
+- guid: 230214
+  name_id: 62232
+  description_id: 14
+  icon_set_id: 3998
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Padawan Apartment
+- guid: 230215
+  name_id: 62233
+  description_id: 14
+  icon_set_id: 3999
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+
+

@@ -52,3 +52,33 @@
   item_type: 0
   category: 76
   cost: 6000
+
+# Attack Cruiser Captain's Quarters
+- guid: 230216
+  name_id: 32442
+  description_id: 62236
+  icon_set_id: 1587
+  slot: !Equipment None
+  item_type: 0
+  category: 76
+  cost: 6000
+
+# Attack Cruiser Cargo Hold
+- guid: 230217
+  name_id: 32441
+  description_id: 62237
+  icon_set_id: 1587
+  slot: !Equipment None
+  item_type: 0
+  category: 76
+  cost: 6000
+
+# Attack Cruiser Trophy Room
+- guid: 230218
+  name_id: 32443
+  description_id: 62238
+  icon_set_id: 4002
+  slot: !Equipment None
+  item_type: 0
+  category: 76
+  cost: 6000
