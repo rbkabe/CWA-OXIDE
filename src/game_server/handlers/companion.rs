@@ -258,8 +258,8 @@ pub static COMPANION_MODELS: &[(u32, u32)] = &[
     (3219, 2161), // Erial              (3D_Convor_Purple.agr)
     (3282, 2852), // Phileas            (Grp_Companion_Sarlacc.agr → Char_Sarlacc.adr)
     (3283, 2853), // Barnibus           (Grp_Companion_Rancor_Glow.agr → Char_Rancor_Glow.adr)
-    (3366, 2293), // Marrok             (Char_Marrok.adr — TODO: needs wrapper if invisible)
-    (3373, 2299), // Ghorroh            (Char_Gundark.adr — TODO: needs wrapper if invisible)
+    (3366, 2920), // Marrok             (Char_Marrok.adr — TODO: needs wrapper if invisible)
+    (3373, 2921), // Ghorroh            (Char_Gundark.adr — TODO: needs wrapper if invisible)
     // Sidekicks
     (3079, 2848), // Aktik              (Grp_Companion_Holo_Jawa.agr → Holo_Jawa.adr)
     (3341, 2851), // Jynx               (Grp_Companion_Holo_NPCGungan.agr → Holo_NPCGungan.adr)
@@ -267,8 +267,8 @@ pub static COMPANION_MODELS: &[(u32, u32)] = &[
     // Missing companions (assigned GUIDs 3406-3468; 3420-3447 were original furniture/set ids, moved to 3460-3468)
     (3460, 2861), // Skreech            (Grp_Companion_KowakianMonkeyLizard_Blue.agr — blue Kowakian)
     (3461, 2865), // Cinch              (Grp_Companion_Anacondan.agr → Char_Anacondan.adr, Morley)
-    (3462, 2182), // Amelie             (Char_Millicreep.adr — TODO: needs wrapper if invisible)
-    (3463, 2470), // Gulsh              (Char_Narglatch.adr — TODO: needs wrapper if invisible)
+    (3462, 2922), // Amelie             (Char_Millicreep.adr — TODO: needs wrapper if invisible)
+    (3463, 2923), // Gulsh              (Char_Narglatch.adr — TODO: needs wrapper if invisible)
     (3464, 2863), // Kharroh            (Grp_Companion_Gundark_Green.agr — green Gundark)
     (3415, 2864), // Gash               (Grp_Companion_Narglatch_Green.agr — green Narglatch)
     (3406, 2862), // Cercopes           (Grp_Companion_KowakianMonkeyLizard_Green.agr — green Kowakian)
@@ -730,7 +730,7 @@ pub static COMPANION_CLICK_EFFECTS: &[(u32, &[&[(u32, u32, u32)]])] = &[
 static PENDING_COMPANION_RESTORES: std::sync::Mutex<Vec<(std::time::Instant, Broadcast)>> =
     std::sync::Mutex::new(Vec::new());
 
-fn schedule_companion_restore(after: std::time::Duration, broadcast: Broadcast) {
+pub fn schedule_companion_restore(after: std::time::Duration, broadcast: Broadcast) {
     if let Ok(mut pending) = PENDING_COMPANION_RESTORES.lock() {
         pending.push((std::time::Instant::now() + after, broadcast));
     }

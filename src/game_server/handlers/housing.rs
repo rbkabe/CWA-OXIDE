@@ -22,7 +22,7 @@ use crate::{
 };
 
 use super::{
-    character::{Character, CurrentFixture, PreviousFixture},
+    character::{Character, CharacterType, CurrentFixture, PreviousFixture},
     guid::{GuidTableIndexer, IndexedGuid},
     lock_enforcer::{CharacterLockRequest, ZoneLockEnforcer, ZoneLockRequest},
     unique_guid::{
@@ -30,6 +30,45 @@ use super::{
     },
     zone::{House, ZoneInstance},
 };
+
+/// A house lot: the zone template it opens, the store item that owns it, and
+/// what the My Homes list shows.  `image_id` is an Images.txt id (not an icon set).
+pub struct HouseLot {
+    pub template_guid: u8,
+    pub item_guid: u32,
+    pub name_id: u32,
+    pub name: &'static str,
+    pub image_id: u32,
+}
+
+const fn lot(template_guid: u8, item_guid: u32, name_id: u32, name: &'static str, image_id: u32) -> HouseLot {
+    HouseLot { template_guid, item_guid, name_id, name, image_id }
+}
+
+pub const HOUSE_LOTS: &[HouseLot] = &[
+    lot(100, 2702, 1987, "Mustafar Lot", 5143),
+    lot(101, 2503, 2732, "Kamino Lot", 5141),
+    lot(102, 2711, 33632, "Ryloth Lot", 5144),
+    lot(103, 2892, 44827, "Iceberg Three Lot", 5140),
+    lot(104, 3173, 1991, "Asteroid Lot", 5285),
+    lot(105, 3218, 4358, "Umbara Lot", 5363),
+    lot(106, 3372, 4607, "Felucia Lot", 5605),
+    lot(107, 2236, 32453, "Attack Cruiser", 5145),
+    // Lots from the game files the original store never sold (config/items/housing/lots.yaml)
+    lot(108, 230200, 52819, "Carlac Lot", 6105),
+    lot(109, 230201, 54589, "Dantooine Lot", 7034),
+    lot(110, 230202, 4751, "Geonosis Open Lot", 5765),
+    lot(111, 230203, 4849, "Maridun Open Lot", 5142),
+    lot(112, 230204, 4870, "Orto Plutonia Open Lot", 5889),
+    lot(113, 230205, 4880, "Orto Plutonia Holiday Lot", 7058),
+    lot(114, 230206, 54526, "Deluxe Ryloth Housing Lot", 6969),
+    lot(115, 230207, 53745, "Tatooine Lot", 6423),
+    lot(116, 230208, 4825, "Sith Academy Lot", 6083),
+    lot(117, 230209, 52687, "Dathomir Sith Temple Lot", 5826),
+    lot(118, 230210, 51744, "Felucia Starter Lot", 5931),
+    lot(119, 230211, 62227, "Luxury Coruscant Apartment", 6262),
+    // 120/121 (test_excis, test_ryloth8) have no store item, so they're never listed.
+];
 
 fn placed_fixture(
     fixture_guid: u64,
@@ -410,15 +449,41 @@ pub fn process_housing_packet(
             }
             HousingOpCode::RequestPlayerHouseList => {
                 let request = RequestPlayerHouseList::deserialize(cursor)?;
-                let make_entry = |template_guid: u8, name_id: u32, given_name: &str| {
-                    HouseInstanceEntry {
+                info!(
+                    "RequestPlayerHouseList from {}: player_guid={}",
+                    sender, request.player_guid
+                );
+
+                // Lots the requested player has bought (empty if they aren't online).
+                let owned: Vec<&HouseLot> = game_server.lock_enforcer().read_characters(|_| {
+                    CharacterLockRequest {
+                        read_guids: vec![request.player_guid],
+                        write_guids: Vec::new(),
+                        character_consumer: |_, characters_read, _, _| {
+                            let purchased = characters_read
+                                .get(&request.player_guid)
+                                .and_then(|character| match &character.stats.character_type {
+                                    CharacterType::Player(player) => Some(&player.purchased_items),
+                                    _ => None,
+                                });
+                            HOUSE_LOTS
+                                .iter()
+                                .filter(|lot| purchased.is_some_and(|items| items.contains(&lot.item_guid)))
+                                .collect()
+                        },
+                    }
+                });
+
+                let instances = owned
+                    .into_iter()
+                    .map(|lot| HouseInstanceEntry {
                         description: HouseDescription {
                             owner_guid: request.player_guid,
-                            house_guid: zone_instance_guid(0, template_guid),
-                            house_name: name_id,
-                            player_given_name: given_name.to_string(),
+                            house_guid: zone_instance_guid(0, lot.template_guid),
+                            house_name: lot.name_id,
+                            player_given_name: lot.name.to_string(),
                             owner_name: String::new(),
-                            icon_id: 4209,
+                            icon_id: lot.image_id,
                             unknown5: true,
                             fixture_count: 0,
                             unknown7: 0,
@@ -433,27 +498,65 @@ pub fn process_housing_packet(
                             unknown16: 0,
                             unknown17: 0,
                         },
-                        unknown1: request.player_guid,
-                    }
-                };
+                    })
+                    .collect();
+
                 Ok(vec![Broadcast::Single(
                     sender,
                     vec![GamePacket::serialize(&TunneledPacket {
                         unknown1: true,
                         inner: HouseInstanceList {
-                            instances: vec![
-                                make_entry(100, 1987,  "Mustafar Lot"),
-                                make_entry(101, 2732,  "Kamino Lot"),
-                                make_entry(102, 33632, "Ryloth Lot"),
-                                make_entry(103, 44827, "Iceberg Three Lot"),
-                                make_entry(104, 1991,  "Asteroid Lot"),
-                                make_entry(105, 4358,  "Umbara Lot"),
-                                make_entry(106, 4607,  "Felucia Lot"),
-                                make_entry(107, 32453, "Attack Cruiser"),
-                            ],
+                            instances,
+                            owner_guid: request.player_guid,
                         },
                     })],
                 )])
+            }
+            HousingOpCode::ExitHouse => {
+                // House_Dock "Exit House" button: send the player back where they
+                // were before entering (house zones don't overwrite previous_location).
+                game_server.lock_enforcer().write_characters(
+                    |characters_table_write_handle, minigame_data_lock_enforcer| {
+                        let previous_location = characters_table_write_handle
+                            .get(player_guid(sender))
+                            .and_then(|character| match &character.read().stats.character_type {
+                                CharacterType::Player(player) => Some(player.previous_location.clone()),
+                                _ => None,
+                            })
+                            .ok_or_else(|| {
+                                ProcessPacketError::new(
+                                    ProcessPacketErrorType::ConstraintViolated,
+                                    format!("Unknown player {sender} tried to exit a house"),
+                                )
+                            })?;
+
+                        let zones_lock_enforcer: ZoneLockEnforcer<'_> =
+                            minigame_data_lock_enforcer.into();
+                        zones_lock_enforcer.write_zones(|zones_table_write_handle| {
+                            let instance_guid = game_server.get_or_create_instance(
+                                characters_table_write_handle,
+                                zones_table_write_handle,
+                                previous_location.template_guid,
+                                1,
+                            )?;
+                            let Some(zone_read_handle) = zones_table_write_handle.get(instance_guid) else {
+                                return Err(ProcessPacketError::new(
+                                    ProcessPacketErrorType::ConstraintViolated,
+                                    format!("Zone instance {instance_guid} is missing after creation"),
+                                ));
+                            };
+                            teleport_to_zone!(
+                                characters_table_write_handle,
+                                sender,
+                                zones_table_write_handle,
+                                &zone_read_handle.read(),
+                                Some(previous_location.pos),
+                                Some(previous_location.rot),
+                                game_server.mounts(),
+                            )
+                        })
+                    },
+                )
             }
             HousingOpCode::EnterRequest => {
                 let enter_request: EnterRequest = DeserializePacket::deserialize(cursor)?;

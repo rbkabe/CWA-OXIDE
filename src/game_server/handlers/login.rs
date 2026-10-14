@@ -217,7 +217,13 @@ fn build_player_data(
                 }
             }
         }
-        player_data.data.mounts.clear();
+        // Players own the mounts whose store item they've bought.
+        player_data.data.mounts.retain(|mount| {
+            game_server
+                .mounts()
+                .get(&mount.mount_id)
+                .is_some_and(|config| config.item_guid != 0 && profile.purchased_items.contains(&config.item_guid))
+        });
         player_data.data.pets = COMPANION_PET_DATA
             .iter()
             .filter_map(|&(guid, _, _, _, _)| {

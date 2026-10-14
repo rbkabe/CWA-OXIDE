@@ -132,6 +132,14 @@ pub fn wield_type_from_slot(
         .unwrap_or(WieldType::None)
 }
 
+/// Whether a weapon of `wield_type` can stay equipped alongside one of
+/// `other_wield_type` in the opposite hand.  Standard and reverse-grip one-handed
+/// sabers can be paired (a reverse saber in the main hand with an offhand saber).
+fn wield_types_compatible(wield_type: WieldType, other_wield_type: WieldType) -> bool {
+    let one_handed_saber = |w: WieldType| matches!(w, WieldType::SingleSaber | WieldType::ReverseSingleSaber);
+    wield_type == other_wield_type || (one_handed_saber(wield_type) && one_handed_saber(other_wield_type))
+}
+
 pub fn wield_type_from_inventory(
     items: &BTreeMap<EquipmentSlot, u32>,
     game_server: &GameServer,
@@ -1280,7 +1288,7 @@ fn equip_item_in_slot<'a>(
                 other_weapon_slot,
                 game_server,
             );
-            if item_class.wield_type != other_wield_type {
+            if !wield_types_compatible(item_class.wield_type, other_wield_type) {
                 if let Some(unequipped_guid) = player
                     .inventory
                     .equipped_item(equip_guid.battle_class, other_weapon_slot)
@@ -1350,6 +1358,17 @@ fn equip_item_in_slot<'a>(
                 }
                 (EquipmentSlot::PrimaryWeapon, WieldType::SinglePistol, true) => {
                     WieldType::DualPistol
+                }
+                // An offhand saber with a reverse-grip main hand keeps the
+                // reverse stance; the offhand saber is just held in the left hand.
+                (EquipmentSlot::SecondaryWeapon, WieldType::SingleSaber, _)
+                    if wield_type_from_slot(
+                        &player.inventory.equipped_items(equip_guid.battle_class),
+                        EquipmentSlot::PrimaryWeapon,
+                        game_server,
+                    ) == WieldType::ReverseSingleSaber =>
+                {
+                    WieldType::ReverseSingleSaber
                 }
                 (EquipmentSlot::SecondaryWeapon, WieldType::SingleSaber, _) => WieldType::DualSaber,
                 (EquipmentSlot::SecondaryWeapon, WieldType::SinglePistol, _) => {

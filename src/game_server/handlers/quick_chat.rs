@@ -5,7 +5,7 @@ use packet_serialize::DeserializePacket;
 use crate::game_server::{
     handlers::{
         character::CharacterType,
-        chat_command::{HOLOPROJECTOR_MODELS, MIND_TRICKS, PERSISTENT_MIND_TRICKS, WEAPON_MOVES, weapon_move_animation_id},
+        chat_command::{EMOTE_EFFECTS, HELD_EMOTES, HOLOPROJECTOR_MODELS, MIND_TRICKS, PERSISTENT_MIND_TRICKS, WEAPON_MOVES, weapon_move_animation_id},
         guid::GuidTableIndexer,
         lock_enforcer::CharacterLockRequest,
         unique_guid::player_guid,
@@ -14,7 +14,7 @@ use crate::game_server::{
     packets::{
         player_update::{
             AddCompositeEffectTag, PlayCompositeEffect, QueueAnimation,
-            RemoveCompositeEffectTag, RemoveTemporaryModel, UpdateTemporaryModel,
+            RemoveCompositeEffectTag, RemoveTemporaryModel, SetAnimation, UpdateTemporaryModel,
         },
         tunnel::TunneledPacket,
         GamePacket, Pos,
@@ -110,13 +110,7 @@ pub fn process_quick_chat_packet(
                             let pos = ch.stats.pos;
                             let rot = ch.stats.rot;
 
-                            let (fwd, y_off, right) = trick_offset;
-                            let effect_pos = Pos {
-                                x: pos.x + rot.x * fwd + rot.z * right,
-                                y: pos.y + y_off,
-                                z: pos.z + rot.z * fwd - rot.x * right,
-                                w: pos.w,
-                            };
+                            let effect_pos = super::chat_command::effect_pos(pos, rot, trick_offset);
 
                             let mut packets: Vec<Vec<u8>> = trick_seq
                                 .iter()
@@ -303,21 +297,59 @@ pub fn process_quick_chat_packet(
                             return Ok(vec![]);
                         }
 
+                        // ── Held emotes (pose / flourish) ────────────────────────────────
+                        if let Some(&(_, held_anim, seconds)) =
+                            HELD_EMOTES.iter().find(|e| e.0 == item_guid)
+                        {
+                            let set = |anim: i32| GamePacket::serialize(&TunneledPacket {
+                                unknown1: true,
+                                inner: SetAnimation {
+                                    character_guid: requester_guid,
+                                    animation_id: anim,
+                                    animation_group_id: -1,
+                                    override_animation: true,
+                                },
+                            });
+                            super::companion::schedule_companion_restore(
+                                std::time::Duration::from_secs_f32(seconds),
+                                Broadcast::Multi(nearby.clone(), vec![set(1)]), // loc_stand
+                            );
+                            return Ok(vec![Broadcast::Multi(nearby, vec![set(held_anim)])]);
+                        }
+
                         // ── Normal animation (emotes, handheld holoprojectors) ───────────
                         if animation_id != 0 {
-                            return Ok(vec![Broadcast::Multi(
-                                nearby,
-                                vec![GamePacket::serialize(&TunneledPacket {
-                                    unknown1: true,
-                                    inner: QueueAnimation {
-                                        character_guid: requester_guid,
-                                        animation_id,
-                                        queue_pos: 0,
-                                        delay_seconds: 0.0,
-                                        duration_seconds: 2.0,
-                                    },
-                                })],
-                            )]);
+                            let mut packets = vec![GamePacket::serialize(&TunneledPacket {
+                                unknown1: true,
+                                inner: QueueAnimation {
+                                    character_guid: requester_guid,
+                                    animation_id,
+                                    queue_pos: 0,
+                                    delay_seconds: 0.0,
+                                    duration_seconds: super::chat_command::emote_duration_seconds(animation_id),
+                                },
+                            })];
+                            // Some emotes also play an effect (e.g. Force Push's force ball).
+                            if let Some(&(_, effect_id, offset, delay_ms)) =
+                                EMOTE_EFFECTS.iter().find(|e| e.0 == item_guid)
+                            {
+                                if let Some(ch) = cwrite.get_mut(&requester_guid) {
+                                    let pos = ch.stats.pos;
+                                    let rot = ch.stats.rot;
+                                    packets.push(GamePacket::serialize(&TunneledPacket {
+                                        unknown1: true,
+                                        inner: PlayCompositeEffect {
+                                            guid: requester_guid,
+                                            triggered_by_guid: requester_guid,
+                                            composite_effect: effect_id,
+                                            delay_millis: delay_ms,
+                                            duration_millis: super::chat_command::mind_trick_effect_duration_millis(effect_id),
+                                            pos: super::chat_command::effect_pos(pos, rot, offset),
+                                        },
+                                    }));
+                                }
+                            }
+                            return Ok(vec![Broadcast::Multi(nearby, packets)]);
                         }
 
                         Ok(vec![])

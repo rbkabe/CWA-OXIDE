@@ -230,6 +230,9 @@ fn process_buy_item(
                 if is_companion_item(item_guid) {
                     packets.extend(pet_list_refresh(active_pet_id, active_companion_guid, &player.purchased_items, &companion_attachments));
                 }
+                if super::mount::is_mount_item(item_guid, game_server) {
+                    packets.push(super::mount::mount_list_packet(sender, &player.purchased_items, game_server));
+                }
 
                 Ok(vec![Broadcast::Single(sender, packets)])
             },
@@ -497,6 +500,9 @@ pub fn process_buy_group(
                 }));
                 if item_guids.iter().any(|g| is_companion_item(*g)) {
                     packets.extend(pet_list_refresh(active_pet_id, active_companion_guid, &player.purchased_items, &companion_attachments));
+                }
+                if item_guids.iter().any(|g| super::mount::is_mount_item(*g, game_server)) {
+                    packets.push(super::mount::mount_list_packet(sender, &player.purchased_items, game_server));
                 }
 
                 Ok(vec![Broadcast::Single(sender, packets)])

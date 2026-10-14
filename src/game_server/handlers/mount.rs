@@ -9,7 +9,8 @@ use crate::{
         packets::{
             client_update::{Stat, StatId, Stats},
             item::{BaseAttachmentGroup, WieldType},
-            mount::{DismountReply, MountOpCode, MountReply, MountSpawn},
+            mount::{DismountReply, MountList, MountOpCode, MountReply, MountSpawn},
+            player_data::Mount,
             player_update::{AddNpc, Hostility, Icon, PhysicsState, RemoveGracefully, UpdateSpeed},
             tunnel::TunneledPacket,
             Effect, GamePacket, Pos, Target,
@@ -41,6 +42,10 @@ pub struct MountConfig {
     texture: String,
     pub name_id: u32,
     pub icon_set_id: u32,
+    /// Store item that grants this mount (0 = none).  Players with a saved
+    /// profile only get the mounts whose item they've bought.
+    #[serde(default)]
+    pub item_guid: u32,
     mount_composite_effect: u32,
     dismount_composite_effect: u32,
 }
@@ -49,6 +54,38 @@ impl Guid<u32> for MountConfig {
     fn guid(&self) -> u32 {
         self.id
     }
+}
+
+/// Whether buying `item_guid` grants a mount.
+pub fn is_mount_item(item_guid: u32, game_server: &GameServer) -> bool {
+    game_server.mounts().values().any(|mount| mount.item_guid != 0 && mount.item_guid == item_guid)
+}
+
+/// `MountList` packet with every mount whose store item `purchased_items`
+/// contains: sent after buying a mount so it shows up without relogging.
+pub fn mount_list_packet(
+    sender: u32,
+    purchased_items: &std::collections::HashSet<u32>,
+    game_server: &GameServer,
+) -> Vec<u8> {
+    let mounts = game_server
+        .mounts()
+        .values()
+        .filter(|mount| mount.item_guid != 0 && purchased_items.contains(&mount.item_guid))
+        .map(|mount| Mount {
+            mount_id: Guid::guid(mount),
+            name_id: mount.name_id,
+            icon_set_id: mount.icon_set_id,
+            guid: mount_guid(player_guid(sender)),
+            unknown5: false,
+            unknown6: 0,
+            unknown7: "".to_string(),
+        })
+        .collect();
+    GamePacket::serialize(&TunneledPacket {
+        unknown1: true,
+        inner: MountList { mounts },
+    })
 }
 
 pub fn load_mounts(config_dir: &Path) -> Result<BTreeMap<u32, MountConfig>, ConfigError> {

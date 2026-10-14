@@ -136,10 +136,12 @@ pub fn load_quick_chats(config_dir: &Path) -> Result<Vec<QuickChatDefinition>, C
         .collect())
 }
 
-/// An unnamed multi-item group that only exists to put items up for sale: one
-/// with a store category, or one of our own (guid >= 10000).
+/// An unnamed multi-item group that would show up as a blank "item set"
+/// listing: one with a store category.  Unnamed groups with category 0 are
+/// still sent: the store's single-item view only lists items whose group the
+/// client knows about (e.g. our hidden groups 10100+ for standalone items).
 fn is_hidden_store_group(group: &ItemGroupConfig) -> bool {
-    group.category != 0 || group.guid >= 10000
+    group.category != 0
 }
 
 pub fn load_item_groups(

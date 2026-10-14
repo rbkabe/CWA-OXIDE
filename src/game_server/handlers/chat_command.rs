@@ -76,7 +76,7 @@ const EMOTES: &[(&str, i32, Option<(u32, u32, f32, f32, f32)>)] = &[
     ("forcejuggle", 3016, None),
     ("forcelift", 3014, None),
     ("forcemeditate", 3017, None),
-    ("forcepush", 3015, Some((2085, 0, 1.5, 1.75, -0.2))),
+    ("forcepush", 3015, Some((2085, 0, f32::NAN, f32::NAN, f32::NAN))), // attached to the character
     ("facepalm", 3004, None),
     ("headshake", 3005, None),
     ("hitthedeck", 3023, None),
@@ -258,6 +258,79 @@ fn find_weapon_move(name: &str) -> Option<(u32, u8, usize)> {
 /// player's pos when spawning the composite effect. forward_offset projects
 /// along rot.x/rot.z; right_offset projects along the perpendicular right
 /// vector (rot.z, -rot.x).
+/// Where the force push effect (PFX_ForcePush_Emote) spawns relative to the
+/// player: (forward, up, right) in world units.  Same position the /forcepush
+/// chat command uses (tuned in-game); the effect isn't bone-attached, so it has
+/// to be placed in front of the pushing hand.
+pub const FORCE_PUSH_HAND_OFFSET: (f32, f32, f32) = (1.5, 1.75, -0.2);
+
+/// Plain emotes that also play a composite effect (the animation alone has
+/// none): (item_guid, composite_effect_id, effect_offset, delay_millis).
+/// Effect ids are from ActorCompositeEffectDefinitions.xml.
+/// Offset marker for EMOTE_EFFECTS: send the effect with an empty position so
+/// the client attaches it to the character (like companion effects) instead of
+/// spawning it at a fixed point in the world.
+pub const ATTACHED: (f32, f32, f32) = (f32::NAN, f32::NAN, f32::NAN);
+
+/// Where to play an emote / mind trick effect: `ATTACHED` (NaN) gives an empty
+/// position so the client attaches the effect to the character; otherwise the
+/// (forward, up, right) offset from the player.
+pub fn effect_pos(pos: Pos, rot: Pos, (forward, up, right): (f32, f32, f32)) -> Pos {
+    if forward.is_nan() {
+        return Pos::default();
+    }
+    Pos {
+        x: pos.x + rot.x * forward + rot.z * right,
+        y: pos.y + up,
+        z: pos.z + rot.z * forward - rot.x * right,
+        w: pos.w,
+    }
+}
+
+pub const EMOTE_EFFECTS: &[(u32, u32, (f32, f32, f32), u32)] = &[
+    // Force Push emote -> PFX_ForcePush_Emote, same as the mind trick
+    (6021, 2085, ATTACHED, 0),
+    // Jedi: Force Pound -> PFX_CMBT_ForceExplosion_GroundRipple, in front where the
+    // fist hits the ground (same spot/timing as the Force Explosion mind trick)
+    (6028, 2875, (2.0, 0.0, -0.3), 500),
+    // Sith: Force Lightning -> PFX_ForceLightning_Arc_Loop (next to the Rage /
+    // Seethe emote effects): orb 0.6-3.5 s, then lightning arcs until 9.5 s.
+    // ATTACHED: played on the character (bone-attached) rather than at a point.
+    (6036, 2872, ATTACHED, 0),
+    // Sith: Rage / Sith: Seethe -> their own force bursts, at chest height
+    (6031, 2874, ATTACHED, 0),
+    (6032, 2876, ATTACHED, 0),
+    // Force Lift -> PFX_Sith_KML_ForceLift
+    (6020, 2693, ATTACHED, 0),
+    // Force Meditate (moves.yaml) and Jedi: Meditate -> PFX_Meditation_Force_Distortion
+    (3096, 2766, ATTACHED, 0),
+    (6030, 2766, ATTACHED, 0),
+];
+
+/// Emotes whose animation is cut short when queued as a one-shot (Pose's
+/// Emo_PortraitPose1 and the lightsaber Emo_Standard_Flourish1 aren't normal
+/// priority-1 emote slots).  They're played with SetAnimation override and the
+/// stand animation restored after `seconds`: (item_guid, animation_id, seconds).
+/// (Pose / Battle Class Flourish I were tried here: SetAnimation override only
+/// looped their first frames, so they're back to QueueAnimation below.)
+pub const HELD_EMOTES: &[(u32, i32, f32)] = &[];
+
+/// QueueAnimation duration for emotes longer than the default 2 s (the client
+/// stops the animation at this time).  (animation_id, seconds)
+pub const EMOTE_DURATIONS: &[(i32, f32)] = &[
+    (3608, 9.5), // Emo_Sith_ForceLightning (matches PFX_ForceLightning_Arc_Loop)
+    (3401, 6.0), // Emo_PortraitPose1 (Pose)
+    (3301, 4.0), // Emo_Standard_Flourish1 (Battle Class Flourish I)
+];
+
+pub fn emote_duration_seconds(animation_id: i32) -> f32 {
+    EMOTE_DURATIONS
+        .iter()
+        .find(|(id, _)| *id == animation_id)
+        .map(|(_, s)| *s)
+        .unwrap_or(2.0)
+}
+
 pub const MIND_TRICKS: &[(&str, u32, Option<i32>, (f32, f32, f32), &[(u32, u32)])] = &[
     (
         "fireworks",
@@ -271,7 +344,9 @@ pub const MIND_TRICKS: &[(&str, u32, Option<i32>, (f32, f32, f32), &[(u32, u32)]
         &[(1722, 0)],
     ),
     ("forceexplosion", 662, Some(3605), (2.0, 0.0, -0.3), &[(1752, 500)]),
-    ("forcepushtrick", 2084, Some(3015), (1.5, 1.75, -0.2), &[(2114, 0)]),
+    // PFX_ForcePush_Emote (2085): the mind trick's own push effect (was 2114 =
+    // PFX_Force_Glow_hands), placed at the pushing hand.
+    ("forcepushtrick", 2084, Some(3015), ATTACHED, &[(2085, 0)]),
 ];
 
 /// Playback duration for a one-shot mind trick effect.  Most are short bursts;
@@ -279,6 +354,11 @@ pub const MIND_TRICKS: &[(&str, u32, Option<i32>, (f32, f32, f32), &[(u32, u32)]
 pub fn mind_trick_effect_duration_millis(composite_effect_id: u32) -> u32 {
     match composite_effect_id {
         1722 => 10_000, // PFX_Fireworks_OverHead_sm (defaultLifeTime 10 s)
+        2085 => 2_000,  // PFX_ForcePush_Emote (second burst triggers at 0.7 s)
+        2695 => 4_000,  // PFX_Sith_KML_ForceLightning
+        2872 => 10_000, // PFX_ForceLightning_Arc_Loop (arcs end at 9.5 s)
+        2766 => 4_000,  // PFX_Meditation_Force_Distortion
+        2874 | 2875 | 2876 => 2_000, // Rage / Force Pound / Seethe bursts
         _ => 1000,
     }
 }
@@ -304,6 +384,12 @@ pub const PERSISTENT_MIND_TRICKS: &[(&str, u32, u32, u32)] = &[
     ("republiccruiser", 567, 1716, 9103),
     ("malevolence", 630, 1730, 9104),
     ("forceglow", 663, 1793, 9105),
+    // PFX_Emote_Orbit_Starfighter / _Vulture / _Ywing and PFX_Force_Glow_hands
+    // (ActorCompositeEffectDefinitions.xml)
+    ("orbitingstarfighters", 250020, 2109, 9106),
+    ("orbitingvultures", 250021, 2111, 9107),
+    ("orbitingywings", 250022, 2110, 9108),
+    ("forceglowhands", 250023, 2114, 9109),
 ];
 
 fn find_persistent_mind_trick(name: &str) -> Option<(u32, u32, u32)> {
@@ -773,13 +859,7 @@ pub fn process_chat_command(
 
                             let pos = requester_read_handle.stats.pos;
                             let rot = requester_read_handle.stats.rot;
-                            let (forward_offset, y_offset, right_offset) = effect_offset;
-                            let effect_pos = Pos {
-                                x: pos.x + rot.x * forward_offset + rot.z * right_offset,
-                                y: pos.y + y_offset,
-                                z: pos.z + rot.z * forward_offset - rot.x * right_offset,
-                                w: pos.w,
-                            };
+                            let effect_pos = effect_pos(pos, rot, effect_offset);
 
                             let mut packets: Vec<Vec<u8>> = sequence
                                 .iter()
@@ -1287,12 +1367,7 @@ pub fn process_chat_command(
                             })];
 
                             if let Some((composite_effect_id, delay_millis, forward_offset, y_offset, right_offset)) = emote_effect {
-                                let effect_pos = Pos {
-                                    x: pos.x + rot.x * forward_offset + rot.z * right_offset,
-                                    y: pos.y + y_offset,
-                                    z: pos.z + rot.z * forward_offset - rot.x * right_offset,
-                                    w: pos.w,
-                                };
+                                let effect_pos = effect_pos(pos, rot, (forward_offset, y_offset, right_offset));
                                 packets.push(GamePacket::serialize(&TunneledPacket {
                                     unknown1: true,
                                     inner: PlayCompositeEffect {
