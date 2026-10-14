@@ -10,9 +10,9 @@ felucia_house:
   default_point_of_interest:
     guid: 106
     pos:
-      x: 256
-      y: 212
-      z: 250
+      x: 188.9
+      y: 12.1
+      z: 223.6
       w: 1
     rot:
       x: -1
