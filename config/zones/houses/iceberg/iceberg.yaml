@@ -10,9 +10,9 @@ iceberg_house:
   default_point_of_interest:
     guid: 103
     pos:
-      x: 574
-      y: 148
-      z: 490
+      x: 498.4
+      y: 47.4
+      z: 461.3
       w: 1
     rot:
       x: -1
