@@ -3101,7 +3101,7 @@
   model_name: Furniture_Turrets_RepeatingBlaster_Rank1.adr
   item_type: 29
   category: 0
-  cost: 0
+  cost: 5000
   max_stack_size: 1000
 
 # Repeating Blaster Turret II - Estimated guid based on repeating data
@@ -3113,7 +3113,7 @@
   model_name: Furniture_Turrets_RepeatingBlaster_Rank2.adr
   item_type: 29
   category: 0
-  cost: 0
+  cost: 5000
   max_stack_size: 1000
 
 # Repeating Blaster Turret III - Estimated guid based on repeating data
@@ -3125,7 +3125,7 @@
   model_name: Furniture_Turrets_RepeatingBlaster_Rank3.adr
   item_type: 29
   category: 0
-  cost: 0
+  cost: 5000
   max_stack_size: 1000
 
 # Repeating Blaster Turret IV - Estimated guid based on repeating data
@@ -3137,7 +3137,7 @@
   model_name: Furniture_Turrets_RepeatingBlaster_Rank4.adr
   item_type: 29
   category: 0
-  cost: 0
+  cost: 5000
   max_stack_size: 1000
 
 # Repeating Blaster Turret V - Estimated guid based on repeating data
@@ -3149,7 +3149,7 @@
   model_name: Furniture_Turrets_RepeatingBlaster_Rank5.adr
   item_type: 29
   category: 0
-  cost: 0
+  cost: 5000
   max_stack_size: 1000
 
 # Thermal Grenade Turret I
@@ -3759,7 +3759,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Asajj Ventress Cutout
 - guid: 2117
@@ -3772,7 +3772,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Count Dooku Lantern
 - guid: 2118
@@ -3785,7 +3785,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Wide Pumpkin
 - guid: 2119
@@ -3797,7 +3797,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Tall Pumpkin
 - guid: 2120
@@ -3810,7 +3810,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # General Grievous Lantern
 - guid: 2121
@@ -3823,7 +3823,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Jedi Lantern
 - guid: 2122
@@ -3835,7 +3835,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Asajj Ventress Lantern
 - guid: 2123
@@ -3847,7 +3847,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Scarecrow Bot
 - guid: 2124
@@ -3859,7 +3859,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Spiderweb 1
 - guid: 2125
@@ -3871,7 +3871,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Spiderweb 2
 - guid: 2126
@@ -3884,7 +3884,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Spiderweb 3
 - guid: 2127
@@ -3897,7 +3897,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Spiderweb 4
 - guid: 2128
@@ -3909,7 +3909,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Spiderweb 5
 - guid: 2129
@@ -3922,7 +3922,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Life Day Twinkle Garland
 - guid: 2216
@@ -3935,7 +3935,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Long Green Life Day Orb Light
 - guid: 2217
@@ -3948,7 +3948,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Red Life Day Orb Light
 - guid: 2218
@@ -3961,7 +3961,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Long Blue Life Day Orb Light
 - guid: 2219
@@ -3974,7 +3974,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Yellow Life Day Orb Light
 - guid: 2220
@@ -3987,7 +3987,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Red and Yellow Life Day Orb Light
 - guid: 2221
@@ -4000,7 +4000,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Medium Life Day Present
 - guid: 2222
@@ -4013,7 +4013,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Life Day Garland Lights 2
 - guid: 2223
@@ -4026,7 +4026,7 @@
   category: 0
   max_stack_size: 1000
   members: true
-  cost: 0
+  cost: 5000
 
 # Green and Yellow Life Day Orb Light
 - guid: 2224
@@ -4038,7 +4038,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Blue and Red Life Day Orb Light
 - guid: 2225
@@ -4050,7 +4050,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Short Blue Life Day Orb Light
 - guid: 2226
@@ -4062,7 +4062,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Short Green Life Day Orb Light
 - guid: 2227
@@ -4074,7 +4074,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Large Life Day Present
 - guid: 2228
@@ -4086,7 +4086,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Small Life Day Present
 - guid: 2229
@@ -4098,7 +4098,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Life Day Garland Lights 1
 - guid: 2230
@@ -4110,7 +4110,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Life Day Garland Lights 3
 - guid: 2231
@@ -4122,7 +4122,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Life Day Wroshyr Tree
 - guid: 2232
@@ -4134,7 +4134,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
-  cost: 0
+  cost: 5000
 
 # Blossoming Cherry Tree
 - guid: 2746
@@ -5410,7 +5410,7 @@
   model_name: Furniture_MeditationTree01.adr
   item_type: 29
   category: 0
-  cost: 0
+  cost: 5000
   max_stack_size: 1000
 
 # Purple Meditation Tree
@@ -5422,7 +5422,7 @@
   model_name: Furniture_MeditationTree02.adr
   item_type: 29
   category: 0
-  cost: 0
+  cost: 5000
   max_stack_size: 1000
 
 # Potted Amber Fern
@@ -5774,6 +5774,7 @@
   item_type: 29
   category: 0
   max_stack_size: 1000
+  cost: 5000
 
 # Veranda Wall Sconce
 - guid: 3426

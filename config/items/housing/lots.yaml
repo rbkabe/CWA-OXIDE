@@ -78,3 +78,125 @@
   item_type: 0
   category: 34
   cost: 3000
+
+# ---- Lots from the game files the original store never sold ----
+
+# Carlac Lot
+- guid: 230200
+  name_id: 52819
+  description_id: 14
+  icon_set_id: 3057
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Dantooine Lot
+- guid: 230201
+  name_id: 54589
+  description_id: 14
+  icon_set_id: 3846
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Geonosis Open Lot
+- guid: 230202
+  name_id: 4751
+  description_id: 14
+  icon_set_id: 2799
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Maridun Open Lot
+- guid: 230203
+  name_id: 4849
+  description_id: 14
+  icon_set_id: 2877
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Orto Plutonia Open Lot
+- guid: 230204
+  name_id: 4870
+  description_id: 14
+  icon_set_id: 2921
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Orto Plutonia Holiday Lot
+- guid: 230205
+  name_id: 4880
+  description_id: 14
+  icon_set_id: 3866
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Deluxe Ryloth Housing Lot
+- guid: 230206
+  name_id: 54526
+  description_id: 14
+  icon_set_id: 3795
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Tatooine Lot
+- guid: 230207
+  name_id: 53745
+  description_id: 14
+  icon_set_id: 3282
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Sith Academy Lot
+- guid: 230208
+  name_id: 4825
+  description_id: 14
+  icon_set_id: 2858
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Dathomir Sith Temple Lot
+- guid: 230209
+  name_id: 52687
+  description_id: 14
+  icon_set_id: 2858
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Felucia Starter Lot
+- guid: 230210
+  name_id: 51744
+  description_id: 14
+  icon_set_id: 2694
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
+
+# Luxury Coruscant Apartment
+- guid: 230211
+  name_id: 62227
+  description_id: 14
+  icon_set_id: 1074
+  slot: !Equipment None
+  item_type: 0
+  category: 34
+  cost: 3000
