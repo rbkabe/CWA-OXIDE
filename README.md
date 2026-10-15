@@ -38,8 +38,6 @@ Server keeps track of what you buy, credits you earn, and credits you spend
 
 2 furniture listings
 
-21 custom armor sets and 2 custom single armor pieces (they are lore friendly)
-
 SCRIPTS TO CREATE YOUR OWN ARMOR SETS, STRINGS, ICONS, MODELS, AND EFFECTS (this is the fun part)
 
 All you need to do is download Python from here: https://www.python.org/downloads/release/python-3150/
