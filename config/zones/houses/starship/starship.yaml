@@ -36,7 +36,7 @@ starship_house:
       rot: {x: -0.01, y: 0, z: 1.5, w: 0}
     # Bridge -> Captain's Quarters
     - guid: 10702
-      pos: {x: 103, y: 23.9, z: -2510, w: 1}
+      pos: {x: 103, y: 23.9, z: -2537, w: 1}
       rot: {x: -0.86, y: 0, z: 1.23, w: 0}
     # Bridge -> Cargo Hold
     - guid: 10703
