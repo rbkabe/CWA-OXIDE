@@ -419,7 +419,7 @@ jedi_temple:
       new_dialog:
         dialog_message_id: 44339
         speaker_animation_id: 2202
-        speaker_sound_id: 6241
+        speaker_sound_id: 5419
         zoom: 30
         camera_placement:
           x: 721.76
