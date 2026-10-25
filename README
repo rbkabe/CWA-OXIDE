@@ -1,5 +1,9 @@
+Adds ambient NPCs to the War Room as well as intro dialog for Republic Defender, Attack Cruiser, and Galactic Forces.
+
 To install paste contents into oxide/config/zones/jeditemple
 
 This update does not require any changes from patch 5 and will work on an unmodified oxide client.
+
+Next Goal: Add NPCs to the Lounge
 
 Thank you to WexToxicstinger for helping me find Rex's voice lines.
