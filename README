@@ -1,6 +1,3 @@
-paste contents into oxide/config/zones/jeditemple
+To install paste contents into oxide/config/zones/jeditemple
 
-next goals are to add ambient animations to all npcs as well as fill in the rest of the temple.
-
-check other branches for more updates!
- 
+This update does not require any changes from patch 5 and will work on an unmodified oxide client.
