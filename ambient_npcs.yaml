@@ -2460,7 +2460,7 @@ jedi_temple:
         y: 0
         z: 0.12991302
         w: 0
-      stand_animation_id: 901
+      stand_animation_id: 0
       notification_icon: 10
       cursor: 52
     # Commander Gree (shop)
@@ -2994,7 +2994,506 @@ jedi_temple:
             - procedure: battle_droid_hologram
             - procedure: super_battle_droid_hologram
             - procedure: droideka_hologram
-
+    # Clone Officer 1:
+    clone_officer_1:
+      model_id: 596
+      pos:
+        x: 705.27594
+        y: 9.881841
+        z: -6.176139
+        w: 1
+      rot:
+        x: 0.98026186
+        y: 0
+        z: 0.19770391
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+      interact_radius: 5
+    # Admiral Yularen
+    admiral_yularen:
+      model_id: 1011
+      pos:
+        x: 707.78796
+        y: 9.880963
+        z: -7.579363
+        w: 1
+      rot:
+        x: 0.04971882
+        y: 0
+        z: 0.9987632
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+      interact_radius: 5
+    # Commander Cody
+    commander_cody_phase_2:
+      model_id: 2785
+      pos:
+        x: 710.03723
+        y: 9.881841
+        z: -6.7319956
+        w: 1
+      rot:
+        x: -0.7411733
+        y: 0
+        z: 0.6713137
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+      interact_radius: 5
+    # Mace Windu
+    mace_windu:
+      key: mace_windu
+      model_id: 46
+      pos:
+        x: 709.98584
+        y: 9.88141
+        z: -4.839623
+        w: 1
+      rot:
+        x: -0.96185786
+        y: 0
+        z: -.1735495
+        w: 0
+      stand_animation_id: 2100
+      cursor: 53
+      enable_interact_popup: true
+      notification_icon: 26
+      one_shot_interaction:
+        dialog_option_key: Mace Windu
+        duration_millis: 1
+      interact_radius: 5
+    # Plo Koon
+    plo_koon:
+      key: plo_koon
+      model_id: 407
+      pos:
+        x: 723.3323
+        y: 10.98241
+        z: 0.60637796
+        w: 1
+      rot:
+        x: -0.61723983
+        y: 0
+        z: 0.7867751
+        w: 0
+      stand_animation_id: 901
+      cursor: 53
+      enable_interact_popup: true
+      notification_icon: 13
+      one_shot_interaction:
+        dialog_option_key: Plo Koon
+        duration_millis: 1
+      interact_radius: 5
+    # N-3OH
+    n-3oh:
+      model_id: 646
+      pos:
+        x: 723.6957
+        y: 10.098242
+        z: 1.5945868
+        w: 1
+      rot:
+        x: -0.77202964
+        y: 0
+        z: 0.63558644
+        w: 0
+      enable_interact_popup: false
+    # Captain_Rex
+    captain_rex:
+      key: captain_rex
+      model_id: 2104
+      pos:
+        x: 724.3597
+        y: 10.098242
+        z: 12.452449
+        w: 1
+      rot:
+        x: -0.86779475
+        y: 0
+        z: -0.4969229
+        w: 0
+      stand_animation_id: 901
+      cursor: 53
+      enable_interact_popup: true
+      notification_icon: 41
+      one_shot_interaction:
+        dialog_option_key: Captain Rex
+        duration_millis: 1
+      interact_radius: 5
+    # Space Trooper
+    space_trooper:
+      model_id: 1875
+      pos:
+        x: 699.4734
+        y: 9.881841
+        z: 4.7295203
+        w: 1
+      rot:
+        x: 0.99908245
+        y: 0
+        z: 0.04282938
+        w: 0
+      stand_animation_id: 442
+      enable_interact_popup: false
+      wield_type: HeavyCannon
+      attachments:
+        - model_name: Wield_HeavyHipGun_Z6.adr
+          texture_alias: CloneGunner
+          slot: PrimaryWeapon
+    # Twilek Jedi Female
+    twilek_jedi_female:
+      model_id: 410
+      pos:
+        x: 702.66266
+        y: 9.881841
+        z: 5.636868
+        w: 1
+      rot:
+        x: 0.8420334
+        y: 0 
+        z: 0.53942543
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+    # Male Jedi
+    male_jedi:
+      model_id: 191
+      pos:
+        x: 704.822
+        y: 9.881841
+        z: 7.5362415
+        w: 1
+      rot:
+        x: -0.95069325
+        y: 0
+        z: -0.31013265
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+    # Clone Officer 2
+    clone_officer_2:
+      model_id: 596
+      pos:
+        x: 702.84344
+        y: 9.881823
+        z: -11.503683
+        w: 1
+      rot:
+        x: -0.11443962
+        y: 0
+        z: -0.99343026
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Trooper Red Stripes
+    clone_trooper_red_stripes:
+      model_id: 1957
+      pos:
+        x: 703.4133
+        y: 9.881838
+        z: -10.120236
+        w: 1
+      rot:
+        x: -0.15351824
+        y: 0
+        z: -0.99814577
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+    # Clone Officer 3
+    clone_officer_3:
+      model_id: 596
+      pos:
+        x: 716.13934
+        y: 9.881831
+        z: -10.454708
+        w: 1
+      rot:
+        x: 0.9615483
+        y: 0
+        z: -0.27463582
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Trooper Red Stripes 2
+    clone_trooper_red_stripes_2:
+      model_id: 1957
+      pos:
+        x: 716.1396
+        y: 9.88182
+        z: -4.470627
+        w: 1
+      rot:
+        x: 0.9907319
+        y: 0
+        z: -0.13583206
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Officer 4
+    clone_officer_4:
+      model_id: 596
+      pos:
+        x: 721.42883
+        y: 10.098241
+        z: -1.0338348
+        w: 1
+      rot:
+        x: -0.9
+        y: 0
+        z: -0
+        w: 0
+      stand_animation_id: 2551
+      enable_interact_popup: false
+      enable_gravity: false
+    # Clone Officer 5
+    clone_officer_5:
+      model_id: 596
+      pos:
+        x: 724.7176
+        y: 10.098241
+        z: -1.0713577
+        w: 1
+      rot:
+        x: -0.9
+        y: 0
+        z: -0
+        w: 0
+      stand_animation_id: 2598
+      enable_interact_popup: false
+      enable_gravity: false
+    # Clone Trooper Aqua Squares
+    clone_trooper_aqua_squares:
+      model_id: 1947
+      pos: 
+        x: 729.8733
+        y: 10.098241
+        z: 3.68976
+        w: 1
+      rot:
+        x: 0.9826806
+        y: 0
+        z: -0.18530744
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+    # Clone Officer 6
+    clone_officer_6:
+      model_id: 596
+      pos:
+        x: 731.08997
+        y: 10.098241
+        z: 2.8636737
+        w: 1
+      rot:
+        x: -0.1
+        y: 0
+        z: -0.9
+        w: 0
+      stand_animation_id: 2551
+      enable_interact_popup: false
+      enable_gravity: false
+    # Clone Officer 7
+    clone_officer_7:
+      model_id: 596
+      pos:
+        x: 731.06775
+        y: 10.098241
+        z: 5.208865
+        w: 1
+      rot:
+        x: -0.1
+        y: 0
+        z: -0.9
+        w: 0
+      stand_animation_id: 2598
+      enable_interact_popup: false
+      enable_gravity: false
+    # Syther
+    syther:
+      model_id: 2875
+      pos:
+        x: 731.06177
+        y: 10.098241
+        z: 8.302627
+        w: 1
+      rot:
+        x: 0.96813846
+        y: 0
+        z: -0.25041535
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+    # Clone Trooper Red Stripes 3
+    clone_trooper_red_stripes_3:
+      model_id: 1957
+      pos:
+        x: 731.2516
+        y: 10.098241
+        z: 11.868656
+        w: 1
+      rot:
+        x: 0.99059594
+        y: 0
+        z: -0.0
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Trooper No Helmet
+    clonet_trooper_no_helmet:
+      model_id: 2032
+      pos:
+        x: 727.26886
+        y: 10.098241
+        z: 14.980762
+        w: 1
+      rot:
+        x: 0.25991097
+        y: 0
+        z: 0.9656326
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Officer 8
+    clone_officer_8:
+      model_id: 1268
+      pos:
+        x: 725.61206
+        y: 10.098241
+        z: 14.927625
+        w: 1
+      rot:
+        x: 0.8
+        y: 0
+        z: -0
+        w: 0
+      stand_animation_id: 2551
+      enable_interact_popup: false
+      enable_gravity: false
+    # Clone Officer 9
+    clone_officer_9:
+      model_id: 1267
+      pos:
+        x: 723.18915
+        y: 10.098241
+        z: 14.916124
+        w: 1
+      rot:
+        x: 0.8
+        y: 0
+        z: -0
+        w: 0
+      stand_animation_id: 2598
+      enable_interact_popup: false
+      enable_gravity: false
+    # Clone Officer 10
+    clone_officer_10:
+      model_id: 1266
+      pos:
+        x: 720.75275
+        y: 10.098241
+        z: 14.913165
+        w: 1
+      rot:
+        x: 0.8
+        y: 0
+        z: -0
+        w: 0
+      stand_animation_id: 2551
+      enable_interact_popup: false
+      enable_gravity: false
+    # L1-LR3D
+    L1LR3D:
+      model_id: 641
+      pos:
+        x: 716.88665
+        y: 10.98241
+        z: 15.351416
+        w: 1
+      rot:
+        x: 0.19670576
+        y: 0
+        z: 0.98804626
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+    # Clone Trooper No Helmet 2
+    clone_trooper_no_helmet_2:
+      model_id: 2032
+      pos:
+        x: 715.22437
+        y: 10.098241
+        z: 15.351409
+        w: 1
+      rot:
+        x: 0.20236413
+        y: 0
+        z: 0.97931033
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Officer 11
+    clone_officer_11:
+      model_id: 1265
+      pos:
+        x: 712.2288
+        y: 10.591153
+        z: 15.230871
+        w: 1
+      rot:
+        x: -0.06466712
+        y: 0
+        z: 0.9979069
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Trooper Shoulder Pad
+    clone_trooper_shoulder_pad: 
+      model_id: 600
+      pos:
+        x: 711.09393
+        y: 10.5910845
+        z: 15.231307
+        w: 1
+      rot:
+        x: 0.03711562
+        y: 0
+        z: 0.9993109
+        w: 0
+      stand_animation_id: 2590
+      enable_interact_popup: false
+    # Clone Trooper No Helmet 3
+    clone_trooper_no_helmet_3:
+      model_id: 2032
+      pos:
+        x: 710.91046
+        y: 10.5910845
+        z: 12.288489
+        w: 1
+      rot:
+        x: -0.39142537
+        y: 0
+        z: 0.92020994
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
+    # Clone Trooper No Helmet 4
+    clone_trooper_no_helmet_4:
+      model_id: 2032
+      pos:
+        x: 709.5374
+        y: 10.5910845
+        z: 13.837554
+        w: 1
+      rot:
+        x: 0.5610567
+        y: 0
+        z: -0.8277774
+        w: 0
+      stand_animation_id: 901
+      enable_interact_popup: false
     #
     # Workshop
     #

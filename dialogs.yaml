@@ -329,7 +329,7 @@ jedi_temple:
 
     
     - button_key: Shop Now! (AR-M33)
-      npc_key: AR-M33,
+      npc_key: AR-M33
       script: !CustomIntParams
         script_name: UIGlobal.GotoItemGroupInStore
         params: [1, 0, 0]
@@ -369,3 +369,81 @@ jedi_temple:
         script_name: UIGlobal.GotoItemGroupInStore
         params: [94, 0, 0]
       close_dialog: true
+      
+    ### War Room
+    
+    - button_key: Mace Windu
+      npc_key: mace_windu
+      new_dialog:
+        dialog_message_id: 1100
+        speaker_animation_id: 2202
+        speaker_sound_id: 2406
+        zoom: 30
+        camera_placement:
+          x: 707.47
+          y: 11.0
+          z: -3.88
+          w: 1
+        look_at:
+          x: 709.9
+          y: 11.5
+          z: -5.85
+          w: 1
+        choices:
+          - button_key: Play Republic Defender
+            button_text_id: 15004
+        
+    - button_key: Plo Koon
+      npc_key: plo_koon
+      new_dialog:
+        dialog_message_id: 14970
+        speaker_animation_id: 2202
+        speaker_sound_id: 2376
+        zoom: 30
+        camera_placement:
+          x: 720.95
+          y: 11.9
+          z: 2.67
+          w: 1
+        look_at:
+          x: 723.36
+          y: 11.9
+          z: 1
+          w: 1
+        choices:
+          - button_key: Play Attack Cruiser
+            button_text_id: 14969
+
+    - button_key: Captain Rex
+      npc_key: captain_rex
+      new_dialog:
+        dialog_message_id: 44339
+        speaker_animation_id: 2202
+        speaker_sound_id: 6241
+        zoom: 30
+        camera_placement:
+          x: 721.76
+          y: 11.5
+          z: 10.42
+          w: 1
+        look_at:
+          x: 724.98
+          y: 11.94
+          z: 12.02
+          w: 1
+        choices:
+          - button_key: Play Galactic Forces
+            button_text_id: 44352
+           
+    - button_key: Play Republic Defender
+      npc_key: mace_windu
+      close_dialog: true
+
+    - button_key: Play Attack Cruiser
+      npc_key: plo_koon
+      close_dialog: true
+
+    - button_key: Play Galactic Forces
+      npc_key: captain_rex
+      close_dialog: true
+
