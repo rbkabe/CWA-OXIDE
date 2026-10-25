@@ -418,7 +418,7 @@ jedi_temple:
       npc_key: captain_rex
       new_dialog:
         dialog_message_id: 44339
-        speaker_animation_id: 2202
+        speaker_animation_id: 2203
         speaker_sound_id: 5419
         zoom: 30
         camera_placement:
